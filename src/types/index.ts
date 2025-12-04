@@ -39,3 +39,29 @@ export interface SocialLink {
   href: string;
   label: string;
 }
+
+export interface Stat {
+  icon: React.ReactNode;
+  value: string;
+  label: string;
+  suffix?: string;
+}
+
+export interface Achievement {
+  title: string;
+  issuer: string;
+  date: string;
+  description?: string;
+  icon: React.ReactNode;
+  link?: string;
+}
+
+export interface BlogPost {
+  title: string;
+  summary: string;
+  date: string;
+  readTime: string;
+  image: string;
+  link: string;
+  tags?: string[];
+}
