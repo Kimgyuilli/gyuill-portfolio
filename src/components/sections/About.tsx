@@ -1,10 +1,12 @@
 import { ImageWithFallback } from '@/components/common/ImageWithFallback';
+import { FadeInSection } from '@/components/common/FadeInSection';
 
 export function About() {
   return (
     <section id="about" className="py-20 bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
+        <FadeInSection>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="mb-6 text-slate-100">About Me</h2>
             <p className="text-slate-300 mb-4">
@@ -31,7 +33,8 @@ export function About() {
             </div>
             <div className="absolute -bottom-4 -right-4 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl -z-10"></div>
           </div>
-        </div>
+          </div>
+        </FadeInSection>
       </div>
     </section>
   );

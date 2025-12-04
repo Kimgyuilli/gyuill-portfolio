@@ -2,6 +2,7 @@ import { Send, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
 import { useState } from 'react';
 import { ContactInfoItem } from '@/components/common/ContactInfoItem';
 import { SocialLink } from '@/components/common/SocialLink';
+import { FadeInSection } from '@/components/common/FadeInSection';
 import { contactInfoData, socialLinksData } from '@/data/contact';
 
 const contactIconMap = {
@@ -38,14 +39,17 @@ export function Contact() {
   return (
     <section id="contact" className="py-20 bg-slate-900/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="mb-4 text-slate-100">Get In Touch</h2>
-          <p className="text-slate-400 max-w-2xl mx-auto">
-            프로젝트 문의나 협업 제안이 있으시다면 언제든지 연락해주세요.
-          </p>
-        </div>
+        <FadeInSection>
+          <div className="text-center mb-12">
+            <h2 className="mb-4 text-slate-100">Get In Touch</h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              프로젝트 문의나 협업 제안이 있으시다면 언제든지 연락해주세요.
+            </p>
+          </div>
+        </FadeInSection>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+        <FadeInSection delay={0.2}>
+          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Contact Info */}
           <div>
             <h3 className="mb-6 text-slate-100">연락처 정보</h3>
@@ -138,7 +142,8 @@ export function Contact() {
               </button>
             </form>
           </div>
-        </div>
+          </div>
+        </FadeInSection>
 
         {/* Footer */}
         <div className="mt-20 pt-8 border-t border-slate-800 text-center text-slate-400">
