@@ -13,7 +13,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 export default function App() {
   return (
     <ThemeProvider>
-      <div className="bg-slate-950 dark:bg-slate-950 min-h-screen text-slate-100 dark:text-slate-100">
+      <div className="bg-slate-50 dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 transition-colors duration-200">
         <Navigation />
         <Hero />
         <Stats />
