@@ -1,6 +1,38 @@
 import { Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
+import { useState, useEffect } from 'react';
+
+const roles = ['풀스택 개발자', '문제 해결사', '혁신가', '팀 플레이어'];
 
 export function Hero() {
+  const [currentRole, setCurrentRole] = useState(0);
+  const [displayText, setDisplayText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  useEffect(() => {
+    const role = roles[currentRole];
+    const typingSpeed = isDeleting ? 50 : 100;
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting && displayText === role) {
+          setIsDeleting(true);
+        } else if (isDeleting && displayText === '') {
+          setIsDeleting(false);
+          setCurrentRole((prev) => (prev + 1) % roles.length);
+        } else {
+          setDisplayText(
+            isDeleting
+              ? role.substring(0, displayText.length - 1)
+              : role.substring(0, displayText.length + 1)
+          );
+        }
+      },
+      !isDeleting && displayText === role ? 2000 : typingSpeed
+    );
+
+    return () => clearTimeout(timeout);
+  }, [displayText, isDeleting, currentRole]);
+
   return (
     <section id="home" className="min-h-screen flex items-center justify-center relative pt-16">
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-slate-950 to-blue-500/10"></div>
@@ -11,8 +43,9 @@ export function Hero() {
             <span className="text-emerald-400">안녕하세요, 저는</span>
           </div>
           <h1 className="mb-4 text-slate-100">IT 개발자 포트폴리오</h1>
-          <p className="text-slate-400 max-w-2xl mx-auto mb-8">
-            풀스택 개발자 | 문제 해결사 | 혁신적인 솔루션 개발
+          <p className="text-slate-400 max-w-2xl mx-auto mb-8 h-8">
+            <span className="text-emerald-400">{displayText}</span>
+            <span className="animate-pulse">|</span>
           </p>
 
           <div className="flex justify-center gap-4 mb-12">

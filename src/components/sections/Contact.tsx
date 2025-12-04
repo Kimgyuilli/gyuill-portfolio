@@ -50,98 +50,98 @@ export function Contact() {
 
         <FadeInSection delay={0.2}>
           <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-          {/* Contact Info */}
-          <div>
-            <h3 className="mb-6 text-slate-100">연락처 정보</h3>
-
-            <div className="space-y-4 mb-8">
-              {contactInfoData.map((info, index) => (
-                <ContactInfoItem
-                  key={index}
-                  info={{
-                    ...info,
-                    icon: contactIconMap[info.label as keyof typeof contactIconMap],
-                  }}
-                />
-              ))}
-            </div>
-
+            {/* Contact Info */}
             <div>
-              <h4 className="mb-4 text-slate-100">소셜 미디어</h4>
-              <div className="flex gap-4">
-                {socialLinksData.map((link, index) => (
-                  <SocialLink
+              <h3 className="mb-6 text-slate-100">연락처 정보</h3>
+
+              <div className="space-y-4 mb-8">
+                {contactInfoData.map((info, index) => (
+                  <ContactInfoItem
                     key={index}
-                    link={{
-                      ...link,
-                      icon: socialIconMap[link.label as keyof typeof socialIconMap],
+                    info={{
+                      ...info,
+                      icon: contactIconMap[info.label as keyof typeof contactIconMap],
                     }}
                   />
                 ))}
               </div>
+
+              <div>
+                <h4 className="mb-4 text-slate-100">소셜 미디어</h4>
+                <div className="flex gap-4">
+                  {socialLinksData.map((link, index) => (
+                    <SocialLink
+                      key={index}
+                      link={{
+                        ...link,
+                        icon: socialIconMap[link.label as keyof typeof socialIconMap],
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Contact Form */}
-          <div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-              <div>
-                <label htmlFor="name" className="block mb-2 text-slate-300">
-                  이름
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
-                  placeholder="홍길동"
-                />
-              </div>
+            {/* Contact Form */}
+            <div>
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div>
+                  <label htmlFor="name" className="block mb-2 text-slate-300">
+                    이름
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
+                    placeholder="홍길동"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="email" className="block mb-2 text-slate-300">
-                  이메일
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
-                  placeholder="your.email@example.com"
-                />
-              </div>
+                <div>
+                  <label htmlFor="email" className="block mb-2 text-slate-300">
+                    이메일
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
 
-              <div>
-                <label htmlFor="message" className="block mb-2 text-slate-300">
-                  메시지
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
-                  placeholder="메시지를 입력하세요..."
-                />
-              </div>
+                <div>
+                  <label htmlFor="message" className="block mb-2 text-slate-300">
+                    메시지
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
+                    placeholder="메시지를 입력하세요..."
+                  />
+                </div>
 
-              <button
-                type="submit"
-                className="w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-lg transition-colors flex items-center justify-center gap-2"
-              >
-                <Send size={18} />
-                <span>메시지 보내기</span>
-              </button>
-            </form>
-          </div>
+                <button
+                  type="submit"
+                  className="w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <Send size={18} />
+                  <span>메시지 보내기</span>
+                </button>
+              </form>
+            </div>
           </div>
         </FadeInSection>
 
