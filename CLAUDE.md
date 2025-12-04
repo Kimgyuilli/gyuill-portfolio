@@ -48,16 +48,17 @@ src/
 ├── components/
 │   ├── layout/           # Layout components (Navigation)
 │   ├── sections/         # Page sections (Hero, About, Skills, Projects, Experience, Contact)
-│   ├── common/           # Reusable components (ProjectCard, SkillCard, ExperienceItem, etc.)
-│   └── ui/               # shadcn/ui components (50+ reusable UI primitives)
+│   └── common/           # Reusable components (ProjectCard, SkillCard, ExperienceItem, etc.)
 ├── data/                 # Data definitions (projects, skills, experiences, contact)
 ├── types/                # TypeScript type definitions
 ├── constants/            # App constants (navigation items, etc.)
-├── lib/                  # Utility functions
+├── lib/                  # Utility functions (cn helper, etc.)
 └── styles/               # Global styles and CSS variables
 ```
 
 **Data Layer**: All portfolio content (projects, skills, experiences) is separated into the `data/` folder for easy customization.
+
+**Note**: This project does not include shadcn/ui components by default. If you need UI components, install them via `npx shadcn@latest add [component]`.
 
 ### Styling System
 
