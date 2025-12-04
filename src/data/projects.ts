@@ -10,6 +10,7 @@ export const projects: Project[] = [
     tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
     github: '#',
     demo: '#',
+    category: 'Web',
   },
   {
     title: 'Task Management App',
@@ -20,6 +21,7 @@ export const projects: Project[] = [
     tags: ['Next.js', 'TypeScript', 'Supabase', 'Tailwind'],
     github: '#',
     demo: '#',
+    category: 'Web',
   },
   {
     title: 'AI Chat Assistant',
@@ -30,5 +32,6 @@ export const projects: Project[] = [
     tags: ['Python', 'FastAPI', 'OpenAI', 'React'],
     github: '#',
     demo: '#',
+    category: 'AI',
   },
 ];

@@ -12,6 +12,7 @@ export interface Project {
   tags: string[];
   github: string;
   demo: string;
+  category: 'All' | 'Web' | 'Mobile' | 'AI' | 'Backend';
 }
 
 export interface SkillCategory {
