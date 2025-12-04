@@ -5,14 +5,14 @@ import { SocialLink } from '@/components/common/SocialLink';
 import { contactInfoData, socialLinksData } from '@/data/contact';
 
 const contactIconMap = {
-  '이메일': <Mail size={20} />,
-  '전화번호': <Phone size={20} />,
-  '위치': <MapPin size={20} />,
+  이메일: <Mail size={20} />,
+  전화번호: <Phone size={20} />,
+  위치: <MapPin size={20} />,
 } as const;
 
 const socialIconMap = {
-  'GitHub': <Github size={20} />,
-  'LinkedIn': <Linkedin size={20} />,
+  GitHub: <Github size={20} />,
+  LinkedIn: <Linkedin size={20} />,
 } as const;
 
 export function Contact() {
@@ -56,7 +56,7 @@ export function Contact() {
                   key={index}
                   info={{
                     ...info,
-                    icon: contactIconMap[info.label as keyof typeof contactIconMap]
+                    icon: contactIconMap[info.label as keyof typeof contactIconMap],
                   }}
                 />
               ))}
@@ -70,7 +70,7 @@ export function Contact() {
                     key={index}
                     link={{
                       ...link,
-                      icon: socialIconMap[link.label as keyof typeof socialIconMap]
+                      icon: socialIconMap[link.label as keyof typeof socialIconMap],
                     }}
                   />
                 ))}

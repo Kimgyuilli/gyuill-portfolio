@@ -19,16 +19,11 @@ export function ProjectCard({ project }: ProjectCardProps) {
 
       <div className="p-6">
         <h3 className="mb-3 text-slate-100">{project.title}</h3>
-        <p className="text-slate-400 mb-4">
-          {project.description}
-        </p>
+        <p className="text-slate-400 mb-4">{project.description}</p>
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, tagIndex) => (
-            <span
-              key={tagIndex}
-              className="px-2 py-1 bg-slate-800 text-slate-300 rounded"
-            >
+            <span key={tagIndex} className="px-2 py-1 bg-slate-800 text-slate-300 rounded">
               {tag}
             </span>
           ))}

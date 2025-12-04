@@ -10,9 +10,7 @@ export function Hero() {
           <div className="mb-6">
             <span className="text-emerald-400">안녕하세요, 저는</span>
           </div>
-          <h1 className="mb-4 text-slate-100">
-            IT 개발자 포트폴리오
-          </h1>
+          <h1 className="mb-4 text-slate-100">IT 개발자 포트폴리오</h1>
           <p className="text-slate-400 max-w-2xl mx-auto mb-8">
             풀스택 개발자 | 문제 해결사 | 혁신적인 솔루션 개발
           </p>
@@ -33,13 +31,25 @@ export function Hero() {
           </div>
 
           <div className="flex justify-center gap-6">
-            <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors" aria-label="GitHub">
+            <a
+              href="#"
+              className="text-slate-400 hover:text-emerald-400 transition-colors"
+              aria-label="GitHub"
+            >
               <Github size={24} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors" aria-label="LinkedIn">
+            <a
+              href="#"
+              className="text-slate-400 hover:text-emerald-400 transition-colors"
+              aria-label="LinkedIn"
+            >
               <Linkedin size={24} />
             </a>
-            <a href="#" className="text-slate-400 hover:text-emerald-400 transition-colors" aria-label="Email">
+            <a
+              href="#"
+              className="text-slate-400 hover:text-emerald-400 transition-colors"
+              aria-label="Email"
+            >
               <Mail size={24} />
             </a>
           </div>

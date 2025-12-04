@@ -3,12 +3,12 @@ import { SkillCard } from '@/components/common/SkillCard';
 import { skillCategories } from '@/data/skills';
 
 const iconMap = {
-  'Frontend': <Code2 className="w-8 h-8" />,
-  'Backend': <Server className="w-8 h-8" />,
-  'Database': <Database className="w-8 h-8" />,
-  'Mobile': <Smartphone className="w-8 h-8" />,
-  'DevOps': <Globe className="w-8 h-8" />,
-  'Tools': <Layout className="w-8 h-8" />,
+  Frontend: <Code2 className="w-8 h-8" />,
+  Backend: <Server className="w-8 h-8" />,
+  Database: <Database className="w-8 h-8" />,
+  Mobile: <Smartphone className="w-8 h-8" />,
+  DevOps: <Globe className="w-8 h-8" />,
+  Tools: <Layout className="w-8 h-8" />,
 } as const;
 
 export function Skills() {
@@ -28,7 +28,7 @@ export function Skills() {
               key={index}
               category={{
                 ...category,
-                icon: iconMap[category.title as keyof typeof iconMap]
+                icon: iconMap[category.title as keyof typeof iconMap],
               }}
             />
           ))}

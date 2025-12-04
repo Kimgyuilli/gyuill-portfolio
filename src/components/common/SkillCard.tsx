@@ -7,9 +7,7 @@ interface SkillCardProps {
 export function SkillCard({ category }: SkillCardProps) {
   return (
     <div className="bg-slate-900/50 border border-slate-800 rounded-xl p-6 hover:border-emerald-500/50 transition-colors">
-      <div className="text-emerald-400 mb-4">
-        {category.icon}
-      </div>
+      <div className="text-emerald-400 mb-4">{category.icon}</div>
       <h3 className="mb-4 text-slate-100">{category.title}</h3>
       <div className="flex flex-wrap gap-2">
         {category.skills.map((skill, skillIndex) => (
