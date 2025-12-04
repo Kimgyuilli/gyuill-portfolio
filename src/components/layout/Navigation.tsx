@@ -1,36 +1,69 @@
 import { Menu, X, Sun, Moon } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NAV_ITEMS, BRAND_NAME } from '@/constants/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
   const { theme, toggleTheme } = useTheme();
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = NAV_ITEMS.map((item) => item.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const offsetTop = element.offsetTop;
+          const offsetHeight = element.offsetHeight;
+          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/90 backdrop-blur-md border-b border-slate-800">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           <div className="flex-shrink-0">
-            <span className="text-emerald-400">{BRAND_NAME}</span>
+            <a href="#home" className="text-emerald-400 font-bold text-xl hover:text-emerald-300 transition-colors">
+              {BRAND_NAME}
+            </a>
           </div>
 
           {/* Desktop Navigation */}
-          <div className="flex items-center space-x-8 max-md:hidden">
-            <div className="flex items-center space-x-6">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className="text-slate-300 hover:text-emerald-400 transition-colors"
-                >
-                  {item.label}
-                </a>
-              ))}
+          <div className="flex items-center gap-2 max-md:hidden">
+            <div className="flex items-center gap-1">
+              {NAV_ITEMS.map((item) => {
+                const isActive = activeSection === item.href.substring(1);
+                return (
+                  <a
+                    key={item.label}
+                    href={item.href}
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
+                      isActive
+                        ? 'text-emerald-400 bg-emerald-500/10'
+                        : 'text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50'
+                    }`}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })}
             </div>
+            <div className="w-px h-6 bg-slate-700 mx-2"></div>
             <button
               onClick={toggleTheme}
-              className="text-slate-300 hover:text-emerald-400 transition-colors p-2"
+              className="p-2 text-slate-300 hover:text-emerald-400 hover:bg-slate-800/50 rounded-lg transition-all duration-200"
               aria-label="Toggle theme"
             >
               {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
