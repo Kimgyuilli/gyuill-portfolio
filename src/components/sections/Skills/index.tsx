@@ -1,7 +1,7 @@
 import { SkillCard } from '@/components/common/SkillCard';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { skillCategories } from '@/data/skills';
-import { SKILL_ICONS, type SkillIconKey } from '@/constants/skillIcons';
+import { SKILL_ICONS } from '@/constants/skillIcons';
 import styles from './styles.module.css';
 
 export function Skills() {
@@ -24,7 +24,7 @@ export function Skills() {
                 key={category.title}
                 category={{
                   ...category,
-                  icon: SKILL_ICONS[category.title as SkillIconKey],
+                  icon: SKILL_ICONS[category.title],
                 }}
               />
             ))}
