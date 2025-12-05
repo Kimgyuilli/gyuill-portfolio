@@ -44,8 +44,8 @@ export function Projects() {
 
         <FadeInSection delay={0.2}>
           <div className={styles.grid}>
-            {filteredProjects.map((project, index) => (
-              <ProjectCard key={index} project={project} />
+            {filteredProjects.map((project) => (
+              <ProjectCard key={project.title} project={project} />
             ))}
           </div>
         </FadeInSection>

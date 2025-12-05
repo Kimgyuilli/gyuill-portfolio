@@ -19,8 +19,8 @@ export function ProjectCard({ project }: ProjectCardProps) {
         <p className={styles.description}>{project.description}</p>
 
         <div className={styles.tags}>
-          {project.tags.map((tag, tagIndex) => (
-            <span key={tagIndex} className={styles.tag}>
+          {project.tags.map((tag) => (
+            <span key={tag} className={styles.tag}>
               {tag}
             </span>
           ))}
