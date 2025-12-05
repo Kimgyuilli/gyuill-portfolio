@@ -1,0 +1,40 @@
+.contact-info-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(203, 213, 225);
+}
+
+.icon-wrapper {
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(52, 211, 153, 0.1);
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(52, 211, 153);
+}
+
+.info {
+  flex: 1;
+}
+
+.label {
+  color: rgb(203, 213, 225);
+  margin-bottom: 0.125rem;
+}
+
+.value {
+  color: rgb(148, 163, 184);
+}
+
+.value-link {
+  color: rgb(148, 163, 184);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.value-link:hover {
+  color: rgb(52, 211, 153);
+}

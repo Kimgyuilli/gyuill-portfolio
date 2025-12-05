@@ -1,27 +1,24 @@
 import type { ContactInfo } from '@/types';
+import styles from './ContactInfoItem.module.css';
 
 interface ContactInfoItemProps {
   info: ContactInfo;
 }
 
 export function ContactInfoItem({ info }: ContactInfoItemProps) {
-  const content = (
-    <div className="flex items-center gap-4 text-slate-300">
-      <div className="w-12 h-12 bg-emerald-500/10 rounded-lg flex items-center justify-center text-emerald-400">
-        {info.icon}
-      </div>
-      <div>
-        <p>{info.label}</p>
+  return (
+    <div className={styles['contact-info-item']}>
+      <div className={styles['icon-wrapper']}>{info.icon}</div>
+      <div className={styles.info}>
+        <p className={styles.label}>{info.label}</p>
         {info.href ? (
-          <a href={info.href} className="text-slate-400 hover:text-emerald-400 transition-colors">
+          <a href={info.href} className={styles['value-link']}>
             {info.value}
           </a>
         ) : (
-          <p className="text-slate-400">{info.value}</p>
+          <p className={styles.value}>{info.value}</p>
         )}
       </div>
     </div>
   );
-
-  return content;
 }

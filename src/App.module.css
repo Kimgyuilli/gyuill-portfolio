@@ -1,0 +1,11 @@
+.app {
+  background-color: rgb(248, 250, 252);
+  min-height: 100vh;
+  color: rgb(15, 23, 42);
+  transition: all 0.2s;
+}
+
+:global(.dark) .app {
+  background-color: rgb(2, 6, 23);
+  color: rgb(241, 245, 249);
+}

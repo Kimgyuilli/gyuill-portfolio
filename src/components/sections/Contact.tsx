@@ -1,20 +1,11 @@
-import { Send, Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Send } from 'lucide-react';
 import { useState } from 'react';
 import { ContactInfoItem } from '@/components/common/ContactInfoItem';
 import { SocialLink } from '@/components/common/SocialLink';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { contactInfoData, socialLinksData } from '@/data/contact';
-
-const contactIconMap = {
-  이메일: <Mail size={20} />,
-  전화번호: <Phone size={20} />,
-  위치: <MapPin size={20} />,
-} as const;
-
-const socialIconMap = {
-  GitHub: <Github size={20} />,
-  LinkedIn: <Linkedin size={20} />,
-} as const;
+import { CONTACT_ICONS, SOCIAL_ICONS, type ContactIconKey, type SocialIconKey } from '@/constants/contactIcons';
+import styles from './Contact.module.css';
 
 export function Contact() {
   const [formData, setFormData] = useState({
@@ -37,44 +28,44 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 bg-slate-900/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className={styles['contact-section']}>
+      <div className={styles.container}>
         <FadeInSection>
-          <div className="text-center mb-12">
-            <h2 className="mb-4 text-slate-100">Get In Touch</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
+          <div className={styles.header}>
+            <h2 className={styles.title}>Get In Touch</h2>
+            <p className={styles.description}>
               프로젝트 문의나 협업 제안이 있으시다면 언제든지 연락해주세요.
             </p>
           </div>
         </FadeInSection>
 
         <FadeInSection delay={0.2}>
-          <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+          <div className={styles['content-grid']}>
             {/* Contact Info */}
-            <div>
-              <h3 className="mb-6 text-slate-100">연락처 정보</h3>
+            <div className={styles['contact-info-section']}>
+              <h3 className={styles['section-title']}>연락처 정보</h3>
 
-              <div className="space-y-4 mb-8">
+              <div className={styles['contact-list']}>
                 {contactInfoData.map((info, index) => (
                   <ContactInfoItem
                     key={index}
                     info={{
                       ...info,
-                      icon: contactIconMap[info.label as keyof typeof contactIconMap],
+                      icon: CONTACT_ICONS[info.label as ContactIconKey],
                     }}
                   />
                 ))}
               </div>
 
               <div>
-                <h4 className="mb-4 text-slate-100">소셜 미디어</h4>
-                <div className="flex gap-4">
+                <h4 className={styles['social-title']}>소셜 미디어</h4>
+                <div className={styles['social-links']}>
                   {socialLinksData.map((link, index) => (
                     <SocialLink
                       key={index}
                       link={{
                         ...link,
-                        icon: socialIconMap[link.label as keyof typeof socialIconMap],
+                        icon: SOCIAL_ICONS[link.label as SocialIconKey],
                       }}
                     />
                   ))}
@@ -83,10 +74,10 @@ export function Contact() {
             </div>
 
             {/* Contact Form */}
-            <div>
-              <form onSubmit={handleSubmit} className="space-y-4">
-                <div>
-                  <label htmlFor="name" className="block mb-2 text-slate-300">
+            <div className={styles['form-section']}>
+              <form onSubmit={handleSubmit} className={styles.form}>
+                <div className={styles['form-group']}>
+                  <label htmlFor="name" className={styles.label}>
                     이름
                   </label>
                   <input
@@ -96,13 +87,13 @@ export function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
+                    className={styles.input}
                     placeholder="홍길동"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="email" className="block mb-2 text-slate-300">
+                <div className={styles['form-group']}>
+                  <label htmlFor="email" className={styles.label}>
                     이메일
                   </label>
                   <input
@@ -112,13 +103,13 @@ export function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors"
+                    className={styles.input}
                     placeholder="your.email@example.com"
                   />
                 </div>
 
-                <div>
-                  <label htmlFor="message" className="block mb-2 text-slate-300">
+                <div className={styles['form-group']}>
+                  <label htmlFor="message" className={styles.label}>
                     메시지
                   </label>
                   <textarea
@@ -128,15 +119,12 @@ export function Contact() {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="w-full px-4 py-3 bg-slate-900 border border-slate-800 rounded-lg text-slate-100 focus:outline-none focus:border-emerald-500 transition-colors resize-none"
+                    className={styles.textarea}
                     placeholder="메시지를 입력하세요..."
                   />
                 </div>
 
-                <button
-                  type="submit"
-                  className="w-full px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-slate-950 rounded-lg transition-colors flex items-center justify-center gap-2"
-                >
+                <button type="submit" className={styles['submit-button']}>
                   <Send size={18} />
                   <span>메시지 보내기</span>
                 </button>
@@ -146,7 +134,7 @@ export function Contact() {
         </FadeInSection>
 
         {/* Footer */}
-        <div className="mt-20 pt-8 border-t border-slate-800 text-center text-slate-400">
+        <div className={styles.footer}>
           <p>© 2025 IT Developer Portfolio. All rights reserved.</p>
         </div>
       </div>
