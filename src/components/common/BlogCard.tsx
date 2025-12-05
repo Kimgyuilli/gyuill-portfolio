@@ -1,6 +1,7 @@
 import { BlogPost } from '@/types';
 import { Calendar, Clock, ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from './ImageWithFallback';
+import styles from './BlogCard.module.css';
 
 interface BlogCardProps {
   post: BlogPost;
@@ -12,38 +13,37 @@ export function BlogCard({ post }: BlogCardProps) {
       href={post.link}
       target="_blank"
       rel="noopener noreferrer"
-      className="block bg-slate-900/50 border border-slate-800 rounded-xl overflow-hidden hover:border-emerald-500/50 transition-all hover:transform hover:scale-[1.02] group"
+      className={styles['blog-card']}
     >
-      <div className="aspect-video overflow-hidden bg-slate-800">
+      <div className={styles['image-container']}>
         <ImageWithFallback
           src={post.image}
           alt={post.title}
-          className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+          className={styles.image}
         />
       </div>
-      <div className="p-6">
-        <div className="flex items-center gap-4 text-slate-500 text-sm mb-3">
-          <span className="flex items-center gap-1">
+      <div className={styles.content}>
+        <div className={styles.meta}>
+          <span className={styles['meta-item']}>
             <Calendar size={14} />
             {post.date}
           </span>
-          <span className="flex items-center gap-1">
+          <span className={styles['meta-item']}>
             <Clock size={14} />
             {post.readTime}
           </span>
         </div>
-        <h3 className="text-xl font-semibold text-slate-100 mb-3 group-hover:text-emerald-400 transition-colors flex items-start justify-between gap-2">
+        <h3 className={styles['title-wrapper']}>
           {post.title}
-          <ExternalLink size={16} className="flex-shrink-0 mt-1" />
+          <span className={styles['external-icon']}>
+            <ExternalLink size={16} />
+          </span>
         </h3>
-        <p className="text-slate-400 mb-4 line-clamp-2">{post.summary}</p>
+        <p className={styles.summary}>{post.summary}</p>
         {post.tags && post.tags.length > 0 && (
-          <div className="flex flex-wrap gap-2">
+          <div className={styles.tags}>
             {post.tags.map((tag, index) => (
-              <span
-                key={index}
-                className="px-3 py-1 bg-slate-800 text-emerald-400 text-xs rounded-full"
-              >
+              <span key={index} className={styles.tag}>
                 {tag}
               </span>
             ))}

@@ -1,0 +1,104 @@
+.blog-card {
+  display: block;
+  background-color: rgba(15, 23, 42, 0.5);
+  border: 1px solid rgb(30, 41, 59);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.blog-card:hover {
+  border-color: rgba(52, 211, 153, 0.5);
+  transform: scale(1.02);
+}
+
+.image-container {
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background-color: rgb(30, 41, 59);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.blog-card:hover .image {
+  transform: scale(1.1);
+}
+
+.content {
+  padding: 1.5rem;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: rgb(100, 116, 139);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.meta-item svg {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+
+.title-wrapper {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: rgb(241, 245, 249);
+  margin-bottom: 0.75rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.blog-card:hover .title-wrapper {
+  color: rgb(52, 211, 153);
+}
+
+.external-icon {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+}
+
+.external-icon svg {
+  width: 1rem;
+  height: 1rem;
+}
+
+.summary {
+  color: rgb(148, 163, 184);
+  margin-bottom: 1rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  background-color: rgb(30, 41, 59);
+  color: rgb(52, 211, 153);
+  font-size: 0.75rem;
+  border-radius: 9999px;
+}
