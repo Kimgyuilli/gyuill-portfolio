@@ -112,15 +112,17 @@ export function Hero() {
             <div>
               <h2 className={styles['section-title']}>경력</h2>
               <div className={styles['timeline-list']}>
-                {experiences.slice(0, 1).map((exp, index) => (
-                  <div key={index} className={styles['timeline-item']}>
-                    <div className={styles['timeline-date']}>{exp.period}</div>
-                    <div className={styles['timeline-content']}>
-                      <p className={styles['timeline-title']}>{exp.position}</p>
-                      <p className={styles['timeline-subtitle']}>{exp.company}</p>
+                {experiences
+                  .filter((exp) => exp.type === 'career')
+                  .map((exp, index) => (
+                    <div key={index} className={styles['timeline-item']}>
+                      <div className={styles['timeline-date']}>{exp.period}</div>
+                      <div className={styles['timeline-content']}>
+                        <p className={styles['timeline-title']}>{exp.position}</p>
+                        <p className={styles['timeline-subtitle']}>{exp.company}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
 
@@ -128,15 +130,17 @@ export function Hero() {
             <div>
               <h2 className={styles['section-title']}>활동</h2>
               <div className={styles['timeline-list']}>
-                {experiences.slice(1).map((exp, index) => (
-                  <div key={index} className={styles['timeline-item']}>
-                    <div className={styles['timeline-date']}>{exp.period}</div>
-                    <div className={styles['timeline-content']}>
-                      <p className={styles['timeline-text']}>{exp.company}</p>
-                      <p className={styles['timeline-subtitle']}>{exp.position}</p>
+                {experiences
+                  .filter((exp) => exp.type === 'activity')
+                  .map((exp, index) => (
+                    <div key={index} className={styles['timeline-item']}>
+                      <div className={styles['timeline-date']}>{exp.period}</div>
+                      <div className={styles['timeline-content']}>
+                        <p className={styles['timeline-text']}>{exp.company}</p>
+                        <p className={styles['timeline-subtitle']}>{exp.position}</p>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
               </div>
             </div>
           </div>
