@@ -1,8 +1,6 @@
 export interface Education {
   period: string;
   school: string;
-  major: string;
-  details?: string;
 }
 
 export interface AboutInfo {
@@ -44,12 +42,10 @@ export const heroData: HeroData = {
     {
       period: '2019.03 - 2024.02',
       school: '홍익대학교 컴퓨터공학과 19학번 졸업',
-      major: '컴퓨터공학',
     },
     {
       period: '2020.12 - 2022.05',
       school: '42 서울 3기',
-      major: 'Software Engineering',
     },
   ],
 };
