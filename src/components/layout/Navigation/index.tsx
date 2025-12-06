@@ -14,6 +14,17 @@ export function Navigation() {
       const sections = NAV_ITEMS.map((item) => item.href.substring(1));
       const scrollPosition = window.scrollY + 100;
 
+      // 페이지 하단에 도달했는지 확인
+      const windowHeight = window.innerHeight;
+      const documentHeight = document.documentElement.scrollHeight;
+      const isAtBottom = windowHeight + window.scrollY >= documentHeight - 10;
+
+      // 하단에 도달하면 마지막 섹션 활성화
+      if (isAtBottom) {
+        setActiveSection(sections[sections.length - 1]);
+        return;
+      }
+
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
