@@ -16,8 +16,8 @@ export function Experience() {
 
         <FadeInSection delay={0.2}>
           <div className={styles.timeline}>
-            {experiences.map((exp, index) => (
-              <ExperienceItem key={index} experience={exp} />
+            {experiences.map((exp) => (
+              <ExperienceItem key={`${exp.company}-${exp.period}`} experience={exp} />
             ))}
           </div>
         </FadeInSection>

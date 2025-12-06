@@ -27,8 +27,8 @@ export function ExperienceItem({ experience }: ExperienceItemProps) {
         </div>
 
         <ul className={styles['description-list']}>
-          {experience.description.map((item, itemIndex) => (
-            <li key={itemIndex} className={styles['description-item']}>
+          {experience.description.map((item) => (
+            <li key={item} className={styles['description-item']}>
               <span className={styles.bullet}>•</span>
               <span>{item}</span>
             </li>
