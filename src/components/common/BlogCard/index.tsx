@@ -1,5 +1,5 @@
 import { BlogPost } from '@/types';
-import { Calendar, Clock, ExternalLink } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import { ImageWithFallback } from '../ImageWithFallback';
 import styles from './styles.module.css';
 
@@ -18,10 +18,6 @@ export function BlogCard({ post }: BlogCardProps) {
           <span className={styles['meta-item']}>
             <Calendar size={14} />
             {post.date}
-          </span>
-          <span className={styles['meta-item']}>
-            <Clock size={14} />
-            {post.readTime}
           </span>
         </div>
         <h3 className={styles['title-wrapper']}>

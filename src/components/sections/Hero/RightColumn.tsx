@@ -1,5 +1,4 @@
 import { ExternalLink, Github, FileText } from 'lucide-react';
-import { useMemo } from 'react';
 import { heroData } from '@/data/hero';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
@@ -10,16 +9,12 @@ type SkillLevel = 'primary' | 'secondary' | 'tertiary';
 export function RightColumn() {
   const featuredProjects = projects.slice(0, 3);
 
-  // 스킬 데이터 변환 로직 (useMemo로 최적화)
-  const allSkills = useMemo(
-    () =>
-      skillCategories.flatMap((category) =>
-        category.skills.map((skill) => ({
-          name: skill,
-          category: category.title,
-        }))
-      ),
-    []
+  // 스킬 데이터 변환 로직
+  const allSkills = skillCategories.flatMap((category) =>
+    category.skills.map((skill) => ({
+      name: skill,
+      category: category.title,
+    }))
   );
 
   const getSkillLevel = (category: string): SkillLevel => {

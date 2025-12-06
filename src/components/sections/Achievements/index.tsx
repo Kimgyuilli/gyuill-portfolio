@@ -8,7 +8,8 @@ import styles from './styles.module.css';
 
 export function Achievements() {
   const achievementsWithIcons = useMemo(
-    () => mapWithIcons(achievements, (ach) => ach.title, ACHIEVEMENT_ICONS, DEFAULT_ACHIEVEMENT_ICON),
+    () =>
+      mapWithIcons(achievements, (ach) => ach.title, ACHIEVEMENT_ICONS, DEFAULT_ACHIEVEMENT_ICON),
     []
   );
 
