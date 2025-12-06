@@ -1,15 +1,11 @@
 import { Send } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ContactInfoItem } from '@/components/common/ContactInfoItem';
 import { SocialLink } from '@/components/common/SocialLink';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { contactInfoData, socialLinksData } from '@/data/contact';
-import {
-  CONTACT_ICONS,
-  SOCIAL_ICONS,
-  type ContactIconKey,
-  type SocialIconKey,
-} from '@/constants/contactIcons';
+import { CONTACT_ICONS, SOCIAL_ICONS } from '@/constants/contactIcons';
+import { mapWithIcons } from '@/utils/iconMapper';
 import styles from './styles.module.css';
 
 export function Contact() {
@@ -18,6 +14,16 @@ export function Contact() {
     email: '',
     message: '',
   });
+
+  const contactInfo = useMemo(
+    () => mapWithIcons(contactInfoData, (info) => info.label, CONTACT_ICONS),
+    []
+  );
+
+  const socialLinks = useMemo(
+    () => mapWithIcons(socialLinksData, (link) => link.label, SOCIAL_ICONS),
+    []
+  );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -51,28 +57,16 @@ export function Contact() {
               <h3 className={styles['section-title']}>연락처 정보</h3>
 
               <div className={styles['contact-list']}>
-                {contactInfoData.map((info) => (
-                  <ContactInfoItem
-                    key={info.label}
-                    info={{
-                      ...info,
-                      icon: CONTACT_ICONS[info.label as ContactIconKey],
-                    }}
-                  />
+                {contactInfo.map((info) => (
+                  <ContactInfoItem key={info.label} info={info} />
                 ))}
               </div>
 
               <div>
                 <h4 className={styles['social-title']}>소셜 미디어</h4>
                 <div className={styles['social-links']}>
-                  {socialLinksData.map((link) => (
-                    <SocialLink
-                      key={link.label}
-                      link={{
-                        ...link,
-                        icon: SOCIAL_ICONS[link.label as SocialIconKey],
-                      }}
-                    />
+                  {socialLinks.map((link) => (
+                    <SocialLink key={link.label} link={link} />
                   ))}
                 </div>
               </div>

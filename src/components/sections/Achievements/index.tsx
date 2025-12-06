@@ -1,10 +1,17 @@
+import { useMemo } from 'react';
 import { AchievementCard } from '@/components/common/AchievementCard';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { achievements } from '@/data/achievements';
 import { ACHIEVEMENT_ICONS, DEFAULT_ACHIEVEMENT_ICON } from '@/constants/achievementIcons';
+import { mapWithIcons } from '@/utils/iconMapper';
 import styles from './styles.module.css';
 
 export function Achievements() {
+  const achievementsWithIcons = useMemo(
+    () => mapWithIcons(achievements, (ach) => ach.title, ACHIEVEMENT_ICONS, DEFAULT_ACHIEVEMENT_ICON),
+    []
+  );
+
   return (
     <section id="achievements" className={styles['achievements-section']}>
       <div className={styles.container}>
@@ -17,14 +24,8 @@ export function Achievements() {
 
         <FadeInSection delay={0.2}>
           <div className={styles.grid}>
-            {achievements.map((achievement) => (
-              <AchievementCard
-                key={achievement.title}
-                achievement={{
-                  ...achievement,
-                  icon: ACHIEVEMENT_ICONS[achievement.title] || DEFAULT_ACHIEVEMENT_ICON,
-                }}
-              />
+            {achievementsWithIcons.map((achievement) => (
+              <AchievementCard key={achievement.title} achievement={achievement} />
             ))}
           </div>
         </FadeInSection>

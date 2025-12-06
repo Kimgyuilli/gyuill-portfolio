@@ -1,10 +1,17 @@
+import { useMemo } from 'react';
 import { SkillCard } from '@/components/common/SkillCard';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { skillCategories } from '@/data/skills';
 import { SKILL_ICONS } from '@/constants/skillIcons';
+import { mapWithIcons } from '@/utils/iconMapper';
 import styles from './styles.module.css';
 
 export function Skills() {
+  const categoriesWithIcons = useMemo(
+    () => mapWithIcons(skillCategories, (cat) => cat.title, SKILL_ICONS),
+    []
+  );
+
   return (
     <section id="skills" className={styles['skills-section']}>
       <div className={styles.container}>
@@ -19,14 +26,8 @@ export function Skills() {
 
         <FadeInSection delay={0.2}>
           <div className={styles.grid}>
-            {skillCategories.map((category) => (
-              <SkillCard
-                key={category.title}
-                category={{
-                  ...category,
-                  icon: SKILL_ICONS[category.title],
-                }}
-              />
+            {categoriesWithIcons.map((category) => (
+              <SkillCard key={category.title} category={category} />
             ))}
           </div>
         </FadeInSection>
