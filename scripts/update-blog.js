@@ -39,12 +39,15 @@ function extractThumbnail(item) {
     return url.startsWith('//') ? 'https:' + url : url;
   }
 
-  // 3. content:encoded 또는 description에서 첫 번째 img 태그 파싱
-  const content = item.contentEncoded || item.content || item.description || '';
-  const imgMatch = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  // 3. content:encoded 또는 content에서 img 태그 파싱 (Python 스크립트와 동일한 정규식)
+  const content = item['content:encoded'] || item.content || '';
+  const imgMatch = content.match(/<img[^>]+src="([^"]+)"/);
   if (imgMatch) {
     const url = imgMatch[1];
-    return url.startsWith('//') ? 'https:' + url : url;
+    // Tistory no-image 필터링
+    if (!url.includes('no-image')) {
+      return url.startsWith('//') ? 'https:' + url : url;
+    }
   }
 
   // 4. 기본 이미지
