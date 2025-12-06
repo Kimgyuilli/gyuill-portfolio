@@ -6,5 +6,4 @@ declare const styles: {
   readonly value: string;
   readonly 'value-link': string;
 };
-
-export default styles;
+export = styles;

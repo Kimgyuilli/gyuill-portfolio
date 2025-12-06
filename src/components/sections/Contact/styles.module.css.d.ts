@@ -1,23 +1,22 @@
 declare const styles: {
+  readonly 'contact-info-section': string;
+  readonly 'contact-list': string;
   readonly 'contact-section': string;
   readonly container: string;
-  readonly header: string;
-  readonly title: string;
-  readonly description: string;
   readonly 'content-grid': string;
-  readonly 'contact-info-section': string;
-  readonly 'section-title': string;
-  readonly 'contact-list': string;
-  readonly 'social-title': string;
-  readonly 'social-links': string;
-  readonly 'form-section': string;
+  readonly description: string;
+  readonly footer: string;
   readonly form: string;
   readonly 'form-group': string;
-  readonly label: string;
+  readonly 'form-section': string;
+  readonly header: string;
   readonly input: string;
-  readonly textarea: string;
+  readonly label: string;
+  readonly 'section-title': string;
+  readonly 'social-links': string;
+  readonly 'social-title': string;
   readonly 'submit-button': string;
-  readonly footer: string;
+  readonly textarea: string;
+  readonly title: string;
 };
-
-export default styles;
+export = styles;

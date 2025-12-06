@@ -1,10 +1,9 @@
 declare const styles: {
-  readonly 'experience-section': string;
   readonly container: string;
-  readonly header: string;
-  readonly title: string;
   readonly description: string;
+  readonly 'experience-section': string;
+  readonly header: string;
   readonly timeline: string;
+  readonly title: string;
 };
-
-export default styles;
+export = styles;
