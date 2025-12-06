@@ -12,7 +12,10 @@ export function Navigation() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = NAV_ITEMS.map((item) => item.href.substring(1));
-      const scrollPosition = window.scrollY + 100;
+
+      // zoom 비율 고려 (0.9 = 90%)
+      const zoom = 0.9;
+      const scrollPosition = (window.scrollY * zoom) + 100;
 
       // 페이지 하단에 도달했는지 확인
       const windowHeight = window.innerHeight;
@@ -28,8 +31,10 @@ export function Navigation() {
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const offsetTop = element.offsetTop;
-          const offsetHeight = element.offsetHeight;
+          const rect = element.getBoundingClientRect();
+          const offsetTop = (rect.top + window.scrollY) * zoom;
+          const offsetHeight = rect.height * zoom;
+
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -39,6 +44,7 @@ export function Navigation() {
     };
 
     window.addEventListener('scroll', handleScroll);
+    handleScroll(); // 초기 실행
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
