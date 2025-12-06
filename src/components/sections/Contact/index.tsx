@@ -51,9 +51,9 @@ export function Contact() {
               <h3 className={styles['section-title']}>연락처 정보</h3>
 
               <div className={styles['contact-list']}>
-                {contactInfoData.map((info, index) => (
+                {contactInfoData.map((info) => (
                   <ContactInfoItem
-                    key={index}
+                    key={info.label}
                     info={{
                       ...info,
                       icon: CONTACT_ICONS[info.label as ContactIconKey],
@@ -65,9 +65,9 @@ export function Contact() {
               <div>
                 <h4 className={styles['social-title']}>소셜 미디어</h4>
                 <div className={styles['social-links']}>
-                  {socialLinksData.map((link, index) => (
+                  {socialLinksData.map((link) => (
                     <SocialLink
-                      key={index}
+                      key={link.label}
                       link={{
                         ...link,
                         icon: SOCIAL_ICONS[link.label as SocialIconKey],

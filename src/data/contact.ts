@@ -1,6 +1,15 @@
-import type { ContactInfo, SocialLink } from '@/types';
+export interface ContactInfoData {
+  label: string;
+  value: string;
+  href?: string;
+}
 
-export const contactInfoData: Omit<ContactInfo, 'icon'>[] = [
+export interface SocialLinkData {
+  href: string;
+  label: string;
+}
+
+export const contactInfoData: ContactInfoData[] = [
   {
     label: '이메일',
     value: 'your.email@example.com',
@@ -17,7 +26,7 @@ export const contactInfoData: Omit<ContactInfo, 'icon'>[] = [
   },
 ];
 
-export const socialLinksData: Omit<SocialLink, 'icon'>[] = [
+export const socialLinksData: SocialLinkData[] = [
   {
     href: '#',
     label: 'GitHub',
