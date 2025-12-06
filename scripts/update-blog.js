@@ -24,19 +24,25 @@ const parser = new Parser({
 });
 
 /**
+ * URL 정규화 (프로토콜 상대 URL 처리)
+ */
+function normalizeUrl(url) {
+  if (!url) return '';
+  return url.startsWith('//') ? `https:${url}` : url;
+}
+
+/**
  * RSS 피드에서 썸네일 이미지 추출
  */
 function extractThumbnail(item) {
   // 1. media:thumbnail 태그
   if (item.mediaThumbnail && item.mediaThumbnail.$ && item.mediaThumbnail.$.url) {
-    const url = item.mediaThumbnail.$.url;
-    return url.startsWith('//') ? 'https:' + url : url;
+    return normalizeUrl(item.mediaThumbnail.$.url);
   }
 
   // 2. enclosure (이미지 타입)
   if (item.enclosure && item.enclosure.type && item.enclosure.type.startsWith('image/')) {
-    const url = item.enclosure.url;
-    return url.startsWith('//') ? 'https:' + url : url;
+    return normalizeUrl(item.enclosure.url);
   }
 
   // 3. content:encoded 또는 content에서 img 태그 파싱 (Python 스크립트와 동일한 정규식)
@@ -46,7 +52,7 @@ function extractThumbnail(item) {
     const url = imgMatch[1];
     // Tistory no-image 필터링
     if (!url.includes('no-image')) {
-      return url.startsWith('//') ? 'https:' + url : url;
+      return normalizeUrl(url);
     }
   }
 
