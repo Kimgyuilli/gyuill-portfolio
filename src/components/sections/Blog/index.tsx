@@ -19,7 +19,7 @@ export function Blog() {
         <FadeInSection delay={0.2}>
           <div className={styles.grid}>
             {blogPosts.map((post) => (
-              <BlogCard key={post.title} post={post} />
+              <BlogCard key={post.link} post={post} />
             ))}
           </div>
         </FadeInSection>
