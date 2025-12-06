@@ -77,7 +77,6 @@ export interface BlogPost {
   title: string;
   summary: string;
   date: string;
-  readTime: string;
   image: string;
   link: string;
   tags?: string[];

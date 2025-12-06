@@ -2,36 +2,30 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
-    title: 'React 18의 새로운 기능들과 실전 적용기',
+    title: 'AWS ECS가 누구세요',
     summary:
-      'React 18에서 도입된 Concurrent Rendering, Automatic Batching 등의 기능을 실제 프로젝트에 적용하며 얻은 인사이트를 공유합니다.',
-    date: '2024.02.15',
-    readTime: '8분',
-    image:
-      'https://images.unsplash.com/photo-1633356122544-f134324a6cee?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    link: '#',
-    tags: ['React', 'JavaScript', 'Frontend'],
+      'AWS ECS(Elastic Container Service)는 AWS에서 제공하는 완전 관리형 컨테이너 오케스트레이션 서비스입니다. Docker 컨테이너를 쉽게 배포하고 운영할 ...',
+    date: '2025.12.05',
+    image: 'https://blog.kakaocdn.net/dn/bLIpxj/dJMcaaX5ng2/ct4lPiGcheBPnr97KpO6ek/img.png',
+    link: 'https://imdeepskyblue.tistory.com/70',
+    tags: ['개발 지식/aws', 'aws', 'ECS'],
   },
   {
-    title: 'TypeScript 타입 시스템 깊게 이해하기',
+    title: '엘라스틱 빈스톡(Elastic Beanstalk)이 뭘까',
     summary:
-      'TypeScript의 고급 타입 기능인 Conditional Types, Mapped Types, Template Literal Types를 활용한 타입 안전성 강화 방법을 소개합니다.',
-    date: '2024.01.28',
-    readTime: '12분',
-    image:
-      'https://images.unsplash.com/photo-1516116216624-53e697fedbea?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    link: '#',
-    tags: ['TypeScript', 'JavaScript'],
+      '이번에 AWS를 공부하면서 ECS랑 Elastic Beanstalk에 대해 처음 알게 됐는데요.\n이번 글에서는 Elastic Beanstalk에 대해 공부해봤습니다.\n \n\n\nAWS...',
+    date: '2025.12.05',
+    image: 'https://blog.kakaocdn.net/dn/urUfe/dJMcaiV4hLE/OOPxKWYPCpBtUs29nAO9sK/img.png',
+    link: 'https://imdeepskyblue.tistory.com/69',
+    tags: ['개발 지식/aws', 'aws', 'Elastic Beanstalk'],
   },
   {
-    title: 'Next.js App Router 마이그레이션 가이드',
+    title: 'GitHub 프로필에 Tistory 최신 포스트 업데이트하기',
     summary:
-      'Next.js 13 Pages Router에서 App Router로 마이그레이션하면서 겪은 문제들과 해결 방법, 그리고 성능 개선 결과를 정리했습니다.',
-    date: '2024.01.10',
-    readTime: '10분',
-    image:
-      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800',
-    link: '#',
-    tags: ['Next.js', 'React', 'Frontend'],
+      '들어가며\nGitHub 프로필 README는 개발자의 첫인상을 결정하는 중요한 공간입니다. 많은 개발자들이 자신의 기술 스택, 프로젝트, 통계를 표시하지만, 기술 블로그를 운영한다면...',
+    date: '2025.11.27',
+    image: 'https://blog.kakaocdn.net/dn/Ql5I9/dJMcafSz5wP/psb2meab178LEikUhYwrl1/img.png',
+    link: 'https://imdeepskyblue.tistory.com/68',
+    tags: ['개발 지식/Git', 'git', 'Github'],
   },
 ];

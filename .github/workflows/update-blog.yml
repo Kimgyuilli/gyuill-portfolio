@@ -1,0 +1,42 @@
+name: Update Blog Posts from RSS
+
+on:
+  schedule:
+    - cron: '0 0 * * *'  # 매일 자정 (UTC) 실행
+  workflow_dispatch:      # 수동 실행 가능
+
+jobs:
+  update-blog:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Update blog posts
+        run: npm run update-blog
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add src/data/blog.ts
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: Update blog posts from RSS feed"
+            git push
+          fi

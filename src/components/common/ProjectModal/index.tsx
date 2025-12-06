@@ -48,11 +48,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
         {/* 헤더 이미지 */}
         <div className={styles['image-container']}>
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className={styles.image}
-          />
+          <ImageWithFallback src={project.image} alt={project.title} className={styles.image} />
         </div>
 
         {/* 컨텐츠 */}

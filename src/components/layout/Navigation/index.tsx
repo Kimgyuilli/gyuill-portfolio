@@ -15,7 +15,7 @@ export function Navigation() {
 
       // zoom 비율 고려 (0.9 = 90%)
       const zoom = 0.9;
-      const scrollPosition = (window.scrollY * zoom) + 100;
+      const scrollPosition = window.scrollY * zoom + 100;
 
       // 페이지 하단에 도달했는지 확인
       const windowHeight = window.innerHeight;

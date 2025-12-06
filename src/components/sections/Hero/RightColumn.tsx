@@ -1,5 +1,4 @@
 import { ExternalLink, Github, FileText } from 'lucide-react';
-import { useMemo } from 'react';
 import { heroData } from '@/data/hero';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
@@ -10,22 +9,25 @@ type SkillLevel = 'primary' | 'secondary' | 'tertiary';
 export function RightColumn() {
   const featuredProjects = projects.slice(0, 3);
 
-  // 스킬 데이터 변환 로직 (useMemo로 최적화)
-  const allSkills = useMemo(
-    () =>
-      skillCategories.flatMap((category) =>
-        category.skills.map((skill) => ({
-          name: skill,
-          category: category.title,
-        }))
-      ),
-    []
+  // 스킬 데이터 변환 로직
+  const allSkills = skillCategories.flatMap((category) =>
+    category.skills.map((skill) => ({
+      name: skill,
+      category: category.title,
+    }))
   );
 
   const getSkillLevel = (category: string): SkillLevel => {
     if (category === 'Frontend' || category === 'Mobile') return 'primary';
     if (category === 'Backend' || category === 'Database') return 'secondary';
     return 'tertiary';
+  };
+
+  const handleProjectClick = () => {
+    const projectsSection = document.getElementById('projects');
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -35,7 +37,19 @@ export function RightColumn() {
         <h2 className={styles['section-title']}>프로젝트</h2>
         <div className={styles['timeline-list']}>
           {featuredProjects.map((project, index) => (
-            <div key={project.title} className={styles['project-card']}>
+            <div
+              key={project.title}
+              className={styles['project-card']}
+              onClick={handleProjectClick}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleProjectClick();
+                }
+              }}
+            >
               <div className={styles['project-header']}>
                 {project.image && (
                   <div className={styles['project-image']}>
