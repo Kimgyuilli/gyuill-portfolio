@@ -49,5 +49,5 @@
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm-md); /* Reduced from spacing-md for tighter spacing */
 }

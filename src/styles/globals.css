@@ -113,7 +113,7 @@ body {
   --project-image-size: 3rem;
   --icon-size-sm: 1rem;
   --icon-size-md: 2rem;
-  --timeline-date-width: 8rem;
+  --timeline-date-width: 10.5rem; /* Increased for better alignment (supports up to 17 chars) */
 
   /* Legacy variables (kept for compatibility) */
   --background: #ffffff;

@@ -23,6 +23,7 @@
 .timeline-item {
   display: flex;
   gap: var(--spacing-md);
+  align-items: flex-start; /* Align items to top for better multi-line support */
 }
 
 .timeline-date {
@@ -31,24 +32,30 @@
   font-family: monospace;
   width: var(--timeline-date-width);
   flex-shrink: 0;
+  line-height: 1.6; /* Match timeline-content line-height */
+  padding-top: 0.125rem; /* Fine-tune vertical alignment */
 }
 
 .timeline-content {
   flex: 1;
+  min-width: 0; /* Prevent content overflow */
 }
 
 .timeline-title {
   color: var(--text-secondary);
   font-weight: 600;
   margin-bottom: var(--spacing-xs);
+  line-height: 1.6;
 }
 
 .timeline-subtitle {
   color: var(--text-muted);
   font-size: 0.875rem;
+  line-height: 1.6;
 }
 
 .timeline-text {
   color: var(--text-secondary);
   font-weight: 500;
+  line-height: 1.6;
 }
