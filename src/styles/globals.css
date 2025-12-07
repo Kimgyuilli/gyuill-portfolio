@@ -18,122 +18,94 @@ body {
 }
 
 :root {
+  /* Typography */
   --font-size: 16px;
-  --background: #ffffff;
-  --foreground: oklch(0.145 0 0);
-  --card: #ffffff;
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
-  --muted: #ececf0;
-  --muted-foreground: #717182;
-  --accent: #e9ebef;
-  --accent-foreground: #030213;
-  --destructive: #d4183d;
-  --destructive-foreground: #ffffff;
-  --border: rgba(0, 0, 0, 0.1);
-  --input: transparent;
-  --input-background: #f3f3f5;
-  --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+
+  /* Text Colors - Light Mode (개선된 대비) */
+  --text-primary: rgb(15, 23, 42);        /* Titles - slate-900 */
+  --text-secondary: rgb(30, 41, 59);      /* Subtitles - slate-800 (개선) */
+  --text-body: rgb(51, 65, 85);           /* Body text - slate-700 (개선) */
+  --text-muted: rgb(71, 85, 105);         /* Muted text - slate-600 (개선) */
+  --text-disabled: rgb(148, 163, 184);    /* Disabled - slate-400 */
+
+  /* Background Colors - Light Mode */
+  --bg-body: rgb(248, 250, 252);          /* Main background - slate-50 */
+  --bg-section: rgba(243, 244, 246, 0.5); /* Section background - gray-100/50 */
+  --bg-card: rgb(255, 255, 255);          /* Card background - white */
+  --bg-card-alt: rgba(243, 244, 246, 0.5);/* Alternative card - gray-100/50 */
+  --bg-hover: rgba(243, 244, 246, 0.8);   /* Hover state */
+  --bg-input: rgb(248, 250, 252);         /* Input background - slate-50 */
+
+  /* Border Colors - Light Mode */
+  --border-light: rgb(226, 232, 240);     /* Light borders - slate-200 */
+  --border-medium: rgb(203, 213, 225);    /* Medium borders - slate-300 */
+
+  /* Accent Colors - Emerald (same for both modes) */
+  --accent-primary: rgb(16, 185, 129);    /* emerald-500 */
+  --accent-hover: rgba(16, 185, 129, 0.2);/* emerald hover bg */
+  --accent-border: rgba(16, 185, 129, 0.5);/* emerald border */
+
+  /* Gradient Colors - Purple */
+  --gradient-purple-1: rgb(168, 85, 247); /* purple-500 */
+  --gradient-purple-2: rgb(139, 92, 246); /* violet-500 */
+
+  /* Toggle/Switch Colors */
+  --toggle-track: rgb(203, 213, 225);     /* slate-300 */
+  --toggle-thumb: rgb(255, 255, 255);     /* white */
+  --toggle-sun: rgb(251, 146, 60);        /* orange-400 */
+  --toggle-moon: rgb(96, 165, 250);       /* blue-400 */
+
+  /* Legacy variables (kept for compatibility) */
+  --background: #ffffff;
+  --foreground: oklch(0.145 0 0);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
+  /* Text Colors - Dark Mode */
+  --text-primary: rgb(241, 245, 249);     /* Titles - slate-100 */
+  --text-secondary: rgb(226, 232, 240);   /* Subtitles - slate-200 */
+  --text-body: rgb(203, 213, 225);        /* Body text - slate-300 */
+  --text-muted: rgb(148, 163, 184);       /* Muted text - slate-400 */
+  --text-disabled: rgb(100, 116, 139);    /* Disabled - slate-500 */
+
+  /* Background Colors - Dark Mode */
+  --bg-body: rgb(2, 6, 23);               /* Main background - slate-950 */
+  --bg-section: rgba(15, 23, 42, 0.5);    /* Section background - slate-900/50 */
+  --bg-card: rgb(15, 23, 42);             /* Card background - slate-900 */
+  --bg-card-alt: rgba(15, 23, 42, 0.5);   /* Alternative card - slate-900/50 */
+  --bg-hover: rgba(30, 41, 59, 0.8);      /* Hover state - slate-800/80 */
+  --bg-input: rgb(15, 23, 42);            /* Input background - slate-900 */
+
+  /* Border Colors - Dark Mode */
+  --border-light: rgb(30, 41, 59);        /* Light borders - slate-800 */
+  --border-medium: rgb(71, 85, 105);      /* Medium borders - slate-600 */
+
+  /* Accent Colors - Emerald Dark (slightly brighter) */
+  --accent-primary: rgb(52, 211, 153);    /* emerald-400 */
+  --accent-hover: rgba(52, 211, 153, 0.2);/* emerald hover bg */
+  --accent-border: rgba(52, 211, 153, 0.5);/* emerald border */
+
+  /* Gradient Colors - Purple (reversed for dark) */
+  --gradient-purple-1: rgb(139, 92, 246); /* violet-500 */
+  --gradient-purple-2: rgb(168, 85, 247); /* purple-500 */
+
+  /* Toggle/Switch Colors */
+  --toggle-track: rgb(51, 65, 85);        /* slate-700 */
+
+  /* Legacy variables (kept for compatibility) */
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
-  --card: oklch(0.145 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.145 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.985 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
-  --border: oklch(0.269 0 0);
-  --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --font-weight-medium: 500;
-  --font-weight-normal: 400;
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-input-background: var(--input-background);
-  --color-switch-background: var(--switch-background);
-  --color-ring: var(--ring);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
+  /* Border radius utilities */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
 }
 
 @layer base {
@@ -248,7 +220,7 @@ html {
 /* 전역 스크롤바 커스터마이징 */
 * {
   scrollbar-width: thin;
-  scrollbar-color: rgb(148, 163, 184) rgb(241, 245, 249);
+  scrollbar-color: var(--text-disabled) var(--bg-body);
 }
 
 *::-webkit-scrollbar {
@@ -257,33 +229,15 @@ html {
 }
 
 *::-webkit-scrollbar-track {
-  background: rgb(241, 245, 249);
+  background: var(--bg-body);
 }
 
 *::-webkit-scrollbar-thumb {
-  background: rgb(148, 163, 184);
+  background: var(--text-disabled);
   border-radius: 5px;
-  border: 2px solid rgb(241, 245, 249);
+  border: 2px solid var(--bg-body);
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background: rgb(100, 116, 139);
-}
-
-/* 다크 모드 스크롤바 */
-.dark * {
-  scrollbar-color: rgb(71, 85, 105) rgb(15, 23, 42);
-}
-
-.dark *::-webkit-scrollbar-track {
-  background: rgb(15, 23, 42);
-}
-
-.dark *::-webkit-scrollbar-thumb {
-  background: rgb(71, 85, 105);
-  border-color: rgb(15, 23, 42);
-}
-
-.dark *::-webkit-scrollbar-thumb:hover {
-  background: rgb(100, 116, 139);
+  background: var(--text-muted);
 }
