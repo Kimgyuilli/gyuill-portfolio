@@ -1,0 +1,83 @@
+/* Modal Sections - Reusable Section Styles for ProjectDetails & TechStackSection */
+
+.section {
+  margin-bottom: var(--spacing-xl);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+}
+
+.description {
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-item {
+  position: relative;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm-md);
+  color: var(--text-body);
+  line-height: 1.6;
+}
+
+.list-item::before {
+  content: '•';
+  position: absolute;
+  left: var(--spacing-sm);
+  color: var(--accent-primary-hover);
+  font-weight: bold;
+}
+
+:global(.dark) .list-item::before {
+  color: var(--accent-primary);
+}
+
+.tech-stack {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+@media (min-width: 768px) {
+  .tech-stack {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.tech-category {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm-md);
+}
+
+.tech-title {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tech-tag {
+  padding: 0.25rem 0.625rem;
+  background-color: var(--badge-emerald-solid-bg);
+  color: var(--badge-emerald-solid-text);
+  border-radius: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}

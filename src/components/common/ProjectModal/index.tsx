@@ -4,7 +4,8 @@ import type { Project } from '@/types';
 import { ImageWithFallback } from '../ImageWithFallback';
 import { TechStackSection } from './TechStackSection';
 import { ProjectDetails } from './ProjectDetails';
-import styles from './styles.module.css';
+import modalStyles from './Modal.module.css';
+import contentStyles from './ModalContent.module.css';
 
 interface ProjectModalProps {
   project: Project;
@@ -39,43 +40,47 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
   const hasProjectInfo = project.duration || project.teamSize || project.role;
 
   return (
-    <div className={styles.backdrop} onClick={handleBackdropClick}>
-      <div className={styles.modal}>
+    <div className={modalStyles.backdrop} onClick={handleBackdropClick}>
+      <div className={modalStyles.modal}>
         {/* 닫기 버튼 */}
-        <button onClick={onClose} className={styles['close-button']} aria-label="Close modal">
+        <button onClick={onClose} className={modalStyles['close-button']} aria-label="Close modal">
           <X size={24} />
         </button>
 
         {/* 헤더 이미지 */}
-        <div className={styles['image-container']}>
-          <ImageWithFallback src={project.image} alt={project.title} className={styles.image} />
+        <div className={modalStyles['image-container']}>
+          <ImageWithFallback
+            src={project.image}
+            alt={project.title}
+            className={modalStyles.image}
+          />
         </div>
 
         {/* 컨텐츠 */}
-        <div className={styles.content}>
+        <div className={contentStyles.content}>
           {/* 제목과 카테고리 */}
-          <div className={styles.header}>
-            <h2 className={styles.title}>{project.title}</h2>
-            <span className={styles.category}>{project.category}</span>
+          <div className={contentStyles.header}>
+            <h2 className={contentStyles.title}>{project.title}</h2>
+            <span className={contentStyles.category}>{project.category}</span>
           </div>
 
           {/* 프로젝트 정보 */}
           {hasProjectInfo && (
-            <div className={styles['info-grid']}>
+            <div className={contentStyles['info-grid']}>
               {project.duration && (
-                <div className={styles['info-item']}>
+                <div className={contentStyles['info-item']}>
                   <Calendar size={16} />
                   <span>{project.duration}</span>
                 </div>
               )}
               {project.teamSize && (
-                <div className={styles['info-item']}>
+                <div className={contentStyles['info-item']}>
                   <Users size={16} />
                   <span>{project.teamSize}</span>
                 </div>
               )}
               {project.role && (
-                <div className={styles['info-item']}>
+                <div className={contentStyles['info-item']}>
                   <Briefcase size={16} />
                   <span>{project.role}</span>
                 </div>
@@ -84,9 +89,9 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           )}
 
           {/* 기술 스택 태그 */}
-          <div className={styles.tags}>
+          <div className={contentStyles.tags}>
             {project.tags.map((tag) => (
-              <span key={tag} className={styles.tag}>
+              <span key={tag} className={contentStyles.tag}>
                 {tag}
               </span>
             ))}
@@ -99,12 +104,12 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <TechStackSection techStack={project.techStack} />
 
           {/* 액션 버튼 */}
-          <div className={styles.actions}>
+          <div className={contentStyles.actions}>
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles['action-button']}
+              className={contentStyles['action-button']}
             >
               <Github size={20} />
               <span>GitHub</span>
@@ -113,7 +118,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles['action-button']}
+              className={contentStyles['action-button']}
             >
               <ExternalLink size={20} />
               <span>Live Demo</span>

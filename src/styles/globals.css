@@ -32,7 +32,12 @@ body {
 
   /* Background Colors - Light Mode */
   --bg-body: rgb(248, 250, 252); /* Main background - slate-50 */
-  --bg-section: rgba(243, 244, 246, 0.7); /* Section background - gray-100/70 (improved visibility) */
+  --bg-section: rgba(
+    243,
+    244,
+    246,
+    0.7
+  ); /* Section background - gray-100/70 (improved visibility) */
   --bg-card: rgb(255, 255, 255); /* Card background - white */
   --bg-card-alt: rgba(243, 244, 246, 0.75); /* Alternative card - gray-100/75 (improved contrast) */
   --bg-hover: rgba(243, 244, 246, 0.9); /* Hover state (improved visibility) */
