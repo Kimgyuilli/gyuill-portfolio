@@ -24,51 +24,51 @@ body {
   --font-weight-normal: 400;
 
   /* Text Colors - Light Mode (개선된 대비) */
-  --text-primary: rgb(15, 23, 42);        /* Titles - slate-900 */
-  --text-secondary: rgb(30, 41, 59);      /* Subtitles - slate-800 (개선) */
-  --text-body: rgb(51, 65, 85);           /* Body text - slate-700 (개선) */
-  --text-muted: rgb(71, 85, 105);         /* Muted text - slate-600 (개선) */
-  --text-disabled: rgb(148, 163, 184);    /* Disabled - slate-400 */
+  --text-primary: rgb(15, 23, 42); /* Titles - slate-900 */
+  --text-secondary: rgb(30, 41, 59); /* Subtitles - slate-800 (개선) */
+  --text-body: rgb(51, 65, 85); /* Body text - slate-700 (개선) */
+  --text-muted: rgb(71, 85, 105); /* Muted text - slate-600 (개선) */
+  --text-disabled: rgb(148, 163, 184); /* Disabled - slate-400 */
 
   /* Background Colors - Light Mode */
-  --bg-body: rgb(248, 250, 252);          /* Main background - slate-50 */
+  --bg-body: rgb(248, 250, 252); /* Main background - slate-50 */
   --bg-section: rgba(243, 244, 246, 0.5); /* Section background - gray-100/50 */
-  --bg-card: rgb(255, 255, 255);          /* Card background - white */
-  --bg-card-alt: rgba(243, 244, 246, 0.5);/* Alternative card - gray-100/50 */
-  --bg-hover: rgba(243, 244, 246, 0.8);   /* Hover state */
-  --bg-input: rgb(248, 250, 252);         /* Input background - slate-50 */
+  --bg-card: rgb(255, 255, 255); /* Card background - white */
+  --bg-card-alt: rgba(243, 244, 246, 0.5); /* Alternative card - gray-100/50 */
+  --bg-hover: rgba(243, 244, 246, 0.8); /* Hover state */
+  --bg-input: rgb(248, 250, 252); /* Input background - slate-50 */
 
   /* Border Colors - Light Mode */
-  --border-light: rgb(226, 232, 240);     /* Light borders - slate-200 */
-  --border-medium: rgb(203, 213, 225);    /* Medium borders - slate-300 */
+  --border-light: rgb(226, 232, 240); /* Light borders - slate-200 */
+  --border-medium: rgb(203, 213, 225); /* Medium borders - slate-300 */
 
   /* Accent Colors - Emerald */
-  --accent-primary: rgb(16, 185, 129);    /* emerald-500 */
+  --accent-primary: rgb(16, 185, 129); /* emerald-500 */
   --accent-primary-hover: rgb(5, 150, 105); /* emerald-600 */
-  --accent-hover: rgba(16, 185, 129, 0.2);/* emerald hover bg */
-  --accent-border: rgba(16, 185, 129, 0.5);/* emerald border */
-  --accent-text: rgb(255, 255, 255);      /* Text on accent bg - white */
+  --accent-hover: rgba(16, 185, 129, 0.2); /* emerald hover bg */
+  --accent-border: rgba(16, 185, 129, 0.5); /* emerald border */
+  --accent-text: rgb(255, 255, 255); /* Text on accent bg - white */
 
   /* Gradient Colors - Purple */
   --gradient-purple-1: rgb(168, 85, 247); /* purple-500 */
   --gradient-purple-2: rgb(139, 92, 246); /* violet-500 */
 
   /* Toggle/Switch Colors */
-  --toggle-track: rgb(203, 213, 225);     /* slate-300 */
-  --toggle-thumb: rgb(255, 255, 255);     /* white */
-  --toggle-sun: rgb(251, 146, 60);        /* orange-400 */
-  --toggle-moon: rgb(96, 165, 250);       /* blue-400 */
+  --toggle-track: rgb(203, 213, 225); /* slate-300 */
+  --toggle-thumb: rgb(255, 255, 255); /* white */
+  --toggle-sun: rgb(251, 146, 60); /* orange-400 */
+  --toggle-moon: rgb(96, 165, 250); /* blue-400 */
 
   /* Spacing System */
-  --spacing-xs: 0.25rem;                  /* 4px */
-  --spacing-sm: 0.5rem;                   /* 8px */
-  --spacing-sm-md: 0.75rem;               /* 12px */
-  --spacing-md: 1rem;                     /* 16px */
-  --spacing-lg: 1.5rem;                   /* 24px */
-  --spacing-xl: 2rem;                     /* 32px */
-  --spacing-2xl: 2.5rem;                  /* 40px */
-  --spacing-3xl: 3rem;                    /* 48px */
-  --spacing-4xl: 5rem;                    /* 80px */
+  --spacing-xs: 0.25rem; /* 4px */
+  --spacing-sm: 0.5rem; /* 8px */
+  --spacing-sm-md: 0.75rem; /* 12px */
+  --spacing-md: 1rem; /* 16px */
+  --spacing-lg: 1.5rem; /* 24px */
+  --spacing-xl: 2rem; /* 32px */
+  --spacing-2xl: 2.5rem; /* 40px */
+  --spacing-3xl: 3rem; /* 48px */
+  --spacing-4xl: 5rem; /* 80px */
 
   /* Alpha Colors - Light Mode */
   --border-light-alpha-30: rgba(203, 213, 225, 0.3);
@@ -112,37 +112,37 @@ body {
 
 .dark {
   /* Text Colors - Dark Mode */
-  --text-primary: rgb(241, 245, 249);     /* Titles - slate-100 */
-  --text-secondary: rgb(226, 232, 240);   /* Subtitles - slate-200 */
-  --text-body: rgb(203, 213, 225);        /* Body text - slate-300 */
-  --text-muted: rgb(148, 163, 184);       /* Muted text - slate-400 */
-  --text-disabled: rgb(100, 116, 139);    /* Disabled - slate-500 */
+  --text-primary: rgb(241, 245, 249); /* Titles - slate-100 */
+  --text-secondary: rgb(226, 232, 240); /* Subtitles - slate-200 */
+  --text-body: rgb(203, 213, 225); /* Body text - slate-300 */
+  --text-muted: rgb(148, 163, 184); /* Muted text - slate-400 */
+  --text-disabled: rgb(100, 116, 139); /* Disabled - slate-500 */
 
   /* Background Colors - Dark Mode */
-  --bg-body: rgb(2, 6, 23);               /* Main background - slate-950 */
-  --bg-section: rgba(15, 23, 42, 0.5);    /* Section background - slate-900/50 */
-  --bg-card: rgb(15, 23, 42);             /* Card background - slate-900 */
-  --bg-card-alt: rgba(15, 23, 42, 0.5);   /* Alternative card - slate-900/50 */
-  --bg-hover: rgba(30, 41, 59, 0.8);      /* Hover state - slate-800/80 */
-  --bg-input: rgb(15, 23, 42);            /* Input background - slate-900 */
+  --bg-body: rgb(2, 6, 23); /* Main background - slate-950 */
+  --bg-section: rgba(15, 23, 42, 0.5); /* Section background - slate-900/50 */
+  --bg-card: rgb(15, 23, 42); /* Card background - slate-900 */
+  --bg-card-alt: rgba(15, 23, 42, 0.5); /* Alternative card - slate-900/50 */
+  --bg-hover: rgba(30, 41, 59, 0.8); /* Hover state - slate-800/80 */
+  --bg-input: rgb(15, 23, 42); /* Input background - slate-900 */
 
   /* Border Colors - Dark Mode */
-  --border-light: rgb(30, 41, 59);        /* Light borders - slate-800 */
-  --border-medium: rgb(71, 85, 105);      /* Medium borders - slate-600 */
+  --border-light: rgb(30, 41, 59); /* Light borders - slate-800 */
+  --border-medium: rgb(71, 85, 105); /* Medium borders - slate-600 */
 
   /* Accent Colors - Emerald Dark (slightly brighter) */
-  --accent-primary: rgb(52, 211, 153);    /* emerald-400 */
+  --accent-primary: rgb(52, 211, 153); /* emerald-400 */
   --accent-primary-hover: rgb(16, 185, 129); /* emerald-500 */
-  --accent-hover: rgba(52, 211, 153, 0.2);/* emerald hover bg */
-  --accent-border: rgba(52, 211, 153, 0.5);/* emerald border */
-  --accent-text: rgb(15, 23, 42);         /* Text on accent bg - dark slate */
+  --accent-hover: rgba(52, 211, 153, 0.2); /* emerald hover bg */
+  --accent-border: rgba(52, 211, 153, 0.5); /* emerald border */
+  --accent-text: rgb(15, 23, 42); /* Text on accent bg - dark slate */
 
   /* Gradient Colors - Purple (reversed for dark) */
   --gradient-purple-1: rgb(139, 92, 246); /* violet-500 */
   --gradient-purple-2: rgb(168, 85, 247); /* purple-500 */
 
   /* Toggle/Switch Colors */
-  --toggle-track: rgb(51, 65, 85);        /* slate-700 */
+  --toggle-track: rgb(51, 65, 85); /* slate-700 */
 
   /* Alpha Colors - Dark Mode */
   --border-dark-alpha-30: rgba(71, 85, 105, 0.3);
