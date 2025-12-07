@@ -1,5 +1,5 @@
 import type { Project } from '@/types';
-import styles from './styles.module.css';
+import styles from './ModalSections.module.css';
 
 interface ProjectDetailsProps {
   project: Project;

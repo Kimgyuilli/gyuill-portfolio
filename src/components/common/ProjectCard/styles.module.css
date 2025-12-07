@@ -1,6 +1,6 @@
 .project-card {
-  background-color: rgb(15, 23, 42);
-  border: 1px solid rgb(30, 41, 59);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
   border-radius: 0.75rem;
   overflow: hidden;
   transition: all 0.2s;
@@ -8,9 +8,9 @@
 }
 
 .project-card:hover {
-  border-color: rgba(52, 211, 153, 0.5);
+  border-color: var(--accent-border);
   transform: translateY(-0.25rem);
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
 }
 
 .image-container {
@@ -30,51 +30,51 @@
 }
 
 .content {
-  padding: 1.5rem;
+  padding: var(--spacing-lg);
 }
 
 .title {
-  margin-bottom: 0.75rem;
-  color: rgb(241, 245, 249);
+  margin-bottom: var(--spacing-sm-md);
+  color: var(--text-primary);
   font-size: 1.125rem;
   font-weight: 600;
 }
 
 .description {
-  color: rgb(148, 163, 184);
-  margin-bottom: 1rem;
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-md);
   line-height: 1.5;
 }
 
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-md);
 }
 
 .tag {
-  padding: 0.25rem 0.5rem;
-  background-color: rgb(30, 41, 59);
-  color: rgb(203, 213, 225);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: var(--border-light);
+  color: var(--text-body);
   border-radius: 0.25rem;
   font-size: 0.875rem;
 }
 
 .links {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: rgb(148, 163, 184);
+  gap: var(--spacing-sm);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .link:hover {
-  color: rgb(52, 211, 153);
+  color: var(--accent-primary);
 }

@@ -1,28 +1,28 @@
 .skill-card {
-  background-color: rgba(15, 23, 42, 0.5);
-  border: 1px solid rgb(30, 41, 59);
+  background-color: var(--bg-card-alt);
+  border: 1px solid var(--border-light);
   border-radius: 0.75rem;
-  padding: 1.5rem;
+  padding: var(--spacing-lg);
   transition: border-color 0.2s;
 }
 
 .skill-card:hover {
-  border-color: rgba(52, 211, 153, 0.5);
+  border-color: var(--accent-border);
 }
 
 .icon {
-  color: rgb(52, 211, 153);
-  margin-bottom: 1rem;
+  color: var(--accent-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .icon svg {
-  width: 2rem;
-  height: 2rem;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
 }
 
 .title {
-  margin-bottom: 1rem;
-  color: rgb(241, 245, 249);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -30,13 +30,13 @@
 .skills-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .skill-tag {
-  padding: 0.25rem 0.75rem;
-  background-color: rgba(52, 211, 153, 0.1);
-  color: rgb(52, 211, 153);
+  padding: var(--spacing-xs) var(--spacing-sm-md);
+  background-color: var(--accent-hover);
+  color: var(--accent-primary);
   border-radius: 9999px;
   font-size: 0.875rem;
 }

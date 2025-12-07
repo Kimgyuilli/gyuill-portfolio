@@ -1,9 +1,10 @@
 import { heroData } from '@/data/hero';
-import styles from './styles.module.css';
+import sharedStyles from './styles.module.css';
+import styles from './LeftColumn.module.css';
 
 export function LeftColumn() {
   return (
-    <div className={styles['left-column']}>
+    <div className={sharedStyles['left-column']}>
       {/* CAREER 타이틀 */}
       <div>
         <h1 className={styles['career-title']}>CAREER</h1>

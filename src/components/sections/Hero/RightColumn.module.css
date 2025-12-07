@@ -1,0 +1,264 @@
+.project-card {
+  background-color: var(--bg-light-alpha-30);
+  border: 1px solid var(--border-light-alpha-50);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+:global(.dark) .project-card {
+  background-color: var(--bg-dark-alpha-30);
+  border-color: var(--border-dark-alpha-50);
+}
+
+.project-card:hover {
+  border-color: var(--accent-border);
+  transform: translateY(-2px);
+  background-color: var(--border-light-alpha-50);
+}
+
+:global(.dark) .project-card:hover {
+  border-color: var(--accent-border);
+  background-color: var(--bg-dark-alpha-50);
+}
+
+.project-card:focus {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.project-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-sm-md);
+  margin-bottom: 0.75rem;
+}
+
+.project-image {
+  width: var(--project-image-size);
+  height: var(--project-image-size);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  flex-shrink: 0;
+  background-color: var(--border-light-alpha-50);
+}
+
+:global(.dark) .project-image {
+  background-color: var(--border-dark-alpha-50);
+}
+
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.project-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.project-title {
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.project-date {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
+.tag {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.tag-emerald {
+  background-color: var(--tag-emerald-bg);
+  color: var(--tag-emerald-text);
+}
+
+.tag-blue {
+  background-color: var(--tag-blue-bg);
+  color: var(--tag-blue-text);
+}
+
+.link-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm-md);
+}
+
+.link-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm-md);
+  color: var(--text-body);
+  transition: color 0.2s;
+  text-decoration: none;
+}
+
+.link-item:hover {
+  color: var(--accent-primary);
+}
+
+.link-icon {
+  width: var(--icon-size-md);
+  height: var(--icon-size-md);
+  border-radius: 0.5rem;
+  background-color: var(--border-light-alpha-50);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s;
+}
+
+:global(.dark) .link-icon {
+  background-color: var(--bg-dark-alpha-50);
+}
+
+.link-item:hover .link-icon {
+  background-color: var(--text-disabled);
+}
+
+:global(.dark) .link-item:hover .link-icon {
+  background-color: var(--border-dark-alpha-50);
+}
+
+.link-icon svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.link-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.link-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.link-url {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.link-external {
+  width: var(--icon-size-sm);
+  height: var(--icon-size-sm);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.link-item:hover .link-external {
+  opacity: 1;
+}
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-sm-md);
+}
+
+.skill-box {
+  aspect-ratio: 1;
+  border-radius: 0.5rem;
+  border: 1px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0.5rem;
+  transition: transform 0.2s;
+}
+
+.skill-box:hover {
+  transform: scale(1.05);
+}
+
+.skill-name {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.skill-primary {
+  background-color: var(--skill-primary-bg);
+  color: var(--skill-primary-text);
+  border-color: var(--skill-primary-border);
+}
+
+.skill-secondary {
+  background-color: var(--skill-secondary-bg);
+  color: var(--skill-secondary-text);
+  border-color: var(--skill-secondary-border);
+}
+
+.skill-tertiary {
+  background-color: var(--skill-tertiary-bg);
+  color: var(--skill-tertiary-text);
+  border-color: var(--skill-tertiary-border);
+}
+
+:global(.dark) .skill-tertiary {
+  background-color: var(--skill-tertiary-bg);
+  color: var(--skill-tertiary-text);
+  border-color: var(--skill-tertiary-border);
+}
+
+.skills-legend {
+  margin-top: 1rem;
+  display: flex;
+  gap: var(--spacing-sm-md);
+  font-size: 0.75rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+}
+
+.legend-box {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 0.125rem;
+  border: 1px solid;
+}
+
+.legend-box-primary {
+  background-color: var(--skill-primary-bg);
+  border-color: var(--skill-primary-border);
+}
+
+.legend-box-secondary {
+  background-color: var(--skill-secondary-bg);
+  border-color: var(--skill-secondary-border);
+}
+
+.legend-box-tertiary {
+  background-color: var(--skill-tertiary-bg);
+  border-color: var(--skill-tertiary-border);
+}
+
+.legend-text {
+  color: var(--text-muted);
+}

@@ -1,14 +1,13 @@
 declare const styles: {
-  readonly 'project-card': string;
-  readonly 'image-container': string;
-  readonly image: string;
   readonly content: string;
-  readonly title: string;
   readonly description: string;
-  readonly tags: string;
-  readonly tag: string;
-  readonly links: string;
+  readonly image: string;
+  readonly 'image-container': string;
   readonly link: string;
+  readonly links: string;
+  readonly 'project-card': string;
+  readonly tag: string;
+  readonly tags: string;
+  readonly title: string;
 };
-
-export default styles;
+export = styles;

@@ -77,10 +77,16 @@ export function Navigation() {
             <div className={styles.divider}></div>
             <button
               onClick={toggleTheme}
-              className={styles['theme-button']}
+              className={styles['theme-toggle']}
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              <div className={styles['toggle-track']}>
+                <div
+                  className={`${styles['toggle-thumb']} ${theme === 'dark' ? styles['toggle-thumb-dark'] : ''}`}
+                >
+                  {theme === 'dark' ? <Moon size={14} /> : <Sun size={14} />}
+                </div>
+              </div>
             </button>
           </div>
 
@@ -88,10 +94,16 @@ export function Navigation() {
           <div className={styles['mobile-nav']}>
             <button
               onClick={toggleTheme}
-              className={styles['mobile-button']}
+              className={styles['theme-toggle-mobile']}
               aria-label="Toggle theme"
             >
-              {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              <div className={styles['toggle-track']}>
+                <div
+                  className={`${styles['toggle-thumb']} ${theme === 'dark' ? styles['toggle-thumb-dark'] : ''}`}
+                >
+                  {theme === 'dark' ? <Moon size={12} /> : <Sun size={12} />}
+                </div>
+              </div>
             </button>
             <button
               onClick={() => setIsOpen(!isOpen)}

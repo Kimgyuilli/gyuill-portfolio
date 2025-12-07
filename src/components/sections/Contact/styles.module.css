@@ -1,51 +1,51 @@
 .contact-section {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
-  background-color: rgba(15, 23, 42, 0.5);
+  padding-top: var(--spacing-4xl);
+  padding-bottom: var(--spacing-4xl);
+  background-color: var(--bg-section);
 }
 
 .container {
   max-width: 80rem;
   margin: 0 auto;
-  padding-left: 1rem;
-  padding-right: 1rem;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
 }
 
 @media (min-width: 640px) {
   .container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
   }
 }
 
 @media (min-width: 1024px) {
   .container {
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
   }
 }
 
 .header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: var(--spacing-3xl);
 }
 
 .title {
-  margin-bottom: 1rem;
-  color: rgb(241, 245, 249);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
   font-size: 2rem;
   font-weight: bold;
 }
 
 .description {
-  color: rgb(148, 163, 184);
+  color: var(--text-muted);
   max-width: 42rem;
   margin: 0 auto;
 }
 
 .content-grid {
   display: grid;
-  gap: 3rem;
+  gap: var(--spacing-3xl);
   max-width: 60rem;
   margin: 0 auto;
 }
@@ -61,8 +61,8 @@
 }
 
 .section-title {
-  margin-bottom: 1.5rem;
-  color: rgb(241, 245, 249);
+  margin-bottom: var(--spacing-lg);
+  color: var(--text-primary);
   font-size: 1.125rem;
   font-weight: 600;
 }
@@ -70,20 +70,20 @@
 .contact-list {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  margin-bottom: 2rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .social-title {
-  margin-bottom: 1rem;
-  color: rgb(241, 245, 249);
+  margin-bottom: var(--spacing-md);
+  color: var(--text-primary);
   font-size: 1rem;
   font-weight: 600;
 }
 
 .social-links {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .form-section {
@@ -93,7 +93,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .form-group {
@@ -103,30 +103,30 @@
 
 .label {
   display: block;
-  margin-bottom: 0.5rem;
-  color: rgb(203, 213, 225);
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-body);
 }
 
 .input,
 .textarea {
   width: 100%;
-  padding: 0.75rem 1rem;
-  background-color: rgb(15, 23, 42);
-  border: 1px solid rgb(30, 41, 59);
+  padding: var(--spacing-sm-md) var(--spacing-md);
+  background-color: var(--bg-input);
+  border: 1px solid var(--border-light);
   border-radius: 0.5rem;
-  color: rgb(241, 245, 249);
+  color: var(--text-primary);
   transition: border-color 0.2s;
 }
 
 .input:focus,
 .textarea:focus {
   outline: none;
-  border-color: rgb(16, 185, 129);
+  border-color: var(--accent-primary);
 }
 
 .input::placeholder,
 .textarea::placeholder {
-  color: rgb(100, 116, 139);
+  color: var(--text-muted);
 }
 
 .textarea {
@@ -135,22 +135,22 @@
 
 .submit-button {
   width: 100%;
-  padding: 0.75rem 1.5rem;
-  background-color: rgb(16, 185, 129);
-  color: rgb(2, 6, 23);
+  padding: var(--spacing-sm-md) var(--spacing-lg);
+  background-color: var(--accent-primary);
+  color: var(--accent-text);
   border-radius: 0.5rem;
   transition: background-color 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
   border: none;
   cursor: pointer;
   font-weight: 500;
 }
 
 .submit-button:hover {
-  background-color: rgb(5, 150, 105);
+  background-color: var(--accent-primary-hover);
 }
 
 .submit-button svg {
@@ -159,9 +159,9 @@
 }
 
 .footer {
-  margin-top: 5rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgb(30, 41, 59);
+  margin-top: var(--spacing-4xl);
+  padding-top: var(--spacing-xl);
+  border-top: 1px solid var(--border-light);
   text-align: center;
-  color: rgb(148, 163, 184);
+  color: var(--text-muted);
 }

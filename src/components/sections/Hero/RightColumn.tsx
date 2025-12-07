@@ -2,7 +2,8 @@ import { ExternalLink, Github, FileText } from 'lucide-react';
 import { heroData } from '@/data/hero';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
-import styles from './styles.module.css';
+import sharedStyles from './styles.module.css';
+import styles from './RightColumn.module.css';
 
 type SkillLevel = 'primary' | 'secondary' | 'tertiary';
 
@@ -31,11 +32,11 @@ export function RightColumn() {
   };
 
   return (
-    <div className={styles['right-column']}>
+    <div className={sharedStyles['right-column']}>
       {/* 프로젝트 */}
       <div>
-        <h2 className={styles['section-title']}>프로젝트</h2>
-        <div className={styles['timeline-list']}>
+        <h2 className={sharedStyles['section-title']}>프로젝트</h2>
+        <div className={sharedStyles['timeline-list']}>
           {featuredProjects.map((project, index) => (
             <div
               key={project.title}
@@ -78,7 +79,7 @@ export function RightColumn() {
 
       {/* 깃허브의 블로그 */}
       <div>
-        <h2 className={styles['section-title']}>깃허브의 블로그</h2>
+        <h2 className={sharedStyles['section-title']}>깃허브의 블로그</h2>
         <div className={styles['link-list']}>
           <a
             href={heroData.social.github}
@@ -115,7 +116,7 @@ export function RightColumn() {
 
       {/* 스킬 */}
       <div>
-        <h2 className={styles['section-title']}>스킬</h2>
+        <h2 className={sharedStyles['section-title']}>스킬</h2>
         <div className={styles['skills-grid']}>
           {allSkills.slice(0, 9).map((skill, index) => {
             const level = getSkillLevel(skill.category);

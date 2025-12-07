@@ -1,19 +1,19 @@
 .contact-info-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  color: rgb(203, 213, 225);
+  gap: var(--spacing-md);
+  color: var(--text-body);
 }
 
 .icon-wrapper {
-  width: 3rem;
-  height: 3rem;
-  background-color: rgba(52, 211, 153, 0.1);
+  width: var(--spacing-3xl);
+  height: var(--spacing-3xl);
+  background-color: var(--accent-hover);
   border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgb(52, 211, 153);
+  color: var(--accent-primary);
 }
 
 .info {
@@ -21,20 +21,20 @@
 }
 
 .label {
-  color: rgb(203, 213, 225);
+  color: var(--text-body);
   margin-bottom: 0.125rem;
 }
 
 .value {
-  color: rgb(148, 163, 184);
+  color: var(--text-muted);
 }
 
 .value-link {
-  color: rgb(148, 163, 184);
+  color: var(--text-muted);
   text-decoration: none;
   transition: color 0.2s;
 }
 
 .value-link:hover {
-  color: rgb(52, 211, 153);
+  color: var(--accent-primary);
 }

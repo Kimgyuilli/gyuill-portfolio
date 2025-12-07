@@ -25,7 +25,30 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    // Check if user prefers reduced motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Check if View Transitions API is supported
+    const supportsViewTransitions = 'startViewTransition' in document;
+
+    if (!prefersReducedMotion && supportsViewTransitions && document.startViewTransition) {
+      // Use View Transitions API for smooth cross-fade
+      document.startViewTransition(() => {
+        setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+      });
+    } else if (!prefersReducedMotion) {
+      // Fallback: Use CSS transition class
+      document.documentElement.classList.add('theme-transition');
+      setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+
+      // Remove transition class after animation completes
+      setTimeout(() => {
+        document.documentElement.classList.remove('theme-transition');
+      }, 1000);
+    } else {
+      // No animation for users who prefer reduced motion
+      setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+    }
   };
 
   const value = useMemo(() => ({ theme, toggleTheme }), [theme]);

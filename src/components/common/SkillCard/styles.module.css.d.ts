@@ -1,9 +1,8 @@
 declare const styles: {
-  readonly 'skill-card': string;
   readonly icon: string;
-  readonly title: string;
-  readonly 'skills-list': string;
+  readonly 'skill-card': string;
   readonly 'skill-tag': string;
+  readonly 'skills-list': string;
+  readonly title: string;
 };
-
-export default styles;
+export = styles;

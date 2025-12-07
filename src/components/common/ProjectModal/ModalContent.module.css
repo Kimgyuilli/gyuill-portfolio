@@ -1,0 +1,114 @@
+/* Modal Content - Header, Tags, Info Grid, Actions */
+
+.content {
+  padding: 2.5rem;
+}
+
+@media (min-width: 1024px) {
+  .content {
+    padding: var(--spacing-3xl);
+  }
+}
+
+.header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.category {
+  flex-shrink: 0;
+  padding: 0.375rem 0.75rem;
+  background-color: var(--badge-emerald-solid-bg);
+  color: var(--badge-emerald-solid-text);
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.info-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  color: var(--text-muted);
+  font-size: 0.875rem;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tag {
+  padding: 0.375rem 0.75rem;
+  background-color: var(--bg-card-alt);
+  color: var(--text-body);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
+}
+
+.action-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm-md) var(--spacing-lg);
+  background-color: var(--accent-primary);
+  color: var(--accent-text);
+  border-radius: 0.5rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.action-button:hover {
+  background-color: var(--accent-primary-hover);
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .content {
+    padding: var(--spacing-lg);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+}

@@ -61,6 +61,16 @@ src/
 - Custom scrollbar styling for light/dark themes
 - Path alias: `@/` → `./src/`
 
+### CSS Variables
+
+**IMPORTANT**: Always use CSS variables from `globals.css` instead of hardcoded values.
+
+- **Spacing**: `--spacing-xs` through `--spacing-4xl` for padding, margin, gap
+- **Colors**: Theme-aware variables (text, background, border, accent) that auto-switch in light/dark mode
+- **Sizes**: Component-specific size variables (profile, icons, timeline, etc.)
+- All variables defined in `:root` and `.dark` sections in `globals.css`
+- When using vendor prefixes (e.g., `-webkit-line-clamp`), include standard property for compatibility
+
 ## Component Patterns
 
 **Sections**: Each has unique ID for navigation, centered content with max-width containers
