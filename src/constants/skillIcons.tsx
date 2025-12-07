@@ -9,8 +9,21 @@ export const SKILL_ICONS = {
   Tools: <Layout />,
 } as const;
 
-// 로컬 이미지를 사용하는 스킬들 (CDN에서 깨지는 경우)
-const LOCAL_SKILL_IMAGES: Record<string, string> = {
+// Vite의 `import.meta.glob`을 사용하여 src/assets/images/skills 내의 모든 이미지 모듈을 가져옵니다.
+// `{ eager: true, as: 'url' }` 옵션을 통해 모듈을 즉시 URL로 가져옵니다.
+const localImageModules = import.meta.glob('../assets/images/skills/*.png', {
+  eager: true,
+  import: 'default',
+});
+
+// 파일 경로에서 파일 이름만 추출하여 '파일이름: URL' 형태의 맵을 생성합니다.
+// 예: '../assets/images/skills/java.png' -> 'java.png'
+const localImageUrls: Record<string, string> = Object.fromEntries(
+  Object.entries(localImageModules).map(([path, url]) => [path.split('/').pop() ?? '', url])
+);
+
+// 로컬 이미지를 사용하는 스킬들과 해당 파일 이름을 매핑합니다.
+const LOCAL_SKILL_FILES: Record<string, string> = {
   Java: 'java.png',
   AWS: 'aws.png',
   'VS Code': 'vscode.png',
@@ -56,10 +69,10 @@ export const SKILL_ICON_SLUGS: Record<string, string> = {
 
 // 아이콘 URL 생성 (로컬 이미지 우선, 없으면 CDN 사용)
 export const getSkillIconUrl = (skill: string): string => {
-  // 로컬 이미지가 있는 경우 로컬 경로 반환
-  const localImage = LOCAL_SKILL_IMAGES[skill];
-  if (localImage) {
-    return `/images/skills/${localImage}`;
+  const localImageFile = LOCAL_SKILL_FILES[skill];
+  if (localImageFile) {
+    const imageUrl = localImageUrls[localImageFile];
+    if (imageUrl) return imageUrl;
   }
 
   // CDN 아이콘 사용

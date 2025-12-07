@@ -1,3 +1,5 @@
+import profileImage from '@/assets/images/profile/profile.jpeg';
+
 export interface Education {
   period: string;
   school: string;
@@ -23,7 +25,7 @@ export interface HeroData {
 
 export const heroData: HeroData = {
   name: '김규일',
-  profileImage: '/images/profile/profile.jpeg',
+  profileImage: profileImage,
   email: 'rlarbdlf222@gmail.com',
   phone: '010-9028-1157',
   address: '경기도 화성시 향남읍',

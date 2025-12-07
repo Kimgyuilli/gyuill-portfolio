@@ -1,11 +1,15 @@
 import type { Project } from '@/types';
+import shamrockTalesImage from '@/assets/images/project/ShamrockTales.png';
+import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
+import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
+import geolEumGeolImage from '@/assets/images/project/Geol-eum-geol-i.png';
 
 export const projects: Project[] = [
   {
     title: 'Shamrock Tales',
     description:
       '육아 일기를 아일랜드 설화 스타일로 변환해주는 AI 기반 웹 서비스. 간단한 한 줄 기록이 감성적인 가족 이야기로 재탄생합니다.',
-    image: '/images/project/ShamrockTales.png',
+    image: shamrockTalesImage,
     tags: ['Spring Boot', 'Spring AI', 'MySQL', 'OpenAI'],
     github: 'https://github.com/SOPT-all/37-SOPKATHON-SERVER-WEB3',
     demo: '#',
@@ -40,7 +44,7 @@ export const projects: Project[] = [
     title: 'GiveYouEar (SpeekSee)',
     description:
       'AI 기반 자기주도형 발음 훈련 플랫폼. 맞춤형 스크립트 생성과 STT 분석을 통해 혼자서도 효과적인 스피킹 연습이 가능합니다.',
-    image: '/images/project/GiveYouEar.png',
+    image: giveYouEarImage,
     tags: ['Spring Boot', 'Java', 'STT', 'AI'],
     github: 'https://github.com/Kimgyuilli/GiveYouEar-BE',
     demo: '#',
@@ -75,7 +79,7 @@ export const projects: Project[] = [
     title: 'Piro-Recruit',
     description:
       'IT 연합 동아리 피로그래밍의 리쿠르팅 관리 프로세스를 디지털 전환한 종합 관리 플랫폼',
-    image: '/images/project/piro-recruit.png',
+    image: piroRecruitImage,
     tags: ['Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'React'],
     github: 'https://github.com/Piro-recruit',
     demo: '#',
@@ -113,7 +117,7 @@ export const projects: Project[] = [
     title: '걸음걸이 (Geol-eum-geol-i)',
     description:
       '멈추지 않을 당신의 걸음을 위한 맞춤형 서비스. 일일 걸음 추적부터 커뮤니티 참여까지, 걷기 문화를 함께 만들어가는 웹 플랫폼입니다.',
-    image: '/images/project/Geol-eum-geol-i.png',
+    image: geolEumGeolImage,
     tags: ['Django', 'Python', 'JavaScript', 'HTML', 'CSS', 'MySQL'],
     github: 'https://github.com/pirogramming/geol-eum-geol-i',
     demo: '#',
