@@ -1,17 +1,17 @@
 .about-section {
-  margin-bottom: 2.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(203, 213, 225, 0.3);
+  margin-bottom: var(--spacing-2xl);
+  padding-bottom: var(--spacing-2xl);
+  border-bottom: 1px solid var(--border-light-alpha-30);
 }
 
 :global(.dark) .about-section {
-  border-bottom-color: rgba(71, 85, 105, 0.3);
+  border-bottom-color: var(--border-dark-alpha-30);
 }
 
 .about-paragraphs {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .about-paragraph {
@@ -22,14 +22,14 @@
 
 .timeline-item {
   display: flex;
-  gap: 1rem;
+  gap: var(--spacing-md);
 }
 
 .timeline-date {
   font-size: 0.875rem;
   color: var(--text-muted);
   font-family: monospace;
-  width: 8rem;
+  width: var(--timeline-date-width);
   flex-shrink: 0;
 }
 
@@ -40,7 +40,7 @@
 .timeline-title {
   color: var(--text-secondary);
   font-weight: 600;
-  margin-bottom: 0.25rem;
+  margin-bottom: var(--spacing-xs);
 }
 
 .timeline-subtitle {

@@ -58,6 +58,49 @@ body {
   --toggle-sun: rgb(251, 146, 60);        /* orange-400 */
   --toggle-moon: rgb(96, 165, 250);       /* blue-400 */
 
+  /* Spacing System */
+  --spacing-xs: 0.25rem;                  /* 4px */
+  --spacing-sm: 0.5rem;                   /* 8px */
+  --spacing-sm-md: 0.75rem;               /* 12px */
+  --spacing-md: 1rem;                     /* 16px */
+  --spacing-lg: 1.5rem;                   /* 24px */
+  --spacing-xl: 2rem;                     /* 32px */
+  --spacing-2xl: 2.5rem;                  /* 40px */
+
+  /* Alpha Colors - Light Mode */
+  --border-light-alpha-30: rgba(203, 213, 225, 0.3);
+  --border-light-alpha-50: rgba(203, 213, 225, 0.5);
+  --bg-light-alpha-30: rgba(226, 232, 240, 0.3);
+  --bg-light-alpha-50: rgba(203, 213, 225, 0.5);
+
+  /* Skill Colors - Orange (Primary) */
+  --skill-primary-bg: rgba(249, 115, 22, 0.2);
+  --skill-primary-border: rgba(249, 115, 22, 0.3);
+  --skill-primary-text: rgb(251, 146, 60);
+
+  /* Skill Colors - Yellow (Secondary) */
+  --skill-secondary-bg: rgba(234, 179, 8, 0.2);
+  --skill-secondary-border: rgba(234, 179, 8, 0.3);
+  --skill-secondary-text: rgb(250, 204, 21);
+
+  /* Skill Colors - Gray (Tertiary) */
+  --skill-tertiary-bg: rgba(148, 163, 184, 0.3);
+  --skill-tertiary-border: rgba(148, 163, 184, 0.5);
+  --skill-tertiary-text: rgb(71, 85, 105);
+
+  /* Tag Colors */
+  --tag-emerald-bg: rgba(52, 211, 153, 0.2);
+  --tag-emerald-text: rgb(52, 211, 153);
+  --tag-blue-bg: rgba(59, 130, 246, 0.2);
+  --tag-blue-text: rgb(96, 165, 250);
+
+  /* Size Variables */
+  --profile-size: 12rem;
+  --project-image-size: 3rem;
+  --icon-size-sm: 1rem;
+  --icon-size-md: 2rem;
+  --timeline-date-width: 8rem;
+
   /* Legacy variables (kept for compatibility) */
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
@@ -96,6 +139,17 @@ body {
 
   /* Toggle/Switch Colors */
   --toggle-track: rgb(51, 65, 85);        /* slate-700 */
+
+  /* Alpha Colors - Dark Mode */
+  --border-dark-alpha-30: rgba(71, 85, 105, 0.3);
+  --border-dark-alpha-50: rgba(71, 85, 105, 0.5);
+  --bg-dark-alpha-30: rgba(30, 41, 59, 0.3);
+  --bg-dark-alpha-50: rgba(30, 41, 59, 0.5);
+
+  /* Skill Colors - Dark Mode (tertiary only changes) */
+  --skill-tertiary-bg: rgba(71, 85, 105, 0.3);
+  --skill-tertiary-border: rgba(71, 85, 105, 0.5);
+  --skill-tertiary-text: rgb(203, 213, 225);
 
   /* Legacy variables (kept for compatibility) */
   --background: oklch(0.145 0 0);
