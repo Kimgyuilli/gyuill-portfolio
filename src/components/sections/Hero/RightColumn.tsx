@@ -1,5 +1,3 @@
-import { ExternalLink, Github, FileText } from 'lucide-react';
-import { heroData } from '@/data/hero';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
 import sharedStyles from './styles.module.css';
@@ -74,43 +72,6 @@ export function RightColumn() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* 깃허브의 블로그 */}
-      <div>
-        <h2 className={sharedStyles['section-title']}>깃허브의 블로그</h2>
-        <div className={styles['link-list']}>
-          <a
-            href={heroData.social.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['link-item']}
-          >
-            <div className={styles['link-icon']}>
-              <Github size={20} />
-            </div>
-            <div className={styles['link-content']}>
-              <p className={styles['link-label']}>깃허브</p>
-              <p className={styles['link-url']}>{heroData.social.github}</p>
-            </div>
-            <ExternalLink className={styles['link-external']} />
-          </a>
-          <a
-            href={heroData.social.blog}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles['link-item']}
-          >
-            <div className={styles['link-icon']}>
-              <FileText size={20} />
-            </div>
-            <div className={styles['link-content']}>
-              <p className={styles['link-label']}>테크 블로그</p>
-              <p className={styles['link-url']}>{heroData.social.blog}</p>
-            </div>
-            <ExternalLink className={styles['link-external']} />
-          </a>
         </div>
       </div>
 
