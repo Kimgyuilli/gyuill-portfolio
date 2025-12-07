@@ -43,7 +43,7 @@ export const SKILL_ICON_SLUGS: Record<string, string> = {
 };
 
 // CDN 아이콘 URL 생성
-export const getSkillIconUrl = (skill: string, isDark = false): string => {
+export const getSkillIconUrl = (skill: string): string => {
   const slug = SKILL_ICON_SLUGS[skill];
   if (!slug) return '';
   // 다크모드에서도 브랜드 컬러 유지 (가독성 향상)

@@ -1,4 +1,3 @@
-import { useTheme } from 'next-themes';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
 import { SKILL_ICONS, getSkillIconUrl } from '@/constants/skillIcons';
@@ -6,8 +5,6 @@ import sharedStyles from './styles.module.css';
 import styles from './RightColumn.module.css';
 
 export function RightColumn() {
-  const { resolvedTheme } = useTheme();
-  const isDark = resolvedTheme === 'dark';
   const featuredProjects = projects.slice(0, 3);
 
   const handleProjectClick = () => {
@@ -75,7 +72,7 @@ export function RightColumn() {
               </div>
               <div className={styles['skill-icons-grid']}>
                 {category.skills.map((skill) => {
-                  const iconUrl = getSkillIconUrl(skill, isDark);
+                  const iconUrl = getSkillIconUrl(skill);
                   return iconUrl ? (
                     <div key={skill} className={styles['skill-icon-wrapper']} title={skill}>
                       <img src={iconUrl} alt={skill} className={styles['skill-icon-img']} />
