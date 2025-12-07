@@ -13,7 +13,7 @@ export function LeftColumn() {
       {/* 프로필 사진 */}
       <div className={styles['profile-wrapper']}>
         <div className={styles['profile-image-box']}>
-          {heroData.profileImage && heroData.profileImage.startsWith('http') ? (
+          {heroData.profileImage ? (
             <img
               src={heroData.profileImage}
               alt={heroData.name}

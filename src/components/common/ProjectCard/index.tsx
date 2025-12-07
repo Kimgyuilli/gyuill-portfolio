@@ -42,10 +42,12 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
             <Github size={18} />
             <span>Code</span>
           </a>
-          <a href={project.demo} className={styles.link} onClick={handleLinkClick}>
-            <ExternalLink size={18} />
-            <span>Demo</span>
-          </a>
+          {project.demo && project.demo !== '#' && (
+            <a href={project.demo} className={styles.link} onClick={handleLinkClick}>
+              <ExternalLink size={18} />
+              <span>Demo</span>
+            </a>
+          )}
         </div>
       </div>
     </div>

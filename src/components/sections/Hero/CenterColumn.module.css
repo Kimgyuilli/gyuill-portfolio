@@ -1,9 +1,3 @@
-.about-section {
-  margin-bottom: var(--spacing-2xl);
-  padding-bottom: var(--spacing-2xl);
-  border-bottom: 1px solid var(--border-light-alpha-30);
-}
-
 :global(.dark) .about-section {
   border-bottom-color: var(--border-dark-alpha-30);
 }

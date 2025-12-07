@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Github, Linkedin } from 'lucide-react';
+import { Mail, Phone, MapPin, Github, Linkedin, BookOpen } from 'lucide-react';
 
 export const CONTACT_ICONS = {
   이메일: <Mail size={20} />,
@@ -9,6 +9,7 @@ export const CONTACT_ICONS = {
 export const SOCIAL_ICONS = {
   GitHub: <Github size={20} />,
   LinkedIn: <Linkedin size={20} />,
+  'Tech Blog': <BookOpen size={20} />,
 } as const;
 
 export type ContactIconKey = keyof typeof CONTACT_ICONS;

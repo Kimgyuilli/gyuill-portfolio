@@ -61,7 +61,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* 제목과 카테고리 */}
           <div className={contentStyles.header}>
             <h2 className={contentStyles.title}>{project.title}</h2>
-            <span className={contentStyles.category}>{project.category}</span>
+            <div className={contentStyles['category-list']}>
+              {project.categories.map((category) => (
+                <span key={category} className={contentStyles.category}>
+                  {category}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* 프로젝트 정보 */}
@@ -114,15 +120,17 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
               <Github size={20} />
               <span>GitHub</span>
             </a>
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={contentStyles['action-button']}
-            >
-              <ExternalLink size={20} />
-              <span>Live Demo</span>
-            </a>
+            {project.demo && project.demo !== '#' && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={contentStyles['action-button']}
+              >
+                <ExternalLink size={20} />
+                <span>Live Demo</span>
+              </a>
+            )}
           </div>
         </div>
       </div>

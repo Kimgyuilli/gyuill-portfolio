@@ -37,20 +37,22 @@ export function CenterColumn() {
       </div>
 
       {/* 경력 */}
-      <div>
-        <h2 className={sharedStyles['section-title']}>경력</h2>
-        <div className={sharedStyles['timeline-list']}>
-          {careerExperiences.map((exp, index) => (
-            <div key={index} className={styles['timeline-item']}>
-              <div className={styles['timeline-date']}>{exp.period}</div>
-              <div className={styles['timeline-content']}>
-                <p className={styles['timeline-title']}>{exp.position}</p>
-                <p className={styles['timeline-subtitle']}>{exp.company}</p>
+      {careerExperiences.length > 0 && (
+        <div>
+          <h2 className={sharedStyles['section-title']}>경력</h2>
+          <div className={sharedStyles['timeline-list']}>
+            {careerExperiences.map((exp, index) => (
+              <div key={index} className={styles['timeline-item']}>
+                <div className={styles['timeline-date']}>{exp.period}</div>
+                <div className={styles['timeline-content']}>
+                  <p className={styles['timeline-title']}>{exp.position}</p>
+                  <p className={styles['timeline-subtitle']}>{exp.company}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* 활동 */}
       <div>

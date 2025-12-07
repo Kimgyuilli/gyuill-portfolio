@@ -2,6 +2,7 @@ declare const styles: {
   readonly 'action-button': string;
   readonly actions: string;
   readonly category: string;
+  readonly 'category-list': string;
   readonly content: string;
   readonly header: string;
   readonly 'info-grid': string;

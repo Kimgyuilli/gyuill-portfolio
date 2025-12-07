@@ -8,26 +8,33 @@ export interface SkillCategoryData {
 export const skillCategories: SkillCategoryData[] = [
   {
     title: 'Frontend',
-    skills: ['React', 'TypeScript', 'Next.js', 'Tailwind CSS', 'Vue.js'],
+    skills: ['React', 'TypeScript', 'Vite'],
   },
   {
     title: 'Backend',
-    skills: ['Node.js', 'Python', 'Java', 'Spring Boot', 'Express'],
+    skills: ['Django', 'Python', 'Java', 'Spring Boot'],
   },
   {
     title: 'Database',
-    skills: ['PostgreSQL', 'MongoDB', 'MySQL', 'Redis', 'Supabase'],
-  },
-  {
-    title: 'Mobile',
-    skills: ['React Native', 'Flutter', 'iOS', 'Android'],
+    skills: ['PostgreSQL', 'MySQL', 'Redis'],
   },
   {
     title: 'DevOps',
-    skills: ['Docker', 'AWS', 'CI/CD', 'Kubernetes', 'GitHub Actions'],
+    skills: ['Docker', 'AWS', 'GCP', 'NCP', 'GitHub Actions', 'Vercel'],
   },
   {
     title: 'Tools',
-    skills: ['Git', 'VS Code', 'Figma', 'Jira', 'Notion'],
+    skills: [
+      'Git',
+      'VS Code',
+      'IntelliJ',
+      'Figma',
+      'Slack',
+      'Notion',
+      'Postman',
+      'claude',
+      'gemini',
+      'perplexity',
+    ],
   },
 ];
