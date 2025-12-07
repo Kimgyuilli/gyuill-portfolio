@@ -9,7 +9,7 @@ export const projects: Project[] = [
     tags: ['Spring Boot', 'Spring AI', 'MySQL', 'OpenAI'],
     github: 'https://github.com/SOPT-all/37-SOPKATHON-SERVER-WEB3',
     demo: '#',
-    category: 'Web',
+    categories: ['Backend', 'AI'],
     detailedDescription:
       "아일랜드 전통 이야기꾼 'Seanchaí'에서 영감을 받아, 바쁜 일상 속 짧은 육아 순간을 의미 있는 가족 스토리로 변환하는 서비스입니다. 사용자가 입력한 육아 일기를 AI가 분석하여 아일랜드 민담 스타일의 서사로 재구성합니다.",
     features: [
@@ -44,7 +44,7 @@ export const projects: Project[] = [
     tags: ['Spring Boot', 'Java', 'STT', 'AI'],
     github: 'https://github.com/Kimgyuilli/GiveYouEar-BE',
     demo: '#',
-    category: 'Web',
+    categories: ['Backend', 'AI'],
     detailedDescription:
       '취준생과 대학생들의 스피치 불안을 해소하고 실질적인 훈련 성과를 제공하는 AI 발음 교정 플랫폼입니다. 사용자 레벨과 목표에 맞춘 스크립트를 AI가 자동 생성하고, STT 기술로 발음을 분석하여 시각적 피드백을 제공합니다. 성장 대시보드를 통해 학습 진행도를 한눈에 확인할 수 있습니다.',
     features: [
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     tags: ['Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'React'],
     github: 'https://github.com/Piro-recruit',
     demo: '#',
-    category: 'Web',
+    categories: ['Frontend', 'Backend'],
     detailedDescription:
       'IT 연합 동아리 피로그래밍의 리쿠르팅 프로세스 전반을 디지털화한 관리 플랫폼입니다. 기존 Excel/Notion 기반 수작업 방식의 한계를 극복하고, 데이터 유실 방지, 업무 자동화, 사용자 경험 개선을 통해 체계적인 리쿠르팅 관리 시스템을 구축했습니다. OpenAI API를 활용한 지원서 요약, Admin Code Rotation 기반 권한 관리 등의 기능을 포함합니다.',
     features: [
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     tags: ['Django', 'Python', 'JavaScript', 'HTML', 'CSS', 'MySQL'],
     github: 'https://github.com/pirogramming/geol-eum-geol-i',
     demo: '#',
-    category: 'Web',
+    categories: ['Frontend', 'Backend'],
     detailedDescription:
       '걸음걸이는 걷기 활동을 체계적으로 추적하고 관리할 수 있는 웹 애플리케이션입니다. 피로그래밍 동아리에서 한 달간 주 3회 대면 회의를 통해 스타트업처럼 100% 몰입하며 개발한 프로젝트입니다. 실시간 걸음 추적, 월별 통계 시각화, 커뮤니티 랭킹 시스템, 장소 추천 기능 등을 통해 사용자들이 건강한 걷기 습관을 형성하도록 돕습니다. 디스코드, 피그마, 노션, 깃을 활용한 협업 경험을 쌓았으며, 특히 사용자 관리 시 데이터베이스 설계와 보안 방식에 대해 깊이 고민했습니다.',
     features: [

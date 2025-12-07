@@ -53,7 +53,11 @@ export function RightColumn() {
                     {tag}
                   </span>
                 ))}
-                <span className={`${styles.tag} ${styles['tag-blue']}`}>{project.category}</span>
+                {project.categories.map((category) => (
+                  <span key={category} className={`${styles.tag} ${styles['tag-blue']}`}>
+                    {category}
+                  </span>
+                ))}
               </div>
             </div>
           ))}

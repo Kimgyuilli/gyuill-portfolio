@@ -61,7 +61,13 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* 제목과 카테고리 */}
           <div className={contentStyles.header}>
             <h2 className={contentStyles.title}>{project.title}</h2>
-            <span className={contentStyles.category}>{project.category}</span>
+            <div className={contentStyles['category-list']}>
+              {project.categories.map((category) => (
+                <span key={category} className={contentStyles.category}>
+                  {category}
+                </span>
+              ))}
+            </div>
           </div>
 
           {/* 프로젝트 정보 */}

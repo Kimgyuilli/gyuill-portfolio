@@ -14,7 +14,7 @@ export function Projects() {
   const filteredProjects =
     selectedCategory === 'All'
       ? projects
-      : projects.filter((project) => project.category === selectedCategory);
+      : projects.filter((project) => project.categories.includes(selectedCategory));
 
   return (
     <section id="projects" className={styles['projects-section']}>

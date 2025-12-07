@@ -25,6 +25,12 @@
   line-height: 1.2;
 }
 
+.category-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+}
+
 .category {
   flex-shrink: 0;
   padding: 0.375rem 0.75rem;

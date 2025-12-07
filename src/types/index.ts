@@ -14,7 +14,7 @@ export interface Project {
   tags: string[];
   github: string;
   demo: string;
-  category: Exclude<ProjectCategory, 'All'>;
+  categories: Exclude<ProjectCategory, 'All'>[];
   detailedDescription?: string;
   features?: string[];
   techStack?: {
