@@ -45,6 +45,7 @@ body {
   /* Accent Colors - Emerald */
   --accent-primary: rgb(16, 185, 129); /* emerald-500 */
   --accent-primary-hover: rgb(5, 150, 105); /* emerald-600 */
+  --accent-primary-hover-strong: rgb(4, 120, 87); /* emerald-700 - for brand hover */
   --accent-hover: rgba(16, 185, 129, 0.2); /* emerald hover bg */
   --accent-border: rgba(16, 185, 129, 0.5); /* emerald border */
   --accent-text: rgb(255, 255, 255); /* Text on accent bg - white */
@@ -97,6 +98,16 @@ body {
   --tag-blue-bg: rgba(59, 130, 246, 0.2);
   --tag-blue-text: rgb(96, 165, 250);
 
+  /* Modal/Overlay Colors - Light Mode */
+  --modal-backdrop: rgba(0, 0, 0, 0.75); /* Modal backdrop overlay */
+  --modal-close-bg: rgba(71, 85, 105, 0.8); /* Close button - slate-600/80 */
+  --modal-close-text: rgb(255, 255, 255); /* Close button text */
+  --modal-close-hover: rgb(51, 65, 85); /* Close button hover - slate-700 */
+
+  /* Solid Badge Colors - Light Mode (for ProjectModal) */
+  --badge-emerald-solid-bg: rgb(236, 253, 245); /* emerald-50 */
+  --badge-emerald-solid-text: rgb(5, 150, 105); /* emerald-600 */
+
   /* Size Variables */
   --profile-size: 12rem;
   --project-image-size: 3rem;
@@ -133,6 +144,7 @@ body {
   /* Accent Colors - Emerald Dark (slightly brighter) */
   --accent-primary: rgb(52, 211, 153); /* emerald-400 */
   --accent-primary-hover: rgb(16, 185, 129); /* emerald-500 */
+  --accent-primary-hover-strong: rgb(110, 231, 183); /* emerald-300 - for brand hover */
   --accent-hover: rgba(52, 211, 153, 0.2); /* emerald hover bg */
   --accent-border: rgba(52, 211, 153, 0.5); /* emerald border */
   --accent-text: rgb(15, 23, 42); /* Text on accent bg - dark slate */
@@ -154,6 +166,16 @@ body {
   --skill-tertiary-bg: rgba(71, 85, 105, 0.3);
   --skill-tertiary-border: rgba(71, 85, 105, 0.5);
   --skill-tertiary-text: rgb(203, 213, 225);
+
+  /* Modal/Overlay Colors - Dark Mode */
+  --modal-backdrop: rgba(0, 0, 0, 0.85); /* Darker backdrop for dark mode */
+  --modal-close-bg: rgba(148, 163, 184, 0.8); /* Close button - slate-400/80 */
+  --modal-close-text: rgb(15, 23, 42); /* Close button text - slate-900 */
+  --modal-close-hover: rgb(203, 213, 225); /* Close button hover - slate-300 */
+
+  /* Solid Badge Colors - Dark Mode */
+  --badge-emerald-solid-bg: rgba(52, 211, 153, 0.1); /* emerald-400/10 */
+  --badge-emerald-solid-text: rgb(52, 211, 153); /* emerald-400 */
 
   /* Legacy variables (kept for compatibility) */
   --background: oklch(0.145 0 0);

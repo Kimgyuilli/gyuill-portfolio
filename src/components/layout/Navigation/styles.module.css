@@ -60,11 +60,7 @@
 }
 
 .brand-link:hover {
-  color: rgb(4, 120, 87);
-}
-
-:global(.dark) .brand-link:hover {
-  color: rgb(110, 231, 183);
+  color: var(--accent-primary-hover-strong);
 }
 
 .desktop-nav {
