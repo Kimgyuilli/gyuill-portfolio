@@ -1,9 +1,10 @@
 import { heroData } from '@/data/hero';
-import styles from './styles.module.css';
+import layoutStyles from './styles.module.css';
+import styles from './LeftColumn.module.css';
 
 export function LeftColumn() {
   return (
-    <div className={styles['left-column']}>
+    <div className={layoutStyles['left-column']}>
       {/* CAREER 타이틀 */}
       <div>
         <h1 className={styles['career-title']}>CAREER</h1>

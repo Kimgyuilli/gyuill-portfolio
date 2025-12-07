@@ -1,13 +1,14 @@
 import { heroData } from '@/data/hero';
 import { experiences } from '@/data/experiences';
-import styles from './styles.module.css';
+import layoutStyles from './styles.module.css';
+import styles from './CenterColumn.module.css';
 
 export function CenterColumn() {
   const careerExperiences = experiences.filter((exp) => exp.type === 'career');
   const activityExperiences = experiences.filter((exp) => exp.type === 'activity');
 
   return (
-    <div className={styles['center-column']}>
+    <div className={layoutStyles['center-column']}>
       {/* About Me */}
       <div className={styles['about-section']}>
         <h2 className={styles['section-title']}>About Me</h2>

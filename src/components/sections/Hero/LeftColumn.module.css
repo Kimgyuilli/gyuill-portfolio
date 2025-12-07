@@ -1,0 +1,118 @@
+.career-title {
+  font-size: 2.25rem;
+  font-weight: bold;
+  background: linear-gradient(to right, rgb(168, 85, 247), rgb(139, 92, 246));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+:global(.dark) .career-title {
+  background: linear-gradient(to right, rgb(139, 92, 246), rgb(168, 85, 247));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.profile-image-box {
+  width: 12rem;
+  height: 12rem;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: rgba(243, 244, 246, 0.5);
+  border: 1px solid rgba(203, 213, 225, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+:global(.dark) .profile-image-box {
+  background: linear-gradient(to bottom right, rgba(139, 92, 246, 0.2), rgba(168, 85, 247, 0.2));
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+.profile-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-emoji {
+  font-size: 4rem;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.section-header {
+  font-size: 1.125rem;
+  font-weight: bold;
+  color: rgb(15, 23, 42);
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgb(226, 232, 240);
+}
+
+:global(.dark) .section-header {
+  color: rgb(241, 245, 249);
+  border-bottom-color: rgb(71, 85, 105);
+}
+
+.info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  font-size: 0.875rem;
+  color: rgb(100, 116, 139);
+  margin-bottom: 0.25rem;
+}
+
+:global(.dark) .info-label {
+  color: rgb(100, 116, 139);
+}
+
+.info-value {
+  color: rgb(51, 65, 85);
+  font-size: 0.875rem;
+}
+
+:global(.dark) .info-value {
+  color: rgb(226, 232, 240);
+}
+
+.info-value-name {
+  color: rgb(30, 41, 59);
+  font-weight: 500;
+}
+
+:global(.dark) .info-value-name {
+  color: rgb(226, 232, 240);
+}
+
+.info-value-mono {
+  color: rgb(71, 85, 105);
+  font-size: 0.875rem;
+  font-family: monospace;
+  word-break: break-all;
+}
+
+:global(.dark) .info-value-mono {
+  color: rgb(203, 213, 225);
+}

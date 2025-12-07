@@ -1,0 +1,94 @@
+.about-section {
+  margin-bottom: 2.5rem;
+  padding-bottom: 2.5rem;
+  border-bottom: 1px solid rgba(203, 213, 225, 0.3);
+}
+
+:global(.dark) .about-section {
+  border-bottom-color: rgba(71, 85, 105, 0.3);
+}
+
+.about-paragraphs {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.about-paragraph {
+  color: rgb(71, 85, 105);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+:global(.dark) .about-paragraph {
+  color: rgb(203, 213, 225);
+}
+
+.section-title {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: rgb(15, 23, 42);
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgb(16, 185, 129);
+}
+
+:global(.dark) .section-title {
+  color: rgb(241, 245, 249);
+  border-bottom-color: rgb(52, 211, 153);
+}
+
+.timeline-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 1rem;
+}
+
+.timeline-date {
+  font-size: 0.875rem;
+  color: rgb(100, 116, 139);
+  font-family: monospace;
+  width: 8rem;
+  flex-shrink: 0;
+}
+
+:global(.dark) .timeline-date {
+  color: rgb(148, 163, 184);
+}
+
+.timeline-content {
+  flex: 1;
+}
+
+.timeline-title {
+  color: rgb(30, 41, 59);
+  font-weight: 600;
+  margin-bottom: 0.25rem;
+}
+
+:global(.dark) .timeline-title {
+  color: rgb(226, 232, 240);
+}
+
+.timeline-subtitle {
+  color: rgb(100, 116, 139);
+  font-size: 0.875rem;
+}
+
+:global(.dark) .timeline-subtitle {
+  color: rgb(148, 163, 184);
+}
+
+.timeline-text {
+  color: rgb(30, 41, 59);
+  font-weight: 500;
+}
+
+:global(.dark) .timeline-text {
+  color: rgb(226, 232, 240);
+}

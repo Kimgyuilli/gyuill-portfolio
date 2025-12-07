@@ -1,0 +1,36 @@
+declare const styles: {
+  readonly "legend-box": string;
+  readonly "legend-box-primary": string;
+  readonly "legend-box-secondary": string;
+  readonly "legend-box-tertiary": string;
+  readonly "legend-item": string;
+  readonly "legend-text": string;
+  readonly "link-content": string;
+  readonly "link-external": string;
+  readonly "link-icon": string;
+  readonly "link-item": string;
+  readonly "link-label": string;
+  readonly "link-list": string;
+  readonly "link-url": string;
+  readonly "project-card": string;
+  readonly "project-date": string;
+  readonly "project-header": string;
+  readonly "project-image": string;
+  readonly "project-info": string;
+  readonly "project-tags": string;
+  readonly "project-title": string;
+  readonly "section-title": string;
+  readonly "skill-box": string;
+  readonly "skill-name": string;
+  readonly "skill-primary": string;
+  readonly "skill-secondary": string;
+  readonly "skill-tertiary": string;
+  readonly "skills-grid": string;
+  readonly "skills-legend": string;
+  readonly "tag": string;
+  readonly "tag-blue": string;
+  readonly "tag-emerald": string;
+  readonly "timeline-list": string;
+};
+export = styles;
+

@@ -2,7 +2,8 @@ import { ExternalLink, Github, FileText } from 'lucide-react';
 import { heroData } from '@/data/hero';
 import { projects } from '@/data/projects';
 import { skillCategories } from '@/data/skills';
-import styles from './styles.module.css';
+import layoutStyles from './styles.module.css';
+import styles from './RightColumn.module.css';
 
 type SkillLevel = 'primary' | 'secondary' | 'tertiary';
 
@@ -31,7 +32,7 @@ export function RightColumn() {
   };
 
   return (
-    <div className={styles['right-column']}>
+    <div className={layoutStyles['right-column']}>
       {/* 프로젝트 */}
       <div>
         <h2 className={styles['section-title']}>프로젝트</h2>
