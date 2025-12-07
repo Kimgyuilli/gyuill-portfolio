@@ -1,13 +1,13 @@
 .contact-info-item {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: var(--spacing-md);
   color: var(--text-body);
 }
 
 .icon-wrapper {
-  width: 3rem;
-  height: 3rem;
+  width: var(--spacing-3xl);
+  height: var(--spacing-3xl);
   background-color: var(--accent-hover);
   border-radius: 0.5rem;
   display: flex;

@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
+  padding: var(--spacing-xl);
   animation: fadeIn 0.2s ease-in-out;
 }
 
@@ -46,10 +46,10 @@
 
 .close-button {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: var(--spacing-md);
+  right: var(--spacing-md);
   z-index: 10;
-  padding: 0.5rem;
+  padding: var(--spacing-sm);
   background-color: rgba(0, 0, 0, 0.5);
   color: white;
   border: none;
@@ -85,7 +85,7 @@
 
 @media (min-width: 1024px) {
   .content {
-    padding: 3rem;
+    padding: var(--spacing-3xl);
   }
 }
 
@@ -93,8 +93,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 1.5rem;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
 }
 
 .title {
@@ -122,20 +122,20 @@
 .info-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 1.5rem;
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid rgb(226, 232, 240);
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-lg);
+  padding-bottom: var(--spacing-lg);
+  border-bottom: 1px solid var(--border-light);
 }
 
 :global(.dark) .info-grid {
-  border-bottom-color: rgb(30, 41, 59);
+  border-bottom-color: var(--border-light);
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
   color: var(--text-muted);
   font-size: 0.875rem;
 }
@@ -143,8 +143,8 @@
 .tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 2rem;
+  gap: var(--spacing-sm);
+  margin-bottom: var(--spacing-xl);
 }
 
 .tag {
@@ -162,14 +162,14 @@
 }
 
 .section {
-  margin-bottom: 2rem;
+  margin-bottom: var(--spacing-xl);
 }
 
 .section-title {
   font-size: 1.25rem;
   font-weight: 600;
   color: var(--text-primary);
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-md);
 }
 
 .description {
@@ -185,8 +185,8 @@
 
 .list-item {
   position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.75rem;
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm-md);
   color: var(--text-body);
   line-height: 1.6;
 }
@@ -194,18 +194,18 @@
 .list-item::before {
   content: '•';
   position: absolute;
-  left: 0.5rem;
-  color: rgb(5, 150, 105);
+  left: var(--spacing-sm);
+  color: var(--accent-primary-hover);
   font-weight: bold;
 }
 
 :global(.dark) .list-item::before {
-  color: rgb(52, 211, 153);
+  color: var(--accent-primary);
 }
 
 .tech-stack {
   display: grid;
-  gap: 1.5rem;
+  gap: var(--spacing-lg);
 }
 
 @media (min-width: 768px) {
@@ -217,7 +217,7 @@
 .tech-category {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: var(--spacing-sm-md);
 }
 
 .tech-title {
@@ -231,7 +231,7 @@
 .tech-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--spacing-sm);
 }
 
 .tech-tag {
@@ -250,13 +250,13 @@
 
 .actions {
   display: flex;
-  gap: 1rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgb(226, 232, 240);
+  gap: var(--spacing-md);
+  padding-top: var(--spacing-lg);
+  border-top: 1px solid var(--border-light);
 }
 
 :global(.dark) .actions {
-  border-top-color: rgb(30, 41, 59);
+  border-top-color: var(--border-light);
 }
 
 .action-button {
@@ -264,8 +264,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.75rem 1.5rem;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm-md) var(--spacing-lg);
   background-color: var(--accent-primary);
   color: var(--accent-text);
   border-radius: 0.5rem;
@@ -275,11 +275,11 @@
 }
 
 .action-button:hover {
-  background-color: rgb(4, 120, 87);
+  background-color: var(--accent-primary-hover);
 }
 
 :global(.dark) .action-button:hover {
-  background-color: rgb(110, 231, 183);
+  background-color: var(--accent-primary-hover);
 }
 
 /* 모바일 대응 */
@@ -296,7 +296,7 @@
   }
 
   .content {
-    padding: 1.5rem;
+    padding: var(--spacing-lg);
   }
 
   .title {
