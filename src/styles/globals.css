@@ -32,15 +32,15 @@ body {
 
   /* Background Colors - Light Mode */
   --bg-body: rgb(248, 250, 252); /* Main background - slate-50 */
-  --bg-section: rgba(243, 244, 246, 0.5); /* Section background - gray-100/50 */
+  --bg-section: rgba(243, 244, 246, 0.7); /* Section background - gray-100/70 (improved visibility) */
   --bg-card: rgb(255, 255, 255); /* Card background - white */
-  --bg-card-alt: rgba(243, 244, 246, 0.5); /* Alternative card - gray-100/50 */
-  --bg-hover: rgba(243, 244, 246, 0.8); /* Hover state */
+  --bg-card-alt: rgba(243, 244, 246, 0.75); /* Alternative card - gray-100/75 (improved contrast) */
+  --bg-hover: rgba(243, 244, 246, 0.9); /* Hover state (improved visibility) */
   --bg-input: rgb(248, 250, 252); /* Input background - slate-50 */
 
   /* Border Colors - Light Mode */
-  --border-light: rgb(226, 232, 240); /* Light borders - slate-200 */
-  --border-medium: rgb(203, 213, 225); /* Medium borders - slate-300 */
+  --border-light: rgb(203, 213, 225); /* Light borders - slate-300 (improved visibility) */
+  --border-medium: rgb(148, 163, 184); /* Medium borders - slate-400 (improved contrast) */
 
   /* Accent Colors - Emerald */
   --accent-primary: rgb(16, 185, 129); /* emerald-500 */
@@ -88,9 +88,9 @@ body {
   --skill-secondary-text: rgb(250, 204, 21);
 
   /* Skill Colors - Gray (Tertiary) */
-  --skill-tertiary-bg: rgba(148, 163, 184, 0.3);
-  --skill-tertiary-border: rgba(148, 163, 184, 0.5);
-  --skill-tertiary-text: rgb(71, 85, 105);
+  --skill-tertiary-bg: rgba(100, 116, 139, 0.15); /* slate-500/15 (subtle background) */
+  --skill-tertiary-border: rgba(100, 116, 139, 0.35); /* slate-500/35 (visible border) */
+  --skill-tertiary-text: rgb(51, 65, 85); /* slate-700 (improved contrast) */
 
   /* Tag Colors */
   --tag-emerald-bg: rgba(52, 211, 153, 0.2);
