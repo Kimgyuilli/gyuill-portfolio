@@ -1,8 +1,15 @@
 .experience-item {
   position: relative;
-  padding-left: var(--spacing-xl);
+  padding-left: var(--spacing-lg);
   padding-bottom: var(--spacing-3xl);
   border-left: 2px solid var(--border-light);
+}
+
+/* 태블릿 이상: 원래 패딩 */
+@media (min-width: 640px) {
+  .experience-item {
+    padding-left: var(--spacing-xl);
+  }
 }
 
 .experience-item:last-child {
@@ -13,19 +20,35 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: var(--spacing-md);
-  height: var(--spacing-md);
+  width: var(--spacing-sm-md);
+  height: var(--spacing-sm-md);
   background-color: var(--accent-primary);
   border-radius: 9999px;
-  transform: translateX(-9px);
+  transform: translateX(-7px);
+}
+
+/* 태블릿 이상: 더 큰 점 */
+@media (min-width: 640px) {
+  .timeline-dot {
+    width: var(--spacing-md);
+    height: var(--spacing-md);
+    transform: translateX(-9px);
+  }
 }
 
 .card {
   background-color: var(--bg-card-alt);
   border: 1px solid var(--border-light);
   border-radius: 0.75rem;
-  padding: var(--spacing-lg);
+  padding: var(--spacing-md);
   transition: border-color 0.2s;
+}
+
+/* 태블릿 이상: 더 큰 패딩 */
+@media (min-width: 640px) {
+  .card {
+    padding: var(--spacing-lg);
+  }
 }
 
 .card:hover {

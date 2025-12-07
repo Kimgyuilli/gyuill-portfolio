@@ -8,8 +8,15 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--spacing-xl);
+  padding: var(--spacing-md);
   animation: fadeIn 0.2s ease-in-out;
+}
+
+/* 태블릿 이상: 더 큰 패딩 */
+@media (min-width: 768px) {
+  .backdrop {
+    padding: var(--spacing-xl);
+  }
 }
 
 @keyframes fadeIn {
@@ -83,6 +90,10 @@
 
 /* Mobile Responsive */
 @media (max-width: 640px) {
+  .backdrop {
+    padding: 0;
+  }
+
   .modal {
     margin: 0;
     border-radius: 0;
@@ -92,5 +103,12 @@
   .image-container {
     height: 12rem;
     border-radius: 0;
+  }
+}
+
+/* Tablet: 중간 크기 이미지 */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .image-container {
+    height: 16rem;
   }
 }

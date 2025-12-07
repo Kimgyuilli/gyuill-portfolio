@@ -13,9 +13,50 @@
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 280px 1fr 320px;
   gap: var(--spacing-xl);
-  min-width: 1200px;
+  grid-template-columns: 1fr;
+}
+
+/* 태블릿: 2열 레이아웃 (Left + Right 합쳐서 상단, Center 하단) */
+@media (min-width: 768px) {
+  .hero-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-lg);
+  }
+
+  .left-column {
+    grid-column: 1;
+  }
+
+  .center-column {
+    grid-column: 1 / -1;
+    grid-row: 2;
+  }
+
+  .right-column {
+    grid-column: 2;
+  }
+}
+
+/* 데스크톱: 3열 레이아웃 (원래 디자인) */
+@media (min-width: 1024px) {
+  .hero-grid {
+    grid-template-columns: 280px 1fr 320px;
+    gap: var(--spacing-xl);
+  }
+
+  .left-column {
+    grid-column: auto;
+  }
+
+  .center-column {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .right-column {
+    grid-column: auto;
+  }
 }
 
 .left-column {

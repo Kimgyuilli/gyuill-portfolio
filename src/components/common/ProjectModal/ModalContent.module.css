@@ -112,3 +112,14 @@
     flex-direction: column;
   }
 }
+
+/* Tablet: 중간 패딩 및 타이틀 크기 */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .content {
+    padding: var(--spacing-xl);
+  }
+
+  .title {
+    font-size: 1.75rem;
+  }
+}
