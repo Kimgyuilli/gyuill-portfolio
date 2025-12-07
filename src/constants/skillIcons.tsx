@@ -40,6 +40,9 @@ export const SKILL_ICON_SLUGS: Record<string, string> = {
   Slack: 'slack',
   Notion: 'notion',
   Postman: 'postman',
+  claude: 'anthropic',
+  gemini: 'googlegemini',
+  perplexity: 'perplexity',
 };
 
 // CDN 아이콘 URL 생성
