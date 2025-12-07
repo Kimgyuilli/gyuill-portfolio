@@ -15,6 +15,7 @@ const LOCAL_SKILL_IMAGES: Record<string, string> = {
   AWS: 'aws.png',
   'VS Code': 'vscode.png',
   Slack: 'slack.png',
+  vercel: 'vercel.png',
 };
 
 // Simple Icons CDN slug 매핑

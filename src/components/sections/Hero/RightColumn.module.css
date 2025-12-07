@@ -174,3 +174,8 @@
   height: 100%;
   object-fit: contain;
 }
+
+/* VS Code 아이콘만 크기 확대 */
+.skill-icon-img[alt='VS Code'] {
+  transform: scale(1.5);
+}
