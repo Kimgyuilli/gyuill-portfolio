@@ -35,6 +35,7 @@ jobs:
         run: npm run update-blog
 
       - name: Commit and push changes
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -42,12 +43,15 @@ jobs:
 
           if git diff --cached --quiet; then
             echo "No changes to commit"
+            echo "changes_detected=false" >> $GITHUB_OUTPUT
           else
             git commit -m "chore: Update blog posts from RSS feed"
             git push
+            echo "changes_detected=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Build
+        if: steps.commit.outputs.changes_detected == 'true'
         env:
           VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY }}
           VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID }}
@@ -55,13 +59,16 @@ jobs:
         run: npm run build
 
       - name: Setup Pages
+        if: steps.commit.outputs.changes_detected == 'true'
         uses: actions/configure-pages@v4
 
       - name: Upload artifact
+        if: steps.commit.outputs.changes_detected == 'true'
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./build
 
       - name: Deploy to GitHub Pages
+        if: steps.commit.outputs.changes_detected == 'true'
         id: deployment
         uses: actions/deploy-pages@v4
