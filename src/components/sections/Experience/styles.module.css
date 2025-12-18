@@ -42,7 +42,79 @@
   margin: 0 auto;
 }
 
-.timeline {
+.timeline-wrapper {
+  position: relative;
   max-width: 56rem;
   margin: 0 auto;
+}
+
+.timeline {
+  transition: max-height 0.5s ease;
+  overflow: hidden;
+}
+
+.timeline.collapsed {
+  max-height: 600px;
+  position: relative;
+}
+
+.timeline.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    var(--bg-body)
+  );
+  pointer-events: none;
+}
+
+.timeline.expanded {
+  max-height: 5000px;
+}
+
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm-md) var(--spacing-lg);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 9999px;
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toggle-button:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.toggle-button:active {
+  transform: translateY(0);
+}
+
+.toggle-button .icon {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.2s ease;
+}
+
+.toggle-button:hover .icon {
+  transform: scale(1.1);
 }
