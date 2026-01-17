@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "AWS 인프라를 어떻게 구축할 수 있을까",
+    summary: "주요 의사결정 및 Trade-off 분석\n1. 컨테이너 이미지 빌드: Dockerfile vs Jib vs bootBuildImage\n선택: Jib 3.5.2\nSpring Boot...",
+    date: '2026.01.16',
+    image: "https://blog.kakaocdn.net/dn/zYMlN/dJMcabJJBm0/aPJ7GcGvn9IRbUlBrRi0aK/img.png",
+    link: "https://imdeepskyblue.tistory.com/73",
+    tags: ["개발 지식/aws","aws","springboot"],
+  },
+  {
     title: "개발자에게 필요한 문서는 무엇이 있을까",
     summary: "개발 시작 전, 어떤 문서가 필요할까?\n개발자가 협업을 하기 위해서 문서화는 꼭 해야 하는 작업입니다.\n협업을 하기 위해서 어떤 문서가 필요할까요? 과연 모든 경우의 수를 담은 매...",
     date: '2025.12.17',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.kakaocdn.net/dn/5csj1/dJMcab3MIqv/vS1LrzTXws8rjS16ecXyEK/img.png",
     link: "https://imdeepskyblue.tistory.com/71",
     tags: ["회고","개발","웹사이트"],
-  },
-  {
-    title: "AWS ECS가 누구세요",
-    summary: "AWS ECS(Elastic Container Service)는 AWS에서 제공하는 완전 관리형 컨테이너 오케스트레이션 서비스입니다. Docker 컨테이너를 쉽게 배포하고 운영할 ...",
-    date: '2025.12.05',
-    image: "https://blog.kakaocdn.net/dn/bLIpxj/dJMcaaX5ng2/ct4lPiGcheBPnr97KpO6ek/img.png",
-    link: "https://imdeepskyblue.tistory.com/70",
-    tags: ["개발 지식/aws","aws","ECS"],
   }
 ];
