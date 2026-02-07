@@ -1,8 +1,9 @@
 import { X, ExternalLink, Calendar, Users, Briefcase } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { useEffect } from 'react';
-import type { Project } from '@/types';
+import type { Project, MediaItem } from '@/types';
 import { ImageWithFallback } from '../ImageWithFallback';
+import { MediaCarousel } from '../MediaCarousel';
 import { TechStackSection } from './TechStackSection';
 import { ProjectDetails } from './ProjectDetails';
 import modalStyles from './Modal.module.css';
@@ -40,6 +41,11 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
 
   const hasProjectInfo = project.duration || project.teamSize || project.role;
 
+  // Build media items array: use project.media if available, otherwise create from image
+  const mediaItems: MediaItem[] = project.media?.length
+    ? project.media
+    : [{ type: 'image' as const, src: project.image, alt: project.title }];
+
   return (
     <div className={modalStyles.backdrop} onClick={handleBackdropClick}>
       <div className={modalStyles.modal}>
@@ -48,14 +54,18 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
           <X size={24} />
         </button>
 
-        {/* 헤더 이미지 */}
-        <div className={modalStyles['image-container']}>
-          <ImageWithFallback
-            src={project.image}
-            alt={project.title}
-            className={modalStyles.image}
-          />
-        </div>
+        {/* 헤더 미디어 (캐러셀 또는 단일 이미지) */}
+        {mediaItems.length > 1 ? (
+          <MediaCarousel media={mediaItems} title={project.title} />
+        ) : (
+          <div className={modalStyles['image-container']}>
+            <ImageWithFallback
+              src={project.image}
+              alt={project.title}
+              className={modalStyles.image}
+            />
+          </div>
+        )}
 
         {/* 컨텐츠 */}
         <div className={contentStyles.content}>

@@ -4,12 +4,22 @@ import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
 import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
 import geolEumGeolImage from '@/assets/images/project/Geol-eum-geol-i.png';
 
+// Example media items for carousel testing
+// To add more images or videos to a project, add them to the media array
+// If media array is not provided, the project.image will be used as a single image
+
 export const projects: Project[] = [
   {
     title: 'Shamrock Tales',
     description:
       '육아 일기를 아일랜드 설화 스타일로 변환해주는 AI 기반 웹 서비스. 간단한 한 줄 기록이 감성적인 가족 이야기로 재탄생합니다.',
     image: shamrockTalesImage,
+    // Example: Add media array for carousel (uncomment to test)
+    // media: [
+    //   { type: 'image', src: shamrockTalesImage, alt: 'Shamrock Tales Main' },
+    //   { type: 'video', src: '/videos/shamrock-demo.mp4', poster: shamrockTalesImage },
+    //   { type: 'image', src: '/images/shamrock-2.png', alt: 'Shamrock Tales Feature' },
+    // ] as MediaItem[],
     tags: ['Spring Boot', 'Spring AI', 'MySQL', 'OpenAI'],
     github: 'https://github.com/SOPT-all/37-SOPKATHON-SERVER-WEB3',
     demo: '#',
