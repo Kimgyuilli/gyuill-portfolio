@@ -3,7 +3,7 @@
 .carousel {
   position: relative;
   width: 100%;
-  height: 20rem;
+  height: 28rem;
   overflow: hidden;
   border-radius: 1rem 1rem 0 0;
   background-color: var(--bg-secondary);
@@ -27,7 +27,7 @@
 .video {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 /* Navigation Buttons */
@@ -101,7 +101,7 @@
 /* Mobile Responsive */
 @media (max-width: 640px) {
   .carousel {
-    height: 12rem;
+    height: 16rem;
     border-radius: 0;
   }
 
@@ -130,6 +130,6 @@
 /* Tablet */
 @media (min-width: 641px) and (max-width: 1023px) {
   .carousel {
-    height: 16rem;
+    height: 22rem;
   }
 }
