@@ -51,7 +51,7 @@ export const projects: Project[] = [
       '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',
     image: cherrishImage,
     media: [
-      { type: 'video', src: '/videos/cherrish-demo.mp4', poster: cherrish1 },
+      { type: 'video', src: import.meta.env.BASE_URL + 'videos/cherrish-demo.mp4', poster: cherrish1 },
       { type: 'image', src: cherrish1, alt: 'Cherrish 표지' },
       { type: 'image', src: cherrish2, alt: 'Cherrish 장표 2' },
       { type: 'image', src: cherrish3, alt: 'Cherrish 장표 3' },
