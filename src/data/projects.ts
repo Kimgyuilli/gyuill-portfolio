@@ -1,5 +1,40 @@
 import type { Project } from '@/types';
 import cherrishImage from '@/assets/images/project/Cherrish.png';
+import cherrish1 from '@/assets/images/project/cherrish/1.png';
+import cherrish2 from '@/assets/images/project/cherrish/2.png';
+import cherrish3 from '@/assets/images/project/cherrish/3.png';
+import cherrish4 from '@/assets/images/project/cherrish/4.png';
+import cherrish5 from '@/assets/images/project/cherrish/5.png';
+import cherrish6 from '@/assets/images/project/cherrish/6.png';
+import cherrish7 from '@/assets/images/project/cherrish/7.png';
+import cherrish8 from '@/assets/images/project/cherrish/8.png';
+import cherrish9 from '@/assets/images/project/cherrish/9.png';
+import cherrish10 from '@/assets/images/project/cherrish/10.png';
+import cherrish11 from '@/assets/images/project/cherrish/11.png';
+import cherrish12 from '@/assets/images/project/cherrish/12.png';
+import cherrish13 from '@/assets/images/project/cherrish/13.png';
+import cherrish14 from '@/assets/images/project/cherrish/14.png';
+import cherrish15 from '@/assets/images/project/cherrish/15.png';
+import cherrish16 from '@/assets/images/project/cherrish/16.png';
+import cherrish17 from '@/assets/images/project/cherrish/17.png';
+import cherrish18 from '@/assets/images/project/cherrish/18.png';
+import cherrish19 from '@/assets/images/project/cherrish/19.png';
+import cherrish20 from '@/assets/images/project/cherrish/20.png';
+import cherrish21 from '@/assets/images/project/cherrish/21.png';
+import cherrish22 from '@/assets/images/project/cherrish/22.png';
+import cherrish23 from '@/assets/images/project/cherrish/23.png';
+import cherrish24 from '@/assets/images/project/cherrish/24.png';
+import cherrish25 from '@/assets/images/project/cherrish/25.png';
+import cherrish26 from '@/assets/images/project/cherrish/26.png';
+import cherrish27 from '@/assets/images/project/cherrish/27.png';
+import cherrish28 from '@/assets/images/project/cherrish/28.png';
+import cherrish29 from '@/assets/images/project/cherrish/29.png';
+import cherrish30 from '@/assets/images/project/cherrish/30.png';
+import cherrish31 from '@/assets/images/project/cherrish/31.png';
+import cherrish32 from '@/assets/images/project/cherrish/32.png';
+import cherrish33 from '@/assets/images/project/cherrish/33.png';
+import cherrish34 from '@/assets/images/project/cherrish/34.png';
+import cherrish35 from '@/assets/images/project/cherrish/35.png';
 import shamrockTalesImage from '@/assets/images/project/ShamrockTales.png';
 import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
 import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
@@ -15,10 +50,44 @@ export const projects: Project[] = [
     description:
       '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',
     image: cherrishImage,
-    // media: [
-    //   { type: 'image', src: cherrishImage, alt: 'Cherrish 메인 화면' },
-    //   { type: 'video', src: '/videos/cherrish-demo.mp4', poster: cherrishImage },
-    // ],
+    media: [
+      { type: 'video', src: '/videos/cherrish-demo.mp4', poster: cherrish1 },
+      { type: 'image', src: cherrish1, alt: 'Cherrish 표지' },
+      { type: 'image', src: cherrish2, alt: 'Cherrish 장표 2' },
+      { type: 'image', src: cherrish3, alt: 'Cherrish 장표 3' },
+      { type: 'image', src: cherrish4, alt: 'Cherrish 장표 4' },
+      { type: 'image', src: cherrish5, alt: 'Cherrish 장표 5' },
+      { type: 'image', src: cherrish6, alt: 'Cherrish 장표 6' },
+      { type: 'image', src: cherrish7, alt: 'Cherrish 장표 7' },
+      { type: 'image', src: cherrish8, alt: 'Cherrish 장표 8' },
+      { type: 'image', src: cherrish9, alt: 'Cherrish 장표 9' },
+      { type: 'image', src: cherrish10, alt: 'Cherrish 장표 10' },
+      { type: 'image', src: cherrish11, alt: 'Cherrish 장표 11' },
+      { type: 'image', src: cherrish12, alt: 'Cherrish 장표 12' },
+      { type: 'image', src: cherrish13, alt: 'Cherrish 장표 13' },
+      { type: 'image', src: cherrish14, alt: 'Cherrish 장표 14' },
+      { type: 'image', src: cherrish15, alt: 'Cherrish 장표 15' },
+      { type: 'image', src: cherrish16, alt: 'Cherrish 장표 16' },
+      { type: 'image', src: cherrish17, alt: 'Cherrish 장표 17' },
+      { type: 'image', src: cherrish18, alt: 'Cherrish 장표 18' },
+      { type: 'image', src: cherrish19, alt: 'Cherrish 장표 19' },
+      { type: 'image', src: cherrish20, alt: 'Cherrish 장표 20' },
+      { type: 'image', src: cherrish21, alt: 'Cherrish 장표 21' },
+      { type: 'image', src: cherrish22, alt: 'Cherrish 장표 22' },
+      { type: 'image', src: cherrish23, alt: 'Cherrish 장표 23' },
+      { type: 'image', src: cherrish24, alt: 'Cherrish 장표 24' },
+      { type: 'image', src: cherrish25, alt: 'Cherrish 장표 25' },
+      { type: 'image', src: cherrish26, alt: 'Cherrish 장표 26' },
+      { type: 'image', src: cherrish27, alt: 'Cherrish 장표 27' },
+      { type: 'image', src: cherrish28, alt: 'Cherrish 장표 28' },
+      { type: 'image', src: cherrish29, alt: 'Cherrish 장표 29' },
+      { type: 'image', src: cherrish30, alt: 'Cherrish 장표 30' },
+      { type: 'image', src: cherrish31, alt: 'Cherrish 장표 31' },
+      { type: 'image', src: cherrish32, alt: 'Cherrish 장표 32' },
+      { type: 'image', src: cherrish33, alt: 'Cherrish 장표 33' },
+      { type: 'image', src: cherrish34, alt: 'Cherrish 장표 34' },
+      { type: 'image', src: cherrish35, alt: 'Cherrish 장표 35' },
+    ],
     tags: ['Spring Boot', 'Spring AI', 'PostgreSQL', 'QueryDSL', 'AWS'],
     github: 'https://github.com/TEAM-Cherrish/Cherrish-Server',
     demo: '#',
