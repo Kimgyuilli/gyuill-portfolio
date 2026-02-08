@@ -4,18 +4,19 @@ export const experiences: Experience[] = [
   {
     company: 'IT 동아리 SOPT',
     position: 'SERVER YB',
-    period: '2025.09 - 현재',
+    period: '2025.09 - 2026.01',
     description: [
       '서버 파트 합동 세미나 참여 및 과제 수행',
       '해커톤 참여 및 웹 서비스 부문 대상 수상',
       'Spring Boot 기반 서버 개발 역량 강화',
+      '뷰티 캘린더 앱 "Cherrish" Server Lead',
     ],
     type: 'activity',
   },
   {
     company: 'AYU DB LAB',
     position: '학부 연구생',
-    period: '2024.03 - 현재',
+    period: '2024.03 - 2026.02',
     description: ['교내 스터디 참가', '학술 논문 및 프로젝트 연구 진행'],
     type: 'activity',
   },
