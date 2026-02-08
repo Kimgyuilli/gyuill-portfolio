@@ -1,4 +1,5 @@
 import type { Project } from '@/types';
+import cherrishImage from '@/assets/images/project/Cherrish.png';
 import shamrockTalesImage from '@/assets/images/project/ShamrockTales.png';
 import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
 import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
@@ -9,6 +10,60 @@ import geolEumGeolImage from '@/assets/images/project/Geol-eum-geol-i.png';
 // If media array is not provided, the project.image will be used as a single image
 
 export const projects: Project[] = [
+  {
+    title: 'Cherrish',
+    description:
+      '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',
+    image: cherrishImage,
+    // media: [
+    //   { type: 'image', src: cherrishImage, alt: 'Cherrish 메인 화면' },
+    //   { type: 'video', src: '/videos/cherrish-demo.mp4', poster: cherrishImage },
+    // ],
+    tags: ['Spring Boot', 'Spring AI', 'PostgreSQL', 'QueryDSL', 'AWS'],
+    github: 'https://github.com/TEAM-Cherrish/Cherrish-Server',
+    demo: '#',
+    categories: ['Backend', 'AI'],
+    detailedDescription:
+      '개인의 추구미에 맞는 뷰티 관리 방향을 정리하고, 시술 후 다운타임과 일정 중복을 방지하는 뷰티 캘린더 앱입니다. 피부 고민 키워드 기반 시술 검색, 민감기/주의기/회복기로 구분된 다운타임 시각화, AI 기반 7일 챌린지 루틴 추천, 체리 레벨 게이미피케이션 등의 기능을 제공합니다. DDD 레이어드 아키텍처를 적용하여 도메인별 책임을 명확히 분리하고 확장성 있는 구조를 설계했습니다.',
+    features: [
+      '피부 고민 키워드 기반 시술 검색 및 추천',
+      '사용자 맞춤 다운타임 설정 (민감기/주의기/회복기 자동 분할)',
+      'D-day 카운트다운 및 다운타임 진행 상태 시각화',
+      'Spring AI 기반 7일 챌린지 루틴 자동 생성',
+      '체리 레벨(1~4) 게이미피케이션 시스템',
+      '월간/일간 캘린더 뷰 및 시술 일정 관리',
+      '메인 대시보드 (챌린지 현황, 다운타임 진행 중 시술, 다가오는 일정)',
+    ],
+    techStack: {
+      frontend: ['(팀원 담당)'],
+      backend: [
+        'Java 21',
+        'Spring Boot 3.5.9',
+        'Spring Data JPA',
+        'QueryDSL 5.1.0',
+        'Spring AI OpenAI 1.1.2',
+      ],
+      database: ['PostgreSQL 17'],
+      deployment: [
+        'AWS (VPC, EC2, RDS, ECR, SSM)',
+        'Docker (Jib)',
+        'Nginx',
+        'GitHub Actions OIDC CI/CD',
+      ],
+    },
+    challenges: [
+      'DDD 레이어드 아키텍처 설계 및 6개 도메인 분리 (User, Procedure, UserProcedure, Challenge, Calendar, MainDashboard)',
+      'Spring AI OpenAI 연동으로 사용자 맞춤형 챌린지 루틴 및 챌린지명 자동 생성',
+      'QueryDSL을 활용한 복잡한 캘린더/다운타임 조회 쿼리 최적화',
+      'GitHub Actions OIDC + AWS SSM 기반 무중단 배포 파이프라인 구축',
+      '다운타임 3단계 분할 로직 설계 (일수를 3으로 나눠 민감기/주의기/회복기 자동 계산)',
+    ],
+    outcome:
+      'DDD 아키텍처 기반 확장 가능한 백엔드 설계, OIDC 인증 기반 보안적인 CI/CD 파이프라인 구축, AI 통합 서비스 개발 경험',
+    duration: '2025.12 - 2026.01',
+    teamSize: '2명 (Server)',
+    role: 'Server Lead Developer',
+  },
   {
     title: 'Shamrock Tales',
     description:
