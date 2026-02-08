@@ -21,7 +21,7 @@ export function RightColumn() {
       <div>
         <h2 className={sharedStyles['section-title']}>프로젝트</h2>
         <div className={sharedStyles['timeline-list']}>
-          {featuredProjects.map((project, index) => (
+          {featuredProjects.map((project) => (
             <div
               key={project.title}
               className={styles['project-card']}
@@ -43,9 +43,7 @@ export function RightColumn() {
                 )}
                 <div className={styles['project-info']}>
                   <h3 className={styles['project-title']}>{project.title}</h3>
-                  <p className={styles['project-date']}>
-                    {new Date().getFullYear()}.{String(index + 1).padStart(2, '0')}
-                  </p>
+                  <p className={styles['project-date']}>{project.duration}</p>
                 </div>
               </div>
               <div className={styles['project-tags']}>
