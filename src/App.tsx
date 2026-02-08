@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Navigation } from '@/components/layout/Navigation';
 import { Hero } from '@/components/sections/Hero';
 import { Skills } from '@/components/sections/Skills';
@@ -7,9 +8,13 @@ import { Experience } from '@/components/sections/Experience';
 import { Blog } from '@/components/sections/Blog';
 import { Contact } from '@/components/sections/Contact';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { initAnalytics } from '@/lib/analytics';
 import styles from './App.module.css';
 
 export default function App() {
+  useEffect(() => {
+    initAnalytics();
+  }, []);
   return (
     <ThemeProvider>
       <div className={styles.app}>
