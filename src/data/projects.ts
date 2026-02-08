@@ -121,15 +121,16 @@ export const projects: Project[] = [
       ],
     },
     challenges: [
-      'DDD 레이어드 아키텍처 설계 및 6개 도메인 분리 (User, Procedure, UserProcedure, Challenge, Calendar, MainDashboard)',
+      '초기 컨벤션 수립 및 checkStyle, codeRabbit, jacoco, docker를 활용한 협업 규격 설계',
       'Spring AI OpenAI 연동으로 사용자 맞춤형 챌린지 루틴 및 챌린지명 자동 생성',
       'QueryDSL을 활용한 복잡한 캘린더/다운타임 조회 쿼리 최적화',
       'GitHub Actions OIDC + AWS SSM 기반 무중단 배포 파이프라인 구축',
       '다운타임 3단계 분할 로직 설계 (일수를 3으로 나눠 민감기/주의기/회복기 자동 계산)',
+      'Server 500 오류 발생 시 디스코드 알림 전송 기능 구현',
     ],
     outcome:
       'DDD 아키텍처 기반 확장 가능한 백엔드 설계, OIDC 인증 기반 보안적인 CI/CD 파이프라인 구축, AI 통합 서비스 개발 경험',
-    duration: '2025.12 - 2026.01',
+    duration: '2025.12 - 현재',
     teamSize: '2명 (Server)',
     role: 'Server Lead Developer',
   },
