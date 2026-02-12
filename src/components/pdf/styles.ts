@@ -25,36 +25,42 @@ export const pdfStyles = StyleSheet.create({
     lineHeight: 1.5,
   },
   // Header
-  headerRow: {
-    flexDirection: 'row',
+  header: {
     marginBottom: 20,
     paddingBottom: 16,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
   },
+  headerRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+  },
+  headerLeft: {
+    alignItems: 'center',
+    marginRight: 16,
+  },
+  headerInfo: {
+    justifyContent: 'center',
+    flex: 1,
+  },
   profileImage: {
     width: 72,
     height: 72,
     borderRadius: 36,
-    marginRight: 16,
-  },
-  headerInfo: {
-    flex: 1,
-    justifyContent: 'center',
+    marginBottom: 6,
   },
   name: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 700,
     color: colors.textPrimary,
-    marginBottom: 4,
   },
   contactLine: {
-    fontSize: 8.5,
+    fontSize: 9,
     color: colors.textSecondary,
     marginBottom: 3,
   },
   socialLink: {
-    fontSize: 8.5,
+    fontSize: 9,
     color: colors.accent,
     textDecoration: 'none',
     marginTop: 2,

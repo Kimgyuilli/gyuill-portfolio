@@ -11,21 +11,26 @@ interface PdfHeaderProps {
 
 export function PdfHeader({ hero, socialLinks, profileImageBase64 }: PdfHeaderProps) {
   return (
-    <View style={pdfStyles.headerRow}>
-      {profileImageBase64 && (
-        <Image style={pdfStyles.profileImage} src={profileImageBase64} />
-      )}
-      <View style={pdfStyles.headerInfo}>
-        <Text style={pdfStyles.name}>{hero.name}</Text>
-        <Text style={pdfStyles.contactLine}>
-          {hero.email} | {hero.phone}
-        </Text>
-        <Text style={pdfStyles.contactLine}>{hero.address}</Text>
-        {socialLinks.map((link) => (
-          <Text key={link.label} style={pdfStyles.socialLink}>
-            {link.label}: {link.href}
-          </Text>
-        ))}
+    <View style={pdfStyles.header}>
+      <View style={pdfStyles.headerRow}>
+        {/* 좌: 사진 + 이름 */}
+        <View style={pdfStyles.headerLeft}>
+          {profileImageBase64 && (
+            <Image style={pdfStyles.profileImage} src={profileImageBase64} />
+          )}
+          <Text style={pdfStyles.name}>{hero.name}</Text>
+        </View>
+        {/* 우: 연락처 + 소셜 */}
+        <View style={pdfStyles.headerInfo}>
+          <Text style={pdfStyles.contactLine}>{hero.email}</Text>
+          <Text style={pdfStyles.contactLine}>{hero.phone}</Text>
+          <Text style={pdfStyles.contactLine}>{hero.address}</Text>
+          {socialLinks.map((link) => (
+            <Text key={link.label} style={pdfStyles.socialLink}>
+              {link.label}: {link.href}
+            </Text>
+          ))}
+        </View>
       </View>
     </View>
   );
