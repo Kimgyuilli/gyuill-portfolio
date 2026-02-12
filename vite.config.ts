@@ -1,9 +1,15 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react-swc';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 import path from 'path';
 
 export default defineConfig(({ mode }) => ({
-  plugins: [react()],
+  plugins: [
+    react(),
+    nodePolyfills({
+      include: ['buffer', 'process'],
+    }),
+  ],
   base: mode === 'production' ? '/gyuill-portfolio/' : '/',
   resolve: {
     alias: {

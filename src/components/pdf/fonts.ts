@@ -1,7 +1,7 @@
 import { Font } from '@react-pdf/renderer';
 
 const SPOQA_BASE =
-  'https://cdn.jsdelivr.net/gh/niceplugin/Spoqa-Han-Sans-Neo@1.0.0/Spoqa Han Sans Neo';
+  'https://cdn.jsdelivr.net/gh/spoqa/spoqa-han-sans@latest/Subset/SpoqaHanSansNeo';
 
 Font.register({
   family: 'Spoqa Han Sans Neo',
