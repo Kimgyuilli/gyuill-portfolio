@@ -7,7 +7,6 @@ export const colors = {
   textSecondary: '#334155', // slate-700
   textMuted: '#64748b', // slate-500
   borderLight: '#cbd5e1', // slate-300
-  white: '#ffffff',
   // 스킬 레벨 색상
   levelPrimary: '#f97316', // orange-500
   levelExperienced: '#eab308', // yellow-500
