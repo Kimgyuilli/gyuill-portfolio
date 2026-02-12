@@ -25,6 +25,9 @@ export function PdfHeader({ hero, socialLinks, profileImageBase64 }: PdfHeaderPr
           <Text style={pdfStyles.contactLine}>{hero.email}</Text>
           <Text style={pdfStyles.contactLine}>{hero.phone}</Text>
           <Text style={pdfStyles.contactLine}>{hero.address}</Text>
+          <Text style={pdfStyles.socialLink}>
+            Portfolio: https://kimgyuilli.github.io/gyuill-portfolio
+          </Text>
           {socialLinks.map((link) => (
             <Text key={link.label} style={pdfStyles.socialLink}>
               {link.label}: {link.href}
