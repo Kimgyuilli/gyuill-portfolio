@@ -12,9 +12,6 @@ export interface AboutInfo {
 export interface HeroData {
   name: string;
   profileImage: string;
-  email: string;
-  phone: string;
-  address: string;
   social: {
     github: string;
     blog: string;
@@ -26,9 +23,6 @@ export interface HeroData {
 export const heroData: HeroData = {
   name: '김규일',
   profileImage: profileImage,
-  email: 'rlarbdlf222@gmail.com',
-  phone: '010-9028-1157',
-  address: '경기도 화성시 향남읍',
   social: {
     github: 'https://github.com/Kimgyuilli',
     blog: 'https://imdeepskyblue.tistory.com/',

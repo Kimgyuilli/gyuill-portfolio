@@ -1,4 +1,5 @@
 import { heroData } from '@/data/hero';
+import { contactInfoData } from '@/data/contact';
 import sharedStyles from './styles.module.css';
 import styles from './LeftColumn.module.css';
 
@@ -36,15 +37,21 @@ export function LeftColumn() {
             </div>
             <div className={styles['info-item']}>
               <p className={styles['info-label']}>이메일</p>
-              <p className={styles['info-value-mono']}>{heroData.email}</p>
+              <p className={styles['info-value']}>
+                {contactInfoData.find((item) => item.label === '이메일')?.value}
+              </p>
             </div>
             <div className={styles['info-item']}>
               <p className={styles['info-label']}>번호</p>
-              <p className={styles['info-value-mono']}>{heroData.phone}</p>
+              <p className={styles['info-value']}>
+                {contactInfoData.find((item) => item.label === '전화번호')?.value}
+              </p>
             </div>
             <div className={styles['info-item']}>
               <p className={styles['info-label']}>주소</p>
-              <p className={styles['info-value']}>{heroData.address}</p>
+              <p className={styles['info-value']}>
+                {contactInfoData.find((item) => item.label === '위치')?.value}
+              </p>
             </div>
           </div>
         </div>

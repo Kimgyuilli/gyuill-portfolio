@@ -17,8 +17,8 @@ export const contactInfoData: ContactInfoData[] = [
   },
   {
     label: '전화번호',
-    value: '+82 10-9028-1157',
-    href: 'tel:+821090281157',
+    value: 'Please contact me by email',
+    href: '',
   },
   {
     label: '위치',
