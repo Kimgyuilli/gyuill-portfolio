@@ -44,13 +44,13 @@ export const pdfStyles = StyleSheet.create({
     flex: 1,
   },
   profileImage: {
-    width: 72,
-    height: 72,
+    width: 84,
+    height: 84,
     borderRadius: 36,
     marginBottom: 6,
   },
   name: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 700,
     color: colors.textPrimary,
   },
