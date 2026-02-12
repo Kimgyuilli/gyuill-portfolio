@@ -1,6 +1,7 @@
 import { View, Text, Image } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
 import type { HeroData } from '@/data/hero';
+import { contactInfoData } from '@/data/contact';
 import type { SocialLinkData } from '@/data/contact';
 
 interface PdfHeaderProps {
@@ -22,9 +23,11 @@ export function PdfHeader({ hero, socialLinks, profileImageBase64 }: PdfHeaderPr
         </View>
         {/* 우: 연락처 + 소셜 */}
         <View style={pdfStyles.headerInfo}>
-          <Text style={pdfStyles.contactLine}>{hero.email}</Text>
-          <Text style={pdfStyles.contactLine}>{hero.phone}</Text>
-          <Text style={pdfStyles.contactLine}>{hero.address}</Text>
+          {contactInfoData.map((item) => (
+            <Text key={item.label} style={pdfStyles.contactLine}>
+              {item.value}
+            </Text>
+          ))}
           <Text style={pdfStyles.socialLink}>
             Portfolio: https://kimgyuilli.github.io/gyuill-portfolio
           </Text>
