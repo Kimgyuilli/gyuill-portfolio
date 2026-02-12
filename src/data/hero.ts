@@ -12,6 +12,7 @@ export interface AboutInfo {
 export interface HeroData {
   name: string;
   profileImage: string;
+  portfolioUrl: string;
   social: {
     github: string;
     blog: string;
@@ -23,6 +24,7 @@ export interface HeroData {
 export const heroData: HeroData = {
   name: '김규일',
   profileImage: profileImage,
+  portfolioUrl: 'https://kimgyuilli.github.io/gyuill-portfolio',
   social: {
     github: 'https://github.com/Kimgyuilli',
     blog: 'https://imdeepskyblue.tistory.com/',

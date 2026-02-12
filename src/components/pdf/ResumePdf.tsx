@@ -7,7 +7,7 @@ import { PdfSkills } from './sections/PdfSkills';
 import { PdfExperience } from './sections/PdfExperience';
 import { PdfAchievements } from './sections/PdfAchievements';
 import { heroData } from '@/data/hero';
-import { socialLinksData } from '@/data/contact';
+import { contactInfoData, socialLinksData } from '@/data/contact';
 import { skillCategories } from '@/data/skills';
 import { experiences } from '@/data/experiences';
 import { achievements } from '@/data/achievements';
@@ -21,7 +21,9 @@ export function ResumePdf({ profileImageBase64 }: ResumePdfProps) {
     <Document title="김규일 - 이력서" author="김규일">
       <Page size="A4" style={pdfStyles.page}>
         <PdfHeader
-          hero={heroData}
+          name={heroData.name}
+          portfolioUrl={heroData.portfolioUrl}
+          contactInfo={contactInfoData}
           socialLinks={socialLinksData}
           profileImageBase64={profileImageBase64}
         />
