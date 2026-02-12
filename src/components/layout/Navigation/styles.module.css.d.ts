@@ -4,7 +4,9 @@ declare const styles: {
   readonly "container": string;
   readonly "desktop-nav": string;
   readonly "divider": string;
+  readonly "download-btn": string;
   readonly "mobile-button": string;
+  readonly "mobile-download-btn": string;
   readonly "mobile-menu": string;
   readonly "mobile-menu-content": string;
   readonly "mobile-nav": string;
@@ -14,6 +16,7 @@ declare const styles: {
   readonly "nav-link": string;
   readonly "nav-link-active": string;
   readonly "nav-links": string;
+  readonly "spin": string;
   readonly "theme-toggle": string;
   readonly "theme-toggle-mobile": string;
   readonly "toggle-thumb": string;

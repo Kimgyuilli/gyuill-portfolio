@@ -133,6 +133,11 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
+            <PdfDownloadButton
+              className={styles['mobile-download-btn']}
+              showLabel
+              onClick={() => setIsOpen(false)}
+            />
           </div>
         </div>
       )}

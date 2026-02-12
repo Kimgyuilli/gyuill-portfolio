@@ -2,6 +2,9 @@ declare const styles: {
   readonly "icon": string;
   readonly "level-experienced": string;
   readonly "level-group": string;
+  readonly "level-group-experienced": string;
+  readonly "level-group-learning": string;
+  readonly "level-group-primary": string;
   readonly "level-label": string;
   readonly "level-learning": string;
   readonly "level-primary": string;
