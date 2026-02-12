@@ -32,8 +32,8 @@
 .title {
   margin-bottom: var(--spacing-md);
   color: var(--text-primary);
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .description {

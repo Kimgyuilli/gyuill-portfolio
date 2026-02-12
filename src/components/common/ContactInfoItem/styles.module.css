@@ -9,7 +9,7 @@
   width: var(--spacing-3xl);
   height: var(--spacing-3xl);
   background-color: var(--accent-hover);
-  border-radius: 0.5rem;
+  border-radius: var(--radius-base);
   display: flex;
   align-items: center;
   justify-content: center;

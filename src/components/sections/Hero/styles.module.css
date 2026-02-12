@@ -8,7 +8,7 @@
 .hero-container {
   max-width: 1400px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 var(--spacing-lg);
 }
 
 .hero-grid {
@@ -79,8 +79,8 @@
 
 /* 공통 스타일 */
 .section-title {
-  font-size: 1.25rem;
-  font-weight: bold;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   margin-bottom: var(--spacing-md);
   padding-bottom: var(--spacing-sm);

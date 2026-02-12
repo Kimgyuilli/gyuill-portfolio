@@ -1,6 +1,6 @@
 .career-title {
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
   background: linear-gradient(to right, var(--gradient-purple-1), var(--gradient-purple-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -16,7 +16,7 @@
 .profile-image-box {
   width: var(--profile-size);
   height: var(--profile-size);
-  border-radius: 1rem;
+  border-radius: var(--spacing-md);
   overflow: hidden;
   background: var(--bg-card-alt);
   border: 1px solid var(--border-light-alpha-50);
@@ -37,7 +37,7 @@
 }
 
 .profile-emoji {
-  font-size: 4rem;
+  font-size: var(--font-size-4xl);
 }
 
 .info-section {
@@ -47,8 +47,8 @@
 }
 
 .section-header {
-  font-size: 1.125rem;
-  font-weight: bold;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-bold);
   color: var(--text-primary);
   margin-bottom: var(--spacing-sm-md);
   padding-bottom: var(--spacing-sm);
@@ -67,24 +67,24 @@
 }
 
 .info-label {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: var(--text-muted);
   margin-bottom: var(--spacing-xs);
 }
 
 .info-value {
   color: var(--text-secondary);
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .info-value-name {
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }
 
 .info-value-mono {
   color: var(--text-body);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   font-family: monospace;
   word-break: break-all;
 }

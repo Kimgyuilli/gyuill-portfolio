@@ -5,8 +5,8 @@
 }
 
 .section-title {
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
   color: var(--text-primary);
   margin-bottom: var(--spacing-md);
 }
@@ -35,7 +35,7 @@
   position: absolute;
   left: var(--spacing-sm);
   color: var(--accent-primary-hover);
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 :global(.dark) .list-item::before {
@@ -60,8 +60,8 @@
 }
 
 .tech-title {
-  font-size: 0.875rem;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   color: var(--text-muted);
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -74,10 +74,10 @@
 }
 
 .tech-tag {
-  padding: 0.25rem 0.625rem;
+  padding: var(--spacing-xs) 0.625rem;
   background-color: var(--badge-emerald-solid-bg);
   color: var(--badge-emerald-solid-text);
-  border-radius: 0.25rem;
+  border-radius: var(--radius-xs);
   font-size: 0.8125rem;
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
 }

@@ -21,9 +21,16 @@ body {
   --font-size-xs: 0.75rem; /* 12px */
   --font-size-sm: 0.875rem; /* 14px */
   --font-size-base: 1rem; /* 16px */
+  --font-size-md: 1.125rem; /* 18px */
   --font-size-lg: 1.25rem; /* 20px */
-  --font-weight-medium: 500;
+  --font-size-xl: 1.5rem; /* 24px */
+  --font-size-2xl: 2.25rem; /* 36px */
+  --font-size-3xl: 2rem; /* 32px */
+  --font-size-4xl: 4rem; /* 64px */
   --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
 
   /* Text Colors - Light Mode (개선된 대비) */
   --text-primary: rgb(15, 23, 42); /* Titles - slate-900 */
@@ -196,6 +203,9 @@ body {
 :root {
   --radius-xs: 0.25rem; /* 4px - for small elements like tags */
   --radius-base: 0.5rem; /* 8px - standard radius for cards and containers */
+  --radius-2xl: 0.75rem; /* 12px - for card components */
+  --radius-3xl: 1rem; /* 16px - for modals */
+  --radius-full: 9999px; /* pill shape */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);

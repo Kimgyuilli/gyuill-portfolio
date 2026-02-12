@@ -10,7 +10,7 @@
 
 .about-paragraph {
   color: var(--text-body);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   line-height: 1.6;
 }
 
@@ -21,7 +21,7 @@
 }
 
 .timeline-date {
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   color: var(--text-muted);
   font-family: monospace;
   width: var(--timeline-date-width);
@@ -37,19 +37,19 @@
 
 .timeline-title {
   color: var(--text-secondary);
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   margin-bottom: var(--spacing-xs);
   line-height: 1.6;
 }
 
 .timeline-subtitle {
   color: var(--text-muted);
-  font-size: 0.875rem;
+  font-size: var(--font-size-sm);
   line-height: 1.6;
 }
 
 .timeline-text {
   color: var(--text-secondary);
-  font-weight: 500;
+  font-weight: var(--font-weight-medium);
   line-height: 1.6;
 }

@@ -32,8 +32,8 @@
 .title {
   margin-bottom: var(--spacing-md);
   color: var(--text-primary);
-  font-size: 2rem;
-  font-weight: bold;
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
 }
 
 .description {
@@ -52,12 +52,12 @@
 
 .filter-button {
   padding: var(--spacing-sm) var(--spacing-lg);
-  border-radius: 9999px;
+  border-radius: var(--radius-full);
   transition: all 0.2s;
   border: none;
   cursor: pointer;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 .filter-button-active {
