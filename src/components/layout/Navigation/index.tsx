@@ -2,6 +2,7 @@ import { Menu, X, Sun, Moon } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { NAV_ITEMS, BRAND_NAME } from '@/constants/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
+import { PdfDownloadButton } from '@/components/pdf/PdfDownloadButton';
 import styles from './styles.module.css';
 
 export function Navigation() {
@@ -74,6 +75,8 @@ export function Navigation() {
                 );
               })}
             </div>
+            <div className={styles.divider}></div>
+            <PdfDownloadButton className={styles['download-btn']} />
             <div className={styles.divider}></div>
             <button
               onClick={toggleTheme}
