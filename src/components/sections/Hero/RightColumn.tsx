@@ -1,5 +1,5 @@
 import { projects } from '@/data/projects';
-import { skillCategories } from '@/data/skills';
+import { skillCategories, getAllSkills } from '@/data/skills';
 import { SKILL_ICONS, getSkillIconUrl } from '@/constants/skillIcons';
 import { ImageWithFallback } from '@/components/common/ImageWithFallback';
 import sharedStyles from './styles.module.css';
@@ -78,7 +78,7 @@ export function RightColumn() {
                   <h3 className={styles['category-title']}>{category.title}</h3>
                 </div>
                 <div className={styles['skill-icons-grid']}>
-                  {category.skills.map((skill) => {
+                  {getAllSkills(category).map((skill) => {
                     const iconUrl = getSkillIconUrl(skill);
                     return iconUrl ? (
                       <div key={skill} className={styles['skill-icon-wrapper']} title={skill}>

@@ -41,11 +41,27 @@ export interface Project {
   role?: string;
 }
 
-export interface SkillCategory {
+export interface SkillLevel {
+  level: 'primary' | 'experienced' | 'learning';
+  label: string;
+  skills: string[];
+}
+
+export interface FlatSkillCategory {
+  type: 'flat';
   icon: React.ReactNode;
   title: string;
   skills: string[];
 }
+
+export interface LeveledSkillCategory {
+  type: 'leveled';
+  icon: React.ReactNode;
+  title: string;
+  levels: SkillLevel[];
+}
+
+export type SkillCategory = FlatSkillCategory | LeveledSkillCategory;
 
 export interface Experience {
   company: string;

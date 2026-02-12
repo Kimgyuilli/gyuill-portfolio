@@ -4,6 +4,7 @@ import { FadeInSection } from '@/components/common/FadeInSection';
 import { skillCategories } from '@/data/skills';
 import { SKILL_ICONS } from '@/constants/skillIcons';
 import { mapWithIcons } from '@/utils/iconMapper';
+import type { SkillCategory } from '@/types';
 import styles from './styles.module.css';
 
 export function Skills() {
@@ -12,7 +13,7 @@ export function Skills() {
       mapWithIcons(skillCategories, (cat) => cat.title, SKILL_ICONS).map((item) => ({
         ...item,
         icon: <item.icon size={24} />,
-      })),
+      })) as SkillCategory[],
     []
   );
 

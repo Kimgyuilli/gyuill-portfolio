@@ -40,3 +40,60 @@
   border-radius: 9999px;
   font-size: 0.875rem;
 }
+
+/* Leveled layout */
+.levels-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.level-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.level-label {
+  display: inline-block;
+  width: fit-content;
+  padding: 2px var(--spacing-sm);
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid;
+}
+
+.level-primary {
+  background-color: var(--skill-primary-bg);
+  border-color: var(--skill-primary-border);
+  color: var(--skill-primary-text);
+}
+
+.level-experienced {
+  background-color: var(--skill-secondary-bg);
+  border-color: var(--skill-secondary-border);
+  color: var(--skill-secondary-text);
+}
+
+.level-learning {
+  background-color: var(--skill-tertiary-bg);
+  border-color: var(--skill-tertiary-border);
+  color: var(--skill-tertiary-text);
+}
+
+/* Tag color variants */
+.skill-tag-primary {
+  background-color: var(--skill-primary-bg);
+  color: var(--skill-primary-text);
+}
+
+.skill-tag-experienced {
+  background-color: var(--skill-secondary-bg);
+  color: var(--skill-secondary-text);
+}
+
+.skill-tag-learning {
+  background-color: var(--skill-tertiary-bg);
+  color: var(--skill-tertiary-text);
+}
