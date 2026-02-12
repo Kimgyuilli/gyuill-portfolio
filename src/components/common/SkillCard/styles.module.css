@@ -52,10 +52,24 @@
   display: flex;
   flex-direction: column;
   gap: var(--spacing-sm);
+  padding-left: var(--spacing-sm-md);
+  border-left: 3px solid;
+}
+
+.level-group-primary {
+  border-color: var(--skill-primary-text);
+}
+
+.level-group-experienced {
+  border-color: var(--skill-secondary-text);
+}
+
+.level-group-learning {
+  border-color: var(--skill-tertiary-text);
 }
 
 .level-label {
-  font-size: 0.875rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
@@ -63,24 +77,12 @@
   color: var(--skill-primary-text);
 }
 
-.level-primary .level-dot {
-  background-color: var(--skill-primary-text);
-}
-
 .level-experienced {
   color: var(--skill-secondary-text);
 }
 
-.level-experienced .level-dot {
-  background-color: var(--skill-secondary-text);
-}
-
 .level-learning {
   color: var(--skill-tertiary-text);
-}
-
-.level-learning .level-dot {
-  background-color: var(--skill-tertiary-text);
 }
 
 /* Tag color variants */

@@ -33,8 +33,8 @@ export const skillCategories: SkillCategoryData[] = [
     type: 'leveled',
     title: 'Frontend',
     levels: [
-      { level: 'primary', label: '주력', skills: ['React', 'TypeScript'] },
-      { level: 'experienced', label: '사용경험', skills: ['Vite'] },
+      { level: 'primary', label: '주력', skills: ['React', 'TypeScript', 'Vite'] },
+      { level: 'experienced', label: '사용경험', skills: [] },
       { level: 'learning', label: '공부중', skills: [] },
     ],
   },
@@ -42,8 +42,8 @@ export const skillCategories: SkillCategoryData[] = [
     type: 'leveled',
     title: 'Backend',
     levels: [
-      { level: 'primary', label: '주력', skills: ['Django', 'Python'] },
-      { level: 'experienced', label: '사용경험', skills: ['Java', 'Spring Boot'] },
+      { level: 'primary', label: '주력', skills: ['Java', 'Spring Boot'] },
+      { level: 'experienced', label: '사용경험', skills: ['Django', 'Python'] },
       { level: 'learning', label: '공부중', skills: [] },
     ],
   },

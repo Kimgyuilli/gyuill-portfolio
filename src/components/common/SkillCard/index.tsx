@@ -11,7 +11,7 @@ function LeveledContent({ category }: { category: LeveledSkillCategory }) {
       {category.levels.map(
         (group) =>
           group.skills.length > 0 && (
-            <div key={group.level} className={styles['level-group']}>
+            <div key={group.level} className={`${styles['level-group']} ${styles[`level-group-${group.level}`]}`}>
               <span className={`${styles['level-label']} ${styles[`level-${group.level}`]}`}>
                 {group.label}
               </span>
