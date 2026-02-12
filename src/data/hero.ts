@@ -43,7 +43,7 @@ export const heroData: HeroData = {
   education: [
     {
       period: '2020.03 - 현재',
-      school: '안양대학교 컴퓨터공학과 20학번 재학',
+      school: '안양대학교 컴퓨터공학과 20학번 재학 [학점: 4.02/4.5]',
     },
   ],
 };
