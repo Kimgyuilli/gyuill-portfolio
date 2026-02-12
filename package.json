@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
+    "@react-pdf/renderer": "^4.3.2",
     "framer-motion": "^12.23.25",
     "lucide-react": "^0.487.0",
     "next-themes": "^0.4.6",
