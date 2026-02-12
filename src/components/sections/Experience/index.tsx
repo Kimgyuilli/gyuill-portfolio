@@ -13,7 +13,7 @@ export function Experience() {
       <div className={styles.container}>
         <FadeInSection>
           <div className={styles.header}>
-            <h2 className={styles.title}>Work Experience</h2>
+            <h2 className={styles.title}>Experience</h2>
             <p className={styles.description}>다양한 프로젝트와 팀에서 쌓아온 경험입니다.</p>
           </div>
         </FadeInSection>
