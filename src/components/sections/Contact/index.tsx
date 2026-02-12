@@ -43,7 +43,7 @@ export function Contact() {
           <div className={styles['content-grid']}>
             {/* Contact Info */}
             <div>
-              <h3 className={styles['section-title']}>연락처 정보</h3>
+              <h3 className={styles['section-title']}>Contact Info</h3>
 
               <div className={styles['contact-list']}>
                 {contactInfo.map((info) => (
@@ -52,7 +52,7 @@ export function Contact() {
               </div>
 
               <div>
-                <h4 className={styles['social-title']}>소셜 미디어</h4>
+                <h4 className={styles['social-title']}>Social Media</h4>
                 <div className={styles['social-links']}>
                   {socialLinks.map((link) => (
                     <SocialLink key={link.label} link={link} />

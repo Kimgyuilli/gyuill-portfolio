@@ -21,9 +21,9 @@ export function CenterColumn() {
         </div>
       </div>
 
-      {/* 학력과 교육이력 */}
+      {/* Education */}
       <div>
-        <h2 className={sharedStyles['section-title']}>학력과 교육이력</h2>
+        <h2 className={sharedStyles['section-title']}>Education</h2>
         <div className={sharedStyles['timeline-list']}>
           {heroData.education.map((edu, index) => (
             <div key={index} className={styles['timeline-item']}>
@@ -36,10 +36,10 @@ export function CenterColumn() {
         </div>
       </div>
 
-      {/* 경력 */}
+      {/* Career */}
       {careerExperiences.length > 0 && (
         <div>
-          <h2 className={sharedStyles['section-title']}>경력</h2>
+          <h2 className={sharedStyles['section-title']}>Career</h2>
           <div className={sharedStyles['timeline-list']}>
             {careerExperiences.map((exp, index) => (
               <div key={index} className={styles['timeline-item']}>
@@ -54,9 +54,9 @@ export function CenterColumn() {
         </div>
       )}
 
-      {/* 활동 */}
+      {/* Activities */}
       <div>
-        <h2 className={sharedStyles['section-title']}>활동</h2>
+        <h2 className={sharedStyles['section-title']}>Activities</h2>
         <div className={sharedStyles['timeline-list']}>
           {activityExperiences.map((exp, index) => (
             <div key={index} className={styles['timeline-item']}>

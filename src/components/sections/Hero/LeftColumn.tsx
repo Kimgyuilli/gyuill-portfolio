@@ -25,10 +25,10 @@ export function LeftColumn() {
         </div>
       </div>
 
-      {/* 개인 정보 */}
+      {/* Profile */}
       <div className={styles['info-section']}>
         <div>
-          <h2 className={styles['section-header']}>개인 정보</h2>
+          <h2 className={styles['section-header']}>Profile</h2>
           <div className={styles['info-grid']}>
             <div className={styles['info-item']}>
               <p className={styles['info-label']}>이름</p>

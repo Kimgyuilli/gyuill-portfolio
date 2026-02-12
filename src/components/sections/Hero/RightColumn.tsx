@@ -19,7 +19,7 @@ export function RightColumn() {
     <div className={sharedStyles['right-column']}>
       {/* 프로젝트 */}
       <div>
-        <h2 className={sharedStyles['section-title']}>프로젝트</h2>
+        <h2 className={sharedStyles['section-title']}>Projects</h2>
         <div className={sharedStyles['timeline-list']}>
           {featuredProjects.map((project) => (
             <div
