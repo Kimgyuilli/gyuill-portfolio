@@ -1,4 +1,4 @@
-import { View, Text, Image, Link } from '@react-pdf/renderer';
+import { View, Text, Image } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
 import type { HeroData } from '@/data/hero';
 import type { SocialLinkData } from '@/data/contact';
@@ -21,13 +21,11 @@ export function PdfHeader({ hero, socialLinks, profileImageBase64 }: PdfHeaderPr
           {hero.email} | {hero.phone}
         </Text>
         <Text style={pdfStyles.contactLine}>{hero.address}</Text>
-        <View style={pdfStyles.socialRow}>
-          {socialLinks.map((link) => (
-            <Link key={link.label} src={link.href} style={pdfStyles.socialLink}>
-              {link.label}
-            </Link>
-          ))}
-        </View>
+        {socialLinks.map((link) => (
+          <Text key={link.label} style={pdfStyles.socialLink}>
+            {link.label}: {link.href}
+          </Text>
+        ))}
       </View>
     </View>
   );

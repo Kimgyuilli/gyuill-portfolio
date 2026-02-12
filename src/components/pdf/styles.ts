@@ -43,25 +43,21 @@ export const pdfStyles = StyleSheet.create({
     justifyContent: 'center',
   },
   name: {
-    fontSize: 22,
+    fontSize: 18,
     fontWeight: 700,
     color: colors.textPrimary,
-    marginBottom: 6,
+    marginBottom: 4,
   },
   contactLine: {
     fontSize: 8.5,
     color: colors.textSecondary,
     marginBottom: 3,
   },
-  socialRow: {
-    flexDirection: 'row',
-    gap: 12,
-    marginTop: 4,
-  },
   socialLink: {
     fontSize: 8.5,
     color: colors.accent,
     textDecoration: 'none',
+    marginTop: 2,
   },
   // Section
   sectionTitle: {

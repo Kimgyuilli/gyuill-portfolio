@@ -32,7 +32,7 @@ export const socialLinksData: SocialLinkData[] = [
     label: 'GitHub',
   },
   {
-    href: 'https://www.linkedin.com/in/kimgyuill222/',
+    href: 'https://www.linkedin.com/in/kimgyuill222',
     label: 'LinkedIn',
   },
   {
