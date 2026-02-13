@@ -9,7 +9,7 @@
 ## 📋 목차
 
 - [소개](#-소개)
-- [주요 기능](#-주요 기능)
+- [주요 기능](#-주요-기능)
 - [기술 스택](#-기술-스택)
 - [프로젝트 구조](#-프로젝트-구조)
 - [라이선스](#-라이선스)
@@ -52,6 +52,12 @@
 6. **Blog** - 기술 블로그 포스트
 7. **Contact** - 연락처 정보 및 문의 폼
 
+### 📄 이력서 PDF 자동 생성
+- 웹사이트 데이터를 Single Source of Truth로 활용하여 이력서 PDF 자동 생성
+- `@react-pdf/renderer`로 텍스트 기반 PDF 생성 (검색/복사 가능)
+- 버튼 클릭 시 라이브러리 Lazy Loading으로 초기 번들 최적화
+- 한글 폰트(Spoqa Han Sans Neo) 지원
+
 ### 🖼️ 이미지 최적화
 - 이미지 로드 실패 시 자동 fallback UI
 - Lazy loading 지원
@@ -77,6 +83,7 @@
 - **next-themes 0.4.6** - 테마 관리
 - **EmailJS 4.4.1** - 이메일 전송
 - **RSS Parser 3.13.0** - 블로그 RSS 피드 파싱
+- **@react-pdf/renderer 4.3.2** - 이력서 PDF 생성
 
 ### Development Tools
 - **ESLint** - 코드 품질 관리
@@ -109,6 +116,14 @@ gyuill-portfolio/
 │   │   │
 │   │   ├── layout/             # 레이아웃 컴포넌트
 │   │   │   └── Navigation/     # 네비게이션 바
+│   │   │
+│   │   ├── pdf/                # 이력서 PDF 생성
+│   │   │   ├── PdfDownloadButton/ # 다운로드 버튼 (Lazy Loading)
+│   │   │   ├── ResumePdf/     # PDF 문서 루트 컴포넌트
+│   │   │   ├── fonts.ts       # 한글 폰트 등록
+│   │   │   ├── styles.ts      # PDF 전용 스타일
+│   │   │   ├── primitives/    # 공통 PDF 컴포넌트
+│   │   │   └── sections/      # PDF 섹션 (Header, About, Skills, Experience, Achievements)
 │   │   │
 │   │   └── sections/           # 페이지 섹션
 │   │       ├── Hero/           # 프로필 섹션 (3단 레이아웃)
@@ -167,6 +182,7 @@ gyuill-portfolio/
 - ✅ CSS Modules로 CSS 최적화
 - ✅ Framer Motion은 필요한 곳에만 사용
 - ✅ 불필요한 re-render 방지 (memo, useMemo, useCallback)
+- ✅ PDF 라이브러리 Dynamic Import (클릭 시 로드)
 
 ## 📝 브라우저 지원
 
