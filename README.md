@@ -18,7 +18,7 @@
 
 안녕하세요, 새로운 기술에 도전하고 꾸준히 성장하는 개발자 김규일입니다.
 
-이 포트폴리오는 Figma 디자인을 기반으로 제작되었으며, 모던 웹 기술 스택을 활용하여 구현한 반응형 단일 페이지 애플리케이션(SPA)입니다.
+이 포트폴리오는 Figma AI 디자인을 기반으로 제작되었으며, 모던 웹 기술 스택을 활용하여 구현한 반응형 단일 페이지 애플리케이션(SPA)입니다.
 
 **Figma 디자인**: [IT Developer Portfolio Template](https://www.figma.com/design/ZFMZQOJ7tg4hAfIjpbL2X7/IT-Developer-Portfolio-Template)
 
