@@ -12,6 +12,9 @@ declare const styles: {
   readonly "profile-image-box": string;
   readonly "profile-wrapper": string;
   readonly "section-header": string;
+  readonly "updated-date": string;
+  readonly "updated-label": string;
+  readonly "updated-section": string;
 };
 export = styles;
 

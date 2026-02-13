@@ -3,7 +3,19 @@ import { contactInfoData } from '@/data/contact';
 import sharedStyles from './styles.module.css';
 import styles from './LeftColumn.module.css';
 
+function formatLastUpdated(dateStr: string) {
+  const updated = new Date(dateStr);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  updated.setHours(0, 0, 0, 0);
+  const diffDays = Math.floor((today.getTime() - updated.getTime()) / (1000 * 60 * 60 * 24));
+  const formatted = dateStr.replace(/-/g, '. ');
+  return { formatted, diffDays };
+}
+
 export function LeftColumn() {
+  const { formatted, diffDays } = formatLastUpdated(heroData.lastUpdated);
+
   return (
     <div className={sharedStyles['left-column']}>
       {/* CAREER 타이틀 */}
@@ -55,6 +67,14 @@ export function LeftColumn() {
             </div>
           </div>
         </div>
+      </div>
+
+      {/* Latest Updated */}
+      <div className={styles['updated-section']}>
+        <p className={styles['updated-label']}>Latest Updated</p>
+        <p className={styles['updated-date']}>
+          {formatted} (D+{diffDays})
+        </p>
       </div>
     </div>
   );

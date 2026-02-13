@@ -88,3 +88,25 @@
   font-family: monospace;
   word-break: break-all;
 }
+
+.updated-section {
+  margin-top: auto;
+  padding-top: var(--spacing-md);
+  border-top: 1px solid var(--border-light-alpha-50);
+}
+
+:global(.dark) .updated-section {
+  border-top-color: var(--border-dark-alpha-50);
+}
+
+.updated-label {
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+  margin-bottom: var(--spacing-xs);
+}
+
+.updated-date {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  font-family: monospace;
+}
