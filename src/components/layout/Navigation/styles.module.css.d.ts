@@ -16,7 +16,6 @@ declare const styles: {
   readonly "nav-link": string;
   readonly "nav-link-active": string;
   readonly "nav-links": string;
-  readonly "spin": string;
   readonly "theme-toggle": string;
   readonly "theme-toggle-mobile": string;
   readonly "toggle-thumb": string;

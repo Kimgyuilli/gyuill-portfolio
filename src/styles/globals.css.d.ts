@@ -9,6 +9,7 @@ declare const styles: {
   readonly "inline-block": string;
   readonly "items-center": string;
   readonly "justify-center": string;
+  readonly "spin": string;
   readonly "text-center": string;
   readonly "theme-transition": string;
   readonly "w-full": string;
