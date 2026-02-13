@@ -329,13 +329,3 @@
   opacity: 0.6;
   cursor: wait;
 }
-
-/* Spinner animation for loading state */
-@keyframes spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}

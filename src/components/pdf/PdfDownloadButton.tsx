@@ -44,7 +44,7 @@ export function PdfDownloadButton({ className, showLabel, onClick }: PdfDownload
       a.href = url;
       a.download = '김규일_이력서.pdf';
       a.click();
-      URL.revokeObjectURL(url);
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
     } catch (err) {
       console.error('PDF 생성 실패:', err);
     } finally {
