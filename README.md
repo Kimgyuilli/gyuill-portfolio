@@ -2,6 +2,13 @@
 
 > 모던 React 기반의 개인 포트폴리오 웹사이트
 
+<a href="https://kimgyuilli.github.io/gyuill-portfolio/">
+  <img src="https://github.com/user-attachments/assets/8f2004c4-9c28-4252-8392-2e55ae65474f" 
+       alt="Portfolio Card" 
+       width="450" 
+       height="122"/>
+</a>
+
 [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-6.3.5-646CFF?logo=vite)](https://vitejs.dev/)
