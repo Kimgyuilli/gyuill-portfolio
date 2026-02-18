@@ -16,6 +16,24 @@
   line-height: 1.7;
 }
 
+.description a {
+  color: var(--accent-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.description a:hover {
+  color: var(--accent-primary);
+}
+
+:global(.dark) .description a {
+  color: var(--accent-primary);
+}
+
+:global(.dark) .description a:hover {
+  color: var(--accent-primary-hover);
+}
+
 .list {
   list-style: none;
   padding: 0;

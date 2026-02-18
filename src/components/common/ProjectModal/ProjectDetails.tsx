@@ -1,6 +1,25 @@
 import type { Project } from '@/types';
 import styles from './ModalSections.module.css';
 
+const URL_REGEX = /(https?:\/\/[^\s)]+)/g;
+
+function TextWithLinks({ text }: { text: string }) {
+  const parts = text.split(URL_REGEX);
+  return (
+    <>
+      {parts.map((part, i) =>
+        URL_REGEX.test(part) ? (
+          <a key={i} href={part} target="_blank" rel="noopener noreferrer">
+            {part}
+          </a>
+        ) : (
+          part
+        ),
+      )}
+    </>
+  );
+}
+
 interface ProjectDetailsProps {
   project: Project;
 }
@@ -12,7 +31,9 @@ export function ProjectDetails({ project }: ProjectDetailsProps) {
       {project.detailedDescription && (
         <div className={styles.section}>
           <h3 className={styles['section-title']}>프로젝트 개요</h3>
-          <p className={styles.description}>{project.detailedDescription}</p>
+          <p className={styles.description}>
+            <TextWithLinks text={project.detailedDescription} />
+          </p>
         </div>
       )}
 
