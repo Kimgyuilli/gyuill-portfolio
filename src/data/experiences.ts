@@ -7,9 +7,10 @@ export const experiences: Experience[] = [
     period: '2025.09 - 2026.01',
     description: [
       '서버 파트 합동 세미나 참여 및 과제 수행',
-      '1주차 과제 MVP',
-      '해커톤 참여 및 웹 서비스 부문 대상 수상',
       'Spring Boot 기반 서버 개발 역량 강화',
+      '1주차 과제 MVP',
+      '12주간 정보 공유 아티클 17개 작성',
+      '해커톤 참여 및 웹 서비스 부문 대상 수상',
       '뷰티 캘린더 앱 "Cherrish" Server Lead',
     ],
     type: 'activity',
