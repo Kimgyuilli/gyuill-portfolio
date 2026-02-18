@@ -26,12 +26,23 @@
   top: var(--spacing-sm);
   left: var(--spacing-sm);
   padding: var(--spacing-xs) var(--spacing-sm);
-  background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   border-radius: var(--radius-sm);
   font-size: var(--font-size-xs);
   font-weight: var(--font-weight-medium);
   z-index: 1;
+}
+
+.type-badge-main {
+  background-color: rgba(5, 150, 105, 0.8);
+}
+
+.type-badge-side {
+  background-color: rgba(71, 85, 105, 0.8);
+}
+
+.type-badge-learning {
+  background-color: rgba(159, 118, 130, 0.8);
 }
 
 .image {

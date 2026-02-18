@@ -25,7 +25,7 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
     <div className={styles['project-card']} onClick={handleCardClick}>
       <div className={styles['image-container']}>
         <ImageWithFallback src={project.image} alt={project.title} className={styles.image} />
-        <span className={styles['type-badge']}>
+        <span className={`${styles['type-badge']} ${styles[`type-badge-${project.projectType.toLowerCase()}`]}`}>
           {PROJECT_TYPE_LABELS[project.projectType]}
         </span>
       </div>

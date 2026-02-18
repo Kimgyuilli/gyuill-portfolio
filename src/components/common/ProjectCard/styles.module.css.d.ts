@@ -12,6 +12,9 @@ declare const styles: {
   readonly "tags": string;
   readonly "title": string;
   readonly "type-badge": string;
+  readonly "type-badge-learning": string;
+  readonly "type-badge-main": string;
+  readonly "type-badge-side": string;
 };
 export = styles;
 
