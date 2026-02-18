@@ -1,6 +1,8 @@
 declare const styles: {
   readonly "content": string;
   readonly "description": string;
+  readonly "duration": string;
+  readonly "footer": string;
   readonly "image": string;
   readonly "image-container": string;
   readonly "link": string;

@@ -75,9 +75,23 @@
   font-size: var(--font-size-sm);
 }
 
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .links {
   display: flex;
   gap: var(--spacing-md);
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  color: var(--text-muted);
+  font-size: var(--font-size-xs);
 }
 
 .link {

@@ -1,4 +1,4 @@
-import { ExternalLink } from 'lucide-react';
+import { Calendar, ExternalLink } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { ImageWithFallback } from '../ImageWithFallback';
 import { PROJECT_TYPE_LABELS } from '@/constants/projectCategories';
@@ -42,16 +42,24 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
           ))}
         </div>
 
-        <div className={styles.links}>
-          <a href={project.github} className={styles.link} onClick={handleLinkClick}>
-            <SiGithub size={18} />
-            <span>Code</span>
-          </a>
-          {project.demo && project.demo !== '#' && (
-            <a href={project.demo} className={styles.link} onClick={handleLinkClick}>
-              <ExternalLink size={18} />
-              <span>Demo</span>
+        <div className={styles.footer}>
+          <div className={styles.links}>
+            <a href={project.github} className={styles.link} onClick={handleLinkClick}>
+              <SiGithub size={18} />
+              <span>Code</span>
             </a>
+            {project.demo && project.demo !== '#' && (
+              <a href={project.demo} className={styles.link} onClick={handleLinkClick}>
+                <ExternalLink size={18} />
+                <span>Demo</span>
+              </a>
+            )}
+          </div>
+          {project.duration && (
+            <span className={styles.duration}>
+              <Calendar size={14} />
+              {project.duration}
+            </span>
           )}
         </div>
       </div>
