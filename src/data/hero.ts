@@ -44,5 +44,5 @@ export const heroData: HeroData = {
       school: '안양대학교 컴퓨터공학과 20학번 재학 [학점: 4.02/4.5]',
     },
   ],
-  lastUpdated: '2026-02-13',
+  lastUpdated: '2026-02-18',
 };
