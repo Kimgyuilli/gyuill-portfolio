@@ -14,7 +14,7 @@ import type { Project } from '@/types';
 import styles from './styles.module.css';
 
 export function Projects() {
-  const [selectedType, setSelectedType] = useState<ProjectType>('All');
+  const [selectedType, setSelectedType] = useState<ProjectType>('Main');
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
