@@ -55,7 +55,7 @@ export function ProjectModal({ project, onClose }: ProjectModalProps) {
         </button>
 
         {/* 헤더 미디어 (캐러셀 또는 단일 이미지) */}
-        {mediaItems.length > 1 ? (
+        {mediaItems.length > 1 || mediaItems.some((item) => item.type === 'video') ? (
           <MediaCarousel media={mediaItems} title={project.title} />
         ) : (
           <div className={modalStyles['image-container']}>
