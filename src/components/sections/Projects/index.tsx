@@ -1,20 +1,58 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { ProjectModal } from '@/components/common/ProjectModal';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { projects } from '@/data/projects';
-import { PROJECT_CATEGORIES, type ProjectCategory } from '@/constants/projectCategories';
+import {
+  PROJECT_CATEGORIES,
+  PROJECT_TYPES,
+  PROJECT_TYPE_LABELS,
+  type ProjectCategory,
+  type ProjectType,
+} from '@/constants/projectCategories';
 import type { Project } from '@/types';
 import styles from './styles.module.css';
 
 export function Projects() {
+  const [selectedType, setSelectedType] = useState<ProjectType>('All');
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const filteredProjects =
-    selectedCategory === 'All'
-      ? projects
-      : projects.filter((project) => project.categories.includes(selectedCategory));
+  const typeFilteredProjects = useMemo(
+    () =>
+      selectedType === 'All'
+        ? projects
+        : projects.filter((project) => project.projectType === selectedType),
+    [selectedType],
+  );
+
+  const availableCategories = useMemo(() => {
+    const categories = new Set<string>();
+    typeFilteredProjects.forEach((project) => {
+      project.categories.forEach((cat) => categories.add(cat));
+    });
+    return PROJECT_CATEGORIES.filter((cat) => cat === 'All' || categories.has(cat));
+  }, [typeFilteredProjects]);
+
+  const filteredProjects = useMemo(
+    () =>
+      selectedCategory === 'All'
+        ? typeFilteredProjects
+        : typeFilteredProjects.filter((project) =>
+            project.categories.includes(selectedCategory),
+          ),
+    [typeFilteredProjects, selectedCategory],
+  );
+
+  const typeCount = (type: ProjectType) =>
+    type === 'All'
+      ? projects.length
+      : projects.filter((p) => p.projectType === type).length;
+
+  const handleTypeChange = (type: ProjectType) => {
+    setSelectedType(type);
+    setSelectedCategory('All');
+  };
 
   return (
     <section id="projects" className={styles['projects-section']}>
@@ -28,8 +66,25 @@ export function Projects() {
             </p>
           </div>
 
+          <div className={styles['type-tabs']}>
+            {PROJECT_TYPES.map((type) => (
+              <button
+                key={type}
+                onClick={() => handleTypeChange(type)}
+                className={`${styles['type-tab']} ${
+                  selectedType === type
+                    ? styles['type-tab-active']
+                    : styles['type-tab-inactive']
+                }`}
+              >
+                {PROJECT_TYPE_LABELS[type]}
+                <span className={styles['tab-count']}>{typeCount(type)}</span>
+              </button>
+            ))}
+          </div>
+
           <div className={styles['filter-buttons']}>
-            {PROJECT_CATEGORIES.map((category) => (
+            {availableCategories.map((category) => (
               <button
                 key={category}
                 onClick={() => setSelectedCategory(category)}
@@ -46,15 +101,21 @@ export function Projects() {
         </FadeInSection>
 
         <FadeInSection delay={0.2}>
-          <div className={styles.grid}>
-            {filteredProjects.map((project) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                onClick={() => setSelectedProject(project)}
-              />
-            ))}
-          </div>
+          {filteredProjects.length > 0 ? (
+            <div className={styles.grid}>
+              {filteredProjects.map((project) => (
+                <ProjectCard
+                  key={project.title}
+                  project={project}
+                  onClick={() => setSelectedProject(project)}
+                />
+              ))}
+            </div>
+          ) : (
+            <div className={styles['empty-state']}>
+              <p>해당 조건에 맞는 프로젝트가 없습니다.</p>
+            </div>
+          )}
         </FadeInSection>
       </div>
 

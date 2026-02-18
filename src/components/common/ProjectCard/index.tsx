@@ -1,6 +1,7 @@
 import { ExternalLink } from 'lucide-react';
 import { SiGithub } from 'react-icons/si';
 import { ImageWithFallback } from '../ImageWithFallback';
+import { PROJECT_TYPE_LABELS } from '@/constants/projectCategories';
 import type { Project } from '@/types';
 import styles from './styles.module.css';
 
@@ -24,6 +25,9 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
     <div className={styles['project-card']} onClick={handleCardClick}>
       <div className={styles['image-container']}>
         <ImageWithFallback src={project.image} alt={project.title} className={styles.image} />
+        <span className={styles['type-badge']}>
+          {PROJECT_TYPE_LABELS[project.projectType]}
+        </span>
       </div>
 
       <div className={styles.content}>

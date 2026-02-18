@@ -9,6 +9,7 @@ declare const styles: {
   readonly "tag": string;
   readonly "tags": string;
   readonly "title": string;
+  readonly "type-badge": string;
 };
 export = styles;
 

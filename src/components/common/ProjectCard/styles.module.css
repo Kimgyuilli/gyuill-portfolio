@@ -14,8 +14,22 @@
 }
 
 .image-container {
+  position: relative;
   aspect-ratio: 16 / 9;
   overflow: hidden;
+}
+
+.type-badge {
+  position: absolute;
+  top: var(--spacing-sm);
+  left: var(--spacing-sm);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  z-index: 1;
 }
 
 .image {

@@ -1,6 +1,6 @@
 /// <reference types="react" />
 
-import type { ProjectCategory } from '@/constants/projectCategories';
+import type { ProjectCategory, ProjectType } from '@/constants/projectCategories';
 
 // Media types for project carousel
 export type MediaType = 'image' | 'video';
@@ -26,6 +26,7 @@ export interface Project {
   github: string;
   demo: string;
   categories: Exclude<ProjectCategory, 'All'>[];
+  projectType: Exclude<ProjectType, 'All'>;
   detailedDescription?: string;
   features?: string[];
   techStack?: {
