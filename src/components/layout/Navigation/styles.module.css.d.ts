@@ -7,6 +7,7 @@ declare const styles: {
   readonly "download-btn": string;
   readonly "github-link": string;
   readonly "mobile-button": string;
+  readonly "mobile-divider": string;
   readonly "mobile-download-btn": string;
   readonly "mobile-github-link": string;
   readonly "mobile-menu": string;
@@ -18,6 +19,7 @@ declare const styles: {
   readonly "nav-link": string;
   readonly "nav-link-active": string;
   readonly "nav-links": string;
+  readonly "slideDown": string;
   readonly "theme-toggle": string;
   readonly "theme-toggle-mobile": string;
   readonly "toggle-thumb": string;

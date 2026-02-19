@@ -144,6 +144,7 @@ export function Navigation() {
                 {item.label}
               </a>
             ))}
+            <div className={styles['mobile-divider']}></div>
             <PdfDownloadButton
               className={styles['mobile-download-btn']}
               showLabel

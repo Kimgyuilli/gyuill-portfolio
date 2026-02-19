@@ -235,13 +235,28 @@
 }
 
 .mobile-menu {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  animation: slideDown 0.2s ease-out;
 }
 
 :global(.dark) .mobile-menu {
-  background-color: var(--text-primary);
-  border-bottom-color: var(--border-light);
+  background-color: rgba(2, 6, 23, 0.95);
+  border-bottom-color: rgba(30, 41, 59, 0.5);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (min-width: 900px) {
@@ -251,9 +266,8 @@
 }
 
 .mobile-menu-content {
-  padding: var(--spacing-sm);
-  padding-top: var(--spacing-sm);
-  padding-bottom: var(--spacing-sm-md);
+  padding: var(--spacing-sm) var(--spacing-md);
+  padding-bottom: var(--spacing-md);
   display: flex;
   flex-direction: column;
   gap: var(--spacing-xs);
@@ -262,22 +276,32 @@
 .mobile-nav-link {
   display: block;
   padding: var(--spacing-sm) var(--spacing-sm-md);
-  color: var(--toggle-track);
-  transition: color 0.2s;
+  color: var(--text-body);
+  transition: all 0.2s;
   border-radius: var(--radius-base);
   text-decoration: none;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 :global(.dark) .mobile-nav-link {
-  color: var(--toggle-track);
+  color: var(--text-body);
 }
 
 .mobile-nav-link:hover {
   color: var(--accent-primary-hover);
+  background-color: var(--bg-hover);
 }
 
 :global(.dark) .mobile-nav-link:hover {
   color: var(--accent-primary);
+  background-color: var(--bg-hover);
+}
+
+.mobile-divider {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: var(--spacing-xs) 0;
 }
 
 /* PDF Download Button - Desktop */
@@ -317,26 +341,29 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-sm-md);
-  color: var(--toggle-track);
+  color: var(--text-body);
   background: none;
   border: none;
   cursor: pointer;
   border-radius: var(--radius-base);
-  font-size: inherit;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: all 0.2s;
 }
 
 :global(.dark) .mobile-download-btn {
-  color: var(--toggle-track);
+  color: var(--text-body);
 }
 
 .mobile-download-btn:hover {
   color: var(--accent-primary-hover);
+  background-color: var(--bg-hover);
 }
 
 :global(.dark) .mobile-download-btn:hover {
   color: var(--accent-primary);
+  background-color: var(--bg-hover);
 }
 
 .mobile-download-btn:disabled {
@@ -373,20 +400,24 @@
   align-items: center;
   gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-sm-md);
-  color: var(--toggle-track);
+  color: var(--text-body);
   text-decoration: none;
   border-radius: var(--radius-base);
-  transition: color 0.2s;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all 0.2s;
 }
 
 :global(.dark) .mobile-github-link {
-  color: var(--toggle-track);
+  color: var(--text-body);
 }
 
 .mobile-github-link:hover {
   color: var(--accent-primary-hover);
+  background-color: var(--bg-hover);
 }
 
 :global(.dark) .mobile-github-link:hover {
   color: var(--accent-primary);
+  background-color: var(--bg-hover);
 }
