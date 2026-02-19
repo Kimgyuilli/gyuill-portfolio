@@ -24,7 +24,7 @@
   height: var(--spacing-sm-md);
   background-color: var(--accent-primary);
   border-radius: var(--radius-full);
-  transform: translateX(-7px);
+  transform: translateX(-5px);
 }
 
 /* 태블릿 이상: 더 큰 점 */
@@ -32,7 +32,7 @@
   .timeline-dot {
     width: var(--spacing-md);
     height: var(--spacing-md);
-    transform: translateX(-9px);
+    transform: translateX(-7px);
   }
 }
 
@@ -102,17 +102,16 @@
 .description-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-sm-md);
 }
 
 .description-item {
   color: var(--text-body);
   display: flex;
-  align-items: flex-start;
+  align-items: baseline;
   gap: var(--spacing-sm);
 }
 
 .bullet {
   color: var(--accent-primary);
-  margin-top: var(--spacing-xs);
 }
