@@ -53,7 +53,7 @@ export const experiences: Experience[] = [
     company: 'IT 동아리 피로그래밍',
     position: '참가자',
     period: '2024.12 - 2025.02',
-    description: ['풀스택 개발 과정 수료', '러닝 코스 추천 웹 서비스 팀 프로젝트 개발'],
+    description: ['풀스택 개발 과정 수료', '3주차 과제 MVP', '러닝 코스 추천 웹 서비스 팀 프로젝트 개발'],
     type: 'activity',
   },
 ];
