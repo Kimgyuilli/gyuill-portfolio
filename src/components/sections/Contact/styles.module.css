@@ -87,4 +87,23 @@
   border-top: 1px solid var(--border-light);
   text-align: center;
   color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.footer-link {
+  color: var(--text-muted);
+  font-size: var(--font-size-sm);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--accent-primary-hover);
+}
+
+:global(.dark) .footer-link:hover {
+  color: var(--accent-primary);
 }

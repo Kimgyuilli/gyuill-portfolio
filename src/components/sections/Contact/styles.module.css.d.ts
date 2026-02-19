@@ -5,6 +5,7 @@ declare const styles: {
   readonly "content-grid": string;
   readonly "description": string;
   readonly "footer": string;
+  readonly "footer-link": string;
   readonly "header": string;
   readonly "section-title": string;
   readonly "social-links": string;

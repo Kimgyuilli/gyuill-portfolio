@@ -69,6 +69,14 @@ export function Contact() {
         {/* Footer */}
         <div className={styles.footer}>
           <p>© 2025 IT Developer Portfolio. All rights reserved.</p>
+          <a
+            href="https://github.com/Kimgyuilli/gyuill-portfolio"
+            target="_blank"
+            rel="noopener noreferrer"
+            className={styles['footer-link']}
+          >
+            View Source on GitHub
+          </a>
         </div>
       </div>
     </section>

@@ -5,8 +5,10 @@ declare const styles: {
   readonly "desktop-nav": string;
   readonly "divider": string;
   readonly "download-btn": string;
+  readonly "github-link": string;
   readonly "mobile-button": string;
   readonly "mobile-download-btn": string;
+  readonly "mobile-github-link": string;
   readonly "mobile-menu": string;
   readonly "mobile-menu-content": string;
   readonly "mobile-nav": string;

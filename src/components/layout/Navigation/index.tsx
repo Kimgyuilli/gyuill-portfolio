@@ -1,9 +1,11 @@
-import { Menu, X, Sun, Moon } from 'lucide-react';
+import { Menu, X, Sun, Moon, Github } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { NAV_ITEMS, BRAND_NAME } from '@/constants/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
 import { PdfDownloadButton } from '@/components/pdf/PdfDownloadButton';
 import styles from './styles.module.css';
+
+const REPO_URL = 'https://github.com/Kimgyuilli/gyuill-portfolio';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -77,6 +79,15 @@ export function Navigation() {
             </div>
             <div className={styles.divider}></div>
             <PdfDownloadButton className={styles['download-btn']} />
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles['github-link']}
+              aria-label="GitHub Repository"
+            >
+              <Github size={18} />
+            </a>
             <div className={styles.divider}></div>
             <button
               onClick={toggleTheme}
@@ -138,6 +149,16 @@ export function Navigation() {
               showLabel
               onClick={() => setIsOpen(false)}
             />
+            <a
+              href={REPO_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles['mobile-github-link']}
+              onClick={() => setIsOpen(false)}
+            >
+              <Github size={18} />
+              GitHub Repo
+            </a>
           </div>
         </div>
       )}
