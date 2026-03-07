@@ -40,6 +40,10 @@ export interface Project {
   duration?: string;
   teamSize?: string;
   role?: string;
+  /** 마크다운 형식의 상세 콘텐츠. 있으면 기존 detailedDescription/features/challenges/outcome 대신 렌더링 */
+  markdownContent?: string;
+  /** 마크다운 내 이미지 참조를 실제 경로로 치환하기 위한 이미지 맵 */
+  markdownImages?: Record<string, string>;
 }
 
 export interface SkillLevel {
