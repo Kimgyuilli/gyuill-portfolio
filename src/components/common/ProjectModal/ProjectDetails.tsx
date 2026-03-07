@@ -1,4 +1,5 @@
 import type { Project } from '@/types';
+import { MarkdownContent } from './MarkdownContent';
 import styles from './ModalSections.module.css';
 
 const URL_REGEX = /(https?:\/\/[^\s)]+)/g;
@@ -25,6 +26,10 @@ interface ProjectDetailsProps {
 }
 
 export function ProjectDetails({ project }: ProjectDetailsProps) {
+  if (project.markdownContent) {
+    return <MarkdownContent content={project.markdownContent} images={project.markdownImages} />;
+  }
+
   return (
     <>
       {/* 상세 설명 */}

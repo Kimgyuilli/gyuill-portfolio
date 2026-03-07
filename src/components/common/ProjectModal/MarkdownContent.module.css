@@ -1,0 +1,207 @@
+/* MarkdownContent — Markdown renderer styles for ProjectModal */
+
+.markdown {
+  color: var(--text-body);
+  line-height: 1.7;
+}
+
+/* Headings */
+.markdown h2 {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-top: var(--spacing-xl);
+  margin-bottom: var(--spacing-md);
+  padding-bottom: var(--spacing-xs);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.markdown h2:first-child {
+  margin-top: 0;
+}
+
+.markdown h3 {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-top: var(--spacing-lg);
+  margin-bottom: var(--spacing-sm);
+}
+
+.markdown h4 {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-secondary);
+  margin-top: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
+}
+
+/* Paragraphs */
+.markdown p {
+  margin-bottom: var(--spacing-md);
+}
+
+/* Links */
+.markdown a {
+  color: var(--accent-primary-hover);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.markdown a:hover {
+  color: var(--accent-primary);
+}
+
+:global(.dark) .markdown a {
+  color: var(--accent-primary);
+}
+
+:global(.dark) .markdown a:hover {
+  color: var(--accent-primary-hover);
+}
+
+/* Lists */
+.markdown ul,
+.markdown ol {
+  padding-left: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
+}
+
+.markdown li {
+  margin-bottom: var(--spacing-xs);
+  color: var(--text-body);
+}
+
+.markdown li::marker {
+  color: var(--accent-primary-hover);
+}
+
+:global(.dark) .markdown li::marker {
+  color: var(--accent-primary);
+}
+
+/* Tables */
+.table-wrapper {
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-light);
+}
+
+.markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--font-size-sm);
+}
+
+.markdown thead {
+  background-color: var(--bg-section);
+}
+
+:global(.dark) .markdown thead {
+  background-color: var(--bg-card-alt);
+}
+
+.markdown th {
+  padding: var(--spacing-sm) var(--spacing-md);
+  text-align: left;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--border-light);
+  white-space: nowrap;
+}
+
+.markdown td {
+  padding: var(--spacing-sm) var(--spacing-md);
+  border-bottom: 1px solid var(--border-light);
+  color: var(--text-body);
+}
+
+.markdown tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.markdown tbody tr:hover {
+  background-color: var(--bg-section);
+}
+
+:global(.dark) .markdown tbody tr:hover {
+  background-color: var(--bg-card-alt);
+}
+
+/* Inline images */
+.markdown-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  margin: var(--spacing-md) auto;
+  border: 1px solid var(--border-light);
+}
+
+/* Code blocks */
+.markdown pre {
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  line-height: 1.5;
+}
+
+:global(.dark) .markdown pre {
+  background-color: var(--bg-card-alt);
+}
+
+.markdown code {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.875em;
+}
+
+.markdown :not(pre) > code {
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xs);
+  padding: 0.125em 0.375em;
+  color: var(--text-primary);
+}
+
+:global(.dark) .markdown :not(pre) > code {
+  background-color: var(--bg-card-alt);
+}
+
+/* Blockquote */
+.markdown blockquote {
+  border-left: 3px solid var(--accent-primary-hover);
+  padding-left: var(--spacing-md);
+  margin: var(--spacing-md) 0;
+  color: var(--text-muted);
+}
+
+:global(.dark) .markdown blockquote {
+  border-left-color: var(--accent-primary);
+}
+
+/* Horizontal rule */
+.markdown hr {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: var(--spacing-xl) 0;
+}
+
+/* Strong / Bold */
+.markdown strong {
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+/* Image caption (paragraph right after image) */
+.image-caption {
+  text-align: center;
+  font-size: var(--font-size-sm);
+  color: var(--text-muted);
+  margin-top: calc(-1 * var(--spacing-sm));
+  margin-bottom: var(--spacing-md);
+}
