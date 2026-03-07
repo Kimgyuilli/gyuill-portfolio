@@ -131,7 +131,7 @@ export const projects: Project[] = [
     ],
     outcome:
       'DDD 아키텍처 기반 확장 가능한 백엔드 설계, OIDC 인증 기반 보안적인 CI/CD 파이프라인 구축, AI 통합 서비스 개발 경험',
-    duration: '2025.12 - 현재',
+    duration: '2025.12 - 2026.02',
     teamSize: '2명 (Server)',
     role: 'Server Lead Developer',
   },
