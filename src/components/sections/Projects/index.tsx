@@ -2,6 +2,7 @@ import { useState, useMemo } from 'react';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { ProjectModal } from '@/components/common/ProjectModal';
 import { FadeInSection } from '@/components/common/FadeInSection';
+import { ExpandableSection } from '@/components/common/ExpandableSection';
 import { projects } from '@/data/projects';
 import {
   PROJECT_CATEGORIES,
@@ -12,6 +13,9 @@ import {
 } from '@/constants/projectCategories';
 import type { Project } from '@/types';
 import styles from './styles.module.css';
+
+const COLS_PER_ROW = 3;
+const MAX_ROWS = 2;
 
 export function Projects() {
   const [selectedType, setSelectedType] = useState<ProjectType>('Main');
@@ -48,6 +52,8 @@ export function Projects() {
     type === 'All'
       ? projects.length
       : projects.filter((p) => p.projectType === type).length;
+
+  const showToggle = filteredProjects.length > COLS_PER_ROW * MAX_ROWS;
 
   const handleTypeChange = (type: ProjectType) => {
     setSelectedType(type);
@@ -102,15 +108,21 @@ export function Projects() {
 
         <FadeInSection delay={0.2}>
           {filteredProjects.length > 0 ? (
-            <div className={styles.grid}>
-              {filteredProjects.map((project) => (
-                <ProjectCard
-                  key={project.title}
-                  project={project}
-                  onClick={() => setSelectedProject(project)}
-                />
-              ))}
-            </div>
+            <ExpandableSection
+              key={`${selectedType}-${selectedCategory}`}
+              collapsedMaxHeight="860px"
+              showToggle={showToggle}
+            >
+              <div className={styles.grid}>
+                {filteredProjects.map((project) => (
+                  <ProjectCard
+                    key={project.title}
+                    project={project}
+                    onClick={() => setSelectedProject(project)}
+                  />
+                ))}
+              </div>
+            </ExpandableSection>
           ) : (
             <div className={styles['empty-state']}>
               <p>해당 조건에 맞는 프로젝트가 없습니다.</p>

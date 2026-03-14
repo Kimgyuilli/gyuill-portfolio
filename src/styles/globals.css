@@ -132,7 +132,13 @@ body {
   --icon-size-sm: 1rem;
   --icon-size-md: 1.25rem; /* Category icons */
   --icon-size-lg: 2rem;
+  --icon-size-toggle: 1.125rem; /* 18px - toggle button icon */
   --timeline-date-width: 10.5rem; /* Increased for better alignment (supports up to 17 chars) */
+
+  /* Expandable Section */
+  --expandable-max-height: 5000px;
+  --expandable-gradient-height: 200px;
+  --expandable-transition-duration: 0.5s;
 
   /* Legacy variables (kept for compatibility) */
   --background: #ffffff;

@@ -1,0 +1,71 @@
+.wrapper {
+  position: relative;
+}
+
+.content {
+  transition: max-height var(--expandable-transition-duration) ease;
+  overflow: hidden;
+}
+
+.content.collapsed::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: var(--expandable-gradient-height);
+  background: linear-gradient(to bottom, transparent, var(--bg-body));
+  pointer-events: none;
+}
+
+.content.expanded {
+  max-height: var(--expandable-max-height);
+}
+
+.toggle-container {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing-xl);
+}
+
+.toggle-button {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  padding: var(--spacing-sm-md) var(--spacing-lg);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.toggle-button:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-medium);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+}
+
+.toggle-button:active {
+  transform: translateY(0);
+}
+
+.toggle-button .icon {
+  width: var(--icon-size-toggle);
+  height: var(--icon-size-toggle);
+  transition: transform 0.2s ease;
+}
+
+.toggle-button:hover .icon {
+  transform: scale(1.1);
+}
