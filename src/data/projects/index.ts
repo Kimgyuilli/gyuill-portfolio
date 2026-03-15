@@ -1,4 +1,5 @@
 import type { Project } from '@/types';
+import { agentBoard } from './agentBoard';
 import { gTool } from './gTool';
 import { cherrish } from './cherrish';
 import { ragChatbot } from './ragChatbot';
@@ -9,6 +10,7 @@ import { piroRecruit } from './piroRecruit';
 import { geolEumGeolI } from './geolEumGeolI';
 
 export const projects: Project[] = [
+  agentBoard,
   gTool,
   cherrish,
   ragChatbot,
