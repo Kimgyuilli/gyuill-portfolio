@@ -127,7 +127,7 @@ body {
   --badge-emerald-solid-text: rgb(5, 150, 105); /* emerald-600 */
 
   /* Size Variables */
-  --profile-size: 12rem;
+  --profile-size: 10rem;
   --project-image-size: 3rem;
   --icon-size-sm: 1rem;
   --icon-size-md: 1.25rem; /* Category icons */

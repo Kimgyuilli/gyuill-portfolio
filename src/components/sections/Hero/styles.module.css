@@ -1,27 +1,33 @@
 .hero-section {
-  min-height: 100vh;
+  min-height: calc(100vh / 0.9);
   background-color: var(--bg-body);
-  padding-top: 6rem;
-  padding-bottom: 4rem;
+  padding-top: 5rem;
+  padding-bottom: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
 }
 
 .hero-container {
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 var(--spacing-lg);
+  flex: 1;
+  min-height: 0;
+  width: 100%;
 }
 
 .hero-grid {
   display: grid;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-lg);
   grid-template-columns: 1fr;
+  height: 100%;
 }
 
 /* 태블릿: 2열 레이아웃 (Left + Right 합쳐서 상단, Center 하단) */
 @media (min-width: 768px) {
   .hero-grid {
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
   }
 
   .left-column {
@@ -42,7 +48,7 @@
 @media (min-width: 1024px) {
   .hero-grid {
     grid-template-columns: 280px 1fr 320px;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-lg);
   }
 
   .left-column {
@@ -62,19 +68,19 @@
 .left-column {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xl);
+  gap: var(--spacing-md);
 }
 
 .center-column {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2xl);
+  gap: var(--spacing-xl);
 }
 
 .right-column {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-md);
+  gap: var(--spacing-sm-md);
 }
 
 /* 공통 스타일 */
@@ -82,13 +88,13 @@
   font-size: var(--font-size-lg);
   font-weight: var(--font-weight-bold);
   color: var(--text-primary);
-  margin-bottom: var(--spacing-md);
-  padding-bottom: var(--spacing-sm);
+  margin-bottom: var(--spacing-sm-md);
+  padding-bottom: var(--spacing-xs);
   border-bottom: 2px solid var(--accent-primary);
 }
 
 .timeline-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm-md); /* Reduced from spacing-md for tighter spacing */
+  gap: var(--spacing-sm); /* Reduced for tighter spacing */
 }
