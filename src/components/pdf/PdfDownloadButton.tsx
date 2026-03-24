@@ -2,21 +2,6 @@ import { useState } from 'react';
 import { Download, Loader2 } from 'lucide-react';
 import { heroData } from '@/data/hero';
 
-async function fetchImageAsBase64(url: string): Promise<string | null> {
-  try {
-    const res = await fetch(url);
-    const blob = await res.blob();
-    return new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result as string);
-      reader.onerror = () => resolve(null);
-      reader.readAsDataURL(blob);
-    });
-  } catch {
-    return null;
-  }
-}
-
 interface PdfDownloadButtonProps {
   className?: string;
   showLabel?: boolean;
@@ -36,8 +21,8 @@ export function PdfDownloadButton({ className, showLabel, onClick }: PdfDownload
         import('./ResumePdf'),
       ]);
 
-      const profileImageBase64 = await fetchImageAsBase64(heroData.profileImage);
-      const blob = await pdf(<ResumePdf profileImageBase64={profileImageBase64} />).toBlob();
+      const profileImageUrl = new URL(heroData.profileImage, window.location.href).href;
+      const blob = await pdf(<ResumePdf profileImageUrl={profileImageUrl} />).toBlob();
 
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');

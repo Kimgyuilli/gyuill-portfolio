@@ -13,10 +13,10 @@ import { experiences } from '@/data/experiences';
 import { achievements } from '@/data/achievements';
 
 interface ResumePdfProps {
-  profileImageBase64: string | null;
+  profileImageUrl: string;
 }
 
-export function ResumePdf({ profileImageBase64 }: ResumePdfProps) {
+export function ResumePdf({ profileImageUrl }: ResumePdfProps) {
   return (
     <Document title="김규일 - 이력서" author="김규일">
       <Page size="A4" style={pdfStyles.page}>
@@ -25,7 +25,7 @@ export function ResumePdf({ profileImageBase64 }: ResumePdfProps) {
           portfolioUrl={heroData.portfolioUrl}
           contactInfo={contactInfoData}
           socialLinks={socialLinksData}
-          profileImageBase64={profileImageBase64}
+          profileImageUrl={profileImageUrl}
         />
         <PdfAbout about={heroData.about} education={heroData.education} />
         <PdfSkills categories={skillCategories} />

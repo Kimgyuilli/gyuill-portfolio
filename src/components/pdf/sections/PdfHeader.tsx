@@ -7,7 +7,7 @@ interface PdfHeaderProps {
   portfolioUrl: string;
   contactInfo: ContactInfoData[];
   socialLinks: SocialLinkData[];
-  profileImageBase64: string | null;
+  profileImageUrl: string;
 }
 
 export function PdfHeader({
@@ -15,15 +15,15 @@ export function PdfHeader({
   portfolioUrl,
   contactInfo,
   socialLinks,
-  profileImageBase64,
+  profileImageUrl,
 }: PdfHeaderProps) {
   return (
     <View style={pdfStyles.header}>
       <View style={pdfStyles.headerRow}>
         {/* 좌: 사진 + 이름 */}
         <View style={pdfStyles.headerLeft}>
-          {profileImageBase64 && (
-            <Image style={pdfStyles.profileImage} src={profileImageBase64} />
+          {profileImageUrl && (
+            <Image style={pdfStyles.profileImage} src={profileImageUrl} />
           )}
           <Text style={pdfStyles.name}>{name}</Text>
         </View>
