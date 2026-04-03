@@ -174,6 +174,46 @@ export const pdfStyles = StyleSheet.create({
     color: colors.textMuted,
   },
 
+  // ── Projects ──
+  projectItem: {
+    marginBottom: 10,
+  },
+  projectHeader: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 2,
+  },
+  projectTitle: {
+    fontSize: 10,
+    fontWeight: 700,
+    color: colors.textPrimary,
+  },
+  projectPeriod: {
+    fontSize: 8.5,
+    color: colors.textMuted,
+  },
+  projectDesc: {
+    fontSize: 8.5,
+    color: colors.textSecondary,
+    marginBottom: 3,
+  },
+  projectTagRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 3,
+  },
+  projectTag: {
+    fontSize: 7.5,
+    color: colors.accent,
+    backgroundColor: '#d1fae5',
+    borderRadius: 8,
+    paddingHorizontal: 6,
+    paddingVertical: 2,
+    marginRight: 4,
+    marginBottom: 2,
+  },
+
   // ── Skills ──
   skillLine: {
     fontSize: 9,
