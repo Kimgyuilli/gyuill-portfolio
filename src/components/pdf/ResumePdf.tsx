@@ -9,9 +9,17 @@ import { PdfExperience } from './sections/PdfExperience';
 import { PdfAchievements } from './sections/PdfAchievements';
 import { heroData } from '@/data/hero';
 import { contactInfoData, socialLinksData } from '@/data/contact';
-import { skillCategories } from '@/data/skills';
 import { experiences } from '@/data/experiences';
 import { achievements } from '@/data/achievements';
+import type { SkillCategoryData } from '@/data/skills';
+
+const pdfSkills: SkillCategoryData[] = [
+  { type: 'flat', title: 'Backend', skills: ['Java', 'Spring Boot'] },
+  { type: 'flat', title: 'Frontend', skills: ['React', 'TypeScript'] },
+  { type: 'flat', title: 'Database', skills: ['PostgreSQL', 'MySQL', 'Redis'] },
+  { type: 'flat', title: 'DevOps', skills: ['Docker', 'AWS', 'GitHub Actions'] },
+  { type: 'flat', title: 'Tools', skills: ['Git', 'IntelliJ'] },
+];
 
 export function ResumePdf() {
   return (
@@ -27,7 +35,7 @@ export function ResumePdf() {
         <PdfEducation education={heroData.education} />
         <PdfExperience experiences={experiences} />
         <PdfAchievements achievements={achievements} />
-        <PdfSkills categories={skillCategories} />
+        <PdfSkills categories={pdfSkills} />
       </Page>
     </Document>
   );
