@@ -18,14 +18,14 @@ import type { SkillCategoryData } from '@/data/skills';
 const pdfProjects: PdfProject[] = [
   {
     title: 'Cherrish',
-    description: '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',
+    description: '13명(TL·iOS·Android·Server·Design) 합숙 협업으로 개발한 AI 기반 뷰티 캘린더 앱',
     period: '2025.12 - 2026.02',
     role: 'Server Lead',
     tags: ['Spring Boot', 'QueryDSL', 'Spring AI', 'PostgreSQL', 'AWS'],
     highlights: [
+      'Server Lead로서 기획 참여, 클라이언트·디자인 파트와의 일정 조율 및 API 설계 주도',
       'DDD 레이어드 아키텍처 적용으로 도메인별 책임 분리 및 확장성 확보',
       'Spring AI OpenAI 연동으로 사용자 맞춤형 챌린지 루틴 자동 생성',
-      'QueryDSL을 활용한 복잡한 캘린더/다운타임 조회 쿼리 최적화',
       'GitHub Actions OIDC + AWS SSM 기반 무중단 배포 파이프라인 구축',
     ],
   },
