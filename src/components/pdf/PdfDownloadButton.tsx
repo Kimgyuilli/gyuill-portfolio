@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Download, Loader2 } from 'lucide-react';
-import { heroData } from '@/data/hero';
 
 interface PdfDownloadButtonProps {
   className?: string;
@@ -21,8 +20,7 @@ export function PdfDownloadButton({ className, showLabel, onClick }: PdfDownload
         import('./ResumePdf'),
       ]);
 
-      const profileImageUrl = new URL(heroData.profileImage, window.location.href).href;
-      const blob = await pdf(<ResumePdf profileImageUrl={profileImageUrl} />).toBlob();
+      const blob = await pdf(<ResumePdf />).toBlob();
 
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');

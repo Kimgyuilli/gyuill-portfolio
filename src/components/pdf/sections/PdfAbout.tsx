@@ -1,30 +1,23 @@
 import { View, Text } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-import { SectionTitle } from '../primitives/SectionTitle';
-import type { AboutInfo, Education } from '@/data/hero';
+import type { Education } from '@/data/hero';
 
-interface PdfAboutProps {
-  about: AboutInfo;
+interface PdfEducationProps {
   education: Education[];
 }
 
-export function PdfAbout({ about, education }: PdfAboutProps) {
+export function PdfEducation({ education }: PdfEducationProps) {
   return (
-    <View>
-      <SectionTitle>ABOUT ME</SectionTitle>
-      {about.paragraphs.map((p, i) => (
-        <Text key={i} style={pdfStyles.paragraph}>
-          {p}
-        </Text>
-      ))}
-
-      <SectionTitle>EDUCATION</SectionTitle>
-      {education.map((edu, i) => (
-        <View key={i} style={pdfStyles.educationRow}>
-          <Text style={pdfStyles.educationSchool}>{edu.school}</Text>
-          <Text style={pdfStyles.educationPeriod}>{edu.period}</Text>
-        </View>
-      ))}
+    <View style={pdfStyles.sectionRow}>
+      <Text style={pdfStyles.sectionLabel}>학력</Text>
+      <View style={pdfStyles.sectionContent}>
+        {education.map((edu, i) => (
+          <View key={i} style={pdfStyles.educationRow}>
+            <Text style={pdfStyles.educationSchool}>{edu.school}</Text>
+            <Text style={pdfStyles.educationPeriod}>{edu.period}</Text>
+          </View>
+        ))}
+      </View>
     </View>
   );
 }

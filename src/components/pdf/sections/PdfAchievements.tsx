@@ -1,6 +1,5 @@
 import { View, Text, Link } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-import { SectionTitle } from '../primitives/SectionTitle';
 import type { AchievementData } from '@/data/achievements';
 
 interface PdfAchievementsProps {
@@ -9,11 +8,11 @@ interface PdfAchievementsProps {
 
 export function PdfAchievements({ achievements }: PdfAchievementsProps) {
   return (
-    <View>
-      <SectionTitle>ACHIEVEMENTS</SectionTitle>
-      {achievements.map((ach, i) => (
-        <View key={i} style={pdfStyles.achievementItem}>
-          <View style={pdfStyles.achievementHeader}>
+    <View style={pdfStyles.sectionRow}>
+      <Text style={pdfStyles.sectionLabel}>수상</Text>
+      <View style={pdfStyles.sectionContent}>
+        {achievements.map((ach, i) => (
+          <View key={i} style={pdfStyles.achievementItem}>
             {ach.link ? (
               <Link src={ach.link} style={pdfStyles.achievementTitleLink}>
                 {ach.title}
@@ -21,14 +20,10 @@ export function PdfAchievements({ achievements }: PdfAchievementsProps) {
             ) : (
               <Text style={pdfStyles.achievementTitle}>{ach.title}</Text>
             )}
-            <Text style={pdfStyles.achievementMeta}>{ach.date}</Text>
+            <Text style={pdfStyles.achievementDate}>{ach.date}</Text>
           </View>
-          <Text style={pdfStyles.achievementMeta}>{ach.issuer}</Text>
-          {ach.description && (
-            <Text style={pdfStyles.achievementDesc}>{ach.description}</Text>
-          )}
-        </View>
-      ))}
+        ))}
+      </View>
     </View>
   );
 }

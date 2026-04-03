@@ -2,7 +2,8 @@ import { Document, Page } from '@react-pdf/renderer';
 import './fonts';
 import { pdfStyles } from './styles';
 import { PdfHeader } from './sections/PdfHeader';
-import { PdfAbout } from './sections/PdfAbout';
+import { PdfIntroduce } from './sections/PdfIntroduce';
+import { PdfEducation } from './sections/PdfAbout';
 import { PdfSkills } from './sections/PdfSkills';
 import { PdfExperience } from './sections/PdfExperience';
 import { PdfAchievements } from './sections/PdfAchievements';
@@ -12,11 +13,7 @@ import { skillCategories } from '@/data/skills';
 import { experiences } from '@/data/experiences';
 import { achievements } from '@/data/achievements';
 
-interface ResumePdfProps {
-  profileImageUrl: string;
-}
-
-export function ResumePdf({ profileImageUrl }: ResumePdfProps) {
+export function ResumePdf() {
   return (
     <Document title="김규일 - 이력서" author="김규일">
       <Page size="A4" style={pdfStyles.page}>
@@ -25,12 +22,12 @@ export function ResumePdf({ profileImageUrl }: ResumePdfProps) {
           portfolioUrl={heroData.portfolioUrl}
           contactInfo={contactInfoData}
           socialLinks={socialLinksData}
-          profileImageUrl={profileImageUrl}
         />
-        <PdfAbout about={heroData.about} education={heroData.education} />
-        <PdfSkills categories={skillCategories} />
+        <PdfIntroduce about={heroData.about} />
+        <PdfEducation education={heroData.education} />
         <PdfExperience experiences={experiences} />
         <PdfAchievements achievements={achievements} />
+        <PdfSkills categories={skillCategories} />
       </Page>
     </Document>
   );

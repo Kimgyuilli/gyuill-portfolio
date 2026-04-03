@@ -1,4 +1,4 @@
-import { View, Text, Image } from '@react-pdf/renderer';
+import { View, Text, Link } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
 import type { ContactInfoData, SocialLinkData } from '@/data/contact';
 
@@ -7,39 +7,42 @@ interface PdfHeaderProps {
   portfolioUrl: string;
   contactInfo: ContactInfoData[];
   socialLinks: SocialLinkData[];
-  profileImageUrl: string;
 }
+
+const HIDDEN_LABELS = ['LinkedIn'];
 
 export function PdfHeader({
   name,
   portfolioUrl,
   contactInfo,
   socialLinks,
-  profileImageUrl,
 }: PdfHeaderProps) {
+  const visibleLinks = socialLinks.filter(
+    (link) => !HIDDEN_LABELS.includes(link.label),
+  );
+
   return (
     <View style={pdfStyles.header}>
       <View style={pdfStyles.headerRow}>
-        {/* 좌: 사진 + 이름 */}
+        {/* 좌: 이름 + 링크 */}
         <View style={pdfStyles.headerLeft}>
-          {profileImageUrl && (
-            <Image style={pdfStyles.profileImage} src={profileImageUrl} />
-          )}
-          <Text style={pdfStyles.name}>{name}</Text>
+          <Text style={pdfStyles.headerName}>{name}</Text>
+          <View style={pdfStyles.headerLinkRow}>
+            <Link src={portfolioUrl} style={pdfStyles.headerLink}>
+              Portfolio
+            </Link>
+            {visibleLinks.map((link) => (
+              <Link key={link.label} src={link.href} style={pdfStyles.headerLink}>
+                {link.label}
+              </Link>
+            ))}
+          </View>
         </View>
-        {/* 우: 연락처 + 소셜 */}
-        <View style={pdfStyles.headerInfo}>
+        {/* 우: 연락처 세로 */}
+        <View style={pdfStyles.headerRight}>
           {contactInfo.map((item) => (
-            <Text key={item.label} style={pdfStyles.contactLine}>
+            <Text key={item.label} style={pdfStyles.headerContactItem}>
               {item.value}
-            </Text>
-          ))}
-          <Text style={pdfStyles.socialLink}>
-            Portfolio: {portfolioUrl}
-          </Text>
-          {socialLinks.map((link) => (
-            <Text key={link.label} style={pdfStyles.socialLink}>
-              {link.label}: {link.href}
             </Text>
           ))}
         </View>

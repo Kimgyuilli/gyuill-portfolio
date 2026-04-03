@@ -1,17 +1,15 @@
 import { StyleSheet } from '@react-pdf/renderer';
 
-// 사이트 CSS 변수 값 매핑
 export const colors = {
-  accent: '#10b981', // emerald-500
-  textPrimary: '#0f172a', // slate-900
-  textSecondary: '#334155', // slate-700
-  textMuted: '#64748b', // slate-500
-  borderLight: '#cbd5e1', // slate-300
-  // 스킬 레벨 색상
-  levelPrimary: '#f97316', // orange-500
-  levelExperienced: '#eab308', // yellow-500
-  levelLearning: '#9ca3af', // gray-400
+  accent: '#10b981',
+  textPrimary: '#0f172a',
+  textSecondary: '#334155',
+  textMuted: '#64748b',
+  borderLight: '#cbd5e1',
+  borderDark: '#1e293b',
 };
+
+const LABEL_WIDTH = 72;
 
 export const pdfStyles = StyleSheet.create({
   page: {
@@ -23,71 +21,87 @@ export const pdfStyles = StyleSheet.create({
     paddingHorizontal: 36,
     lineHeight: 1.5,
   },
-  // Header
+
+  // ── Header ──
   header: {
-    marginBottom: 20,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: colors.borderLight,
+    marginBottom: 16,
+    paddingBottom: 12,
+    borderBottomWidth: 2,
+    borderBottomColor: colors.borderDark,
   },
   headerRow: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'flex-start',
   },
   headerLeft: {
-    alignItems: 'center',
-    marginRight: 16,
-  },
-  headerInfo: {
-    justifyContent: 'center',
     flex: 1,
   },
-  profileImage: {
-    width: 84,
-    height: 84,
-    borderRadius: 36,
-    marginBottom: 6,
+  headerRight: {
+    alignItems: 'flex-end',
   },
-  name: {
-    fontSize: 18,
+  headerName: {
+    fontSize: 20,
     fontWeight: 700,
-    color: colors.textPrimary,
+    marginBottom: 20,
   },
-  contactLine: {
-    fontSize: 9,
-    color: colors.textSecondary,
-    marginBottom: 3,
+  headerLinkRow: {
+    flexDirection: 'row',
   },
-  socialLink: {
-    fontSize: 9,
+  headerLink: {
+    fontSize: 8.5,
     color: colors.accent,
     textDecoration: 'none',
-    marginTop: 2,
+    marginRight: 14,
   },
-  // Section
-  sectionTitle: {
-    fontSize: 13,
+  headerContactItem: {
+    fontSize: 8.5,
+    color: colors.textSecondary,
+    marginBottom: 2,
+    textAlign: 'right',
+  },
+
+  // ── 2-column section row ──
+  sectionRow: {
+    flexDirection: 'row',
+    borderTopWidth: 1,
+    borderTopColor: colors.borderLight,
+    paddingTop: 10,
+    paddingBottom: 10,
+  },
+  sectionLabel: {
+    width: LABEL_WIDTH,
+    fontSize: 10,
     fontWeight: 700,
     color: colors.textPrimary,
-    marginBottom: 4,
-    paddingBottom: 4,
-    borderBottomWidth: 2,
-    borderBottomColor: colors.accent,
-    marginTop: 14,
+    paddingRight: 12,
   },
-  // About
-  paragraph: {
+  sectionContent: {
+    flex: 1,
+  },
+
+  // ── Introduce ──
+  introItem: {
+    flexDirection: 'row',
+    marginBottom: 2,
+  },
+  introBullet: {
     fontSize: 9,
     color: colors.textSecondary,
-    marginBottom: 4,
+    marginRight: 6,
+  },
+  introText: {
+    fontSize: 9,
+    color: colors.textSecondary,
+    flex: 1,
     lineHeight: 1.6,
   },
-  // Education
+
+  // ── Education ──
   educationRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 4,
   },
   educationSchool: {
     fontSize: 9,
@@ -98,45 +112,10 @@ export const pdfStyles = StyleSheet.create({
     fontSize: 8.5,
     color: colors.textMuted,
   },
-  // Skills
-  skillsGrid: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 8,
-  },
-  skillCategory: {
-    width: '48%',
-    marginBottom: 8,
-  },
-  skillCategoryTitle: {
-    fontSize: 10,
-    fontWeight: 700,
-    color: colors.textPrimary,
-    marginBottom: 4,
-  },
-  skillLevelRow: {
-    flexDirection: 'row',
-    alignItems: 'flex-start',
-    marginBottom: 2,
-  },
-  skillLevelDot: {
-    fontSize: 9,
-    marginRight: 4,
-    width: 12,
-  },
-  skillLevelText: {
-    fontSize: 8.5,
-    color: colors.textSecondary,
-    flex: 1,
-  },
-  skillFlatText: {
-    fontSize: 8.5,
-    color: colors.textSecondary,
-  },
-  // Experience
+
+  // ── Experience ──
   experienceItem: {
-    marginTop: 10,
+    marginBottom: 10,
   },
   experienceHeader: {
     flexDirection: 'row',
@@ -156,11 +135,11 @@ export const pdfStyles = StyleSheet.create({
   experiencePosition: {
     fontSize: 9,
     color: colors.textMuted,
-    marginBottom: 4,
+    marginBottom: 3,
   },
   bulletItem: {
     flexDirection: 'row',
-    marginBottom: 2,
+    marginBottom: 1,
     paddingLeft: 4,
   },
   bullet: {
@@ -173,34 +152,36 @@ export const pdfStyles = StyleSheet.create({
     color: colors.textSecondary,
     flex: 1,
   },
-  // Achievements
+
+  // ── Achievements ──
   achievementItem: {
-    marginTop: 10,
-  },
-  achievementHeader: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    marginBottom: 2,
+    marginBottom: 4,
   },
   achievementTitle: {
-    fontSize: 10,
-    fontWeight: 700,
+    fontSize: 9,
     color: colors.textPrimary,
   },
   achievementTitleLink: {
-    fontSize: 10,
-    fontWeight: 700,
+    fontSize: 9,
     color: colors.accent,
     textDecoration: 'none',
   },
-  achievementMeta: {
+  achievementDate: {
     fontSize: 8.5,
     color: colors.textMuted,
   },
-  achievementDesc: {
-    fontSize: 8.5,
+
+  // ── Skills ──
+  skillLine: {
+    fontSize: 9,
     color: colors.textSecondary,
-    marginTop: 2,
+    marginBottom: 2,
+  },
+  skillCategory: {
+    fontWeight: 700,
+    color: colors.textPrimary,
   },
 });
