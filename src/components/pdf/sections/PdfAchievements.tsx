@@ -9,7 +9,7 @@ interface PdfAchievementsProps {
 export function PdfAchievements({ achievements }: PdfAchievementsProps) {
   return (
     <View style={pdfStyles.sectionRow}>
-      <Text style={pdfStyles.sectionLabel}>수상</Text>
+      <Text style={pdfStyles.sectionLabel}>수상/자격</Text>
       <View style={pdfStyles.sectionContent}>
         {achievements.map((ach, i) => (
           <View key={i} style={pdfStyles.achievementItem}>
