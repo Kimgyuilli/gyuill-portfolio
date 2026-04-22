@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "Claude &times; Codex 하네스 구축기",
+    summary: "들어가며\n최근 작업하면서 가장 크게 느낀 문제는 “AI를 쓰고 있는데도 작업 흐름이 오히려 더 산만해질 수 있다”는 점이었다.\n단순히 AI가 코드를 잘 짜느냐의 문제가 아니었다. ...",
+    date: '2026.04.21',
+    image: "https://blog.kakaocdn.net/dn/bHYG8R/dJMcacCQ3z4/aBDBJE34NU5SHRWwqDYrNK/img.png",
+    link: "https://imdeepskyblue.tistory.com/87",
+    tags: ["개발 지식"],
+  },
+  {
     title: "LangChain이 공개한 에이전트 하네스, Deep Agents 뜯어보기",
     summary: "왜 이 코드를 읽게 됐나\n요즘 AI 에이전트 하네스를 직접 만들어보려는 시도가 많다. 나도 그중 하나였다. 프롬프트 짜고, 도구 몇 개 붙이고, 루프 돌리면 되겠지 싶었는데 막상 ...",
     date: '2026.03.16',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.kakaocdn.net/dn/YkTDs/dJMcaaRVc0G/Qj6m7FIhZ64KxjFYEsN3z0/img.png",
     link: "https://imdeepskyblue.tistory.com/85",
     tags: ["개발 지식/Spring","OpenAI","pgvector"],
-  },
-  {
-    title: "Spring AI가 제공하는 주요 기능 정리",
-    summary: "들어가며\nSpring AI는 Java/Spring 생태계에서 AI 애플리케이션을 구축하기 위한 프레임워크다. LLM 호출, 문서 임베딩, 벡터 검색, 대화 이력 관리 등 AI 앱에...",
-    date: '2026.02.22',
-    image: "https://blog.kakaocdn.net/dn/bhOJE9/dJMcafySKwp/28Z23NHQ6eVyElxKewFkUk/img.png",
-    link: "https://imdeepskyblue.tistory.com/84",
-    tags: ["개발 지식/Spring","springai"],
   }
 ];
