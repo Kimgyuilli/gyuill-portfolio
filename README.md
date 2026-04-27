@@ -27,8 +27,6 @@
 
 이 포트폴리오는 Figma AI 디자인을 기반으로 제작되었으며, 모던 웹 기술 스택을 활용하여 구현한 반응형 단일 페이지 애플리케이션(SPA)입니다.
 
-**Figma 디자인**: [IT Developer Portfolio Template](https://www.figma.com/design/ZFMZQOJ7tg4hAfIjpbL2X7/IT-Developer-Portfolio-Template)
-
 ## ✨ 주요 기능
 
 ### 📱 반응형 디자인
@@ -205,7 +203,6 @@ gyuill-portfolio/
 
 ### 크레딧
 
-- **디자인**: [Figma - IT Developer Portfolio Template](https://www.figma.com/design/ZFMZQOJ7tg4hAfIjpbL2X7/IT-Developer-Portfolio-Template)
 - **아이콘**:
   - [Lucide Icons](https://lucide.dev/) (MIT License)
   - [Simple Icons](https://simpleicons.org/) (CC0 1.0 Universal)
