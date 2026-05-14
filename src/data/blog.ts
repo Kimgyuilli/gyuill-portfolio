@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "PeekCart 학습 기록 0: 왜 모놀리스에서 MSA로 가는 흐름을 먼저 봐야 할까",
+    summary: "PeekCart를 다시 학습하면서 가장 먼저 확인하고 싶은 것은 개별 기술이 아니라 프로젝트의 진행 순서다.\nRedis, Kafka, Kubernetes, MSA 같은 키워드가 많...",
+    date: '2026.05.13',
+    image: "https://blog.kakaocdn.net/dn/oCOC8/dJMcahxEEgm/DyLwJwBX2KkqlQz8A6sCKk/img.png",
+    link: "https://imdeepskyblue.tistory.com/91",
+    tags: ["회고"],
+  },
+  {
     title: "요즘 클로드코드에 대해",
     summary: "1. 요즘 Claude Code가 이상하다\n최근 Claude Code를 쓰면서 “어? 예전 같지 않은데?”라고 느낀 사람들이 꽤 많아진 것 같습니다. 단순한 체감이나 커뮤니티 불평...",
     date: '2026.05.03',
@@ -15,14 +23,6 @@ export const blogPosts: BlogPost[] = [
     date: '2026.05.03',
     image: "https://blog.kakaocdn.net/dn/ETiJl/dJMcafNgLBd/9p9ProV67KLBktZtDMEoC0/img.png",
     link: "https://imdeepskyblue.tistory.com/89",
-    tags: ["아티클/SOPT에서 쓴 아티클"],
-  },
-  {
-    title: "개발자가 코드를 안짜는 시대가 오고있다",
-    summary: "안녕하세요 섭섭이분들. 이번에도 AI를 주제로 아티클을 작성해보았습니다. 이번 아티클은 이번 38기가 시작하기 전부터 이 주제로는 꼭 아티클 하나 써야겠다 생각하고 자료조사를 해왔...",
-    date: '2026.05.03',
-    image: "https://blog.kakaocdn.net/dn/dvZ5Ey/dJMcagFo71A/TH6lrTazVXGeWkEiep4z5K/img.jpg",
-    link: "https://imdeepskyblue.tistory.com/88",
     tags: ["아티클/SOPT에서 쓴 아티클"],
   }
 ];
