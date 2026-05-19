@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "내가 짠 코드인데 왜 동작하는지 설명을 못 했다",
+    summary: "1. 들어가며\n지난 주말 솝트에서 진행하는 해커톤에 참여했다.\n결과로 대상을 타기는 했지만 개인적으로 아쉬웠던 부분이 있어 기록 및 학습을 하려고 한다.\n이번 해커톤에서 가장 부끄...",
+    date: '2026.05.18',
+    image: "https://blog.kakaocdn.net/dn/qxAUW/dJMcaarPvbG/nsHwdZOSV9zgzDv4Vbz941/img.png",
+    link: "https://imdeepskyblue.tistory.com/92",
+    tags: ["회고"],
+  },
+  {
     title: "PeekCart 학습 기록 0: 왜 모놀리스에서 MSA로 가는 흐름을 먼저 봐야 할까",
     summary: "PeekCart를 다시 학습하면서 가장 먼저 확인하고 싶은 것은 개별 기술이 아니라 프로젝트의 진행 순서다.\nRedis, Kafka, Kubernetes, MSA 같은 키워드가 많...",
     date: '2026.05.13',
@@ -15,14 +23,6 @@ export const blogPosts: BlogPost[] = [
     date: '2026.05.03',
     image: "https://blog.kakaocdn.net/dn/FeqGM/dJMb99TL6uv/DjSreItLTTSkwCxoy1SNWk/img.jpg",
     link: "https://imdeepskyblue.tistory.com/90",
-    tags: ["아티클/SOPT에서 쓴 아티클"],
-  },
-  {
-    title: "성능테스트 정리",
-    summary: "1. 부하 테스트란?\n부하 테스트(Load Test) 는\n시스템이 예상되는 트래픽을 안정적으로 처리할 수 있는지 검증하는 테스트이다.\n단순히 \"최대 몇 명까지 버틴다\"를 보는 것이...",
-    date: '2026.05.03',
-    image: "https://blog.kakaocdn.net/dn/ETiJl/dJMcafNgLBd/9p9ProV67KLBktZtDMEoC0/img.png",
-    link: "https://imdeepskyblue.tistory.com/89",
     tags: ["아티클/SOPT에서 쓴 아티클"],
   }
 ];
