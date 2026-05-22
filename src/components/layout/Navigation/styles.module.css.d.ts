@@ -1,4 +1,5 @@
 declare const styles: {
+  readonly "blog-link": string;
   readonly "brand": string;
   readonly "brand-link": string;
   readonly "container": string;
@@ -6,6 +7,7 @@ declare const styles: {
   readonly "divider": string;
   readonly "download-btn": string;
   readonly "github-link": string;
+  readonly "mobile-blog-link": string;
   readonly "mobile-button": string;
   readonly "mobile-divider": string;
   readonly "mobile-download-btn": string;

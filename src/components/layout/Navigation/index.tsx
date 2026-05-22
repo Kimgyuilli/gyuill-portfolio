@@ -1,4 +1,4 @@
-import { Menu, X, Sun, Moon, Github } from 'lucide-react';
+import { Menu, X, Sun, Moon, Github, BookOpen } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { NAV_ITEMS, BRAND_NAME } from '@/constants/navigation';
 import { useTheme } from '@/contexts/ThemeContext';
@@ -6,6 +6,7 @@ import { PdfDownloadButton } from '@/components/pdf/PdfDownloadButton';
 import styles from './styles.module.css';
 
 const REPO_URL = 'https://github.com/Kimgyuilli/gyuill-portfolio';
+const BLOG_URL = 'https://blog.rlarbdlf222.workers.dev/';
 
 export function Navigation() {
   const [isOpen, setIsOpen] = useState(false);
@@ -78,6 +79,14 @@ export function Navigation() {
               })}
             </div>
             <div className={styles.divider}></div>
+            <a
+              href={BLOG_URL}
+              className={styles['blog-link']}
+              aria-label="Tech Blog"
+            >
+              <BookOpen size={18} />
+              <span>Tech Blog</span>
+            </a>
             <PdfDownloadButton className={styles['download-btn']} />
             <a
               href={REPO_URL}
@@ -145,6 +154,14 @@ export function Navigation() {
               </a>
             ))}
             <div className={styles['mobile-divider']}></div>
+            <a
+              href={BLOG_URL}
+              className={styles['mobile-blog-link']}
+              onClick={() => setIsOpen(false)}
+            >
+              <BookOpen size={18} />
+              Tech Blog
+            </a>
             <PdfDownloadButton
               className={styles['mobile-download-btn']}
               showLabel
