@@ -6,7 +6,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const RSS_FEED_URL = 'https://imdeepskyblue.tistory.com/rss';
+const RSS_FEED_URL = process.env.RSS_FEED_URL ?? 'https://blog.rlarbdlf222.workers.dev/rss.xml';
 const OUTPUT_FILE = path.join(__dirname, '../src/data/blog.ts');
 const MAX_POSTS = 3;
 
@@ -57,7 +57,7 @@ function extractThumbnail(item) {
   }
 
   // 4. 기본 이미지
-  return 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=800';
+  return 'https://blog.rlarbdlf222.workers.dev/images/blog/og-default.svg';
 }
 
 /**

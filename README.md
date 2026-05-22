@@ -2,7 +2,7 @@
 
 > 모던 React 기반의 개인 포트폴리오 웹사이트
 
-<a href="https://kimgyuilli.github.io/gyuill-portfolio/">
+<a href="https://blog.rlarbdlf222.workers.dev/portfolio/">
   <img src="https://github.com/user-attachments/assets/8f2004c4-9c28-4252-8392-2e55ae65474f" 
        alt="Portfolio Card" 
        width="450" 
@@ -213,6 +213,6 @@ gyuill-portfolio/
 김규일 - [rlarbdlf222@gmail.com](mailto:rlarbdlf222@gmail.com)
 
 - GitHub: [@Kimgyuilli](https://github.com/Kimgyuilli)
-- Blog: [imdeepskyblue.tistory.com](https://imdeepskyblue.tistory.com/)
+- Blog: [blog.rlarbdlf222.workers.dev](https://blog.rlarbdlf222.workers.dev/)
 
 ---

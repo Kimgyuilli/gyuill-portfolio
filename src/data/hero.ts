@@ -25,10 +25,10 @@ export interface HeroData {
 export const heroData: HeroData = {
   name: '김규일',
   profileImage: profileImage,
-  portfolioUrl: 'https://kimgyuilli.github.io/gyuill-portfolio',
+  portfolioUrl: 'https://blog.rlarbdlf222.workers.dev/portfolio/',
   social: {
     github: 'https://github.com/Kimgyuilli',
-    blog: 'https://imdeepskyblue.tistory.com/',
+    blog: 'https://blog.rlarbdlf222.workers.dev/',
   },
   about: {
     paragraphs: [

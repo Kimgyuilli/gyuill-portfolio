@@ -36,7 +36,7 @@ export const socialLinksData: SocialLinkData[] = [
     label: 'LinkedIn',
   },
   {
-    href: 'https://imdeepskyblue.tistory.com',
+    href: 'https://blog.rlarbdlf222.workers.dev',
     label: 'Tech Blog',
   },
 ];

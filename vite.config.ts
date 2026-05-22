@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => ({
       include: ['buffer', 'process'],
     }),
   ],
-  base: mode === 'production' ? '/gyuill-portfolio/' : '/',
+  base: mode === 'production' ? (process.env.VITE_BASE_PATH ?? '/portfolio/') : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
