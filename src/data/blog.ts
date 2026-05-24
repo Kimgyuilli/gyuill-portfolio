@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "PeekCart 학습 기록 2: 인증, 인가의 갈림길에서 무엇을 선택할 수 있을까",
+    summary: "PeekCart의 인증과 인가 설계를 비밀번호 저장, JWT, 토큰 회수, 재발급 전략, 서비스 간 신뢰 관점에서 정리합니다.",
+    date: '2026.05.23',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-authn-authz-choices/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-authn-authz-choices/",
+    tags: ["peekcart","auth","security"],
+  },
+  {
     title: "블로그를 이곳으로 옮겼습니다",
     summary: "Tistory에 쓰던 글을 이 사이트로 옮기면서, 글 작성 환경과 분류 체계를 함께 정리했습니다.",
     date: '2026.05.22',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-layered-ddd/thumbnail.png",
     link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-layered-ddd/",
     tags: ["peekcart","architecture","ddd"],
-  },
-  {
-    title: "Codex x LLM Wiki 구축기",
-    summary: "최근에 내 개인 LLM Wiki를 구축했다. 흩어진 자료와 경험을 모아두고 나중에 다시 쓸 수 있게 해주는 기록 시스템을 만든 과정을 정리합니다.",
-    date: '2026.05.21',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/codex-x-llm-wiki/image-01.webp",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/codex-x-llm-wiki/",
-    tags: ["codex","llm","wiki"],
   }
 ];
