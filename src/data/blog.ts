@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "PeekCart 학습 기록 8: 상품 조회를 캐시 뒤로 옮기기",
+    summary: "PeekCart의 상품 목록과 상세 조회를 Redis Cache Aside로 옮기며 재고 제외, self-invocation 회피, 목록 캐시 무효화, CachedPage 래퍼를 ...",
+    date: '2026.05.29',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-product-cache-aside/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-product-cache-aside/",
+    tags: ["peekcart","redis","cache"],
+  },
+  {
     title: "PeekCart 학습 기록 7: 15분 후에 돌아와서 주문을 취소하는 일",
     summary: "PeekCart의 결제 타임아웃 스케줄러, REQUIRES_NEW 건별 트랜잭션, 상태 경합 격리, ShedLock 도입 이유를 정리합니다.",
     date: '2026.05.28',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-notification-failure-isolation/thumbnail.png",
     link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-notification-failure-isolation/",
     tags: ["peekcart","notification","slack"],
-  },
-  {
-    title: "PeekCart 학습 기록 5: 결제 승인이 실패하면 누가 주문을 취소하는가",
-    summary: "PeekCart의 Payment 생성, Toss 결제 승인 실패 처리, Outbox 이벤트, 웹훅 멱등성, Order 상태 연결을 정리합니다.",
-    date: '2026.05.28',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-payment-failure-flow/thumbnail.png",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-payment-failure-flow/",
-    tags: ["peekcart","payment","toss-payments"],
   }
 ];
