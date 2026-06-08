@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "쿠버네티스 학습 기록: YAML을 던지면 무슨 일이 일어나는가",
+    summary: "쿠버네티스의 선언형 API, reconciliation loop, Deployment·ReplicaSet·Pod·Service가 함께 동작하는 방식을 정리합니다.",
+    date: '2026.06.07',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/kubernetes-reconciliation-mental-model/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/kubernetes-reconciliation-mental-model/",
+    tags: ["kubernetes","reconciliation","deployment"],
+  },
+  {
     title: "PeekCart 학습 기록 19: \"조건부 UPDATE 한 방\"이면 분산 락이 필요 없을까",
     summary: "단일 행 재고 차감에서 조건부 UPDATE, Redis 분산 락, JPA 낙관적 락의 적정 구간을 비교하고 PeekCart에 남길 ADR 판단 기준을 정리합니다.",
     date: '2026.06.06',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-phase4-debt-checklist/thumbnail.svg",
     link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-checklist/",
     tags: ["peekcart","msa","technical-debt"],
-  },
-  {
-    title: "PeekCart 학습 기록 17: 1,000명이 소수 상품을 동시에 주문하면",
-    summary: "1,000 VUser 동시 주문 부하에서 오버셀링 0건, HPA 1→3 scale-out, Kafka Lag 회복, throughput 미달을 함께 검증한 세션 C 기록입니다.",
-    date: '2026.06.05',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-order-concurrency-hpa/thumbnail.png",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-order-concurrency-hpa/",
-    tags: ["peekcart","k6","kubernetes"],
   }
 ];
