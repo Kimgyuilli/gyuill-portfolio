@@ -197,6 +197,38 @@
   color: var(--text-primary);
 }
 
+/* Mermaid diagrams */
+.mermaid {
+  display: flex;
+  justify-content: center;
+  margin: var(--spacing-md) 0;
+  padding: var(--spacing-md);
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  overflow-x: auto;
+}
+
+:global(.dark) .mermaid {
+  background-color: var(--bg-card-alt);
+}
+
+.mermaid svg {
+  max-width: 100%;
+  height: auto;
+}
+
+.mermaid-fallback {
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-sm);
+  padding: var(--spacing-md);
+  overflow-x: auto;
+  margin-bottom: var(--spacing-md);
+  font-size: var(--font-size-sm);
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+}
+
 /* Image caption (paragraph right after image) */
 .image-caption {
   text-align: center;
