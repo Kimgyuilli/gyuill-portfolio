@@ -1,6 +1,7 @@
 import { isValidElement, useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import remarkCjkFriendly from 'remark-cjk-friendly';
 import type { Components } from 'react-markdown';
 import { Mermaid } from './Mermaid';
 import styles from './MarkdownContent.module.css';
@@ -50,7 +51,7 @@ export function MarkdownContent({ content, images }: MarkdownContentProps) {
 
   return (
     <div className={styles.markdown}>
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown remarkPlugins={[remarkGfm, remarkCjkFriendly]} components={components}>
         {resolvedContent}
       </ReactMarkdown>
     </div>
