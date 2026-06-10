@@ -20,7 +20,6 @@ export function Mermaid({ code }: MermaidProps) {
       startOnLoad: false,
       securityLevel: 'strict',
       theme: theme === 'dark' ? 'dark' : 'default',
-      fontFamily: 'inherit',
     });
 
     mermaid
