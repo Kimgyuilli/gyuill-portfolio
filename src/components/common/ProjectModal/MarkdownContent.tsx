@@ -1,9 +1,8 @@
-import { isValidElement, useMemo } from 'react';
+import { useMemo } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkCjkFriendly from 'remark-cjk-friendly';
 import type { Components } from 'react-markdown';
-import { Mermaid } from './Mermaid';
 import styles from './MarkdownContent.module.css';
 
 interface MarkdownContentProps {
@@ -31,20 +30,6 @@ export function MarkdownContent({ content, images }: MarkdownContentProps) {
           {children}
         </a>
       ),
-      code: ({ className, children }) => {
-        if (className?.includes('language-mermaid')) {
-          return <Mermaid code={String(children).trim()} />;
-        }
-        return <code className={className}>{children}</code>;
-      },
-      pre: ({ children }) => {
-        const child = Array.isArray(children) ? children[0] : children;
-        // mermaid 블록은 pre 래퍼 없이 렌더 (div-in-pre 무효 마크업 방지)
-        if (isValidElement(child) && child.type === Mermaid) {
-          return <>{children}</>;
-        }
-        return <pre>{children}</pre>;
-      },
     }),
     [],
   );
