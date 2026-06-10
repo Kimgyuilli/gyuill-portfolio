@@ -133,7 +133,10 @@
 .markdown-image {
   display: block;
   max-width: 100%;
+  width: auto;
   height: auto;
+  /* 세로로 긴 다이어그램이 모달을 가득 채우지 않도록 높이 상한 (비율 유지) */
+  max-height: 460px;
   border-radius: var(--radius-sm);
   margin: var(--spacing-md) auto;
   border: 1px solid var(--border-light);
