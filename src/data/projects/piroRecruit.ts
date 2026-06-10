@@ -5,7 +5,7 @@ export const piroRecruit: Project = {
   title: 'Piro-Recruit',
   description:
     'IT 연합 동아리 피로그래밍의 리쿠르팅 관리 프로세스를 디지털 전환한 종합 관리 플랫폼',
-  projectType: 'Main',
+  projectType: 'Side',
   image: piroRecruitImage,
   tags: ['Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'React'],
   github: 'https://github.com/Piro-recruit',
