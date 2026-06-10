@@ -43,7 +43,7 @@ export const skillCategories: SkillCategoryData[] = [
     title: 'Backend',
     levels: [
       { level: 'primary', label: '주력', skills: ['Java', 'Spring Boot'] },
-      { level: 'experienced', label: '사용경험', skills: ['Django', 'Python'] },
+      { level: 'experienced', label: '사용경험', skills: [] },
       { level: 'learning', label: '공부중', skills: [] },
     ],
   },
