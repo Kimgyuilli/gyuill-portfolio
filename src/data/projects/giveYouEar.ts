@@ -2,6 +2,7 @@ import type { Project } from '@/types';
 import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
 
 export const giveYouEar: Project = {
+  slug: 'give-you-ear',
   title: 'GiveYouEar (SpeekSee)',
   description:
     'AI 기반 자기주도형 발음 훈련 플랫폼. 맞춤형 스크립트 생성과 STT 분석을 통해 혼자서도 효과적인 스피킹 연습이 가능합니다.',

@@ -2,6 +2,7 @@ import type { Project } from '@/types';
 import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
 
 export const piroRecruit: Project = {
+  slug: 'piro-recruit',
   title: 'Piro-Recruit',
   description:
     'IT 연합 동아리 피로그래밍의 리쿠르팅 관리 프로세스를 디지털 전환한 종합 관리 플랫폼',

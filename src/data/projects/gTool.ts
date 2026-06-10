@@ -266,6 +266,7 @@ Redux/Zustand를 사용하지 않았다.
 `;
 
 export const gTool: Project = {
+  slug: 'g-tool',
   title: 'G-Tool',
   description:
     'Gmail, 네이버 메일, Google Calendar, 할일, 북마크를 하나의 화면에서 관리하는 AI 기반 생산성 플랫폼',

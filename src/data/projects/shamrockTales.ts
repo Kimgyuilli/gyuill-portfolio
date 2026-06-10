@@ -2,6 +2,7 @@ import type { Project } from '@/types';
 import shamrockTalesImage from '@/assets/images/project/ShamrockTales.png';
 
 export const shamrockTales: Project = {
+  slug: 'shamrock-tales',
   title: 'Shamrock Tales',
   description:
     '육아 일기를 아일랜드 설화 스타일로 변환해주는 AI 기반 웹 서비스. 간단한 한 줄 기록이 감성적인 가족 이야기로 재탄생합니다.',

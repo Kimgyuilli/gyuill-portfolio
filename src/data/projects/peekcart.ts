@@ -287,6 +287,7 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 `;
 
 export const peekcart: Project = {
+  slug: 'peekcart',
   title: 'PeekCart',
   description:
     '대용량 트래픽을 고려한 이커머스 백엔드 — 모놀리식 구현 후 MSA 전환을 준비하는 프로젝트',

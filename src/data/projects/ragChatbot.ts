@@ -1,6 +1,7 @@
 import type { Project } from '@/types';
 
 export const ragChatbot: Project = {
+  slug: 'rag-chatbot',
   title: 'RAG 챗봇',
   description:
     '문서를 업로드하면 청크 분할 및 벡터 임베딩 후 저장하고, 사용자 질문 시 관련 문서를 하이브리드 검색하여 LLM이 답변하는 RAG(Retrieval-Augmented Generation) 챗봇',

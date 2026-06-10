@@ -37,6 +37,7 @@ import cherrish34 from '@/assets/images/project/cherrish/34.webp';
 import cherrish35 from '@/assets/images/project/cherrish/35.webp';
 
 export const cherrish: Project = {
+  slug: 'cherrish',
   title: 'Cherrish',
   description:
     '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',

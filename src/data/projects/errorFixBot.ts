@@ -1,6 +1,7 @@
 import type { Project } from '@/types';
 
 export const errorFixBot: Project = {
+  slug: 'error-fix-bot',
   title: '500 Error Auto-Fix Bot',
   description:
     'Spring Boot 애플리케이션에서 500 에러 발생 시, AI가 자동으로 원인을 분석하고 수정 코드를 작성하여 GitHub PR을 생성하는 자동화 봇',

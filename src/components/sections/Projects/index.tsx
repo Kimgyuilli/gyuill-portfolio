@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { ProjectModal } from '@/components/common/ProjectModal';
 import { FadeInSection } from '@/components/common/FadeInSection';
@@ -16,11 +16,62 @@ import styles from './styles.module.css';
 
 const COLS_PER_ROW = 3;
 const MAX_ROWS = 2;
+const PROJECT_QUERY_PARAM = 'project';
 
 export function Projects() {
   const [selectedType, setSelectedType] = useState<ProjectType>('Main');
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
+  const selectProject = useCallback((project: Project) => {
+    setSelectedProject(project);
+    setSelectedType(project.projectType);
+    setSelectedCategory('All');
+  }, []);
+
+  const openProject = useCallback(
+    (project: Project) => {
+      const url = new URL(window.location.href);
+      url.searchParams.set(PROJECT_QUERY_PARAM, project.slug);
+      url.hash = 'projects';
+      window.history.pushState({}, '', url);
+      selectProject(project);
+    },
+    [selectProject],
+  );
+
+  const closeProject = useCallback(() => {
+    const url = new URL(window.location.href);
+    url.searchParams.delete(PROJECT_QUERY_PARAM);
+    window.history.replaceState({}, '', url);
+    setSelectedProject(null);
+  }, []);
+
+  useEffect(() => {
+    const syncProjectFromUrl = () => {
+      const slug = new URLSearchParams(window.location.search).get(PROJECT_QUERY_PARAM);
+
+      if (!slug) {
+        setSelectedProject(null);
+        return;
+      }
+
+      const project = projects.find((item) => item.slug === slug);
+
+      if (project) {
+        selectProject(project);
+      } else {
+        setSelectedProject(null);
+      }
+    };
+
+    syncProjectFromUrl();
+    window.addEventListener('popstate', syncProjectFromUrl);
+
+    return () => {
+      window.removeEventListener('popstate', syncProjectFromUrl);
+    };
+  }, [selectProject]);
 
   const typeFilteredProjects = useMemo(
     () =>
@@ -118,7 +169,7 @@ export function Projects() {
                   <ProjectCard
                     key={project.title}
                     project={project}
-                    onClick={() => setSelectedProject(project)}
+                    onClick={() => openProject(project)}
                   />
                 ))}
               </div>
@@ -133,7 +184,7 @@ export function Projects() {
 
       {/* 모달 */}
       {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
+        <ProjectModal project={selectedProject} onClose={closeProject} />
       )}
     </section>
   );

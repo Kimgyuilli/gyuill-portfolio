@@ -2,6 +2,7 @@ import type { Project } from '@/types';
 import geolEumGeolImage from '@/assets/images/project/Geol-eum-geol-i.png';
 
 export const geolEumGeolI: Project = {
+  slug: 'geol-eum-geol-i',
   title: '걸음걸이 (Geol-eum-geol-i)',
   description:
     '멈추지 않을 당신의 걸음을 위한 맞춤형 서비스. 일일 걸음 추적부터 커뮤니티 참여까지, 걷기 문화를 함께 만들어가는 웹 플랫폼입니다.',
