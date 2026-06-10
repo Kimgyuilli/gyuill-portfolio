@@ -293,7 +293,7 @@ export const gTool: Project = {
       'GitHub Actions CI/CD',
     ],
   },
-  duration: '2026.02.26 ~ 현재',
+  duration: '2026.02.26 ~ 2026.04.17',
   teamSize: '1명',
   role: '풀스택 개발자 (기획, 설계, 구현, 배포)',
   markdownContent: gToolMarkdown,
