@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "부채 해결 회고: MSA로 넘어가기 전에 무엇을 고치고 무엇을 일부러 남겼나",
+    summary: "Phase 4 MSA 전환을 앞두고 22개의 기술 부채를 트리아지하고, 즉시 고칠 항목과 의도적으로 남길 항목을 나눈 기준을 회고합니다.",
+    date: '2026.06.09',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-phase4-debt-retrospective/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-retrospective/",
+    tags: ["peekcart","msa","technical-debt"],
+  },
+  {
     title: "쿠버네티스 학습 기록: YAML을 던지면 무슨 일이 일어나는가",
     summary: "쿠버네티스의 선언형 API, reconciliation loop, Deployment·ReplicaSet·Pod·Service가 함께 동작하는 방식을 정리합니다.",
     date: '2026.06.07',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-inventory-conditional-update-adr/thumbnail.png",
     link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-conditional-update-adr/",
     tags: ["peekcart","inventory","concurrency"],
-  },
-  {
-    title: "PeekCart 학습 기록 18: Phase 4로 넘어가기 전에 - 글을 쓰다 발견한 22개의 부채",
-    summary: "Phase 4 MSA 진입 전에 글쓰기 과정에서 드러난 22개의 기술 부채를 보안, 관측성, 발행 경로, 동시성, CI와 배포 관점에서 정리합니다.",
-    date: '2026.06.05',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-phase4-debt-checklist/thumbnail.svg",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-checklist/",
-    tags: ["peekcart","msa","technical-debt"],
   }
 ];
