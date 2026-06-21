@@ -9,7 +9,7 @@ interface PdfExperienceProps {
 export function PdfExperience({ experiences }: PdfExperienceProps) {
   return (
     <View style={pdfStyles.sectionRow}>
-      <Text style={pdfStyles.sectionLabel}>경력</Text>
+      <Text style={pdfStyles.sectionLabel}>활동</Text>
       <View style={pdfStyles.sectionContent}>
         {experiences.map((exp, i) => (
           <View key={i} style={pdfStyles.experienceItem}>

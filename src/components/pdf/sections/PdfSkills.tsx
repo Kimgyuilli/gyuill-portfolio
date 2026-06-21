@@ -14,7 +14,6 @@ export function PdfSkills({ categories }: PdfSkillsProps) {
       <View style={pdfStyles.sectionContent}>
         {categories.map((cat) => (
           <Text key={cat.title} style={pdfStyles.skillLine}>
-            <Text style={pdfStyles.skillCategory}>{cat.title}: </Text>
             {getAllSkills(cat).join(', ')}
           </Text>
         ))}

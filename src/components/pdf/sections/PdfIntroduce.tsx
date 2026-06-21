@@ -9,13 +9,12 @@ interface PdfIntroduceProps {
 export function PdfIntroduce({ about }: PdfIntroduceProps) {
   return (
     <View style={pdfStyles.sectionRow}>
-      <Text style={pdfStyles.sectionLabel}>Introduce</Text>
+      <Text style={pdfStyles.sectionLabel}>소개</Text>
       <View style={pdfStyles.sectionContent}>
         {about.paragraphs.map((p, i) => (
-          <View key={i} style={pdfStyles.introItem}>
-            <Text style={pdfStyles.introBullet}>•</Text>
-            <Text style={pdfStyles.introText}>{p}</Text>
-          </View>
+          <Text key={i} style={pdfStyles.introText}>
+            {p}
+          </Text>
         ))}
       </View>
     </View>

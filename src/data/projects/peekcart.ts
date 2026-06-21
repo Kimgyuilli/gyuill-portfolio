@@ -294,7 +294,7 @@ export const peekcart: Project = {
   projectType: 'Main',
   image: peekcartThumbnail,
   tags: ['Spring Boot', 'Kafka', 'Redis', 'MySQL', 'Kubernetes', 'Grafana'],
-  github: 'https://github.com/Kimgyuilli/PeakCart',
+  github: 'https://github.com/Kimgyuilli/PeekCart',
   demo: '',
   categories: ['Backend'],
   techStack: {
