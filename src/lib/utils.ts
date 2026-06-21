@@ -1,6 +1,24 @@
-import { clsx, type ClassValue } from 'clsx';
-import { twMerge } from 'tailwind-merge';
+type ClassValue =
+  | string
+  | number
+  | false
+  | null
+  | undefined
+  | ClassValue[]
+  | Record<string, boolean | null | undefined>;
 
 export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
+  return inputs
+    .flatMap((input): string[] => {
+      if (!input) return [];
+      if (Array.isArray(input)) return [cn(...input)];
+      if (typeof input === 'object') {
+        return Object.entries(input)
+          .filter(([, enabled]) => enabled)
+          .map(([className]) => className);
+      }
+      return [String(input)];
+    })
+    .filter(Boolean)
+    .join(' ');
 }

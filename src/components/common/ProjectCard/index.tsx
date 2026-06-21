@@ -5,6 +5,12 @@ import { PROJECT_TYPE_LABELS } from '@/constants/projectCategories';
 import type { Project } from '@/types';
 import styles from './styles.module.css';
 
+const PROJECT_TYPE_BADGE_CLASS: Record<Project['projectType'], string> = {
+  Main: styles['type-badge-main'],
+  Side: styles['type-badge-side'],
+  Learning: styles['type-badge-learning'],
+};
+
 interface ProjectCardProps {
   project: Project;
   onClick?: () => void;
@@ -25,7 +31,9 @@ export function ProjectCard({ project, onClick }: ProjectCardProps) {
     <div className={styles['project-card']} onClick={handleCardClick}>
       <div className={styles['image-container']}>
         <ImageWithFallback src={project.image} alt={project.title} className={styles.image} />
-        <span className={`${styles['type-badge']} ${styles[`type-badge-${project.projectType.toLowerCase()}`]}`}>
+        <span
+          className={`${styles['type-badge']} ${PROJECT_TYPE_BADGE_CLASS[project.projectType]}`}
+        >
           {PROJECT_TYPE_LABELS[project.projectType]}
         </span>
       </div>
