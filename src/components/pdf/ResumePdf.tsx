@@ -9,10 +9,10 @@ import { PdfExperience } from './sections/PdfExperience';
 import { PdfAchievements } from './sections/PdfAchievements';
 import { PdfProjects } from './sections/PdfProjects';
 import type { PdfProject } from './sections/PdfProjects';
+import type { PdfSkillCategory } from './sections/PdfSkills';
 import { heroData } from '@/data/hero';
 import { socialLinksData } from '@/data/contact';
 import type { ContactInfoData } from '@/data/contact';
-import type { SkillCategoryData } from '@/data/skills';
 import type { AboutInfo } from '@/data/hero';
 import type { Experience } from '@/types';
 
@@ -129,22 +129,22 @@ const pdfProjects: PdfProject[] = [
   },
 ];
 
-const pdfSkills: SkillCategoryData[] = [
+const pdfSkills: PdfSkillCategory[] = [
   {
-    type: 'flat',
-    title: 'Skills',
-    skills: [
-      'Java',
-      'Spring Boot',
-      'JPA',
-      'MySQL',
-      'Redis',
-      'Kafka',
-      'Docker',
-      'Kubernetes',
-      'AWS',
-      'OpenAI',
-    ],
+    title: 'Backend',
+    skills: ['Java', 'Spring Boot', 'JPA', 'QueryDSL'],
+  },
+  {
+    title: 'Data & Messaging',
+    skills: ['MySQL', 'PostgreSQL', 'Redis', 'Kafka'],
+  },
+  {
+    title: 'Infra',
+    skills: ['Docker', 'Kubernetes', 'GKE', 'AWS'],
+  },
+  {
+    title: 'AI & Collaboration',
+    skills: ['OpenAI', 'Spring AI', 'Claude', 'Notion', 'Slack'],
   },
 ];
 

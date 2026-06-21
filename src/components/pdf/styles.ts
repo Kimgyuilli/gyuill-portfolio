@@ -318,12 +318,20 @@ export const pdfStyles = StyleSheet.create({
   },
 
   // ── Skills ──
+  skillRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 2,
+  },
   skillLine: {
     fontSize: 9,
     color: colors.textSecondary,
-    marginBottom: 2,
+    width: '72%',
+    lineHeight: 1.45,
   },
   skillCategory: {
+    width: '28%',
+    fontSize: 9,
     fontWeight: 700,
     color: colors.textPrimary,
   },

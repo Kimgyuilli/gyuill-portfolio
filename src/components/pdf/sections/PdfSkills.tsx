@@ -1,10 +1,13 @@
 import { View, Text } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-import { getAllSkills } from '@/data/skills';
-import type { SkillCategoryData } from '@/data/skills';
+
+export interface PdfSkillCategory {
+  title: string;
+  skills: string[];
+}
 
 interface PdfSkillsProps {
-  categories: SkillCategoryData[];
+  categories: PdfSkillCategory[];
 }
 
 export function PdfSkills({ categories }: PdfSkillsProps) {
@@ -13,9 +16,10 @@ export function PdfSkills({ categories }: PdfSkillsProps) {
       <Text style={pdfStyles.sectionLabel}>스킬</Text>
       <View style={pdfStyles.sectionContent}>
         {categories.map((cat) => (
-          <Text key={cat.title} style={pdfStyles.skillLine}>
-            {getAllSkills(cat).join(', ')}
-          </Text>
+          <View key={cat.title} style={pdfStyles.skillRow}>
+            <Text style={pdfStyles.skillCategory}>{cat.title}</Text>
+            <Text style={pdfStyles.skillLine}>{cat.skills.join(', ')}</Text>
+          </View>
         ))}
       </View>
     </View>
