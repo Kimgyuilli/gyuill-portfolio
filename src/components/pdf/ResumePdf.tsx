@@ -31,8 +31,8 @@ const pdfContactInfo: ContactInfoData[] = [
 
 const pdfIntroduce: AboutInfo = {
   paragraphs: [
-    '성능과 정합성 문제를 직접 재현하고, 측정 결과를 바탕으로 설계를 개선하는 백엔드 개발자입니다. PeekCart에서 Redis 분산 락, DB 낙관적 락, Transactional Outbox, Kafka DLQ, GKE 부하 테스트를 직접 설계·검증하며 상품 조회 TPS 2.31배 개선, 1,000 VUser 동시 주문 오버셀링 0건을 확인했습니다.',
-    '협업에서는 팀이 같은 우선순위로 움직이도록 요구사항, API 응답 형태, 일정, 배포 흐름을 조율하는 일을 중요하게 봅니다. Cherrish에서는 Server Lead로 제한된 Server 인원과 인프라 자원 안에서 핵심 기능을 관리했고, Spring AI/OpenAI를 제품 기능과 개발 프로세스 양쪽에 적용했습니다.',
+    '백엔드와 인프라를 기반으로 제품 문제를 끝까지 해결하는 프로덕트 엔지니어입니다. PeekCart에서 Redis 분산 락, DB 낙관적 락, Transactional Outbox, Kafka DLQ, GKE 부하 테스트를 직접 설계·검증하며 상품 조회 TPS 2.31배 개선, 1,000 VUser 동시 주문 오버셀링 0건을 확인했습니다.',
+    '단순히 주어진 API를 구현하는 데 그치지 않고, 요구사항과 사용자 흐름, 클라이언트 구현 난이도, 운영 안정성을 함께 고려해 해결 방식을 제안합니다. Cherrish에서는 Server Lead로 13명 협업을 조율했고, Spring AI/OpenAI와 리뷰 자동화 도구를 활용해 제품 기능과 팀 생산성을 함께 개선했습니다.',
   ],
 };
 
@@ -94,7 +94,7 @@ const pdfProjects: PdfProject[] = [
   {
     title: 'Cherrish',
     description:
-      '13명(TL·iOS·Android·Server·Design) 협업으로 개발한 AI 기반 뷰티 캘린더 앱. 문제 해결 방식과 협업 생산성을 주도적으로 개선한 프로젝트',
+      'TL, iOS, Android, Server, Design 13명 협업의 AI 기반 뷰티 캘린더 앱. Server 2명 중 Lead로 문제 해결 방식과 협업 생산성을 개선',
     period: '2025.12 - 2026.02',
     role: 'Server Lead',
     github: 'https://github.com/TEAM-Cherrish/Cherrish-Server',
