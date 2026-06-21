@@ -42,7 +42,7 @@ const pdfProjects: PdfProject[] = [
     description:
       '대용량 트래픽을 고려한 이커머스 백엔드. 성능·정합성·이벤트 안정성·운영 검증을 직접 설계하고 측정한 프로젝트',
     period: '2026.03 - 진행 중',
-    role: 'Backend / Infra / Load Test',
+    role: '1인 개발 · Backend / Infra / Load Test',
     github: 'https://github.com/Kimgyuilli/PeekCart',
     tags: [
       'Java 17',
@@ -184,7 +184,7 @@ const pdfExperiences: Experience[] = [
     company: 'AYU DB LAB',
     position: '학부 연구생',
     period: '2024.03 - 2026.02',
-    description: ['교내 스터디 참가', '학술 논문 및 프로젝트 연구 진행'],
+    description: ['교내 스터디 참가', '노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
     type: 'activity',
   },
 ];
