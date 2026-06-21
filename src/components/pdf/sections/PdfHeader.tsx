@@ -40,10 +40,7 @@ export function PdfHeader({ name, contactInfo, socialLinks }: PdfHeaderProps) {
       </Text>
       <View style={pdfStyles.headerContactGrid}>
         {items.map((item, index) => (
-          <View
-            key={item.label}
-            style={[pdfStyles.headerContactBlock, headerContactWidths[index]]}
-          >
+          <View key={item.label} style={[pdfStyles.headerContactBlock, headerContactWidths[index]]}>
             <Text style={pdfStyles.headerContactLabel}>{item.label}</Text>
             {item.href ? (
               <Link src={item.href} style={pdfStyles.headerContactValueLink}>

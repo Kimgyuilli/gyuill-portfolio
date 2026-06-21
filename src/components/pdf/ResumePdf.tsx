@@ -93,7 +93,8 @@ const pdfProjects: PdfProject[] = [
   },
   {
     title: 'Cherrish',
-    description: '13명(TL·iOS·Android·Server·Design) 협업으로 개발한 AI 기반 뷰티 캘린더 앱',
+    description:
+      '13명(TL·iOS·Android·Server·Design) 협업으로 개발한 AI 기반 뷰티 캘린더 앱. 문제 해결 방식과 협업 생산성을 주도적으로 개선한 프로젝트',
     period: '2025.12 - 2026.02',
     role: 'Server Lead',
     github: 'https://github.com/TEAM-Cherrish/Cherrish-Server',
@@ -107,22 +108,22 @@ const pdfProjects: PdfProject[] = [
     ],
     cases: [
       {
-        title: '타 파트 요구사항 조율과 API 의사결정',
+        title: '문제 해결 방식 제안과 API 의사결정',
         problem:
-          'iOS, Android, Design, Server가 함께 움직이면서 디자인 요구사항, 클라이언트 구현 난이도, 서버 데이터 구조가 자주 충돌했습니다.',
+          'iOS, Android, Design, Server가 함께 움직이면서 디자인 요구사항, 클라이언트 구현 난이도, 서버 데이터 구조가 자주 충돌했고, 단순 구현보다 어떤 방식으로 풀지 먼저 합의해야 했습니다.',
         action:
-          'Server Lead로 기능 단위 요구사항을 쪼개고, API 응답 형태와 필수/선택 정책, 일정 우선순위를 파트별 구현 부담과 사용자 경험 기준으로 조율했습니다.',
+          'Server Lead로 요구사항을 기능 단위로 쪼개고, API 응답 형태와 필수/선택 정책을 구현 난이도와 사용자 경험 기준으로 비교해 해결안을 제안했습니다.',
         result:
-          '13명 협업 환경에서 파트 간 요구사항 충돌을 줄이고, 서버 변경이 클라이언트 작업에 미치는 영향을 낮췄습니다.',
+          '13명 협업 환경에서 파트별 작업 기준을 명확히 했고, 서버 변경이 클라이언트 일정과 구현에 미치는 영향을 낮췄습니다.',
       },
       {
-        title: '제한된 서버 자원과 개발 리소스 관리',
+        title: 'AI 활용과 협업 생산성 개선',
         problem:
-          'Server 2명이 짧은 기간 안에 시술 검색, 다운타임 계산, 캘린더 조회, AI 챌린지 생성, 배포까지 처리해야 했고, 도메인이 섞이면 기능 확장 시 서비스 로직이 쉽게 비대해질 수 있었습니다.',
+          'Server 2명이 짧은 기간 안에 시술 검색, 다운타임 계산, 캘린더 조회, AI 챌린지 생성, 배포까지 처리해야 했고, 반복 검토와 문서화 비용을 줄일 필요가 있었습니다.',
         action:
-          '캘린더·다운타임·챌린지 핵심 플로우를 우선 안정화하고, DDD 레이어드 아키텍처와 QueryDSL로 조회 책임을 분리했습니다. checkStyle, CodeRabbit, Jacoco, Docker 기반 실행 흐름도 정리했습니다.',
+          'Spring AI/OpenAI를 제품 기능에 적용하고, CodeRabbit과 OpenAI를 PR 리뷰 보조, 변경 영향 정리, 문서 초안화에 활용했습니다. checkStyle, Jacoco, Docker 기반 실행 흐름도 정리했습니다.',
         result:
-          '제한된 인원과 인프라 자원 안에서 핵심 기능을 완성했고, Spring AI 기반 개인화 루틴과 OIDC 기반 CI/CD를 구현했습니다.',
+          '제한된 인원과 인프라 자원 안에서도 핵심 기능을 완성했고, 팀원이 같은 맥락에서 리뷰하고 작업할 수 있는 협업 흐름을 만들었습니다.',
       },
     ],
   },
