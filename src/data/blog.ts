@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "레거시 API를 한 번에 갈아엎으려다 멈춘 이유",
+    summary: "Go/Gin 레거시 API를 Spring Boot로 이관하려다 빅뱅 컷오버 대신 path-based Strangler Fig 방식으로 방향을 바꾼 과정을 회고합니다.",
+    date: '2026.07.05',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/legacy-api-strangler-fig-migration/thumbnail.svg",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/legacy-api-strangler-fig-migration/",
+    tags: ["migration","architecture","strangler-fig"],
+  },
+  {
     title: "모듈러 모놀리스와 Spring Modulith 학습 기록",
     summary: "Spring Boot 기반 WAS에서 모듈러 모놀리스를 선택하는 이유와 Spring Modulith로 모듈 경계, public API/internal 규칙, 이벤트, 검증 테스트를...",
     date: '2026.06.22',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/spring-boot-4-java-was/image-01.webp",
     link: "https://blog.rlarbdlf222.workers.dev/blog/spring-boot-4-java-was/",
     tags: ["spring","spring-boot","java"],
-  },
-  {
-    title: "부채 해결 회고: MSA로 넘어가기 전에 무엇을 고치고 무엇을 일부러 남겼나",
-    summary: "Phase 4 MSA 전환을 앞두고 22개의 기술 부채를 트리아지하고, 즉시 고칠 항목과 의도적으로 남길 항목을 나눈 기준을 회고합니다.",
-    date: '2026.06.09',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-phase4-debt-retrospective/thumbnail.png",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-retrospective/",
-    tags: ["peekcart","msa","technical-debt"],
   }
 ];
