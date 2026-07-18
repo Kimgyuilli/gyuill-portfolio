@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "서버는 멀쩡한데 왜 503이 났을까",
+    summary: "GKE Autopilot의 노드 축소 중 Ready Pod가 0개가 되며 발생한 간헐적 503을 추적하고, replica·PDB·topology spread로 요청 경로를 지킨 과...",
+    date: '2026.07.18',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/gke-autopilot-transient-503/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/gke-autopilot-transient-503/",
+    tags: ["kubernetes","gke","gke-autopilot"],
+  },
+  {
     title: "아웃박스로 EDA를 시작하며 마주한 네 가지 질문",
     summary: "Transactional Outbox를 도입하며 payload, event_type 네이밍, 하위호환성, 버저닝 전략을 어떻게 정했는지 정리합니다.",
     date: '2026.07.08',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/grpc-protobuf-contract-repository/thumbnail.svg",
     link: "https://blog.rlarbdlf222.workers.dev/blog/grpc-protobuf-contract-repository/",
     tags: ["grpc","protobuf","msa"],
-  },
-  {
-    title: "레거시 API를 한 번에 갈아엎으려다 멈춘 이유",
-    summary: "Go/Gin 레거시 API를 Spring Boot로 이관하려다 빅뱅 컷오버 대신 path-based Strangler Fig 방식으로 방향을 바꾼 과정을 회고합니다.",
-    date: '2026.07.05',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/legacy-api-strangler-fig-migration/thumbnail.svg",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/legacy-api-strangler-fig-migration/",
-    tags: ["migration","architecture","strangler-fig"],
   }
 ];
