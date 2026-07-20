@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "MySQL vs PostgreSQL: MVCC부터 인덱스와 운영까지",
+    summary: "MySQL(InnoDB)과 PostgreSQL의 차이를 MVCC, VACUUM과 undo log, 격리 수준, 인덱스, 복제, 운영 관점에서 비교합니다.",
+    date: '2026.07.19',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/mysql-vs-postgresql/thumbnail.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/mysql-vs-postgresql/",
+    tags: ["mysql","postgresql","database"],
+  },
+  {
     title: "서버는 멀쩡한데 왜 503이 났을까",
     summary: "GKE Autopilot의 노드 축소 중 Ready Pod가 0개가 되며 발생한 간헐적 503을 추적하고, replica·PDB·topology spread로 요청 경로를 지킨 과...",
     date: '2026.07.18',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/outbox-eda-four-questions/thumbnail.svg",
     link: "https://blog.rlarbdlf222.workers.dev/blog/outbox-eda-four-questions/",
     tags: ["outbox","eda","event-driven"],
-  },
-  {
-    title: "학습 기록: gRPC와 Protocol Buffers, 그리고 그 너머",
-    summary: "proto 계약 저장소를 읽으며 gRPC와 Protocol Buffers의 층위를 구분하고, 코드 생성, 이진 인코딩, 스트리밍 모드, 스키마 진화, 대안 기술까지 정리한다.",
-    date: '2026.07.06',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/grpc-protobuf-contract-repository/thumbnail.svg",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/grpc-protobuf-contract-repository/",
-    tags: ["grpc","protobuf","msa"],
   }
 ];
