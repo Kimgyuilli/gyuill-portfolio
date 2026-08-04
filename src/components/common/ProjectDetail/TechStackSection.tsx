@@ -1,5 +1,5 @@
 import type { Project } from '@/types';
-import styles from './ModalSections.module.css';
+import styles from './Sections.module.css';
 
 interface TechStackSectionProps {
   techStack: Project['techStack'];

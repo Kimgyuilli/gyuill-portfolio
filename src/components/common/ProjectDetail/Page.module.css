@@ -1,0 +1,101 @@
+/* Project Detail Page - Shell, Back Button, Header Media */
+
+.page {
+  min-height: 100vh;
+  /* 고정 네비게이션(4rem) 아래에서 시작 */
+  padding-top: calc(4rem + var(--spacing-xl));
+  padding-bottom: var(--spacing-4xl);
+  background-color: var(--bg-body);
+}
+
+.container {
+  max-width: 80rem;
+  margin: 0 auto;
+  padding-left: var(--spacing-md);
+  padding-right: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--spacing-lg);
+    padding-right: var(--spacing-lg);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    padding-left: var(--spacing-xl);
+    padding-right: var(--spacing-xl);
+  }
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  margin-bottom: var(--spacing-lg);
+  padding: var(--spacing-xs) var(--spacing-sm-md) var(--spacing-xs) var(--spacing-sm);
+  background-color: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  cursor: pointer;
+  transition:
+    color 0.2s,
+    border-color 0.2s,
+    background-color 0.2s;
+}
+
+.back-button:hover {
+  color: var(--text-primary);
+  border-color: var(--text-muted);
+  background-color: var(--bg-section);
+}
+
+:global(.dark) .back-button:hover {
+  background-color: var(--bg-card-alt);
+}
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+}
+
+.image-container {
+  position: relative;
+  width: 100%;
+  height: 28rem;
+  overflow: hidden;
+  background-color: var(--bg-section);
+}
+
+.image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Mobile Responsive */
+@media (max-width: 640px) {
+  .page {
+    padding-top: calc(4rem + var(--spacing-lg));
+  }
+
+  .card {
+    border-radius: var(--radius-xl);
+  }
+
+  .image-container {
+    height: 16rem;
+  }
+}
+
+/* Tablet: 중간 크기 이미지 */
+@media (min-width: 641px) and (max-width: 1023px) {
+  .image-container {
+    height: 22rem;
+  }
+}

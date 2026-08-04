@@ -1,6 +1,6 @@
 import type { Project } from '@/types';
 import { MarkdownContent } from './MarkdownContent';
-import styles from './ModalSections.module.css';
+import styles from './Sections.module.css';
 
 const URL_REGEX = /(https?:\/\/[^\s)]+)/g;
 

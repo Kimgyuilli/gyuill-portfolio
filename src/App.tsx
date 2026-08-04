@@ -7,25 +7,36 @@ import { Achievements } from '@/components/sections/Achievements';
 import { Experience } from '@/components/sections/Experience';
 import { Blog } from '@/components/sections/Blog';
 import { Contact } from '@/components/sections/Contact';
+import { ProjectDetailPage } from '@/components/common/ProjectDetail';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { useProjectRoute } from '@/hooks/useProjectRoute';
 import { initAnalytics } from '@/lib/analytics';
 import styles from './App.module.css';
 
 export default function App() {
+  const { activeProject, openProject, goHome } = useProjectRoute();
+
   useEffect(() => {
     initAnalytics();
   }, []);
+
   return (
     <ThemeProvider>
       <div className={styles.app}>
-        <Navigation />
-        <Hero />
-        <Skills />
-        <Projects />
-        <Achievements />
-        <Experience />
-        <Blog />
-        <Contact />
+        <Navigation isProjectPage={!!activeProject} onNavigateHome={goHome} />
+        {activeProject ? (
+          <ProjectDetailPage project={activeProject} onBack={() => goHome('projects')} />
+        ) : (
+          <>
+            <Hero />
+            <Skills />
+            <Projects onOpenProject={openProject} />
+            <Achievements />
+            <Experience />
+            <Blog />
+            <Contact />
+          </>
+        )}
       </div>
     </ThemeProvider>
   );

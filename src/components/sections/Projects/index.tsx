@@ -1,6 +1,5 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { ProjectCard } from '@/components/common/ProjectCard';
-import { ProjectModal } from '@/components/common/ProjectModal';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { ExpandableSection } from '@/components/common/ExpandableSection';
 import { projects } from '@/data/projects';
@@ -16,62 +15,14 @@ import styles from './styles.module.css';
 
 const COLS_PER_ROW = 3;
 const MAX_ROWS = 2;
-const PROJECT_QUERY_PARAM = 'project';
 
-export function Projects() {
+interface ProjectsProps {
+  onOpenProject: (project: Project) => void;
+}
+
+export function Projects({ onOpenProject }: ProjectsProps) {
   const [selectedType, setSelectedType] = useState<ProjectType>('Main');
   const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-
-  const selectProject = useCallback((project: Project) => {
-    setSelectedProject(project);
-    setSelectedType(project.projectType);
-    setSelectedCategory('All');
-  }, []);
-
-  const openProject = useCallback(
-    (project: Project) => {
-      const url = new URL(window.location.href);
-      url.searchParams.set(PROJECT_QUERY_PARAM, project.slug);
-      url.hash = 'projects';
-      window.history.pushState({}, '', url);
-      selectProject(project);
-    },
-    [selectProject],
-  );
-
-  const closeProject = useCallback(() => {
-    const url = new URL(window.location.href);
-    url.searchParams.delete(PROJECT_QUERY_PARAM);
-    window.history.replaceState({}, '', url);
-    setSelectedProject(null);
-  }, []);
-
-  useEffect(() => {
-    const syncProjectFromUrl = () => {
-      const slug = new URLSearchParams(window.location.search).get(PROJECT_QUERY_PARAM);
-
-      if (!slug) {
-        setSelectedProject(null);
-        return;
-      }
-
-      const project = projects.find((item) => item.slug === slug);
-
-      if (project) {
-        selectProject(project);
-      } else {
-        setSelectedProject(null);
-      }
-    };
-
-    syncProjectFromUrl();
-    window.addEventListener('popstate', syncProjectFromUrl);
-
-    return () => {
-      window.removeEventListener('popstate', syncProjectFromUrl);
-    };
-  }, [selectProject]);
 
   const typeFilteredProjects = useMemo(
     () =>
@@ -93,16 +44,12 @@ export function Projects() {
     () =>
       selectedCategory === 'All'
         ? typeFilteredProjects
-        : typeFilteredProjects.filter((project) =>
-            project.categories.includes(selectedCategory),
-          ),
+        : typeFilteredProjects.filter((project) => project.categories.includes(selectedCategory)),
     [typeFilteredProjects, selectedCategory],
   );
 
   const typeCount = (type: ProjectType) =>
-    type === 'All'
-      ? projects.length
-      : projects.filter((p) => p.projectType === type).length;
+    type === 'All' ? projects.length : projects.filter((p) => p.projectType === type).length;
 
   const showToggle = filteredProjects.length > COLS_PER_ROW * MAX_ROWS;
 
@@ -129,9 +76,7 @@ export function Projects() {
                 key={type}
                 onClick={() => handleTypeChange(type)}
                 className={`${styles['type-tab']} ${
-                  selectedType === type
-                    ? styles['type-tab-active']
-                    : styles['type-tab-inactive']
+                  selectedType === type ? styles['type-tab-active'] : styles['type-tab-inactive']
                 }`}
               >
                 {PROJECT_TYPE_LABELS[type]}
@@ -169,7 +114,7 @@ export function Projects() {
                   <ProjectCard
                     key={project.title}
                     project={project}
-                    onClick={() => openProject(project)}
+                    onClick={() => onOpenProject(project)}
                   />
                 ))}
               </div>
@@ -181,11 +126,6 @@ export function Projects() {
           )}
         </FadeInSection>
       </div>
-
-      {/* 모달 */}
-      {selectedProject && (
-        <ProjectModal project={selectedProject} onClose={closeProject} />
-      )}
     </section>
   );
 }
