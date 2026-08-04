@@ -2,17 +2,29 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { projects } from '@/data/projects';
 import type { Project } from '@/types';
 
-const PROJECT_QUERY_PARAM = 'project';
+/** Vite가 보장하는 형식: 항상 '/'로 끝난다. (dev: '/', prod: '/portfolio/') */
+const BASE_URL = import.meta.env.BASE_URL;
+const PROJECTS_PREFIX = `${BASE_URL}projects/`;
+/** 예전에 공유된 쿼리형 링크 호환용 */
+const LEGACY_QUERY_PARAM = 'project';
 
 /**
  * 프로젝트 상세를 별도 페이지로 보여주기 위한 라우팅.
  *
- * 빌드 결과가 정적 파일로 서빙되므로(`/portfolio/` 하위) 경로형 URL 대신
- * `?project=<slug>` 쿼리 파라미터를 쓴다. 어떤 상세 링크를 직접 열어도
- * 실제 요청 경로는 언제나 `index.html` 하나뿐이라 새로고침·공유가 안전하다.
+ * 정식 URL은 `{base}projects/<slug>/` 경로형이다. 빌드 시 이 경로마다
+ * index.html을 실제 파일로 만들어 두기 때문에(vite.config.ts의
+ * emit-project-pages) 새로고침과 직접 접속에도 호스트 설정이 필요 없다.
  */
+function toSlug(pathname: string, search: string): string | null {
+  if (pathname.startsWith(PROJECTS_PREFIX)) {
+    const rest = pathname.slice(PROJECTS_PREFIX.length).replace(/\/+$/, '');
+    if (rest) return decodeURIComponent(rest);
+  }
+  return new URLSearchParams(search).get(LEGACY_QUERY_PARAM);
+}
+
 function readSlug(): string | null {
-  return new URLSearchParams(window.location.search).get(PROJECT_QUERY_PARAM);
+  return toSlug(window.location.pathname, window.location.search);
 }
 
 export function useProjectRoute() {
@@ -42,20 +54,14 @@ export function useProjectRoute() {
   );
 
   const openProject = useCallback((project: Project) => {
-    const url = new URL(window.location.href);
-    url.searchParams.set(PROJECT_QUERY_PARAM, project.slug);
-    url.hash = '';
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', `${PROJECTS_PREFIX}${project.slug}/`);
     setSlug(project.slug);
     window.scrollTo({ top: 0 });
   }, []);
 
   /** 목록으로 돌아간다. sectionId를 주면 해당 섹션 위치로 스크롤한다. */
   const goHome = useCallback((sectionId?: string) => {
-    const url = new URL(window.location.href);
-    url.searchParams.delete(PROJECT_QUERY_PARAM);
-    url.hash = sectionId ? `#${sectionId}` : '';
-    window.history.pushState({}, '', url);
+    window.history.pushState({}, '', `${BASE_URL}${sectionId ? `#${sectionId}` : ''}`);
 
     pendingScrollRef.current = sectionId ?? null;
     if (!sectionId) window.scrollTo({ top: 0 });
