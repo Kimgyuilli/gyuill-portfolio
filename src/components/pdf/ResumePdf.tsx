@@ -69,18 +69,18 @@ const pdfProjects: PdfProject[] = [
         problem:
           '모듈러 모놀리스의 경계는 합의만으로 지켜지지 않습니다. 다른 모듈의 내부 클래스를 import 하는 순간 경계가 사라지는데, 그것을 막는 수단이 리뷰어의 기억력뿐이었습니다.',
         action:
-          '각 모듈을 Gradle 서브프로젝트 13개로 물리 분리해 클래스패스에 없으면 참조 자체가 불가능하게 하고, 그 위에 Spring Modulith의 ApplicationModules.verify()를 얹어 internal 패키지 참조와 순환 의존을 빌드 실패로 만들었습니다.',
+          '각 모듈을 Gradle 서브프로젝트 13개로 물리 분리해 클래스패스에 없으면 참조가 불가능하게 하고, Spring Modulith의 ApplicationModules.verify()로 internal 패키지 참조와 순환 의존을 빌드 실패로 만들었습니다.',
         result:
-          'signal 모듈의 순환 의존을 실제로 빌드가 잡아내 공개 계약은 root, 구현체는 nested package-private으로 재배치했습니다. 모듈이 각자 Flyway 마이그레이션을 소유해 단독 Testcontainers 통합 테스트가 가능하게 설계했습니다.',
+          'signal 모듈의 순환 의존을 빌드가 실제로 잡아내 공개 계약은 root, 구현체는 nested package-private으로 재배치했습니다. 모듈이 각자 Flyway 마이그레이션을 소유하게 해, 앱 전체를 띄우지 않고 모듈 단위로 실제 PostgreSQL(Testcontainers) 위에서 통합 테스트를 돌릴 수 있게 했습니다.',
       },
       {
         title: '팀 사이의 경계: 결정이 안 난 채로 전진하기',
         problem:
-          '레거시 서버·worker·retrieval·인프라와 웹/앱 클라이언트가 모두 다른 담당자 소관이라 서버가 단독으로 정할 수 없는 결정이 계속 나왔습니다. 답을 기다리면 일정이 멈추고, 그냥 정하면 나중에 뒤집혔습니다.',
+          '레거시 서버·worker·retrieval·인프라와 웹/앱 클라이언트가 모두 다른 담당자 소관이라, 서버가 단독으로 정할 수 없는 결정이 계속 나왔습니다. 기다리면 일정이 멈췄고, 임의로 정하기에는 되돌리는 비용이 컸습니다.',
         action:
-          '서버 단독으로 정할 수 없으면서 구현에 실제 영향을 주는 항목만 5개로 추린 결정 요청서를 만들어, 회의에서 논의가 아니라 판정이 일어나게 했습니다. 답을 받기 어려운 항목은 리스크로 등록해 비용 기준으로 즉시 반영과 행동 제약을 갈랐습니다.',
+          '서버가 단독으로 정할 수 없으면서 구현에 실제 영향을 주는 항목만 5개로 추린 결정 요청서를 만들어, 회의에서 논의가 아니라 판정이 일어나게 했습니다. 답을 받기 어려운 항목은 리스크로 등록해 즉시 반영과 행동 제약을 구분했습니다.',
         result:
-          '이벤트 envelope과 근거 참조 방식 등 크로스팀 계약을 ADR 15건으로 확정했습니다. gRPC는 쓰지 않으면서 proto만 공통 계약으로 채택해, Go와 Java가 같은 정의를 보고 코드를 생성하는 이득만 취했습니다.',
+          '이벤트 envelope과 근거 참조 방식 등 크로스팀 계약을 ADR 15건으로 확정했습니다. proto를 공통 계약으로 채택해, Go와 Java가 같은 정의로 코드를 생성하는 이득을 취했습니다.',
       },
     ],
   },
@@ -146,7 +146,7 @@ const pdfSkills: PdfSkillCategory[] = [
   },
   {
     title: 'AI & Collaboration',
-    skills: ['OpenAI', 'Spring AI', 'Claude', 'Notion', 'Slack'],
+    skills: ['Codex', 'Claude', 'Notion', 'Slack', 'Linear'],
   },
 ];
 
@@ -158,7 +158,7 @@ const pdfExperiences: Experience[] = [
     description: [
       'SOPT 해커톤 2회 참여, 웹 서비스 부문(37기)·iOS 서비스 부문(38기) 대상 수상',
       '38기 AI 비서를 통한 프로젝트 맥락 및 태스크 관리 서비스 Momens Server Lead',
-      '37기 시술 다운타임 관리 앱 Cherrish Server Lead',
+      '37기 시술 다운타임 관리 앱 Cherrish Server Lead, GitHub Wiki 기반 서버 문서화',
       '서버 파트 합동 세미나 참여, Redis 스터디장 및 성능테스트 스터디 참여',
       '두 기수 동안 정보 공유 아티클 39개 작성',
     ],
@@ -189,7 +189,7 @@ const pdfExperiences: Experience[] = [
     company: 'AYU DB LAB',
     position: '학부 연구생',
     period: '2024.03 - 2026.02',
-    description: ['교내 스터디 참가', '노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
+    description: ['노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
     type: 'activity',
   },
 ];
