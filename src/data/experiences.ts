@@ -25,7 +25,7 @@ export const experiences: Experience[] = [
       '1주차 과제 MVP',
       '12주간 정보 공유 아티클 22개 작성',
       '해커톤 참여 및 웹 서비스 부문 대상 수상',
-      '뷰티 캘린더 앱 "Cherrish" Server Lead',
+      '뷰티 캘린더 앱 "Cherrish" Server Lead, GitHub Wiki 기반 서버 문서화',
     ],
     type: 'activity',
   },
@@ -71,7 +71,7 @@ export const experiences: Experience[] = [
     company: 'AYU DB LAB',
     position: '학부 연구생',
     period: '2024.03 - 2026.02',
-    description: ['교내 스터디 참가', '노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
+    description: ['노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
     type: 'activity',
   },
 ];

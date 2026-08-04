@@ -42,9 +42,9 @@ export const skillCategories: SkillCategoryData[] = [
     type: 'leveled',
     title: 'Backend',
     levels: [
-      { level: 'primary', label: '주력', skills: ['Java', 'Spring Boot'] },
+      { level: 'primary', label: '주력', skills: ['Java', 'Spring Boot', 'JPA', 'QueryDSL'] },
       { level: 'experienced', label: '사용경험', skills: [] },
-      { level: 'learning', label: '공부중', skills: [] },
+      { level: 'learning', label: '공부중', skills: ['Kafka'] },
     ],
   },
   {
@@ -53,9 +53,13 @@ export const skillCategories: SkillCategoryData[] = [
     skills: ['PostgreSQL', 'MySQL', 'Redis'],
   },
   {
-    type: 'flat',
+    type: 'leveled',
     title: 'DevOps',
-    skills: ['Docker', 'AWS', 'GCP', 'NCP', 'GitHub Actions', 'Vercel'],
+    levels: [
+      { level: 'primary', label: '주력', skills: ['Docker', 'AWS', 'GitHub Actions'] },
+      { level: 'experienced', label: '사용경험', skills: ['GCP', 'NCP', 'Vercel'] },
+      { level: 'learning', label: '공부중', skills: ['Kubernetes', 'GKE'] },
+    ],
   },
   {
     type: 'flat',
@@ -67,8 +71,10 @@ export const skillCategories: SkillCategoryData[] = [
       'Figma',
       'Slack',
       'Notion',
+      'Linear',
       'Postman',
       'Claude',
+      'Codex',
       'Gemini',
       'Perplexity',
     ],
