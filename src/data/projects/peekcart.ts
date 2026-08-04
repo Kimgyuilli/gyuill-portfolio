@@ -22,15 +22,15 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 ### 핵심 성과
 
-- **1,000 VUser 동시 주문에서 오버셀링 0건** — Redis 분산 락 + DB 낙관적 락으로 재고 정합성 검증
-- **상품 조회 TPS ×2.31 개선** — Redis Cache-Aside 적용 전후 (265.0 → 612.7, GKE 실측)
-- **이벤트 유실·중복 소비 대응** — Transactional Outbox + 멱등성(\`processed_events\`) + DLQ
+- **1,000 VUser 동시 주문에서 오버셀링 0건.** Redis 분산 락과 DB 낙관적 락으로 재고 정합성을 검증했다
+- **상품 조회 TPS ×2.31 개선.** Redis Cache-Aside 적용 전후 비교 (265.0 → 612.7, GKE 실측)
+- **이벤트 유실·중복 소비 대응.** Transactional Outbox + 멱등성(\`processed_events\`) + DLQ
 
 ### 개발 동기
 
 "이커머스 CRUD"는 많지만, 트래픽이 몰릴 때 무엇이 먼저 깨지는지, 그걸 어떤 순서로 막아야 하는지를 직접 겪어보고 싶었다. 그래서 처음부터 MSA로 가지 않고 **모놀리식으로 시작한 뒤, 동시성·이벤트 유실·중복 소비 같은 문제를 실제로 마주칠 때마다 그에 맞는 패턴을 도입**하는 방식으로 진행했다.
 
-핵심 원칙은 "무엇을 만들었는가"가 아니라 **왜 그 방식으로 만들었는가**다. 모든 기술 도입을 \`문제 → 대안 비교 → 선택 근거 → 한계\`로 기록하고, 주요 결정은 ADR(Architecture Decision Record)로 남겼다. 측정 결과는 목표에 미달하더라도 미화하지 않고 그대로 기록했다.
+핵심 원칙은 "무엇을 만들었는가"가 아니라 **왜 그 방식으로 만들었는가**다. 모든 기술 도입을 \`문제 → 대안 비교 → 선택 근거 → 한계\`로 기록하고, 주요 결정은 ADR(Architecture Decision Record)로 남겼다. 측정 결과는 목표에 미달하더라도 그대로 기록했다.
 
 현재 Phase 1~3(모놀리식 구현 · 성능/정합성 보강 · 인프라/관측성/부하 검증)을 마쳤고, **Phase 4(MSA 분리)로 넘어가기 전에 그동안의 설계와 부채를 정리하는 단계**에 있다. 아래 블로그 연재(학습 기록 20여 편)가 그 정리 작업의 산출물이다.
 
@@ -54,7 +54,7 @@ const peekcartMarkdown = `## 프로젝트 개요
 | Observability | Prometheus, Grafana, Micrometer, kube-prometheus-stack |
 | Load Test | nGrinder, k6 |
 
-### 진화 전략 — 왜 모놀리식에서 시작했나
+### 진화 전략: 왜 모놀리식에서 시작했나
 
 분산 시스템의 복잡도는 **그것이 필요한 문제를 먼저 겪은 뒤** 도입해야 설명할 수 있다고 봤다. Phase별로 "이번 단계에서 해결할 문제"를 분명히 두고 진행했다.
 
@@ -62,7 +62,7 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 ---
 
-## 1. 문제와 해결 — 1,000명이 같은 상품을 동시에 주문하면
+## 1. 문제와 해결: 1,000명이 같은 상품을 동시에 주문하면
 
 ### 문제 (As-Is)
 
@@ -70,9 +70,9 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 ### 해결 (To-Be)
 
-평상시엔 **Redis 분산 락(Redisson)으로 동시 요청을 직렬화**한다. 락을 못 잡으면(경합) 대기 없이 즉시 409로 떨군다. 그리고 **Redis 자체가 장애일 땐 락 없이 트랜잭션을 진행하되, DB 낙관적 락(\`@Version\`)이 최후 방어선**으로 동시 차감을 막는다. '경합 차단'과 '장애 시 정합성 보장'은 서로 다른 경로다.
+평상시엔 **Redis 분산 락(Redisson)으로 동시 요청을 직렬화**한다. 락을 못 잡으면(경합) 대기 없이 즉시 409로 응답한다. 그리고 **Redis 자체가 장애일 땐 락 없이 트랜잭션을 진행하되, DB 낙관적 락(\`@Version\`)이 최후 방어선**으로 동시 차감을 막는다. '경합 차단'과 '장애 시 정합성 보장'은 서로 다른 경로다.
 
-![재고 동시성 — 분산 락 + 낙관적 락 흐름]({{diagram_lock}})
+![재고 동시성: 분산 락과 낙관적 락 흐름]({{diagram_lock}})
 
 ### 기술적 고민과 결정
 
@@ -93,13 +93,13 @@ const peekcartMarkdown = `## 프로젝트 개요
 | 동시 요청 처리 | DB 커넥션 점유, 대기 누적 | Redis에서 직렬화, 실패 시 즉시 409 |
 | DB 부하 | 락 경합이 DB로 집중 | DB는 차감 트랜잭션만 |
 | 장애 대응 | DB 단일 의존 | Redis 장애 시 락 없이 진행, \`@Version\`이 최후 방어 |
-| 검증 | — | 1,000 VUser 동시 주문 **오버셀링 0건** |
+| 검증 | 미검증 | 1,000 VUser 동시 주문 **오버셀링 0건** |
 
 > 관련 글: 학습 기록 9 (오버셀링 이중 방어), 학습 기록 19 (조건부 UPDATE vs 분산 락), 학습 기록 3 (상품/재고 분리)
 
 ---
 
-## 2. 문제와 해결 — DB는 커밋됐는데 이벤트가 사라진다면
+## 2. 문제와 해결: DB는 커밋됐는데 이벤트가 사라진다면
 
 ### 문제 (As-Is)
 
@@ -109,7 +109,7 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 비즈니스 데이터와 이벤트를 **하나의 트랜잭션으로 Outbox 테이블에 함께 저장**하고, 폴링 스케줄러가 Outbox를 읽어 Kafka로 발행한다. 발행 실패는 \`retry_count\`로 재시도하고, 한계를 넘으면 \`FAILED\` + Slack 알림으로 격리한다. Consumer 쪽은 멱등성과 DLQ로 중복·실패를 흡수한다.
 
-![이벤트 파이프라인 — Outbox · 멱등성 · DLQ]({{diagram_event}})
+![이벤트 파이프라인: Outbox · 멱등성 · DLQ]({{diagram_event}})
 
 ### 기술적 고민과 결정
 
@@ -121,7 +121,7 @@ Outbox를 Kafka로 내보내는 방법은 두 가지다. Debezium CDC는 MySQL b
 
 Kafka는 at-least-once 전달이라 같은 이벤트가 두 번 올 수 있다. 그대로 처리하면 재고가 두 번 복구되거나 알림이 두 번 간다. \`processed_events\` 테이블에 \`(event_id, consumer_group)\` 복합 UK를 두고, **처리 전에 먼저 INSERT로 선점**한다. UK 충돌이 나면 이미 처리된(또는 동시에 처리 중인) 이벤트로 보고 건너뛴다. \`event_id\`는 Outbox 생성 시 UUID로 부여한다.
 
-핵심은 이 **선점 INSERT가 비즈니스 로직과 같은 트랜잭션**이라는 점이다(\`IdempotencyChecker\`가 호출자의 \`@Transactional\`에 참여). 처리 중 예외가 나면 \`processed_events\` 행도 함께 롤백되므로, 다음 재시도에서 정상적으로 다시 처리된다 — '선점만 되고 처리는 실패해 영영 건너뛰는' 구멍이 없다.
+핵심은 이 **선점 INSERT가 비즈니스 로직과 같은 트랜잭션**이라는 점이다(\`IdempotencyChecker\`가 호출자의 \`@Transactional\`에 참여). 처리 중 예외가 나면 \`processed_events\` 행도 함께 롤백되므로, 다음 재시도에서 정상적으로 다시 처리된다. '선점만 되고 처리는 실패해 영영 건너뛰는' 구멍이 없다.
 
 **3) Producer 실패와 Consumer 실패는 별개다**
 
@@ -138,7 +138,7 @@ Kafka는 at-least-once 전달이라 같은 이벤트가 두 번 올 수 있다. 
 
 ---
 
-## 3. 문제와 해결 — "성능을 개선했다"를 어떻게 증명하나
+## 3. 문제와 해결: "성능을 개선했다"를 어떻게 증명하나
 
 ### 문제 (As-Is)
 
@@ -165,17 +165,17 @@ GKE(e2-standard-4) 환경에 배포하고 nGrinder·k6로 시나리오를 나눠
 
 **2) 목표 미달도 측정 결과다 (×2.31, 목표 ×3)**
 
-캐싱 개선 목표는 3배였지만 실측은 2.31배였다. 이를 "실패"로 숨기지 않고 그대로 기록한 뒤, 원인을 분석했다. 캐시 ON 상태에서도 CPU가 ~175%까지 올라 **CPU가 병목**이었고, 단일 Pod 환경의 한계가 드러났다. 이 데이터가 다음 시나리오(동시 주문 + HPA)의 근거가 됐다.
+캐싱 개선 목표는 3배였지만 실측은 2.31배였다. 이를 그대로 기록하고 원인을 분석했다. 캐시 ON 상태에서도 CPU가 ~175%까지 올라 **CPU가 병목**이었고, 단일 Pod 환경의 한계가 드러났다. 이 데이터가 다음 시나리오(동시 주문 + HPA)의 근거가 됐다.
 
 **3) 정합성과 처리량을 분리해서 본다**
 
-1,000 VUser 동시 주문에서 인프라 한계로 처리량 임계값(요청 실패율)은 미달했지만, **오버셀링 0건 · 재고 정합성 OK**는 달성했다. 이번 실험에서는 처리량과 정합성을 분리해 해석했다 — 처리량 미달은 노드·Pod 증설 여지가 있는 반면, 오버셀링 0건은 설계가 보장한 결과다. 실제로 HPA가 Pod를 1→3으로 늘려 CPU를 90%→15%로 안정화하는 것까지 확인했다.
+1,000 VUser 동시 주문에서 인프라 한계로 처리량 임계값(요청 실패율)은 미달했지만, **오버셀링 0건 · 재고 정합성 OK**는 달성했다. 이번 실험에서는 처리량과 정합성을 분리해 해석했다. 처리량 미달은 노드·Pod 증설 여지가 있는 반면, 오버셀링 0건은 설계가 보장한 결과다. 실제로 HPA가 Pod를 1→3으로 늘려 CPU를 90%→15%로 안정화하는 것까지 확인했다.
 
 > 관련 글: 학습 기록 8 (Cache-Aside), 학습 기록 16 (캐시 효과 측정), 학습 기록 17 (1,000 동시 주문 · HPA · Kafka Lag)
 
 ---
 
-## 4. 시스템 아키텍처 — 4-Layered + DDD
+## 4. 시스템 아키텍처: 4-Layered + DDD
 
 도메인별로 Presentation / Application / Domain / Infrastructure 4개 레이어를 분리하고, 의존 방향을 단방향(Presentation → Application → Domain ← Infrastructure)으로 강제했다. 비즈니스 로직은 Service가 아닌 **Entity / Domain Service에 응집**시켰다.
 
@@ -204,17 +204,17 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 
 ## 6. 그 외 핵심 설계 결정
 
-**결제 타임아웃 스케줄러 + ShedLock** — 결제 대기(\`PAYMENT_REQUESTED\`)가 15분을 넘긴 주문을 자동 취소하고 재고를 복구한다. 아직 단일 인스턴스지만, **다중 Pod로 늘어나면 스케줄러가 중복 실행**되므로 ShedLock(MySQL 락 테이블)을 미리 도입해 Phase 3~4 전환 비용을 선제거했다. (학습 기록 7, 12)
+**결제 타임아웃 스케줄러 + ShedLock.** 결제 대기(\`PAYMENT_REQUESTED\`)가 15분을 넘긴 주문을 자동 취소하고 재고를 복구한다. 아직 단일 인스턴스지만, **다중 Pod로 늘어나면 스케줄러가 중복 실행**되므로 ShedLock(MySQL 락 테이블)을 미리 도입해 Phase 3~4 전환 비용을 선제거했다. (학습 기록 7, 12)
 
-**JWT 인증 — DB와 Redis의 역할 분리** — Refresh Token은 DB에 영속(발급 이력·만료 관리), 로그아웃 블랙리스트는 Redis에 둔다. Token Rotation 시 동시 재발급으로 생기는 race condition은 Grace Period로 보완했다. (학습 기록 2)
+**JWT 인증, DB와 Redis의 역할 분리.** Refresh Token은 DB에 영속(발급 이력·만료 관리), 로그아웃 블랙리스트는 Redis에 둔다. Token Rotation 시 동시 재발급으로 생기는 race condition은 Grace Period로 보완했다. (학습 기록 2)
 
-**관측성 계약** — Actuator → Micrometer → Prometheus → Grafana로 메트릭이 흐른다. 메트릭이 수집되는데 그래프가 비는 문제(히스토그램 미활성·라벨 불일치)를 겪고, 관측성 설정의 SSOT를 ADR로 정리했다. Kafka 헤더로 trace를 전파하고 Outbox 테이블에 \`trace_id\`를 보존(의도적 무인덱스)한다. (학습 기록 13, 14, 15)
+**관측성 계약.** Actuator → Micrometer → Prometheus → Grafana로 메트릭이 흐른다. 메트릭이 수집되는데 그래프가 비는 문제(히스토그램 미활성·라벨 불일치)를 겪고, 관측성 설정의 SSOT를 ADR로 정리했다. Kafka 헤더로 trace를 전파하고 Outbox 테이블에 \`trace_id\`를 보존(의도적 무인덱스)한다. (학습 기록 13, 14, 15)
 
-**MSA 전환 준비 — 부채 트리아지** — Phase 4 진입 전, 누적된 22개의 설계 부채를 "지금 고칠 것 / 의도적으로 남길 것"으로 나눴다. 무엇을 왜 남기는지까지 회고로 기록했다. (학습 기록 18, 부채 해결 회고)
+**MSA 전환 준비와 부채 트리아지.** Phase 4 진입 전, 누적된 22개의 설계 부채를 "지금 고칠 것 / 의도적으로 남길 것"으로 나눴다. 무엇을 왜 남기는지까지 회고로 기록했다. (학습 기록 18, 부채 해결 회고)
 
 ---
 
-## 7. 개발 방법론 — Claude × Codex 하네스
+## 7. 개발 방법론: Claude × Codex 하네스
 
 코드만이 아니라 **AI와 함께 일하는 흐름 자체**를 설계했다. Claude로 계획하고 Codex로 리뷰를 따로 쓰니 도구를 오갈 때마다 문맥을 다시 설명해야 했고 "계획엔 있는데 구현엔 빠진" 괴리가 반복됐다. 모델 성능보다 **상태·프로세스 부재**가 문제였다. 그래서 작업을 \`/plan → /work → /ship\`으로 고정하고 task마다 \`.state.json\`으로 상태를 이었다. **Claude는 계획·구현·오케스트레이션**, **Codex는 독립 리뷰어**(diff·계획서를 output-schema JSON으로 강제 응답)를 맡고, 사람의 개입은 **정해진 게이트**(GW·GS)에서만 일어난다.
 
@@ -233,14 +233,14 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 
 ---
 
-## 8. 블로그 — PeekCart 학습 기록 연재
+## 8. 블로그: PeekCart 학습 기록 연재
 
 각 설계 결정을 \`문제 → 대안 → 선택 → 한계 → 다음 Phase 연결\` 구조로 정리한 연재 글이다. 이 프로젝트의 의사결정 근거가 가장 자세히 담겨 있다.
 
 **전체 서사**
 - [0. 왜 모놀리스에서 MSA로 가는 흐름을 먼저 봐야 할까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-monolith-to-msa-flow/)
 
-**Phase 1 — 모놀리식 도메인**
+**Phase 1. 모놀리식 도메인**
 - [1. 4-Layered + DDD 구조를 어떻게 읽어야 할까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-layered-ddd/)
 - [2. 인증·인가의 갈림길에서 무엇을 선택할 수 있을까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-authn-authz-choices/)
 - [3. 상품과 재고는 왜 따로 관리해야 할까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-product-inventory-concurrency/)
@@ -249,21 +249,21 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 - [6. 알림 발송이 실패해도 주문은 살아남아야 한다](https://blog.rlarbdlf222.workers.dev/blog/peekcart-notification-failure-isolation/)
 - [7. 15분 후에 돌아와서 주문을 취소하는 일](https://blog.rlarbdlf222.workers.dev/blog/peekcart-order-timeout-scheduler/)
 
-**Phase 2 — 성능 / 정합성**
+**Phase 2. 성능 / 정합성**
 - [8. 상품 조회를 캐시 뒤로 옮기기](https://blog.rlarbdlf222.workers.dev/blog/peekcart-product-cache-aside/)
 - [9. 오버셀링을 두 겹으로 막기 — 분산 락과 낙관적 락](https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-lock-defense/)
 - [10. DB는 커밋됐는데 이벤트가 사라진다면 — Kafka와 Transactional Outbox](https://blog.rlarbdlf222.workers.dev/blog/peekcart-transactional-outbox/)
 - [11. 같은 이벤트가 두 번 왔다 — Consumer 멱등성과 DLQ](https://blog.rlarbdlf222.workers.dev/blog/peekcart-consumer-idempotency-dlq/)
 - [12. Pod이 셋이면 스케줄러도 셋이 돈다 — ShedLock](https://blog.rlarbdlf222.workers.dev/blog/peekcart-shedlock-multi-pod-scheduler/)
 
-**Phase 3 — 인프라 / 관측성 / 부하**
+**Phase 3. 인프라 / 관측성 / 부하**
 - [13. "내 머신에선 되는데"를 닫는다 — CI와 Docker 이미지 빌드](https://blog.rlarbdlf222.workers.dev/blog/peekcart-ci-docker-image-build/)
 - [14. 같은 매니페스트로 두 환경을 배포한다 — Kustomize와 minikube → GKE](https://blog.rlarbdlf222.workers.dev/blog/peekcart-kustomize-base-overlays-gke/)
 - [15. 메트릭은 수집됐는데 그래프가 비어 있다](https://blog.rlarbdlf222.workers.dev/blog/peekcart-observability-contract/)
 - [16. 캐시 효과를 어떻게 증명할까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-cache-effect-measurement/)
 - [17. 1,000명이 소수 상품을 동시에 주문하면](https://blog.rlarbdlf222.workers.dev/blog/peekcart-order-concurrency-hpa/)
 
-**Phase 4 — MSA 진입 전 정리**
+**Phase 4. MSA 진입 전 정리**
 - [18. Phase 4로 넘어가기 전에 — 글을 쓰다 발견한 22개의 부채](https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-checklist/)
 - [19. "조건부 UPDATE 한 방"이면 분산 락이 필요 없을까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-conditional-update-adr/)
 - [부채 해결 회고: MSA로 넘어가기 전에 무엇을 고치고 무엇을 일부러 남겼나](https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-retrospective/)
@@ -279,7 +279,7 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 | 커밋 | 360개 |
 | 도메인 | 5개 (User · Product · Order · Payment · Notification) |
 | 메인 코드 (Java) | ~6,500줄 (187파일) |
-| 테스트 | 272 케이스 (62파일) — 단위 + Testcontainers 통합 |
+| 테스트 | 272 케이스 (62파일), 단위 + Testcontainers 통합 |
 | Flyway 마이그레이션 | 4단계 (init → outbox/processed_events → shedlock → trace context) |
 | ADR (결정 기록) | 9건 |
 | 부하 테스트 | nGrinder + k6, GKE 실측 (캐시 ×2.31, 동시 주문 오버셀링 0, HPA 1→3) |
@@ -290,7 +290,7 @@ export const peekcart: Project = {
   slug: 'peekcart',
   title: 'PeekCart',
   description:
-    '대용량 트래픽을 고려한 이커머스 백엔드 — 모놀리식 구현 후 MSA 전환을 준비하는 프로젝트',
+    '대용량 트래픽을 고려한 이커머스 백엔드. 모놀리식 구현 후 MSA 전환을 준비하는 프로젝트',
   projectType: 'Main',
   image: peekcartThumbnail,
   tags: ['Spring Boot', 'Kafka', 'Redis', 'MySQL', 'Kubernetes', 'Grafana'],
