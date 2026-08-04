@@ -1,4 +1,5 @@
 import type { Project } from '@/types';
+import { momens } from './momens';
 import { peekcart } from './peekcart';
 import { agentBoard } from './agentBoard';
 import { gTool } from './gTool';
@@ -11,6 +12,7 @@ import { piroRecruit } from './piroRecruit';
 import { geolEumGeolI } from './geolEumGeolI';
 
 export const projects: Project[] = [
+  momens,
   peekcart,
   agentBoard,
   gTool,
