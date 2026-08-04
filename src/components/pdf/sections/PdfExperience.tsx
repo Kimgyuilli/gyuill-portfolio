@@ -12,7 +12,7 @@ export function PdfExperience({ experiences }: PdfExperienceProps) {
       <Text style={pdfStyles.sectionLabel}>활동</Text>
       <View style={pdfStyles.sectionContent}>
         {experiences.map((exp, i) => (
-          <View key={i} style={pdfStyles.experienceItem}>
+          <View key={i} style={pdfStyles.experienceItem} wrap={false}>
             <View style={pdfStyles.experienceHeader}>
               <Text style={pdfStyles.experienceCompany}>
                 {exp.company} | {exp.position}

@@ -60,7 +60,7 @@ export function PdfProjects({ projects }: PdfProjectsProps) {
             <View style={pdfStyles.projectBody}>
               <Text style={pdfStyles.projectBodyLead}>{proj.role}</Text>
               {proj.cases.map((item, j) => (
-                <View key={j} style={pdfStyles.projectCase}>
+                <View key={j} style={pdfStyles.projectCase} wrap={false}>
                   <Text style={pdfStyles.projectCaseTitle}>
                     {j + 1}. {item.title}
                   </Text>
