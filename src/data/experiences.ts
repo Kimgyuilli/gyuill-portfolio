@@ -1,10 +1,10 @@
 import type { Experience } from '@/types';
 
 export const experiences: Experience[] = [
-    {
+  {
     company: 'IT 동아리 SOPT',
     position: 'SERVER OB',
-    period: '2026.02 ~2026.07',
+    period: '2026.02 - 2026.07',
     description: [
       '서버 파트 합동 세미나 참여 및 과제/리뷰 수행',
       'Redis 스터디장/성능테스트 스터디 참여',
@@ -30,20 +30,6 @@ export const experiences: Experience[] = [
     type: 'activity',
   },
   {
-    company: 'AYU DB LAB',
-    position: '학부 연구생',
-    period: '2024.03 - 2026.02',
-    description: ['교내 스터디 참가', '학술 논문 및 프로젝트 연구 진행'],
-    type: 'activity',
-  },
-  {
-    company: 'Groomthon univ',
-    position: 'AYU 서버파트 미르미',
-    period: '2025.02 - 2025.09',
-    description: ['해커톤 2회 참여 (9ITHON 최우수상 수상)', 'SpringBoot 스터디 진행 및 기술 공유'],
-    type: 'activity',
-  },
-  {
     company: 'IT 동아리 피로그래밍',
     position: '교육팀 운영진',
     period: '2025.03 - 2025.08',
@@ -64,10 +50,28 @@ export const experiences: Experience[] = [
     type: 'activity',
   },
   {
+    company: 'Groomthon Univ',
+    position: 'AYU 서버파트 미르미',
+    period: '2025.02 - 2025.09',
+    description: ['해커톤 2회 참여 (9ITHON 최우수상 수상)', 'SpringBoot 스터디 진행 및 기술 공유'],
+    type: 'activity',
+  },
+  {
     company: 'IT 동아리 피로그래밍',
     position: '참가자',
     period: '2024.12 - 2025.02',
-    description: ['풀스택 개발 과정 수료', '3주차 과제 MVP', '러닝 코스 추천 웹 서비스 팀 프로젝트 개발'],
+    description: [
+      '풀스택 개발 과정 수료',
+      '3주차 과제 MVP',
+      '러닝 코스 추천 웹 서비스 팀 프로젝트 개발',
+    ],
+    type: 'activity',
+  },
+  {
+    company: 'AYU DB LAB',
+    position: '학부 연구생',
+    period: '2024.03 - 2026.02',
+    description: ['교내 스터디 참가', '노인 돌봄을 위한 AI 비서 서비스 논문 및 프로젝트 연구 진행'],
     type: 'activity',
   },
 ];

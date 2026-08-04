@@ -8,6 +8,13 @@ export interface AchievementData {
 
 export const achievements: AchievementData[] = [
   {
+    title: 'SOPT 38기 해커톤 iOS 서비스 대상',
+    issuer: 'SOPT',
+    date: '2026.05.17',
+    description: '실수를 기록하고 회고하는 서비스 개발로 대상 수상',
+    link: 'https://github.com/SOPT-all/38-SOPKATHON-SERVER-iOS3',
+  },
+  {
     title: 'SOPT 37기 해커톤 웹 서비스 대상',
     issuer: 'SOPT',
     date: '2025.11.23',

@@ -44,7 +44,7 @@ const momensMarkdown = `## 프로젝트 개요
 | 개발 기간 | 2026.06 ~ 진행 중 |
 | 소속 | SOPT 38기 앱잼 프로덕트 |
 | 역할 | **서버 리드** (모듈 설계 · 크로스팀 계약 · dev 인프라) |
-| 서버 인원 | 2명 (워크스페이스 전체 13명) |
+| 서버 인원 | 2명 (워크스페이스 전체 12명) |
 | 커밋 | 584개 (전 브랜치 기준, 저장소 전체 741개) |
 | 코드 규모 | Java 13,120줄 (301파일) |
 | 테스트 | 16,458줄 |
@@ -404,7 +404,7 @@ export const momens: Project = {
     deployment: ['Docker', 'Kubernetes (dev GKE)', 'GitHub Actions', 'OpenTelemetry'],
   },
   duration: '2026.06 ~ 진행 중',
-  teamSize: '서버 2명 (전체 13명)',
+  teamSize: '서버 2명 (전체 12명)',
   role: '서버 리드 (모듈 경계 설계 · 크로스팀 계약 · dev 인프라 구축)',
   markdownContent: momensMarkdown,
   markdownImages: momensImages,
