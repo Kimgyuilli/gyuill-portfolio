@@ -116,13 +116,12 @@ body {
   --tag-blue-bg: rgba(59, 130, 246, 0.2);
   --tag-blue-text: rgb(96, 165, 250);
 
-  /* Modal/Overlay Colors - Light Mode */
-  --modal-backdrop: rgba(0, 0, 0, 0.75); /* Modal backdrop overlay */
+  /* Overlay Control Colors - Light Mode (미디어 캐러셀 버튼) */
   --modal-close-bg: rgba(71, 85, 105, 0.8); /* Close button - slate-600/80 */
   --modal-close-text: rgb(255, 255, 255); /* Close button text */
   --modal-close-hover: rgb(51, 65, 85); /* Close button hover - slate-700 */
 
-  /* Solid Badge Colors - Light Mode (for ProjectModal) */
+  /* Solid Badge Colors - Light Mode (프로젝트 상세) */
   --badge-emerald-solid-bg: rgb(236, 253, 245); /* emerald-50 */
   --badge-emerald-solid-text: rgb(5, 150, 105); /* emerald-600 */
 
@@ -194,8 +193,7 @@ body {
   --skill-tertiary-border: rgba(71, 85, 105, 0.5);
   --skill-tertiary-text: rgb(203, 213, 225);
 
-  /* Modal/Overlay Colors - Dark Mode */
-  --modal-backdrop: rgba(0, 0, 0, 0.85); /* Darker backdrop for dark mode */
+  /* Overlay Control Colors - Dark Mode (미디어 캐러셀 버튼) */
   --modal-close-bg: rgba(148, 163, 184, 0.8); /* Close button - slate-400/80 */
   --modal-close-text: rgb(15, 23, 42); /* Close button text - slate-900 */
   --modal-close-hover: rgb(203, 213, 225); /* Close button hover - slate-300 */
@@ -214,7 +212,7 @@ body {
   --radius-xs: 0.25rem; /* 4px - for small elements like tags */
   --radius-base: 0.5rem; /* 8px - standard radius for cards and containers */
   --radius-2xl: 0.75rem; /* 12px - for card components */
-  --radius-3xl: 1rem; /* 16px - for modals */
+  --radius-3xl: 1rem; /* 16px - 카드/상세 컨테이너 */
   --radius-full: 9999px; /* pill shape */
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);

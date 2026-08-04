@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo } from 'react';
 import { ProjectCard } from '@/components/common/ProjectCard';
 import { FadeInSection } from '@/components/common/FadeInSection';
 import { ExpandableSection } from '@/components/common/ExpandableSection';
@@ -8,6 +8,7 @@ import {
   PROJECT_TYPES,
   PROJECT_TYPE_LABELS,
   type ProjectCategory,
+  type ProjectFilter,
   type ProjectType,
 } from '@/constants/projectCategories';
 import type { Project } from '@/types';
@@ -18,11 +19,15 @@ const MAX_ROWS = 2;
 
 interface ProjectsProps {
   onOpenProject: (project: Project) => void;
+  /** 상세 페이지를 다녀와도 필터가 유지되도록 상위에서 보관한다 */
+  filter: ProjectFilter;
+  onFilterChange: (filter: ProjectFilter) => void;
 }
 
-export function Projects({ onOpenProject }: ProjectsProps) {
-  const [selectedType, setSelectedType] = useState<ProjectType>('Main');
-  const [selectedCategory, setSelectedCategory] = useState<ProjectCategory>('All');
+export function Projects({ onOpenProject, filter, onFilterChange }: ProjectsProps) {
+  const { type: selectedType, category: selectedCategory } = filter;
+  const setSelectedCategory = (category: ProjectCategory) =>
+    onFilterChange({ type: selectedType, category });
 
   const typeFilteredProjects = useMemo(
     () =>
@@ -54,8 +59,7 @@ export function Projects({ onOpenProject }: ProjectsProps) {
   const showToggle = filteredProjects.length > COLS_PER_ROW * MAX_ROWS;
 
   const handleTypeChange = (type: ProjectType) => {
-    setSelectedType(type);
-    setSelectedCategory('All');
+    onFilterChange({ type, category: 'All' });
   };
 
   return (
