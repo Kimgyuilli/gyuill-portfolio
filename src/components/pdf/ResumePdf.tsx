@@ -32,11 +32,58 @@ const pdfContactInfo: ContactInfoData[] = [
 const pdfIntroduce: AboutInfo = {
   paragraphs: [
     '백엔드와 인프라를 기반으로 제품 문제를 끝까지 해결하는 프로덕트 엔지니어입니다. PeekCart에서 Redis 분산 락, DB 낙관적 락, Transactional Outbox, Kafka DLQ, GKE 부하 테스트를 직접 설계·검증하며 상품 조회 TPS 2.31배 개선, 1,000 VUser 동시 주문 오버셀링 0건을 확인했습니다.',
-    '단순히 주어진 API를 구현하는 데 그치지 않고, 요구사항과 사용자 흐름, 클라이언트 구현 난이도, 운영 안정성을 함께 고려해 해결 방식을 제안합니다. Cherrish에서는 Server Lead로 13명 협업을 조율했고, Spring AI/OpenAI와 리뷰 자동화 도구를 활용해 제품 기능과 팀 생산성을 함께 개선했습니다.',
+    '규칙은 문서가 아니라 빌드와 계약으로 지켜진다고 생각합니다. Momens에서는 Server Lead로 모듈 경계를 Spring Modulith 검증에 태워 위반이 빌드 실패가 되게 했고, 서버 혼자 정할 수 없는 결정은 결정 요청서와 ADR 15건으로 확정해 12명 규모 협업에서 팀 사이의 책임 경계를 설계했습니다.',
   ],
 };
 
 const pdfProjects: PdfProject[] = [
+  {
+    title: 'Momens',
+    description:
+      '흩어진 업무 맥락을 연결하는 AI 운영 도구의 백엔드. 모듈러 모놀리스로 레거시 Go 서버를 대체하며 팀 간 책임 경계를 설계한 프로젝트',
+    period: '2026.06 - 진행 중',
+    role: 'Server Lead · 모듈 경계 설계 / 크로스팀 계약 / dev 인프라 (서버 2명, 전체 12명)',
+    github: 'https://github.com/Momens-Works/momens-server',
+    tags: [
+      'Java 21',
+      'Spring Boot 4',
+      'Spring Modulith',
+      'PostgreSQL',
+      'Kubernetes',
+      'GKE',
+      'Testcontainers',
+    ],
+    stack: [
+      { label: 'Language', value: 'Java 21' },
+      {
+        label: 'Framework',
+        value: 'Spring Boot 4, Spring Modulith, Spring Security, Spring Data JPA',
+      },
+      { label: 'Database', value: 'PostgreSQL, Flyway, Testcontainers' },
+      { label: 'Build', value: 'Gradle 멀티모듈 (서브프로젝트 13개)' },
+      { label: 'Infra/CI', value: 'Docker, Kubernetes(dev GKE), GitHub Actions, OpenTelemetry' },
+    ],
+    cases: [
+      {
+        title: '모듈 경계를 빌드가 강제하게 만들기',
+        problem:
+          '모듈러 모놀리스의 경계는 합의만으로 지켜지지 않습니다. 다른 모듈의 내부 클래스를 import 하는 순간 경계가 사라지는데, 그것을 막는 수단이 리뷰어의 기억력뿐이었습니다.',
+        action:
+          '각 모듈을 Gradle 서브프로젝트 13개로 물리 분리해 클래스패스에 없으면 참조 자체가 불가능하게 하고, 그 위에 Spring Modulith의 ApplicationModules.verify()를 얹어 internal 패키지 참조와 순환 의존을 빌드 실패로 만들었습니다.',
+        result:
+          'signal 모듈의 순환 의존을 실제로 빌드가 잡아내 공개 계약은 root, 구현체는 nested package-private으로 재배치했습니다. 모듈이 각자 Flyway 마이그레이션을 소유해 단독 Testcontainers 통합 테스트가 가능하게 설계했습니다.',
+      },
+      {
+        title: '팀 사이의 경계: 결정이 안 난 채로 전진하기',
+        problem:
+          '레거시 서버·worker·retrieval·인프라와 웹/앱 클라이언트가 모두 다른 담당자 소관이라 서버가 단독으로 정할 수 없는 결정이 계속 나왔습니다. 답을 기다리면 일정이 멈추고, 그냥 정하면 나중에 뒤집혔습니다.',
+        action:
+          '서버 단독으로 정할 수 없으면서 구현에 실제 영향을 주는 항목만 5개로 추린 결정 요청서를 만들어, 회의에서 논의가 아니라 판정이 일어나게 했습니다. 답을 받기 어려운 항목은 리스크로 등록해 비용 기준으로 즉시 반영과 행동 제약을 갈랐습니다.',
+        result:
+          '이벤트 envelope과 근거 참조 방식 등 크로스팀 계약을 ADR 15건으로 확정했습니다. gRPC는 쓰지 않으면서 proto만 공통 계약으로 채택해, Go와 Java가 같은 정의를 보고 코드를 생성하는 이득만 취했습니다.',
+      },
+    ],
+  },
   {
     title: 'PeekCart',
     description:
@@ -80,51 +127,6 @@ const pdfProjects: PdfProject[] = [
         result:
           '상품 조회 TPS 265.0 -> 612.7(2.31배), 평균 응답 시간 188ms -> 82ms(56.5% 단축)를 확인했습니다.',
       },
-      {
-        title: '이벤트 유실과 중복 소비 방어',
-        problem:
-          '주문 생성 후 결제·알림 도메인에 이벤트를 전달해야 했지만, DB 커밋 성공 후 Kafka 발행 실패 시 상태 불일치가 발생할 수 있었습니다.',
-        action:
-          '비즈니스 데이터와 이벤트를 하나의 트랜잭션으로 저장하는 Transactional Outbox를 적용하고, processed_events 복합 UK 기반 멱등성과 DLQ를 구성했습니다.',
-        result:
-          '이벤트 발행 실패와 소비 실패를 분리해 대응할 수 있게 했고, Kafka의 at-least-once 전달에서 발생하는 중복 소비를 방어했습니다.',
-      },
-    ],
-  },
-  {
-    title: 'Cherrish',
-    description:
-      'TL, iOS, Android, Server, Design 13명 협업의 AI 기반 뷰티 캘린더 앱. Server 2명 중 Lead로 문제 해결 방식과 협업 생산성을 개선',
-    period: '2025.12 - 2026.02',
-    role: 'Server Lead',
-    github: 'https://github.com/TEAM-Cherrish/Cherrish-Server',
-    tags: ['Java 21', 'Spring Boot 3.5', 'QueryDSL', 'Spring AI', 'PostgreSQL', 'AWS', 'OIDC'],
-    stack: [
-      { label: 'Language', value: 'Java 21' },
-      { label: 'Framework', value: 'Spring Boot 3.5, Spring Data JPA, QueryDSL' },
-      { label: 'AI', value: 'Spring AI OpenAI' },
-      { label: 'Database', value: 'PostgreSQL 17' },
-      { label: 'Infra/CI', value: 'AWS EC2/RDS/ECR/SSM, Nginx, GitHub Actions OIDC' },
-    ],
-    cases: [
-      {
-        title: '문제 해결 방식 제안과 API 의사결정',
-        problem:
-          'iOS, Android, Design, Server가 함께 움직이면서 디자인 요구사항, 클라이언트 구현 난이도, 서버 데이터 구조가 자주 충돌했고, 단순 구현보다 어떤 방식으로 풀지 먼저 합의해야 했습니다.',
-        action:
-          'Server Lead로 요구사항을 기능 단위로 쪼개고, API 응답 형태와 필수/선택 정책을 구현 난이도와 사용자 경험 기준으로 비교해 해결안을 제안했습니다.',
-        result:
-          '13명 협업 환경에서 파트별 작업 기준을 명확히 했고, 서버 변경이 클라이언트 일정과 구현에 미치는 영향을 낮췄습니다.',
-      },
-      {
-        title: 'AI 활용과 협업 생산성 개선',
-        problem:
-          'Server 2명이 짧은 기간 안에 시술 검색, 다운타임 계산, 캘린더 조회, AI 챌린지 생성, 배포까지 처리해야 했고, 반복 검토와 문서화 비용을 줄일 필요가 있었습니다.',
-        action:
-          'Spring AI/OpenAI를 제품 기능에 적용하고, CodeRabbit과 OpenAI를 PR 리뷰 보조, 변경 영향 정리, 문서 초안화에 활용했습니다. checkStyle, Jacoco, Docker 기반 실행 흐름도 정리했습니다.',
-        result:
-          '제한된 인원과 인프라 자원 안에서도 핵심 기능을 완성했고, 팀원이 같은 맥락에서 리뷰하고 작업할 수 있는 협업 흐름을 만들었습니다.',
-      },
     ],
   },
 ];
@@ -132,7 +134,7 @@ const pdfProjects: PdfProject[] = [
 const pdfSkills: PdfSkillCategory[] = [
   {
     title: 'Backend',
-    skills: ['Java', 'Spring Boot', 'JPA', 'QueryDSL'],
+    skills: ['Java', 'Spring Boot', 'Spring Modulith', 'JPA', 'QueryDSL'],
   },
   {
     title: 'Data & Messaging',
@@ -152,11 +154,13 @@ const pdfExperiences: Experience[] = [
   {
     company: 'IT 동아리 SOPT',
     position: 'Server YB / OB',
-    period: '2025.09 - 현재',
+    period: '2025.09 - 2026.07',
     description: [
-      'SOPT 해커톤 2회 참여, 웹 서비스 부문(37기)·앱 서비스 부문(38기) 대상 수상',
-      '37기 시술 다운타임 관리 앱 Cherrish Server Lead',
+      'SOPT 해커톤 2회 참여, 웹 서비스 부문(37기)·iOS 서비스 부문(38기) 대상 수상',
       '38기 AI 비서를 통한 프로젝트 맥락 및 태스크 관리 서비스 Momens Server Lead',
+      '37기 시술 다운타임 관리 앱 Cherrish Server Lead',
+      '서버 파트 합동 세미나 참여, Redis 스터디장 및 성능테스트 스터디 참여',
+      '두 기수 동안 정보 공유 아티클 39개 작성',
     ],
     type: 'activity',
   },
@@ -172,10 +176,11 @@ const pdfExperiences: Experience[] = [
   },
   {
     company: 'IT 동아리 피로그래밍',
-    position: '참가자 / 교육팀 운영진',
+    position: '참가자 / 피로니어 / 교육팀 운영진',
     period: '2024.12 - 2025.08',
     description: [
       '풀스택 개발 과정 수료 및 팀 프로젝트 개발',
+      '리쿠르팅 플랫폼 프로젝트 PM 및 풀스택 리드 개발',
       '교육 커리큘럼 설계, 과제 출제, 코드 리뷰, Git 세션 강의 진행',
     ],
     type: 'activity',
