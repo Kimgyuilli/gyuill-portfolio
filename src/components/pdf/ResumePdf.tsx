@@ -31,7 +31,7 @@ const pdfContactInfo: ContactInfoData[] = [
 
 const pdfIntroduce: AboutInfo = {
   paragraphs: [
-    '백엔드와 인프라를 기반으로 제품 문제를 끝까지 해결하는 프로덕트 엔지니어입니다. PeekCart에서 Redis 분산 락, DB 낙관적 락, Transactional Outbox, Kafka DLQ, GKE 부하 테스트를 직접 설계·검증하며 상품 조회 TPS 2.31배 개선, 1,000 VUser 동시 주문 오버셀링 0건을 확인했습니다.',
+    '백엔드와 인프라를 기반으로 제품 문제를 끝까지 해결하는 프로덕트 엔지니어입니다. PeekCart에서 Redis 분산 락, DB 낙관적 락, Transactional Outbox, Kafka DLQ, GKE 부하 테스트를 직접 설계·검증하며 상품 조회 TPS 2.31배 개선(265 -> 613), CPU saturation 시 HPA 1->3 자동 확장을 확인했고, 목표에 미달한 측정도 원인 분석과 함께 그대로 기록했습니다.',
     '규칙은 문서가 아니라 빌드와 계약으로 지켜진다고 생각합니다. Momens에서는 Server Lead로 모듈 경계를 Spring Modulith 검증에 태워 위반이 빌드 실패가 되게 했고, 서버 혼자 정할 수 없는 결정은 결정 요청서와 ADR 15건으로 확정해 12명 규모 협업에서 팀 사이의 책임 경계를 설계했습니다.',
   ],
 };
@@ -116,7 +116,7 @@ const pdfProjects: PdfProject[] = [
         action:
           'Redis 분산 락으로 상품 단위 요청을 직렬화하고, Redis 장애 시 DB 낙관적 락이 최후 방어선이 되도록 락 관리와 주문 트랜잭션 책임을 분리했습니다.',
         result:
-          'k6 기반 1,000 VUser 동시 주문 테스트에서 오버셀링 0건을 검증했고, Redis 경합 실패와 장애 상황을 다른 실패 모드로 분리했습니다.',
+          'k6로 1,000 VUser 동시 주문을 걸어 재고 정합성 OK, 오버셀링 0건을 확인했습니다. 다만 단일 노드 환경에서 실패율 35.9%로 처리량 합격선(10% 미만)에는 미달했고, 커밋된 주문이 110건에 그쳐 재고 소진 경합까지는 도달하지 못한 점을 한계로 기록했습니다. 병목은 MySQL 커넥션 풀과 분산 락 contention으로 식별해 후속 과제로 남겼습니다.',
       },
       {
         title: '상품 조회 성능 개선과 측정 기반 검증',
@@ -125,7 +125,7 @@ const pdfProjects: PdfProject[] = [
         action:
           '상품 정보에 Redis Cache-Aside를 적용하고, 재고처럼 강한 정합성이 필요한 데이터는 캐싱 대상에서 제외했습니다. GKE 환경에서 nGrinder로 전후를 분리 측정했습니다.',
         result:
-          '상품 조회 TPS 265.0 -> 612.7(2.31배), 평균 응답 시간 188ms -> 82ms(56.5% 단축)를 확인했습니다.',
+          '50 VUser 5분 기준 상품 조회 TPS 265.0 -> 612.7(2.31배), 평균 응답 시간 188ms -> 82ms(56.5% 단축)를 확인했습니다. 목표였던 3배에는 미달했고, 캐시 ON 상태에서도 CPU가 175%까지 올라 단일 Pod의 CPU 병목이 원인임을 확인했습니다.',
       },
     ],
   },
