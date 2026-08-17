@@ -23,7 +23,7 @@ export const pdfStyles = StyleSheet.create({
     fontSize: 9,
     color: colors.textPrimary,
     paddingTop: 44,
-    paddingBottom: 22,
+    paddingBottom: 20,
     paddingHorizontal: 50,
     lineHeight: 1.55,
   },
@@ -92,7 +92,7 @@ export const pdfStyles = StyleSheet.create({
 
   // ── 1-column section block ──
   sectionRow: {
-    marginBottom: 14,
+    marginBottom: 10,
   },
   sectionLabel: {
     fontSize: 18,
@@ -204,7 +204,7 @@ export const pdfStyles = StyleSheet.create({
   // ── Projects ──
   projectItem: {
     flexDirection: 'row',
-    marginBottom: 15,
+    marginBottom: 12,
     paddingBottom: 7,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
@@ -297,13 +297,13 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 1.5,
   },
   projectCase: {
-    marginBottom: 6,
+    marginBottom: 5,
   },
   projectCaseTitle: {
     fontSize: 9.8,
     fontWeight: 700,
     color: colors.textPrimary,
-    marginBottom: 4,
+    marginBottom: 3,
   },
   projectCaseLine: {
     fontSize: 8.7,
