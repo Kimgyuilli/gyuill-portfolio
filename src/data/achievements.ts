@@ -37,6 +37,12 @@ export const achievements: AchievementData[] = [
   },
 
   {
+    title: 'TOEIC Speaking IH',
+    issuer: 'YBM',
+    date: '2026.08',
+    description: '영어 말하기 능력 평가 Intermediate High 등급 취득',
+  },
+  {
     title: 'SQLD',
     issuer: '국가 공인',
     date: '2024.08',
