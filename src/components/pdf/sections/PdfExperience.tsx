@@ -1,9 +1,9 @@
-import { View, Text } from '@react-pdf/renderer';
+import { View, Text, Link } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-import type { Experience } from '@/types';
+import type { ResumeExperience } from '@/data/resume';
 
 interface PdfExperienceProps {
-  experiences: Experience[];
+  experiences: ResumeExperience[];
 }
 
 export function PdfExperience({ experiences }: PdfExperienceProps) {
@@ -25,6 +25,18 @@ export function PdfExperience({ experiences }: PdfExperienceProps) {
                 <Text style={pdfStyles.bulletText}>{desc}</Text>
               </View>
             ))}
+            {exp.links && exp.links.length > 0 && (
+              <Text style={pdfStyles.experienceLinkRow}>
+                {exp.links.map((link, k) => (
+                  <Text key={link.url}>
+                    {k > 0 && <Text style={pdfStyles.projectCaseLinkSep}> · </Text>}
+                    <Link src={link.url} style={pdfStyles.projectCaseLink}>
+                      {link.label}
+                    </Link>
+                  </Text>
+                ))}
+              </Text>
+            )}
           </View>
         ))}
       </View>

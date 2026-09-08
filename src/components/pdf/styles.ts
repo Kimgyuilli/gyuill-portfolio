@@ -1,5 +1,4 @@
 import { StyleSheet } from '@react-pdf/renderer';
-import type { Style } from '@react-pdf/types';
 
 export const colors = {
   accent: '#4b5563',
@@ -9,13 +8,6 @@ export const colors = {
   borderLight: '#e5e7eb',
   borderDark: '#222222',
 };
-
-export const headerContactWidths: Style[] = [
-  { width: '18%' },
-  { width: '24%' },
-  { width: '31%' },
-  { width: '27%', paddingRight: 0 },
-];
 
 export const pdfStyles = StyleSheet.create({
   page: {
@@ -50,11 +42,13 @@ export const pdfStyles = StyleSheet.create({
   },
   headerContactGrid: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    flexWrap: 'wrap',
     alignItems: 'flex-start',
   },
   headerContactBlock: {
-    paddingRight: 8,
+    width: '33.33%',
+    paddingRight: 10,
+    marginBottom: 7,
   },
   headerContactLabel: {
     fontSize: 9.5,
@@ -95,11 +89,11 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 10,
   },
   sectionLabel: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: 700,
     color: colors.textPrimary,
-    paddingBottom: 8,
-    marginBottom: 10,
+    paddingBottom: 6,
+    marginBottom: 8,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
   },
@@ -118,9 +112,9 @@ export const pdfStyles = StyleSheet.create({
     marginRight: 6,
   },
   introText: {
-    fontSize: 10,
+    fontSize: 9.6,
     color: colors.textSecondary,
-    lineHeight: 1.65,
+    lineHeight: 1.55,
     marginBottom: 4,
   },
 
@@ -297,7 +291,7 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 1.5,
   },
   projectCase: {
-    marginBottom: 5,
+    marginBottom: 4,
   },
   projectCaseTitle: {
     fontSize: 9.8,
@@ -308,11 +302,50 @@ export const pdfStyles = StyleSheet.create({
   projectCaseLine: {
     fontSize: 8.7,
     color: colors.textSecondary,
-    lineHeight: 1.65,
-    marginBottom: 3,
+    lineHeight: 1.55,
+    marginBottom: 2,
     paddingLeft: 8,
   },
   projectCaseLabel: {
+    fontWeight: 700,
+    color: colors.textPrimary,
+  },
+  projectNote: {
+    fontSize: 8.7,
+    color: colors.textMuted,
+    lineHeight: 1.6,
+    marginBottom: 9,
+  },
+  projectCaseLinkRow: {
+    fontSize: 7.6,
+    lineHeight: 1.5,
+    marginTop: 1,
+    marginBottom: 7,
+    paddingLeft: 8,
+  },
+  projectCaseLink: {
+    fontSize: 7.6,
+    color: colors.accent,
+    textDecoration: 'underline',
+  },
+  experienceLinkRow: {
+    fontSize: 7.6,
+    lineHeight: 1.5,
+    marginTop: 1,
+    paddingLeft: 10,
+  },
+  projectCaseLinkSep: {
+    fontSize: 7.6,
+    color: colors.textMuted,
+  },
+
+  // -- Certificates --
+  certificateLine: {
+    fontSize: 9,
+    color: colors.textSecondary,
+    marginTop: 5,
+  },
+  certificateLabel: {
     fontWeight: 700,
     color: colors.textPrimary,
   },

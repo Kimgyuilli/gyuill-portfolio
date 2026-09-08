@@ -1,13 +1,9 @@
 import { View, Text } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-
-export interface PdfSkillCategory {
-  title: string;
-  skills: string[];
-}
+import type { ResumeSkillCategory } from '@/data/resume';
 
 interface PdfSkillsProps {
-  categories: PdfSkillCategory[];
+  categories: ResumeSkillCategory[];
 }
 
 export function PdfSkills({ categories }: PdfSkillsProps) {

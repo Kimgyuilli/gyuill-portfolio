@@ -1,81 +1,84 @@
 import { View, Text, Link } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-
-interface PdfProject {
-  title: string;
-  description: string;
-  period: string;
-  role: string;
-  github?: string;
-  tags: string[];
-  stack?: {
-    label: string;
-    value: string;
-  }[];
-  cases: {
-    title: string;
-    problem: string;
-    action: string;
-    result: string;
-  }[];
-}
+import type { ResumeProject } from '@/data/resume';
 
 interface PdfProjectsProps {
-  projects: PdfProject[];
+  projects: ResumeProject[];
+  /**
+   * true 로 두면 프로젝트 하나가 한 페이지를 통째로 차지한다. 프로젝트 페이지는 깔끔해지지만
+   * 앞 페이지 하단이 비므로 기본값은 false(이어서 흐름)다. 케이스를 늘려 프로젝트 하나가
+   * 한 페이지에 가까워지면 그때 켜는 편이 낫다.
+   */
+  pageBreak?: boolean;
 }
 
-export type { PdfProject };
-
-export function PdfProjects({ projects }: PdfProjectsProps) {
+export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
   return (
-    <View style={pdfStyles.sectionRow}>
+    <View style={pdfStyles.sectionRow} break={pageBreak}>
       <Text style={pdfStyles.sectionLabel}>프로젝트</Text>
       <View style={pdfStyles.sectionContent}>
         {projects.map((proj, i) => (
-          <View key={i} style={pdfStyles.projectItem}>
+          <View key={proj.title} style={pdfStyles.projectItem} break={pageBreak && i > 0}>
             <View style={pdfStyles.projectAside}>
               <Text style={pdfStyles.projectPeriod}>{proj.period}</Text>
               <Text style={pdfStyles.projectTitle}>{proj.title}</Text>
               <Text style={pdfStyles.projectDesc}>{proj.description}</Text>
               {proj.github && (
                 <View style={pdfStyles.projectGithubRow}>
-                  <Text style={pdfStyles.projectGithubLabel}>Github: </Text>
+                  <Text style={pdfStyles.projectGithubLabel}>GitHub: </Text>
                   <Link src={proj.github} style={pdfStyles.projectGithub}>
                     {proj.github.replace('https://github.com/', '')}
                   </Link>
                 </View>
               )}
-              <Text style={pdfStyles.projectStackTitle}>기술 스택</Text>
-              {proj.stack ? (
-                proj.stack.map((item) => (
-                  <Text key={item.label} style={pdfStyles.projectStackLine}>
-                    <Text style={pdfStyles.projectStackLabel}>{item.label}: </Text>
-                    {item.value}
-                  </Text>
-                ))
-              ) : (
-                <Text style={pdfStyles.projectStackLine}>{proj.tags.join(', ')}</Text>
+              {proj.demo && (
+                <View style={pdfStyles.projectGithubRow}>
+                  <Text style={pdfStyles.projectGithubLabel}>Service: </Text>
+                  <Link src={proj.demo} style={pdfStyles.projectGithub}>
+                    {proj.demo.replace(/^https?:\/\//, '')}
+                  </Link>
+                </View>
               )}
+              <Text style={pdfStyles.projectStackTitle}>기술 스택</Text>
+              {proj.stack.map((item) => (
+                <Text key={item.label} style={pdfStyles.projectStackLine}>
+                  <Text style={pdfStyles.projectStackLabel}>{item.label}: </Text>
+                  {item.value}
+                </Text>
+              ))}
             </View>
             <View style={pdfStyles.projectBody}>
               <Text style={pdfStyles.projectBodyLead}>{proj.role}</Text>
+              {proj.note && <Text style={pdfStyles.projectNote}>{proj.note}</Text>}
               {proj.cases.map((item, j) => (
-                <View key={j} style={pdfStyles.projectCase} wrap={false}>
+                <View key={item.title} style={pdfStyles.projectCase} wrap={false}>
                   <Text style={pdfStyles.projectCaseTitle}>
                     {j + 1}. {item.title}
                   </Text>
                   <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>Problem: </Text>
+                    <Text style={pdfStyles.projectCaseLabel}>문제 </Text>
                     {item.problem}
                   </Text>
                   <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>Action: </Text>
-                    {item.action}
+                    <Text style={pdfStyles.projectCaseLabel}>판단 </Text>
+                    {item.judgment}
                   </Text>
                   <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>Result: </Text>
+                    <Text style={pdfStyles.projectCaseLabel}>결과 </Text>
                     {item.result}
                   </Text>
+                  {item.links && item.links.length > 0 && (
+                    <Text style={pdfStyles.projectCaseLinkRow}>
+                      {item.links.map((link, k) => (
+                        <Text key={link.url}>
+                          {k > 0 && <Text style={pdfStyles.projectCaseLinkSep}> · </Text>}
+                          <Link src={link.url} style={pdfStyles.projectCaseLink}>
+                            {link.label}
+                          </Link>
+                        </Text>
+                      ))}
+                    </Text>
+                  )}
                 </View>
               ))}
             </View>

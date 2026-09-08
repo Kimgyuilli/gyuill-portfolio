@@ -2,6 +2,17 @@ import type { Experience } from '@/types';
 
 export const experiences: Experience[] = [
   {
+    company: 'SOPT makers',
+    position: '공식 홈페이지팀 BE',
+    period: '2026.08 - 현재',
+    description: [
+      '공식 홈페이지 및 인증 · 리쿠르팅 로직 유지보수',
+      '인수인계와 문서가 거의 없던 상태에서 레포 내용과 흩어진 문서를 수집해 공식 홈페이지팀 BE 문서를 재정리, 팀원 전달 후 내용 크로스체크 진행 중',
+      'Slack 무료 플랜의 3개월 메시지 보존 한계로 수동 Notion 아카이빙을 하던 것을 자동화 (sopt-makers/slack-notion-archive). 오프라인 정기 모임에서 메이커스 전원에게 아젠다를 공유한 뒤 운영진에 인계, 적용은 운영진 작업으로 남음',
+    ],
+    type: 'activity',
+  },
+  {
     company: 'IT 동아리 SOPT',
     position: 'SERVER OB',
     period: '2026.02 - 2026.07',
