@@ -95,8 +95,10 @@ No router library — the History API is used directly.
 ## Resume PDF (`components/pdf/`)
 
 `PdfDownloadButton` dynamically imports `@react-pdf/renderer` and `ResumePdf` on click (keeps them out
-of the main bundle) and downloads `김규일_이력서.pdf`. Sections live in `pdf/sections/`. `RESUME_DRAFT.md`
-at the repo root is the source text; `PORTFOLIO_DATA.md` is the older content-entry template.
+of the main bundle) and downloads `김규일_이력서.pdf`. Sections live in `pdf/sections/`, which hold layout
+only — **all resume content lives in `src/data/resume.ts`**, the single source of truth, so retargeting
+the resume for a job posting means editing that one file. Cases are written as 문제 / 판단 / 결과 with
+evidence links; `PORTFOLIO_DATA.md` is the older content-entry template.
 
 ## Styling System
 

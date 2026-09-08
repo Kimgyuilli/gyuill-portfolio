@@ -55,18 +55,18 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
                   <Text style={pdfStyles.projectCaseTitle}>
                     {j + 1}. {item.title}
                   </Text>
-                  <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>문제 </Text>
-                    {item.problem}
-                  </Text>
-                  <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>판단 </Text>
-                    {item.judgment}
-                  </Text>
-                  <Text style={pdfStyles.projectCaseLine}>
-                    <Text style={pdfStyles.projectCaseLabel}>결과 </Text>
-                    {item.result}
-                  </Text>
+                  {(
+                    [
+                      ['문제', item.problem],
+                      ['판단', item.judgment],
+                      ['결과', item.result],
+                    ] as const
+                  ).map(([label, body]) => (
+                    <View key={label} style={pdfStyles.projectCaseRow}>
+                      <Text style={pdfStyles.projectCaseLabel}>{label}</Text>
+                      <Text style={pdfStyles.projectCaseText}>{body}</Text>
+                    </View>
+                  ))}
                   {item.links && item.links.length > 0 && (
                     <Text style={pdfStyles.projectCaseLinkRow}>
                       {item.links.map((link, k) => (

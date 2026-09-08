@@ -53,9 +53,11 @@ export interface ResumeProject {
   cases: ResumeCase[];
 }
 
-/** 활동 항목. 산출물이 있으면 `links`로 근거를 건다. */
-export interface ResumeExperience extends Experience {
-  links?: ResumeLink[];
+/** 활동 불릿. 산출물이 있으면 문장 끝에 링크를 인라인으로 붙인다. */
+export type ResumeBullet = string | { text: string; link: ResumeLink };
+
+export interface ResumeExperience extends Omit<Experience, 'description'> {
+  description: ResumeBullet[];
 }
 
 export interface ResumeSkillCategory {
@@ -79,18 +81,15 @@ export const resumeContacts: ResumeContact[] = [
   { label: 'Email', value: 'rlarbdlf222@gmail.com', href: 'mailto:rlarbdlf222@gmail.com' },
   { label: 'GitHub', value: 'github.com/Kimgyuilli', href: resumeLinks.github },
   { label: 'Tech Blog', value: 'blog.rlarbdlf222.workers.dev', href: resumeLinks.blog },
-  {
-    label: 'Portfolio',
-    value: 'blog.rlarbdlf222.workers.dev/portfolio',
-    href: resumeLinks.portfolio,
-  },
 ];
 
 // ── 소개 ────────────────────────────────────────────────────
 export const resumeIntro: string[] = [
-  '측정하지 않은 개선은 믿지 않습니다. PeekCart에서 캐시로 상품 조회 TPS를 2.31배 올리면서 목표 3배에 미달한 원인이 CPU라는 것까지 짚었고, 1,000 VUser 동시 주문에서 오버셀링을 실제로 막은 것이 설계한 분산 락이 아니라 낙관적 락이라는 사실을 부하 테스트로 찾아냈습니다.',
-  '팀에서는 규칙을 문서로 남기기보다 도구가 대신 지키게 만듭니다. Momens에서 서버 리드로 운영 중인 레거시 서버를 멈추지 않고 옮기면서, 모듈 경계 위반은 리뷰가 아니라 빌드가 잡게 하고 배포 순서는 사람의 기억이 아니라 티켓의 완료 조건으로 만들었습니다.',
-  '선택한 것뿐 아니라 기각한 것도 남깁니다. 두 프로젝트의 결정 근거를 ADR과 블로그 학습 기록 29편으로 정리했고, 아래 각 항목의 링크가 그 기록입니다.',
+  '불편과 병목을 만나면 지나치지 않고 질문을 통해 원인을 찾아 개선안을 먼저 만들어 제안합니다. 인수인계 문서가 없던 팀의 온보딩 문서 작성, 수동으로 하던 아카이빙의 자동화, 불필요한 절차가 많던 리쿠르팅 과정의 통합 관리 플랫폼을 직접 만들어 제안했습니다.',
+  '개선됐다는 감각에 의존하지 않고 측정합니다. 캐시로 상품 조회 TPS를 2.31배 올리면서 목표 3배에 미달한 원인이 CPU라는 것을 특정했습니다.',
+  '팀 내 암묵지를 선제적으로 문서화하며, 문서만으로 지켜지지 않는 규칙은 도구가 지키게 만듭니다.',
+  '깃허브 1일 1커밋과 블로그 학습 기록으로 꾸준함을 쌓아왔습니다.',
+  '새로운 인사이트와 실패 경험을 동료들에게 공유하는 것을 좋아합니다.',
 ];
 
 // ── 스킬 ────────────────────────────────────────────────────
@@ -105,11 +104,11 @@ export const resumeSkills: ResumeSkillCategory[] = [
   },
   {
     title: 'Infra & CI',
-    skills: ['Docker', 'Kubernetes (GKE)', 'AWS', 'GitHub Actions', 'Kustomize'],
+    skills: ['Docker', 'Kubernetes (GKE)', 'AWS', 'GitHub Actions'],
   },
   {
     title: 'Observability & Load Test',
-    skills: ['Prometheus', 'Grafana', 'Micrometer', 'k6', 'nGrinder'],
+    skills: ['Prometheus', 'Grafana', 'Micrometer', 'k6'],
   },
 ];
 
@@ -124,18 +123,18 @@ export const resumeProjects: ResumeProject[] = [
     stack: [
       { label: 'Backend', value: 'Java 17, Spring Boot 3.5, Spring Security, Spring Data JPA' },
       { label: 'Data', value: 'MySQL 8, Redis 7 (Redisson), Kafka, Outbox, DLQ, Flyway' },
-      { label: 'Infra', value: 'Docker, Kubernetes, GKE, Prometheus, Grafana, k6, nGrinder' },
+      { label: 'Infra', value: 'Docker, Kubernetes, GKE, Prometheus, Grafana, k6' },
     ],
-    note: '모든 기술 도입을 「문제 → 대안 비교 → 선택 근거 → 한계」로 기록해 ADR 9건으로 남겼습니다. 리뷰어가 없는 1인 개발이라 AI 리뷰 응답을 JSON Schema로 고정해, 심각도 기준으로 통과·차단이 기계적으로 판정되게 만들었습니다.',
+    note: '모든 기술 도입을 문제 → 대안 비교 → 선택 근거 → 한계로 기록된 문서로 남겼습니다. 리뷰어가 없는 1인 개발이라 AI 리뷰 응답을 JSON Schema로 고정해 심각도 기준으로 통과/차단이 기계적으로 판정되는 하네스를 구축했습니다.',
     cases: [
       {
-        title: '캐시로 조회 TPS 2.31배 — 그리고 다음 병목이 CPU라는 것까지',
+        title: '캐시로 상품 조회 TPS 2.31배 개선과 다음 병목을 특정했습니다.',
         problem:
-          '상품 조회는 읽기가 가장 많은 API라 트래픽이 늘면 DB가 먼저 막힐 자리였습니다. "캐시를 넣으면 빨라진다"는 가정을 수치로 확인해야 했습니다.',
+          '상품 조회는 읽기가 가장 많은 API라 트래픽이 늘면 DB에서 제일 먼저 병목이 발생합니다. 이에 "캐시를 넣으면 빨라진다"는 가정을 수치로 확인해야 했습니다.',
         judgment:
           'Redis Cache-Aside를 적용하되 재고는 대상에서 제외했습니다. 주문마다 바뀌는 강한 정합성 대상이라 캐시에 두면 무효화 타이밍에 오버셀링 위험이 생깁니다. 캐시 스위치를 설정으로 분리해 GKE에서 OFF와 ON을 같은 조건으로 측정했습니다.',
         result:
-          '50 VUser 5분 기준 TPS 265 → 613(×2.31), 평균 응답 188ms → 82ms. 목표 3배에 미달한 원인을 캐시 ON에서도 Pod CPU 175%로 특정해 다음 검증 대상을 CPU로 넘겼습니다. 부하를 키우자 HPA가 replica를 1→3으로 늘렸지만 새 Pod가 트래픽을 받기까지 65초가 걸렸고, 자동 확장이 도는 것과 반응 공백은 별개라는 것을 수치로 확인했습니다.',
+          '50 VUser 5분 기준 TPS 265 → 613(×2.31), 평균 응답 188ms → 82ms. 목표 3배에 미달한 원인을 캐시 ON에서도 Pod CPU 175%로 특정해 다음 검증 대상을 CPU로 결정했습니다. 부하를 키우자 HPA가 replica를 1→3으로 늘렸지만 새 Pod가 트래픽을 받기까지 65초가 걸렸고, 자동 확장이 도는 것과 반응 공백은 별개라는 것을 수치로 확인했습니다.',
         links: [
           {
             label: '캐시 효과를 어떻게 증명할까',
@@ -263,12 +262,12 @@ export const resumeExperiences: ResumeExperience[] = [
     description: [
       '공식 홈페이지와 인증 · 리쿠르팅 로직 유지보수',
       '인수인계 문서가 없던 상태에서 레포와 흩어진 자료를 수집해 BE 문서를 재정리하고, 팀원 전달 후 내용 크로스체크 진행',
-      'Slack 무료 플랜의 3개월 보존 한계로 수동 아카이빙하던 대화를 Notion으로 옮기는 자동화 구현. 전체 모임에서 아젠다를 공유하고 운영진에 인계',
-    ],
-    links: [
       {
-        label: 'sopt-makers/slack-notion-archive',
-        url: 'https://github.com/sopt-makers/slack-notion-archive',
+        text: 'Slack 무료 플랜의 3개월 보존 한계로 수동 아카이빙하던 대화를 Notion으로 옮기는 자동화 구현. 전체 모임에서 아젠다를 공유하고 운영진에 인계',
+        link: {
+          label: 'sopt-makers/slack-notion-archive',
+          url: 'https://github.com/sopt-makers/slack-notion-archive',
+        },
       },
     ],
     type: 'activity',

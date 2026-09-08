@@ -19,24 +19,25 @@ export function PdfExperience({ experiences }: PdfExperienceProps) {
               </Text>
               <Text style={pdfStyles.experiencePeriod}>{exp.period}</Text>
             </View>
-            {exp.description.map((desc, j) => (
-              <View key={j} style={pdfStyles.bulletItem}>
-                <Text style={pdfStyles.bullet}>•</Text>
-                <Text style={pdfStyles.bulletText}>{desc}</Text>
-              </View>
-            ))}
-            {exp.links && exp.links.length > 0 && (
-              <Text style={pdfStyles.experienceLinkRow}>
-                {exp.links.map((link, k) => (
-                  <Text key={link.url}>
-                    {k > 0 && <Text style={pdfStyles.projectCaseLinkSep}> · </Text>}
-                    <Link src={link.url} style={pdfStyles.projectCaseLink}>
-                      {link.label}
-                    </Link>
+            {exp.description.map((item, j) => {
+              const bullet = typeof item === 'string' ? { text: item, link: undefined } : item;
+              return (
+                <View key={j} style={pdfStyles.bulletItem}>
+                  <Text style={pdfStyles.bullet}>•</Text>
+                  <Text style={pdfStyles.bulletText}>
+                    {bullet.text}
+                    {bullet.link && (
+                      <>
+                        <Text style={pdfStyles.projectCaseLinkSep}> · </Text>
+                        <Link src={bullet.link.url} style={pdfStyles.projectCaseLink}>
+                          {bullet.link.label}
+                        </Link>
+                      </>
+                    )}
                   </Text>
-                ))}
-              </Text>
-            )}
+                </View>
+              );
+            })}
           </View>
         ))}
       </View>
