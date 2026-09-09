@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 410" width="1340" height="410" font-family="'Apple SD Gothic Neo','Noto Sans KR','Malgun Gothic',-apple-system,BlinkMacSystemFont,sans-serif">
+  <defs>
+    <marker id="h1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#111"/>
+    </marker>
+    <marker id="h2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#777"/>
+    </marker>
+  </defs>
+
+  <rect width="1340" height="410" fill="#ffffff"/>
+  <text x="40" y="40" font-size="17" font-weight="700" fill="#111">작업 흐름 &#8212; 세 단계와 사람이 개입하는 지점</text>
+
+  <!-- Claude -->
+  <rect x="440" y="66" width="460" height="56" fill="#111" stroke="#111" stroke-width="2" rx="3"/>
+  <text x="670" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="#ffffff">Claude &#8212; 계획 · 구현 · 오케스트레이션</text>
+
+  <line x1="670" y1="124" x2="670" y2="158" stroke="#111" stroke-width="2" marker-end="url(#h1)"/>
+
+  <!-- stages -->
+  <rect x="120" y="160" width="1100" height="150" fill="#f7f7f7" stroke="#999" stroke-width="1.5" rx="3"/>
+
+  <rect x="150" y="192" width="290" height="88" fill="#ffffff" stroke="#111" stroke-width="2" rx="3"/>
+  <text x="295" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#111">/plan</text>
+  <text x="295" y="244" text-anchor="middle" font-size="12.5" fill="#333">착수 전 전제를 <tspan font-weight="700">코드로</tspan> 확인</text>
+  <text x="295" y="266" text-anchor="middle" font-size="12.5" fill="#666">범위가 여기서 자주 뒤집힌다</text>
+
+  <line x1="442" y1="236" x2="516" y2="236" stroke="#111" stroke-width="2" marker-end="url(#h1)"/>
+
+  <rect x="518" y="192" width="290" height="88" fill="#ffffff" stroke="#111" stroke-width="2" rx="3"/>
+  <text x="663" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#111">/work</text>
+  <text x="663" y="244" text-anchor="middle" font-size="12.5" fill="#333">구현 · 독립 검토 · 수렴 판정</text>
+  <text x="663" y="266" text-anchor="middle" font-size="12.5" fill="#666">새 계약 표면이 늘지 않으면 종료</text>
+
+  <line x1="810" y1="236" x2="884" y2="236" stroke="#111" stroke-width="2" marker-end="url(#h1)"/>
+
+  <rect x="886" y="192" width="290" height="88" fill="#ffffff" stroke="#111" stroke-width="2" rx="3"/>
+  <text x="1031" y="220" text-anchor="middle" font-size="15" font-weight="700" fill="#111">/ship</text>
+  <text x="1031" y="244" text-anchor="middle" font-size="12.5" fill="#333">커밋 분할 · PR 본문</text>
+  <text x="1031" y="266" text-anchor="middle" font-size="12.5" fill="#666">진행 상태는 계획서와 git 이력에</text>
+
+  <!-- user gate -->
+  <line x1="295" y1="282" x2="295" y2="330" stroke="#777" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#h2)"/>
+  <line x1="663" y1="282" x2="663" y2="330" stroke="#777" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#h2)"/>
+  <line x1="1031" y1="282" x2="1031" y2="330" stroke="#777" stroke-width="2" stroke-dasharray="5 4" marker-end="url(#h2)"/>
+
+  <rect x="150" y="332" width="1026" height="52" fill="#ffffff" stroke="#111" stroke-width="2" rx="3"/>
+  <text x="663" y="363" text-anchor="middle" font-size="14" font-weight="700" fill="#111">사람의 개입은 정해진 게이트에서만 &#8212; 계획 승인 · 반영 여부 · 커밋 분할 · PR 본문</text>
+
+</svg>
