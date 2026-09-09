@@ -47,6 +47,8 @@ export interface ResumeProject {
   role: string;
   github?: string;
   demo?: string;
+  /** 포트폴리오 상세 페이지. 케이스 단위 근거가 아니라 프로젝트 전체 상세를 가리킨다. */
+  portfolio?: string;
   stack: { label: string; value: string }[];
   /** 케이스 위에 붙는 프로젝트 단위 한 줄. 없으면 생략된다. */
   note?: string;
@@ -120,6 +122,7 @@ export const resumeProjects: ResumeProject[] = [
     period: '2026.03 - 진행 중',
     role: '1인 개발 · 설계 / 구현 / 인프라 / 부하 검증 전 과정',
     github: 'https://github.com/Kimgyuilli/PeekCart',
+    portfolio: `${resumeLinks.portfolio}projects/peekcart/`,
     stack: [
       { label: 'Backend', value: 'Java 17, Spring Boot 3.5, Spring Security, Spring Data JPA' },
       { label: 'Data', value: 'MySQL 8, Redis 7 (Redisson), Kafka, Outbox, DLQ, Flyway' },
@@ -194,6 +197,7 @@ export const resumeProjects: ResumeProject[] = [
     role: '서버 리드 · 레거시 이관 / 모듈 경계 설계 / 크로스팀 계약 (서버 2명, 전체 12명)',
     github: 'https://github.com/Momens-Works/momens-server',
     demo: 'https://momens.works',
+    portfolio: `${resumeLinks.portfolio}projects/momens-server/`,
     stack: [
       {
         label: 'Backend',
@@ -227,12 +231,6 @@ export const resumeProjects: ResumeProject[] = [
           '레거시에 테스트가 없어 "무엇이 맞는가"의 기대값이 될 수 있는 건 레거시의 실제 동작뿐이었습니다. 그래서 신규 서버만 검증하는 방식 대신 두 서버를 같은 픽스처로 띄워 같은 요청을 보내고 결과를 대조하는 하네스를 만들었습니다. 구축 과정에서 값이 바뀌지 않는 PATCH에서 레거시는 조건 없이 updated_at을 갱신하고 신규 서버는 JPA dirty checking으로 UPDATE가 발생하지 않는 차이를 발견하게 됐습니다. 이러한 경우는 응답 비교로 차이를 잡을 수 없어 비교 대상에 요청 이후 DB 기록까지 포함했습니다. 다만 이 대조가 보장하는 건 "두 서버가 같다"까지이고, 둘 다 틀렸거나 레거시에 대응물이 없는 신규 API는 비교 대상 자체가 없습니다. 그래서 계약은 OpenAPI 스냅샷을 커밋해 PR diff와 CI로 잡고, 실제 환경 동작은 배포 후 스모크로 나눴습니다.',
         result:
           '판정 기준을 golden 파일로 정의해 21건 전부 통과했습니다. 고쳤던 버그를 일부러 되돌려 해당 케이스가 불일치로 종료되는 것도 확인했습니다. 만드는 과정에서는 도구가 잡을 수 없는 경로 두 건(양쪽 서버가 모두 죽으면 상태 코드가 일치해 전 케이스 통과, 빌드 캐시가 스냅샷 게이트를 복원)을 찾아 고쳤습니다.',
-        links: [
-          {
-            label: '포트폴리오: 이관 검증 3층',
-            url: 'https://blog.rlarbdlf222.workers.dev/portfolio/projects/momens-server/',
-          },
-        ],
       },
       {
         title: '모듈 경계의 빌드 강제',
@@ -257,12 +255,6 @@ export const resumeProjects: ResumeProject[] = [
           '기다리지 않고 모바일을 먼저 완성하되 인증 코어를 전송수단 중립으로 두어 웹이 나중에 붙을 수 있게 진행하기로 정했습니다. 그 선택으로 생기는 리스크 7개를 비용 기준으로 정리하고 Google audience 다중화와 JWT 클레임 중립, refresh 저장소 확장 필드, CSRF 삽입 지점처럼 지금 자리만 만들어 두면 되는 넷은 바로 구현했습니다. 남은 둘은 코드로 해결되지 않는 부분이었는데, 하나는 약속 문제였고 하나는 운영 문제였습니다.',
         result:
           'refresh 폐기가 모바일에만 적용되어 강제 로그아웃과 권한 회수가 웹에서는 최대 24시간 늦어지는 것이 가장 컸습니다. 그래서 "세션 폐기에 의존하는 기능"을 계약에 넣지 않기로 정해 약속의 범위를 좁혔습니다. 이중 운영은 서버가 혼자 감당할 수 없어 사전 합의 대상으로 올렸고 한 웹 세션이 두 서버를 섞어 부르지 않는다는 전제로 정리됐습니다. 전환기 세션은 컷오버 전에는 신규 서버가 레거시 쿠키를 수용하고 이후에는 레거시가 신규 토큰을 수용하도록 협의를 했습니다. 덕분에 결정이 안 난 채로도 모바일을 먼저 완성할 수 있었습니다.',
-        links: [
-          {
-            label: '포트폴리오: 팀 사이의 경계',
-            url: 'https://blog.rlarbdlf222.workers.dev/portfolio/projects/momens-server/',
-          },
-        ],
       },
     ],
   },

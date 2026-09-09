@@ -39,6 +39,14 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
                   </Link>
                 </View>
               )}
+              {proj.portfolio && (
+                <View style={pdfStyles.projectGithubRow}>
+                  <Text style={pdfStyles.projectGithubLabel}>Portfolio: </Text>
+                  <Link src={proj.portfolio} style={pdfStyles.projectGithub}>
+                    {proj.portfolio.replace(/^https?:\/\//, '')}
+                  </Link>
+                </View>
+              )}
               <Text style={pdfStyles.projectStackTitle}>기술 스택</Text>
               {proj.stack.map((item) => (
                 <Text key={item.label} style={pdfStyles.projectStackLine}>
