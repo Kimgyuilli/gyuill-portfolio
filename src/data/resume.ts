@@ -137,7 +137,7 @@ export const resumeProjects: ResumeProject[] = [
         judgment:
           'Redis Cache-Aside를 적용하되 재고는 대상에서 제외했습니다. 주문마다 바뀌는 강한 정합성 대상이라 캐시에 두면 무효화 타이밍에 오버셀링 위험이 생깁니다. 캐시 스위치를 설정으로 분리해 GKE에서 OFF와 ON을 같은 조건으로 측정했습니다.',
         result:
-          '50 VUser 5분 기준 TPS 265 → 613(×2.31), 평균 응답 188ms → 82ms. 목표 3배에 미달한 원인을 캐시 ON에서도 Pod CPU가 request 대비 175%라는 데서 특정해 다음 검증 대상을 CPU로 결정했습니다. 부하를 키우자 CPU가 limit(request 대비 400% = 2 vCPU)에 걸려 HPA가 replica를 1→3으로 늘렸지만 신규 Pod가 Ready에 도달하기까지 65초가 걸렸습니다. replica 3을 미리 띄워 같은 부하를 재측정하니 커밋된 주문이 25 → 110건(×4.4)으로 늘어, scale-out과 반응 공백은 별개라는 것을 대조로 확인했습니다.',
+          '50 VUser 5분 기준 TPS 265 → 613(×2.31), 평균 응답 188ms → 82ms. 목표 3배에 미달한 원인을 캐시 ON에서도 Pod CPU 피크가 1.75 vCPU(limit 2 vCPU의 88%)라는 데서 특정해 다음 검증 대상을 CPU로 결정했습니다. 부하를 키우자 CPU가 limit 2 vCPU에 걸려 HPA가 replica를 1→3으로 늘렸지만 신규 Pod가 Ready에 도달하기까지 65초가 걸렸습니다. replica 3을 미리 띄워 같은 부하를 재측정하니 커밋된 주문이 25 → 110건(×4.4)으로 늘어, scale-out과 반응 공백은 별개라는 것을 대조로 확인했습니다.',
         links: [
           {
             label: '캐시 효과를 어떻게 증명할까',
