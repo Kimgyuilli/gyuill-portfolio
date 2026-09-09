@@ -39,14 +39,6 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
                   </Link>
                 </View>
               )}
-              {proj.portfolio && (
-                <View style={pdfStyles.projectGithubRow}>
-                  <Text style={pdfStyles.projectGithubLabel}>Portfolio: </Text>
-                  <Link src={proj.portfolio} style={pdfStyles.projectGithub}>
-                    {proj.portfolio.replace(/^https?:\/\//, '')}
-                  </Link>
-                </View>
-              )}
               <Text style={pdfStyles.projectStackTitle}>기술 스택</Text>
               {proj.stack.map((item) => (
                 <Text key={item.label} style={pdfStyles.projectStackLine}>
@@ -57,7 +49,27 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
             </View>
             <View style={pdfStyles.projectBody}>
               <Text style={pdfStyles.projectBodyLead}>{proj.role}</Text>
-              {proj.note && <Text style={pdfStyles.projectNote}>{proj.note}</Text>}
+              {proj.note && (
+                <Text
+                  style={
+                    proj.portfolio
+                      ? [pdfStyles.projectNote, pdfStyles.projectNoteTight]
+                      : pdfStyles.projectNote
+                  }
+                >
+                  {proj.note}
+                </Text>
+              )}
+              {/* aside(31%) 는 전체 URL 을 한 줄에 담지 못한다. 하이픈 콜백이 꺼져 있어
+                  줄바꿈 없이 칼럼을 침범하므로 폭이 넓은 body 쪽에 둔다. */}
+              {proj.portfolio && (
+                <View style={pdfStyles.projectPortfolioRow}>
+                  <Text style={pdfStyles.projectGithubLabel}>상세 기록: </Text>
+                  <Link src={proj.portfolio} style={pdfStyles.projectGithub}>
+                    {proj.portfolio.replace(/^https?:\/\//, '')}
+                  </Link>
+                </View>
+              )}
               {proj.cases.map((item, j) => (
                 <View key={item.title} style={pdfStyles.projectCase} wrap={false}>
                   <Text style={pdfStyles.projectCaseTitle}>

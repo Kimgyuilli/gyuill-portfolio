@@ -325,6 +325,15 @@ export const pdfStyles = StyleSheet.create({
     lineHeight: 1.7,
     marginBottom: 14,
   },
+  /** 아래에 상세 기록 링크가 붙는 경우. 링크 줄이 아래 여백을 이어받는다. */
+  projectNoteTight: {
+    marginBottom: 5,
+  },
+  projectPortfolioRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 14,
+  },
   projectCaseLinkRow: {
     fontSize: 7.6,
     lineHeight: 1.5,
