@@ -84,7 +84,22 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
                   ).map(([label, body]) => (
                     <View key={label} style={pdfStyles.projectCaseRow}>
                       <Text style={pdfStyles.projectCaseLabel}>{label}</Text>
-                      <Text style={pdfStyles.projectCaseText}>{body}</Text>
+                      {/* 본문에 개행이 있으면 단락으로 나눈다. 개행이 없으면 단락 하나라
+                          기존 렌더 결과와 같다. */}
+                      <View style={pdfStyles.projectCaseTextGroup}>
+                        {body.split(/\n+/).map((para, k) => (
+                          <Text
+                            key={para.slice(0, 24)}
+                            style={
+                              k === 0
+                                ? pdfStyles.projectCaseText
+                                : [pdfStyles.projectCaseText, pdfStyles.projectCaseTextPara]
+                            }
+                          >
+                            {para}
+                          </Text>
+                        ))}
+                      </View>
                     </View>
                   ))}
                   {item.links && item.links.length > 0 && (

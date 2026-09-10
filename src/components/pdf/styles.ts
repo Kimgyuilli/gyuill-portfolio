@@ -313,11 +313,18 @@ export const pdfStyles = StyleSheet.create({
     color: colors.textMuted,
     lineHeight: 1.72,
   },
-  projectCaseText: {
+  /** 문제·판단·결과 본문을 감싸는 열. 안에 단락이 여러 개 올 수 있다. */
+  projectCaseTextGroup: {
     flex: 1,
+  },
+  projectCaseText: {
     fontSize: 8.8,
     color: colors.textSecondary,
     lineHeight: 1.72,
+  },
+  /** 두 번째 단락부터 붙는 여백. 빈 줄보다 좁게 둬서 장수를 늘리지 않는다. */
+  projectCaseTextPara: {
+    marginTop: 4,
   },
   projectNote: {
     fontSize: 8.4,
