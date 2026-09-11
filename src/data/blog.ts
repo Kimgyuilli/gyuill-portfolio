@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "네트워크 기초: OSI 7계층부터 TCP·UDP까지",
+    summary: "OSI 7계층과 TCP/IP 모델의 관계부터 캡슐화, TCP 연결·신뢰성·흐름 제어, UDP의 특징과 선택 기준까지 네트워크 통신의 핵심을 정리합니다.",
+    date: '2026.09.10',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/network-basics-osi-tcp-udp/image-01.png",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/network-basics-osi-tcp-udp/",
+    tags: ["network","osi","tcp-ip"],
+  },
+  {
     title: "CS 스터디 4주차: 동기화, 교착 상태와 메모리 관리",
     summary: "Race Condition과 임계 구역부터 Mutex, Semaphore, Deadlock, Paging, 가상 메모리와 페이지 교체까지 정리합니다.",
     date: '2026.08.31',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/cs-os-basics/thumbnail.png",
     link: "https://blog.rlarbdlf222.workers.dev/blog/cs-os-basics/",
     tags: ["CS","운영체제","프로세스"],
-  },
-  {
-    title: "CS 스터디 2주차: 핵심 알고리즘 지도",
-    summary: "정렬과 탐색부터 그래프, DP, 그리디, 최단 경로, MST, 문자열 매칭까지 문제 유형별 핵심 알고리즘을 정리합니다.",
-    date: '2026.08.20',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/cs-algorithms/thumbnail.png",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/cs-algorithms/",
-    tags: ["CS","알고리즘","그래프"],
   }
 ];
