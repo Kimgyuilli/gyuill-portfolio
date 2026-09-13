@@ -39,13 +39,13 @@ export const achievements: AchievementData[] = [
   {
     title: 'TOEIC Speaking IH',
     issuer: 'YBM',
-    date: '2026.08',
-    description: '영어 말하기 능력 평가 Intermediate High 등급 취득',
+    date: '2026.08.30',
+    description: '영어 말하기 능력 평가 Intermediate High(140)',
   },
   {
     title: 'SQLD',
-    issuer: '국가 공인',
-    date: '2024.08',
-    description: '데이터베이스 SQL 국가공인 자격증',
+    issuer: '한국데이터산업진흥원 (Kdata)',
+    date: '2024.09.20',
+    description: 'SQL 개발자 자격증',
   },
 ];
