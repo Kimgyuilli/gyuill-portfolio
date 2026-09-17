@@ -197,82 +197,99 @@ export const pdfStyles = StyleSheet.create({
 
   // ── Projects ──
   projectItem: {
-    flexDirection: 'row',
     marginBottom: 12,
-    paddingBottom: 7,
+    paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
   },
-  projectAside: {
-    width: '31%',
-    paddingRight: 22,
+  projectSummary: {
+    marginBottom: 12,
+    paddingBottom: 9,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.borderLight,
+  },
+  projectHeadingRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    marginBottom: 6,
+  },
+  projectHeadingText: {
+    width: '78%',
+    paddingRight: 18,
   },
   projectBody: {
-    width: '69%',
+    width: '100%',
+    paddingHorizontal: 8,
   },
   projectBodyLead: {
-    fontSize: 9,
+    fontSize: 9.2,
     fontWeight: 700,
     color: colors.textSecondary,
-    marginBottom: 6,
+    marginBottom: 7,
     lineHeight: 1.6,
   },
   projectHeader: {
     display: 'none',
   },
   projectTitle: {
-    fontSize: 13,
+    fontSize: 14,
     fontWeight: 700,
     color: colors.textPrimary,
-    marginBottom: 8,
-  },
-  projectPeriod: {
-    fontSize: 8,
-    color: colors.textMuted,
-    marginBottom: 7,
-  },
-  projectDesc: {
-    fontSize: 8.8,
-    color: colors.textSecondary,
-    marginBottom: 7,
-    lineHeight: 1.55,
-  },
-  projectGithubRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 12,
-  },
-  projectGithubLabel: {
-    fontSize: 7.2,
-    color: colors.textMuted,
-    lineHeight: 1.35,
-  },
-  projectGithub: {
-    fontSize: 7.2,
-    color: colors.textMuted,
-    textDecoration: 'underline',
-    lineHeight: 1.35,
-  },
-  projectMeta: {
-    fontSize: 8,
-    color: colors.textMuted,
     marginBottom: 3,
   },
-  projectStackLine: {
-    fontSize: 8.1,
+  projectPeriod: {
+    fontSize: 8.5,
     color: colors.textMuted,
-    lineHeight: 1.55,
-    marginBottom: 2,
+    marginTop: 2,
   },
-  projectStackTitle: {
+  projectDesc: {
     fontSize: 9,
+    color: colors.textSecondary,
+    lineHeight: 1.55,
+  },
+  projectGithub: {
+    fontSize: 8,
+    color: colors.textMuted,
+    textDecoration: 'underline',
+    lineHeight: 1.4,
+  },
+  projectLinkRow: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginBottom: 7,
+  },
+  projectLinkItem: {
+    fontSize: 8,
+    color: colors.textMuted,
+    marginRight: 18,
+    lineHeight: 1.4,
+  },
+  projectMetaLabel: {
     fontWeight: 700,
     color: colors.textSecondary,
-    marginBottom: 5,
   },
-  projectStackLabel: {
+  projectStackList: {
+    marginTop: 1,
+  },
+  projectStackRow: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    marginBottom: 1,
+  },
+  projectStackLabelColumn: {
+    width: 52,
+    flexShrink: 0,
+    fontSize: 8.2,
     fontWeight: 700,
+    color: colors.textSecondary,
+    lineHeight: 1.5,
+  },
+  projectStackValue: {
+    flex: 1,
+    fontSize: 8.2,
     color: colors.textMuted,
+    lineHeight: 1.5,
   },
   projectTagRow: {
     flexDirection: 'row',
@@ -291,10 +308,10 @@ export const pdfStyles = StyleSheet.create({
     marginBottom: 1.5,
   },
   projectCase: {
-    marginBottom: 13,
+    marginBottom: 12,
   },
   projectCaseTitle: {
-    fontSize: 10.6,
+    fontSize: 11,
     fontWeight: 700,
     color: colors.textPrimary,
     marginBottom: 6,
@@ -306,54 +323,44 @@ export const pdfStyles = StyleSheet.create({
     paddingLeft: 2,
   },
   projectCaseLabel: {
-    width: 30,
+    width: 40,
     flexShrink: 0,
-    fontSize: 8.6,
+    fontSize: 9,
     fontWeight: 700,
     color: colors.textMuted,
-    lineHeight: 1.72,
+    lineHeight: 1.6,
   },
   /** 문제·판단·결과 본문을 감싸는 열. 안에 단락이 여러 개 올 수 있다. */
   projectCaseTextGroup: {
     flex: 1,
   },
   projectCaseText: {
-    fontSize: 8.8,
+    fontSize: 9.1,
     color: colors.textSecondary,
-    lineHeight: 1.72,
+    lineHeight: 1.6,
   },
   /** 두 번째 단락부터 붙는 여백. 빈 줄보다 좁게 둬서 장수를 늘리지 않는다. */
   projectCaseTextPara: {
     marginTop: 4,
   },
   projectNote: {
-    fontSize: 8.4,
+    fontSize: 8.7,
     color: colors.textMuted,
-    lineHeight: 1.7,
-    marginBottom: 14,
-  },
-  /** 아래에 상세 기록 링크가 붙는 경우. 링크 줄이 아래 여백을 이어받는다. */
-  projectNoteTight: {
-    marginBottom: 5,
-  },
-  projectPortfolioRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    marginBottom: 14,
+    lineHeight: 1.6,
+    marginBottom: 9,
   },
   projectCaseLinkRow: {
-    fontSize: 7.6,
+    fontSize: 8,
     lineHeight: 1.5,
-    marginTop: 3,
-    paddingLeft: 32,
+    marginTop: 5,
   },
   projectCaseLink: {
-    fontSize: 7.6,
+    fontSize: 8,
     color: colors.accent,
     textDecoration: 'underline',
   },
   projectCaseLinkSep: {
-    fontSize: 7.6,
+    fontSize: 8,
     color: colors.textMuted,
   },
 

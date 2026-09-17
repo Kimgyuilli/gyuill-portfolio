@@ -1,6 +1,6 @@
 import { View, Text, Link } from '@react-pdf/renderer';
 import { pdfStyles } from '../styles';
-import type { ResumeProject } from '@/data/resume';
+import type { ResumeLink, ResumeProject } from '@/data/resume';
 
 interface PdfProjectsProps {
   projects: ResumeProject[];
@@ -12,6 +12,46 @@ interface PdfProjectsProps {
   pageBreak?: boolean;
 }
 
+interface PdfProjectCaseRowProps {
+  label: '문제' | '판단' | '결과';
+  body: string;
+  links?: ResumeLink[];
+}
+
+function PdfProjectCaseRow({ label, body, links }: PdfProjectCaseRowProps) {
+  return (
+    <View style={pdfStyles.projectCaseRow} wrap={false}>
+      <Text style={pdfStyles.projectCaseLabel}>{label}</Text>
+      <View style={pdfStyles.projectCaseTextGroup}>
+        {body.split(/\n+/).map((para, k) => (
+          <Text
+            key={para.slice(0, 24)}
+            style={
+              k === 0
+                ? pdfStyles.projectCaseText
+                : [pdfStyles.projectCaseText, pdfStyles.projectCaseTextPara]
+            }
+          >
+            {para}
+          </Text>
+        ))}
+        {links && links.length > 0 && (
+          <Text style={pdfStyles.projectCaseLinkRow}>
+            {links.map((link, k) => (
+              <Text key={link.url}>
+                {k > 0 && <Text style={pdfStyles.projectCaseLinkSep}> · </Text>}
+                <Link src={link.url} style={pdfStyles.projectCaseLink}>
+                  {link.label}
+                </Link>
+              </Text>
+            ))}
+          </Text>
+        )}
+      </View>
+    </View>
+  );
+}
+
 export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
   return (
     <View style={pdfStyles.sectionRow} break={pageBreak}>
@@ -19,101 +59,66 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
       <View style={pdfStyles.sectionContent}>
         {projects.map((proj, i) => (
           <View key={proj.title} style={pdfStyles.projectItem} break={pageBreak && i > 0}>
-            <View style={pdfStyles.projectAside}>
-              <Text style={pdfStyles.projectPeriod}>{proj.period}</Text>
-              <Text style={pdfStyles.projectTitle}>{proj.title}</Text>
-              <Text style={pdfStyles.projectDesc}>{proj.description}</Text>
-              {proj.github && (
-                <View style={pdfStyles.projectGithubRow}>
-                  <Text style={pdfStyles.projectGithubLabel}>GitHub: </Text>
-                  <Link src={proj.github} style={pdfStyles.projectGithub}>
-                    {proj.github.replace('https://github.com/', '')}
-                  </Link>
+            <View style={pdfStyles.projectSummary} wrap={false}>
+              <View style={pdfStyles.projectHeadingRow}>
+                <View style={pdfStyles.projectHeadingText}>
+                  <Text style={pdfStyles.projectTitle}>{proj.title}</Text>
+                  <Text style={pdfStyles.projectDesc}>{proj.description}</Text>
                 </View>
-              )}
-              {proj.demo && (
-                <View style={pdfStyles.projectGithubRow}>
-                  <Text style={pdfStyles.projectGithubLabel}>Service: </Text>
-                  <Link src={proj.demo} style={pdfStyles.projectGithub}>
-                    {proj.demo.replace(/^https?:\/\//, '')}
-                  </Link>
-                </View>
-              )}
-              <Text style={pdfStyles.projectStackTitle}>기술 스택</Text>
-              {proj.stack.map((item) => (
-                <Text key={item.label} style={pdfStyles.projectStackLine}>
-                  <Text style={pdfStyles.projectStackLabel}>{item.label}: </Text>
-                  {item.value}
-                </Text>
-              ))}
+                <Text style={pdfStyles.projectPeriod}>{proj.period}</Text>
+              </View>
+
+              <Text style={pdfStyles.projectBodyLead}>{proj.role}</Text>
+              {proj.note && <Text style={pdfStyles.projectNote}>{proj.note}</Text>}
+
+              <View style={pdfStyles.projectLinkRow}>
+                {proj.github && (
+                  <Text style={pdfStyles.projectLinkItem}>
+                    <Text style={pdfStyles.projectMetaLabel}>GitHub </Text>
+                    <Link src={proj.github} style={pdfStyles.projectGithub}>
+                      {proj.github.replace('https://github.com/', '')}
+                    </Link>
+                  </Text>
+                )}
+                {proj.demo && (
+                  <Text style={pdfStyles.projectLinkItem}>
+                    <Text style={pdfStyles.projectMetaLabel}>Service </Text>
+                    <Link src={proj.demo} style={pdfStyles.projectGithub}>
+                      {proj.demo.replace(/^https?:\/\//, '')}
+                    </Link>
+                  </Text>
+                )}
+                {proj.portfolio && (
+                  <Text style={pdfStyles.projectLinkItem}>
+                    <Text style={pdfStyles.projectMetaLabel}>상세 기록 </Text>
+                    <Link src={proj.portfolio} style={pdfStyles.projectGithub}>
+                      {proj.portfolio.replace(/^https?:\/\//, '')}
+                    </Link>
+                  </Text>
+                )}
+              </View>
+
+              <View style={pdfStyles.projectStackList}>
+                {proj.stack.map((item) => (
+                  <View key={item.label} style={pdfStyles.projectStackRow}>
+                    <Text style={pdfStyles.projectStackLabelColumn}>{item.label}</Text>
+                    <Text style={pdfStyles.projectStackValue}>{item.value}</Text>
+                  </View>
+                ))}
+              </View>
             </View>
             <View style={pdfStyles.projectBody}>
-              <Text style={pdfStyles.projectBodyLead}>{proj.role}</Text>
-              {proj.note && (
-                <Text
-                  style={
-                    proj.portfolio
-                      ? [pdfStyles.projectNote, pdfStyles.projectNoteTight]
-                      : pdfStyles.projectNote
-                  }
-                >
-                  {proj.note}
-                </Text>
-              )}
-              {/* aside(31%) 는 전체 URL 을 한 줄에 담지 못한다. 하이픈 콜백이 꺼져 있어
-                  줄바꿈 없이 칼럼을 침범하므로 폭이 넓은 body 쪽에 둔다. */}
-              {proj.portfolio && (
-                <View style={pdfStyles.projectPortfolioRow}>
-                  <Text style={pdfStyles.projectGithubLabel}>상세 기록: </Text>
-                  <Link src={proj.portfolio} style={pdfStyles.projectGithub}>
-                    {proj.portfolio.replace(/^https?:\/\//, '')}
-                  </Link>
-                </View>
-              )}
               {proj.cases.map((item, j) => (
-                <View key={item.title} style={pdfStyles.projectCase} wrap={false}>
-                  <Text style={pdfStyles.projectCaseTitle}>
-                    {j + 1}. {item.title}
-                  </Text>
-                  {(
-                    [
-                      ['문제', item.problem],
-                      ['판단', item.judgment],
-                      ['결과', item.result],
-                    ] as const
-                  ).map(([label, body]) => (
-                    <View key={label} style={pdfStyles.projectCaseRow}>
-                      <Text style={pdfStyles.projectCaseLabel}>{label}</Text>
-                      {/* 본문에 개행이 있으면 단락으로 나눈다. 개행이 없으면 단락 하나라
-                          기존 렌더 결과와 같다. */}
-                      <View style={pdfStyles.projectCaseTextGroup}>
-                        {body.split(/\n+/).map((para, k) => (
-                          <Text
-                            key={para.slice(0, 24)}
-                            style={
-                              k === 0
-                                ? pdfStyles.projectCaseText
-                                : [pdfStyles.projectCaseText, pdfStyles.projectCaseTextPara]
-                            }
-                          >
-                            {para}
-                          </Text>
-                        ))}
-                      </View>
-                    </View>
-                  ))}
-                  {item.links && item.links.length > 0 && (
-                    <Text style={pdfStyles.projectCaseLinkRow}>
-                      {item.links.map((link, k) => (
-                        <Text key={link.url}>
-                          {k > 0 && <Text style={pdfStyles.projectCaseLinkSep}> · </Text>}
-                          <Link src={link.url} style={pdfStyles.projectCaseLink}>
-                            {link.label}
-                          </Link>
-                        </Text>
-                      ))}
+                <View key={item.title} style={pdfStyles.projectCase}>
+                  {/* 사례 제목만 페이지 하단에 남지 않도록 문제 행까지 한 묶음으로 둔다. */}
+                  <View wrap={false}>
+                    <Text style={pdfStyles.projectCaseTitle}>
+                      {j + 1}. {item.title}
                     </Text>
-                  )}
+                    <PdfProjectCaseRow label="문제" body={item.problem} />
+                  </View>
+                  <PdfProjectCaseRow label="판단" body={item.judgment} />
+                  <PdfProjectCaseRow label="결과" body={item.result} links={item.links} />
                 </View>
               ))}
             </View>
