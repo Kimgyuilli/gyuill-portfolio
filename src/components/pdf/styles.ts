@@ -46,7 +46,7 @@ export const pdfStyles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   headerContactBlock: {
-    width: '33.33%',
+    width: '25%',
     paddingRight: 10,
     marginBottom: 7,
   },
@@ -201,6 +201,11 @@ export const pdfStyles = StyleSheet.create({
     paddingBottom: 10,
     borderBottomWidth: 1,
     borderBottomColor: colors.borderLight,
+  },
+  projectItemLast: {
+    marginBottom: 0,
+    paddingBottom: 0,
+    borderBottomWidth: 0,
   },
   projectSummary: {
     marginBottom: 12,

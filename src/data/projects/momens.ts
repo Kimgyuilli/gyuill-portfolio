@@ -62,7 +62,7 @@ const momensMarkdown = `## 프로젝트 개요
 | Data | PostgreSQL, JPA, Flyway (45단계) |
 | Test | JUnit 5, Testcontainers |
 | Build | Gradle 멀티모듈 (Groovy DSL), Spotless + Google Java Format |
-| Infra | Docker, Kubernetes (dev GKE), GitHub Actions |
+| Infra | Docker, Kubernetes (GKE Autopilot), Terraform, Google Cloud (Cloud SQL · VPC · NAT · PSC), GitHub Actions WIF |
 | 외부 연동 | Firebase Admin SDK (FCM), Google Gen AI SDK, gRPC (proto submodule) |
 | 관측성 | OpenTelemetry, MDC 로그 상관관계, 구조화 로깅 |
 

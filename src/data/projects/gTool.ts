@@ -281,7 +281,6 @@ export const gTool: Project = {
   ],
   tags: ['FastAPI', 'Next.js', 'OpenAI', 'Docker', 'OAuth 2.0'],
   github: 'https://github.com/Kimgyuilli/g-tool',
-  demo: 'https://gtool.kro.kr/',
   categories: ['Frontend', 'Backend', 'AI'],
   techStack: {
     frontend: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', '@dnd-kit'],

@@ -58,7 +58,15 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
       <Text style={pdfStyles.sectionLabel}>프로젝트</Text>
       <View style={pdfStyles.sectionContent}>
         {projects.map((proj, i) => (
-          <View key={proj.title} style={pdfStyles.projectItem} break={pageBreak && i > 0}>
+          <View
+            key={proj.title}
+            style={
+              i === projects.length - 1
+                ? [pdfStyles.projectItem, pdfStyles.projectItemLast]
+                : pdfStyles.projectItem
+            }
+            break={pageBreak && i > 0}
+          >
             <View style={pdfStyles.projectSummary} wrap={false}>
               <View style={pdfStyles.projectHeadingRow}>
                 <View style={pdfStyles.projectHeadingText}>
