@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "CS 스터디 7주차: 정규화, 조인, 인덱스",
+    summary: "고객 이름의 중복에서 시작해 테이블과 키, 트랜잭션, 조인, 인덱스가 각각 해결하는 문제를 살펴봅니다.",
+    date: '2026.09.30',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/cs-database-normalization-joins-indexes/thumbnail.jpg",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/cs-database-normalization-joins-indexes/",
+    tags: ["CS","데이터베이스","정규화"],
+  },
+  {
     title: "6주차 웹, 네트워크",
     summary: "인터넷과 웹, IP 주소와 포트, 소켓, HTTP·HTTPS, 쿠키와 세션의 핵심 개념을 정리합니다.",
     date: '2026.09.22',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/network-basics-osi-tcp-udp/image-01.png",
     link: "https://blog.rlarbdlf222.workers.dev/blog/network-basics-osi-tcp-udp/",
     tags: ["network","osi","tcp-ip"],
-  },
-  {
-    title: "CS 스터디 4주차: 동기화, 교착 상태와 메모리 관리",
-    summary: "Race Condition과 임계 구역부터 Mutex, Semaphore, Deadlock, Paging, 가상 메모리와 페이지 교체까지 정리합니다.",
-    date: '2026.08.31',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/cs-os-synchronization-memory/thumbnail.png",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/cs-os-synchronization-memory/",
-    tags: ["CS","운영체제","동기화"],
   }
 ];
