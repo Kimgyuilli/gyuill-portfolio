@@ -39,8 +39,7 @@ import cherrish35 from '@/assets/images/project/cherrish/35.webp';
 export const cherrish: Project = {
   slug: 'cherrish',
   title: 'Cherrish',
-  description:
-    '미용 시술 일정과 다운타임을 관리하고, AI 기반 챌린지 루틴을 추천하는 뷰티 캘린더 앱',
+  description: '시술 일정·회복 기간을 관리하고 7일 챌린지 루틴을 추천하는 앱',
   projectType: 'Side',
   image: cherrishImage,
   media: [
@@ -86,7 +85,7 @@ export const cherrish: Project = {
   demo: '#',
   categories: ['Backend', 'AI'],
   detailedDescription:
-    '개인의 추구미에 맞는 뷰티 관리 방향을 정리하고, 시술 후 다운타임과 일정 중복을 방지하는 뷰티 캘린더 앱입니다. 피부 고민 키워드 기반 시술 검색, 민감기/주의기/회복기로 구분된 다운타임 시각화, AI 기반 7일 챌린지 루틴 추천, 체리 레벨 게이미피케이션 등의 기능을 제공합니다. DDD 레이어드 아키텍처를 적용하여 도메인별 책임을 명확히 분리하고 확장성 있는 구조를 설계했습니다.',
+    '시술 일정과 시술 후 회복 기간을 함께 관리하는 뷰티 캘린더 앱이다. 피부 고민에 따른 시술 검색, 회복 단계별 일정 표시, AI 기반 7일 챌린지 루틴 추천 기능을 제공한다. 서버에서는 도메인별 책임을 나누는 구조를 설계했다.',
   features: [
     '피부 고민 키워드 기반 시술 검색 및 추천',
     '사용자 맞춤 다운타임 설정 (민감기/주의기/회복기 자동 분할)',
@@ -122,7 +121,7 @@ export const cherrish: Project = {
     'Server 500 오류 발생 시 디스코드 알림 전송 기능 구현',
   ],
   outcome:
-    'DDD 아키텍처 기반 확장 가능한 백엔드 설계, OIDC 인증 기반 보안적인 CI/CD 파이프라인 구축, AI 통합 서비스 개발 경험',
+    '도메인별로 서버 코드를 분리하고, GitHub Actions OIDC와 AWS SSM을 이용한 배포 파이프라인을 구축했다. Spring AI를 연동해 챌린지 루틴을 생성했다.',
   duration: '2025.12 - 2026.02',
   teamSize: '2명 (Server)',
   role: 'Server Lead Developer',

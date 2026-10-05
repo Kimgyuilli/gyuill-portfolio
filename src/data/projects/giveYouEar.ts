@@ -4,8 +4,7 @@ import giveYouEarImage from '@/assets/images/project/GiveYouEar.png';
 export const giveYouEar: Project = {
   slug: 'give-you-ear',
   title: 'GiveYouEar (SpeekSee)',
-  description:
-    'AI 기반 자기주도형 발음 훈련 플랫폼. 맞춤형 스크립트 생성과 STT 분석을 통해 혼자서도 효과적인 스피킹 연습이 가능합니다.',
+  description: '맞춤형 스크립트 생성과 STT 분석으로 발음 연습을 돕는 서비스',
   projectType: 'Side',
   image: giveYouEarImage,
   tags: ['Spring Boot', 'Java', 'STT', 'AI'],
@@ -13,7 +12,7 @@ export const giveYouEar: Project = {
   demo: '#',
   categories: ['Backend', 'AI'],
   detailedDescription:
-    '취준생과 대학생들의 스피치 불안을 해소하고 실질적인 훈련 성과를 제공하는 AI 발음 교정 플랫폼입니다. 사용자 레벨과 목표에 맞춘 스크립트를 AI가 자동 생성하고, STT 기술로 발음을 분석하여 시각적 피드백을 제공합니다. 성장 대시보드를 통해 학습 진행도를 한눈에 확인할 수 있습니다.',
+    '사용자의 수준과 목표에 맞춰 연습용 스크립트를 만들고, STT 분석 결과를 화면에 보여주는 발음 연습 서비스다. 출석 기록과 복습 노트, 진행도 대시보드도 제공한다.',
   features: [
     'AI 기반 사용자 맞춤형 스크립트 생성',
     'STT 분석 및 발음 시각적 피드백',

@@ -24,12 +24,12 @@ const peekcartImages: Record<string, string> = {
 
 const peekcartMarkdown = `## 프로젝트 개요
 
-**PeekCart**는 대용량 트래픽을 가정한 이커머스 백엔드 플랫폼이다. 단순 CRUD를 넘어 **성능·정합성·안정성·운영**을 검증 대상으로 삼았고, **모놀리식으로 구현한 뒤 5개 서비스로 실제 분해하는 단계(Phase 4)까지** 진행했다.
+**PeekCart**는 동시 주문과 서비스 분리를 직접 검증하려고 만든 개인 이커머스 백엔드 프로젝트다. 모놀리식으로 시작해 재고 정합성·이벤트 처리·부하를 점검한 뒤 5개 서비스로 분리했다. 각 단계에서 선택이 맞았는지 테스트와 측정으로 확인하고, 목표에 못 미친 결과도 기록했다.
 
-### 핵심 성과
+### 주요 작업과 확인한 결과
 
-- **모놀리스를 5개 서비스로 분해했다.** Order↔Product · Order↔Payment의 production 동기 결합이 0이 된 뒤에 모듈을 뗐고, 마지막 peel에서 루트 앱이 해체됐다 — 순서가 반대였다면 Product는 단독으로 뜨지도 못한다
-- **1,000 VUser 동시 주문에서 재고 정합성 OK · 오버셀링 0건.** 이중 방어 중 실제로 막은 것은 낙관적 락이었고, 분산 락이 주문 경로에서 무력화돼 있다는 사실도 이 측정에서 드러났다 (처리량 합격선은 미달 — 1·3장에 그대로 기록)
+- **모놀리스를 5개 서비스로 분해했다.** Order↔Product · Order↔Payment의 production 동기 결합이 0이 된 뒤에 모듈을 뗐고, 마지막 peel에서 루트 앱이 해체됐다. 순서가 반대였다면 Product는 단독으로 뜨지도 못한다
+- **1,000 VUser 동시 주문에서 오버셀링 0건.** 실측에서 재고를 지킨 것은 낙관적 락이었다. 분산 락이 주문 경로에서 무력화돼 있었고 처리량도 합격선에 못 미쳤다. 이 결과는 1·3장에 기록했다
 - **상품 조회 TPS ×2.31 개선.** Redis Cache-Aside 적용 전후 비교 (265.0 → 612.7, GKE 실측)
 - **이벤트 유실·중복 소비 대응.** Transactional Outbox + 멱등성(\`processed_events\`) + DLQ, 그 위에 미결 실패를 상태로 남기는 DLQ 원장과 replay 계약
 - **평문 헤더 신뢰를 폐기했다.** Gateway가 서명한 내부 토큰만 인증 근거가 되도록 격상해, NetworkPolicy 단일 통제를 defense-in-depth로 바꿨다
@@ -40,7 +40,7 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 "이커머스 CRUD"는 많지만, 트래픽이 몰릴 때 무엇이 먼저 깨지는지, 그걸 어떤 순서로 막아야 하는지를 직접 겪어보고 싶었다. 그래서 처음부터 MSA로 가지 않고 **모놀리식으로 시작한 뒤, 동시성·이벤트 유실·중복 소비 같은 문제를 실제로 마주칠 때마다 그에 맞는 패턴을 도입**하는 방식으로 진행했다.
 
-핵심 원칙은 "무엇을 만들었는가"가 아니라 **왜 그 방식으로 만들었는가**다. 모든 기술 도입을 \`문제 → 대안 비교 → 선택 근거 → 한계\`로 기록하고, 주요 결정은 ADR(Architecture Decision Record) 21건으로 남겼다. 측정 결과는 목표에 미달하더라도 그대로 기록했다.
+기술을 도입할 때마다 문제와 대안, 선택 이유, 한계를 기록했다. 주요 결정은 ADR(Architecture Decision Record) 21건으로 남겼고, 측정 결과가 목표에 못 미친 경우도 그대로 적었다.
 
 현재 Phase 1\\~3(모놀리식 구현 · 성능/정합성 보강 · 인프라/관측성/부하 검증)을 마쳤고, **Phase 4(MSA 분리)의 구현 ①\\~⑥(멀티모듈 분해 · DB-per-service · Gateway · Saga · CQRS 로컬 캐시 · 커서 페이지네이션)을 끝낸 뒤 DLQ replay 계약을 구현하는 중**이다.
 
@@ -74,19 +74,19 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 ---
 
-## 1. 문제와 해결: 1,000명이 같은 상품을 동시에 주문하면
+## 1. 동시 주문에서 재고를 지키기
 
-### 문제 (As-Is)
+### 당시 문제
 
 재고가 100개인 상품에 동시 주문이 몰리면, 재고 확인과 차감 사이의 틈에서 여러 트랜잭션이 같은 재고를 읽고 각자 차감해 **오버셀링**이 발생한다. Serializable이나 \`SELECT FOR UPDATE\`로 막을 수는 있지만, 락 경합과 DB 커넥션 점유를 주문 경로에 집중시키고 싶지 않았다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 평상시엔 **Redis 분산 락(Redisson)으로 동시 요청을 직렬화**한다. 락을 못 잡으면(경합) 대기 없이 즉시 409로 응답한다. 그리고 **Redis 자체가 장애일 땐 락 없이 트랜잭션을 진행하되, DB 낙관적 락(\`@Version\`)이 최후 방어선**으로 동시 차감을 막는다. '경합 차단'과 '장애 시 정합성 보장'은 서로 다른 경로다.
 
 ![재고 동시성: 분산 락과 낙관적 락 흐름]({{diagram_lock}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 락 범위는 트랜잭션 범위를 감싸야 한다**
 
@@ -107,7 +107,7 @@ const peekcartMarkdown = `## 프로젝트 개요
 | 동시 요청 처리 | DB 커넥션 점유, 대기 누적 | Redis에서 직렬화(설계), 실패 시 즉시 409 |
 | DB 부하 | 락 경합이 DB로 집중 | DB는 차감 트랜잭션만 |
 | 장애 대응 | DB 단일 의존 | Redis 장애 시 락 없이 진행, \`@Version\`이 최후 방어 |
-| 검증 | 미검증 | 1,000 VUser 동시 주문 **오버셀링 0건** — 실측상 방어한 것은 \`@Version\` (처리량은 합격선 미달) |
+| 검증 | 미검증 | 1,000 VUser 동시 주문 **오버셀링 0건**: 실측상 방어한 것은 \`@Version\` (처리량은 합격선 미달) |
 
 **4) Phase 4에서 이 문제가 다시 열렸다**
 
@@ -117,19 +117,19 @@ const peekcartMarkdown = `## 프로젝트 개요
 
 ---
 
-## 2. 문제와 해결: DB는 커밋됐는데 이벤트가 사라진다면
+## 2. DB 커밋 뒤 이벤트가 사라지는 경우 막기
 
-### 문제 (As-Is)
+### 당시 문제
 
 주문이 생기면 결제·알림 도메인에 알려야 한다. Phase 1에서는 \`@TransactionalEventListener(AFTER_COMMIT)\`로 처리했는데, **이벤트 핸들러는 커밋 이후에 실행되므로 거기서 예외가 나도 이미 커밋된 주문은 롤백되지 않는다.** 더 큰 문제는 Phase 2에서 Kafka로 넘어갈 때다. "DB 커밋 성공 → Kafka 발행 실패"가 발생하면 이벤트가 영구 유실되어 도메인 간 상태가 어긋난다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 비즈니스 데이터와 이벤트를 **하나의 트랜잭션으로 Outbox 테이블에 함께 저장**하고, 폴링 스케줄러가 Outbox를 읽어 Kafka로 발행한다. 발행 실패는 \`retry_count\`로 재시도하고, 한계를 넘으면 \`FAILED\` + Slack 알림으로 격리한다. Consumer 쪽은 멱등성과 DLQ로 중복·실패를 흡수한다.
 
 ![이벤트 파이프라인: Outbox · 멱등성 · DLQ]({{diagram_event}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) Outbox 발행: Polling vs Debezium CDC**
 
@@ -160,13 +160,13 @@ DLQ로 보내는 것까지는 유실을 막지만, 격리된 실패가 **어디�
 
 ---
 
-## 3. 문제와 해결: "성능을 개선했다"를 어떻게 증명하나
+## 3. 성능 개선을 측정으로 확인하기
 
-### 문제 (As-Is)
+### 당시 문제
 
 "캐시를 넣어서 빨라졌다", "동시성 문제를 막았다"는 말은 수치 없이는 신뢰하기 어렵다. 실제 부하 환경에서 무엇이 병목이고, 개선이 얼마나 됐는지를 **측정**해야 했다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 GKE(e2-standard-4) 환경에 배포하고 nGrinder·k6로 시나리오를 나눠 실측했다. 캐시 효과, 동시 주문 정합성, HPA 자동 확장, Kafka Lag을 각각 분리해 측정했다.
 
@@ -181,7 +181,7 @@ GKE(e2-standard-4) 환경에 배포하고 nGrinder·k6로 시나리오를 나눠
 >
 > **측정 시점은 Phase 3(모놀리식 단일 Pod)이다.** 서비스 분리 후의 격리 재측정은 부채 D-002로 여전히 추적 중이며, 아래 수치는 분해 이전 형상의 것이다.
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 캐시에 재고를 넣지 않은 이유**
 
@@ -222,7 +222,7 @@ Phase 4에서 이 5개 도메인이 그대로 5개 서비스가 됐고, **레이
 | \`product-service\` | 상품·재고 예약 원장 | 5,436줄 / 82파일 |
 | \`notification-service\` | 알림 | 3,201줄 / 44파일 |
 | \`user-service\` | 인증·토큰 발급 (RS256 서명 owner) | 1,227줄 / 32파일 |
-| \`gateway\` | Spring Cloud Gateway (WebFlux) — 인프라 게이트웨이 | 1,192줄 / 14파일 |
+| \`gateway\` | Spring Cloud Gateway (WebFlux): 인프라 게이트웨이 | 1,192줄 / 14파일 |
 | \`common\` · \`peekcart-common-auth\` · \`peekcart-common-observability\` · \`internal-token-contract\` | 공유 계약 | 3,498줄 / 75파일 |
 
 ---
@@ -238,19 +238,19 @@ GCP/GKE 단일 노드(e2-standard-4) 위에 앱과 백킹 서비스(MySQL · Red
 - **이미지 파이프라인**: GitHub Actions CI가 GHCR로 발행하고, GKE 부하 테스트용으로 Artifact Registry에 복사해 pull
 - **외부 연동**: Toss Payments(결제) · Slack(알림) egress
 
-> 위 그림은 **Phase 3 측정 환경**(단일 peekcart Deployment)이다. Phase 4에서 이 표면을 5서비스 per-service로 재구성했다 — 서비스별 Dockerfile과 CI 이미지 매트릭스, base/overlays의 Deployment·Service·ServiceMonitor 분리, 5서비스 ClusterIP 환원 + NetworkPolicy(gateway 경유 강제), 관측성 계약의 per-service 재설계(ADR-0015). 매니페스트는 62개이고, 이름·라벨·노출 계약의 드리프트는 lint로 잡는다.
+> 위 그림은 **Phase 3 측정 환경**(단일 peekcart Deployment)이다. Phase 4에서 이 표면을 5서비스 per-service로 재구성했다. 서비스별 Dockerfile과 CI 이미지 매트릭스, base/overlays의 Deployment·Service·ServiceMonitor 분리, 5서비스 ClusterIP 환원 + NetworkPolicy(gateway 경유 강제), 관측성 계약의 per-service 재설계(ADR-0015). 매니페스트는 62개이고, 이름·라벨·노출 계약의 드리프트는 lint로 잡는다.
 
 ---
 
-## 6. Phase 4 ①: 모놀리스를 5개로 가르기 — 동기 결합을 먼저 끊었다
+## 6. Phase 4 ①: 동기 결합을 끊고 서비스 분리하기
 
-### 문제 (As-Is)
+### 당시 문제
 
 도메인 경계가 잡혀 있으니 모듈만 나누면 된다고 보기 쉽지만, 실제로 나누면 **Product 모듈이 단독으로 뜨지 않는다.** Order가 \`ProductPort\`라는 동기 빈을 들고 있어서, Product를 떼면 Order가 부팅에 실패한다. 컴파일이 되는 것과 서비스가 독립적으로 뜨는 것은 다른 문제다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
-**순서를 뒤집는다 — 떼기 전에 결합을 먼저 없앤다.**
+**순서를 뒤집는다: 떼기 전에 결합을 먼저 없앤다.**
 
 1. 의존이 없는 \`notification\` → \`user\`를 먼저 peel한다 (독립 서비스)
 2. Order·Product·Payment는 하나의 **사가 클러스터**로 묶어, 모듈을 나누기 전에 동기 호출 seam을 이벤트/로컬 캐시로 교체한다
@@ -268,7 +268,7 @@ seam 제거는 다섯 단계로 나뉜다.
 | strangler-4 | \`verifyProductExists\` 동기 조회 | 로컬 캐시 조회 + 미스 시 명시적 에러 코드 |
 | strangler-5 | Order↔Payment 상호 호출 | \`payment.requested\` 이벤트 + payment-로컬 소유자 검증 |
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 로컬 캐시는 "캐시"가 아니라 복제본이다**
 
@@ -288,21 +288,21 @@ seam 제거는 다섯 단계로 나뉜다.
 
 ---
 
-## 7. Phase 4 ②: DB-per-service — 교차 FK부터 끊는다
+## 7. Phase 4 ②: 교차 FK를 끊고 DB 소유권 나누기
 
-### 문제 (As-Is)
+### 당시 문제
 
 모듈은 나뉘었지만 5개 서비스가 한 스키마를 공유하고 있었다. 그 상태에서는 **교차 도메인 FK가 물리적으로 분리를 막는다.** \`orders.user_id\`가 \`users\`를 FK로 참조하면, 스키마를 가르는 순간 제약이 깨진다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 세 단계로 나뉜다.
 
-1. **교차 도메인 FK 6개 드롭** (\`fk_carts_user\` · \`fk_cart_items_product\` · \`fk_orders_user\` · \`fk_order_items_product\` · \`fk_payments_order\` · \`fk_notifications_user\`). 컬럼은 남기고 **ID 참조**로 바꾼다 — 참조 무결성은 DB가 아니라 사가가 책임진다
-2. **물리 스키마 분리** — 1 인스턴스 + 5 스키마/계정, Flyway를 서비스별로 소유(order 10 · product 8 · payment 8 · notification 6 · user 2)
-3. **retention/cleanup 스케줄러** — outbox·processed_events가 무한히 자라지 않게 보존 기간을 정의한다
+1. **교차 도메인 FK 6개 드롭** (\`fk_carts_user\` · \`fk_cart_items_product\` · \`fk_orders_user\` · \`fk_order_items_product\` · \`fk_payments_order\` · \`fk_notifications_user\`). 컬럼은 남기고 **ID 참조**로 바꾼다. 참조 무결성은 DB가 아니라 사가가 책임진다
+2. **물리 스키마 분리**. 1 인스턴스 + 5 스키마/계정, Flyway를 서비스별로 소유(order 10 · product 8 · payment 8 · notification 6 · user 2)
+3. **retention/cleanup 스케줄러**. outbox·processed_events가 무한히 자라지 않게 보존 기간을 정의한다
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 보존 기간은 성능 정책이 아니라 정합성 정책이다**
 
@@ -320,23 +320,23 @@ seam 제거는 다섯 단계로 나뉜다.
 
 ## 8. Phase 4 ③: 평문 헤더 신뢰를 폐기하기까지
 
-### 문제 (As-Is)
+### 당시 문제
 
 서비스가 5개가 되면 5곳이 각자 JWT를 검증한다. 검증 로직이 복제되고, 키 회전이 5배로 번진다. Gateway를 두고 한 번만 검증하는 것이 정석이지만, 그러면 **Gateway가 "이 요청은 누구다"를 어떻게 뒤에 전달하는가**가 새 문제가 된다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 신뢰의 근거는 세 단계로 격상됐다.
 
 | 단계 | 인증 근거 | 신뢰의 전제 |
 | --- | --- | --- |
 | PR1\\~PR2 | 서비스별 JWT 검증 (HS256 → **RS256 + JWKS** dual-validation, Refresh Token Reuse Detection) | 대칭키 공유 폐기 |
-| PR3c | Gateway가 검증 후 주입한 평문 \`X-User-*\` 헤더 | **NetworkPolicy 단독** — 5서비스 ClusterIP 환원 + gateway 경유 강제 |
-| PR3d | Gateway 개인키로 서명한 \`X-Internal-Auth\` (ADR-0017) | **defense-in-depth** — NetworkPolicy AND 서명 |
+| PR3c | Gateway가 검증 후 주입한 평문 \`X-User-*\` 헤더 | **NetworkPolicy 단독**: 5서비스 ClusterIP 환원 + gateway 경유 강제 |
+| PR3d | Gateway 개인키로 서명한 \`X-Internal-Auth\` (ADR-0017) | **defense-in-depth**: NetworkPolicy AND 서명 |
 
 ![인증 신뢰 경계의 3단계 격상]({{diagram_gateway_auth}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 평문 header-trust는 "단일 통제"였다**
 
@@ -358,17 +358,17 @@ Gateway는 WebFlux, 검증 측(\`peekcart-common-auth\`)은 Servlet이라 **서�
 
 키 로딩 실패·빈 키셋·키 도메인 범위 위반은 **부팅을 거부**한다. 부팅 시 필터 구성을 검사하는 불변식(\`InternalTokenModeInvariant\`)이 있어, 사용자 verifier가 부활하거나 체인이 0개인 상태로는 뜨지 못한다.
 
-**검증**: 10모듈 그린 · 서명 지연 p95 RSA-2048 **1.80ms** / RSA-3072 **3.00ms**(예산 10/25ms를 측정 전에 확정). 다만 **부하 하 event-loop lag은 미측정**이고 GKE 실클러스터 적용은 별도 세션 소관으로 남아 있다 — 렌더 성공은 배포 가능으로 기록하지 않는다.
+**검증**: 10모듈 그린 · 서명 지연 p95 RSA-2048 **1.80ms** / RSA-3072 **3.00ms**(예산 10/25ms를 측정 전에 확정). 다만 **부하 하 event-loop lag은 미측정**이고 GKE 실클러스터 적용은 별도 세션 소관으로 남아 있다: 렌더 성공은 배포 가능으로 기록하지 않는다.
 
 ---
 
 ## 9. Phase 4 ④: 이미 도는 사가의 "미결 종료"를 닫기
 
-### 문제 (As-Is)
+### 당시 문제
 
 착수 전 코드 확인에서 계획서가 틀렸다는 것이 드러났다. ADR이 이 단계의 산출물로 규정한 4개 중 2개(예약/확정/복구 consumer, \`stock.reservation.result\`)는 **6장의 strangler 작업에서 이미 만들어져 있었다.** 실질 잔여는 "사가를 만드는 것"이 아니라 **이미 도는 사가가 남기는 미결 종료 상태를 닫는 것**이었고, 범위는 그렇게 재확정됐다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 - **lease 계약**: 재고 예약의 만료 시각을 Product가 부여해 사가 참여자가 공유한다. Order가 먼저 취소하고, Payment는 만료된 lease의 승인을 거부하고, sweeper는 만료+유예 뒤에만 회수한다
 - **\`@Version\` + 수렴 규칙**: 주문 상태 전이에 낙관 락을 넣고, 진 쪽의 처리를 명시한다
@@ -378,7 +378,7 @@ Gateway는 WebFlux, 검증 측(\`peekcart-common-auth\`)은 Servlet이라 **서�
 
 ![사가의 정상 경로와 미결 종료를 닫는 장치]({{diagram_saga}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 고정 TTL sweeper가 폐기된 이유**
 
@@ -386,11 +386,11 @@ Gateway는 WebFlux, 검증 측(\`peekcart-common-auth\`)은 Servlet이라 **서�
 
 **2) 승격 조건이 "실측"이었다**
 
-주문 상태 전이 동시성(\`Order @Version\` 부재)은 보류 항목이었고, 승격 조건이 "실측"이었다. 그래서 \`@Version\`을 먼저 넣는 대신 **재현이 선행됐다.** 두 \`EntityManager\`가 커밋 전 같은 스냅샷을 읽도록 강제한 **결정적** 재현(확률적 재현의 음성은 기각 근거로 쓸 수 없다) 결과 **양방향 lost update**가 나왔다 — 취소 선커밋이면 최종 \`PAYMENT_COMPLETED\`(취소 유실), 결제 선커밋이면 최종 \`CANCELLED\`(과금된 주문이 취소로 표시). 상태 전이 가드는 각 트랜잭션의 *스냅샷* 기준이라 통과하면서 결과가 틀린다. **가드로는 막을 수 없는 종류**였다.
+주문 상태 전이 동시성(\`Order @Version\` 부재)은 보류 항목이었고, 승격 조건이 "실측"이었다. 그래서 \`@Version\`을 먼저 넣는 대신 **재현이 선행됐다.** 두 \`EntityManager\`가 커밋 전 같은 스냅샷을 읽도록 강제한 **결정적** 재현(확률적 재현의 음성은 기각 근거로 쓸 수 없다) 결과 **양방향 lost update**가 나왔다. 취소 선커밋이면 최종 \`PAYMENT_COMPLETED\`(취소 유실), 결제 선커밋이면 최종 \`CANCELLED\`(과금된 주문이 취소로 표시). 상태 전이 가드는 각 트랜잭션의 *스냅샷* 기준이라 통과하면서 결과가 틀린다. **가드로는 막을 수 없는 종류**였다.
 
 **3) 알림은 종료 상태의 근거가 못 된다**
 
-취소된 주문에 결제 완료가 도착하는 경로는 처음에 Slack 알림 + \`return\`으로 처리돼 있었다. 그런데 order 서비스의 SlackPort는 배포 구성상 **no-op**이고, 소비가 커밋되면 \`processed_events\` 때문에 **같은 이벤트를 다시 소비할 수 없다** — 나중에 만들 환불 구현이 입력을 잃는다. 소비와 같은 트랜잭션에서 원장에 남기는 것으로 교체됐다.
+취소된 주문에 결제 완료가 도착하는 경로는 처음에 Slack 알림 + \`return\`으로 처리돼 있었다. 그런데 order 서비스의 SlackPort는 배포 구성상 **no-op**이고, 소비가 커밋되면 \`processed_events\` 때문에 **같은 이벤트를 다시 소비할 수 없다**. 나중에 만들 환불 구현이 입력을 잃는다. 소비와 같은 트랜잭션에서 원장에 남기는 것으로 교체됐다.
 
 **4) 진입 시점 검사는 fence가 아니다**
 
@@ -406,21 +406,21 @@ Gateway는 WebFlux, 검증 측(\`peekcart-common-auth\`)은 Servlet이라 **서�
 
 **7) 종결의 의미는 결과별로 갈린다**
 
-환불이 실패했는데 원장이 \`RESOLVED\`로 닫히면 원장이 거짓이 된다. 실패는 \`REFUND_FAILED\`, 미확정은 전이하지 않고 reconciliation(5분 주기·조회 상한 24h) 후 수동 종결이다. \`ALREADY_CANCELED\` 응답은 **실패로 보지 않는다** — 이전 호출이 성공했는데 응답만 유실됐거나 외부에서 수동 취소된 경우라 이미 목표 상태일 가능성이 높고, 실패로 닫으면 실제로 환불된 결제가 승인 상태로 남는다.
+환불이 실패했는데 원장이 \`RESOLVED\`로 닫히면 원장이 거짓이 된다. 실패는 \`REFUND_FAILED\`, 미확정은 전이하지 않고 reconciliation(5분 주기·조회 상한 24h) 후 수동 종결이다. \`ALREADY_CANCELED\` 응답은 **실패로 보지 않는다**. 이전 호출이 성공했는데 응답만 유실됐거나 외부에서 수동 취소된 경우라 이미 목표 상태일 가능성이 높고, 실패로 닫으면 실제로 환불된 결제가 승인 상태로 남는다.
 
 **8) replay 대조 축에서 ADR이 스스로와 충돌하고 있었다**
 
-재실패 상관의 대조 축에 \`outbox_events\` 전속 컬럼이 들어 있었다. 그런데 발행에 성공한 outbox 행은 retention 후 삭제되고 원장은 무기한 남는다 — **재실패가 도착했을 때 그 값을 읽을 행이 이미 없다.** 같은 절이 정확히 그 이유로 "대조의 정본은 원장"이라고 정해 놓고, 목록에는 outbox 컬럼을 남긴 것이다. 축을 빼는 것만으로는 payload를 묶는 값이 사라져 **조작된 메시지가 남의 사건에 자식으로 붙는** 경로가 열려, 절단 전 전문의 SHA-256을 따로 영속하는 것으로 닫혔다.
+재실패 상관의 대조 축에 \`outbox_events\` 전속 컬럼이 들어 있었다. 그런데 발행에 성공한 outbox 행은 retention 후 삭제되고 원장은 무기한 남는다. **재실패가 도착했을 때 그 값을 읽을 행이 이미 없다.** 같은 절이 정확히 그 이유로 "대조의 정본은 원장"이라고 정해 놓고, 목록에는 outbox 컬럼을 남긴 것이다. 축을 빼는 것만으로는 payload를 묶는 값이 사라져 **조작된 메시지가 남의 사건에 자식으로 붙는** 경로가 열려, 절단 전 전문의 SHA-256을 따로 영속하는 것으로 닫혔다.
 
 **9) 쓰기는 엄격하게, 읽기는 관대하게**
 
-replay 헤더는 발행 측에서 **키 집합 정확 일치**를 요구한다(빈 값이 조용히 생략돼 헤더 0\\~3개짜리 replay가 나가는 경로를 막는다). 반대로 판독 측은 값이 이상해도 예외를 던지지 않고 null로 떨어뜨린다 — **조작 가능한 헤더 하나가 DLQ 적재 자체를 막으면 실패 사실이 유실**되기 때문이다. 판독 실패는 "상관하지 않음"이지 "적재하지 않음"이 아니다. 이 비대칭이 의도다.
+replay 헤더는 발행 측에서 **키 집합 정확 일치**를 요구한다(빈 값이 조용히 생략돼 헤더 0\\~3개짜리 replay가 나가는 경로를 막는다). 반대로 판독 측은 값이 이상해도 예외를 던지지 않고 null로 떨어뜨린다. **조작 가능한 헤더 하나가 DLQ 적재 자체를 막으면 실패 사실이 유실**되기 때문이다. 판독 실패는 "상관하지 않음"이지 "적재하지 않음"이 아니다. 이 비대칭이 의도다.
 
 ### 검증
 
 - **크로스서비스 E2E 하네스**: 시나리오 4종(격리 compose · PG stub) **3회 연속 통과** + **음성 대조군 7종**
 - CI \`e2e\` 잡에서 전량 통과(잡 소요 15m41s), 로컬에서 162\\~189초로 실패하던 시나리오가 러너에서 14초
-- 스케줄러 배선은 **변이 검사**로 실증됐다 — \`@Scheduled\` 한 줄을 지우자 배선 테스트 4건이 실패하고, 원복하니 통과
+- 스케줄러 배선은 **변이 검사**로 실증됐다. \`@Scheduled\` 한 줄을 지우자 배선 테스트 4건이 실패하고, 원복하니 통과
 
 ### 남은 것 (종결 시점에 명시)
 
@@ -428,7 +428,7 @@ fence 미구현(승인↔회수 경합 창이 마진 이내로 남음) · Toss �
 
 ---
 
-## 10. 초록을 믿지 않는 법 — 검증 도구가 스스로를 속인 사례들
+## 10. 초록을 믿지 않는 법: 검증 도구가 스스로를 속인 사례들
 
 Phase 4에서 가장 자주 나온 결함은 운영 코드가 아니라 **검증 도구 자체**였다. 전부 "빨개져야 할 때 초록인" 형태다. 같은 형태가 반복된다는 것이 드러난 뒤로는, 게이트마다 **일부러 깨뜨려 빨개지는지 보는 절차**가 붙었다.
 
@@ -454,13 +454,13 @@ Phase 4에서 가장 자주 나온 결함은 운영 코드가 아니라 **검증
 
 ## 11. CI 51분을 30분으로 (그리고 재분할을 기각한 이유)
 
-### 문제 (As-Is)
+### 당시 문제
 
 서비스가 늘면서 CI의 \`build\` 잡이 **32m23s 직렬**이 됐다. 전체 run은 51m44s였다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
-\`build\` 하나가 **lint / test 6-shard / guards / gate**로 분해됐다. shard는 모듈이 아니라 \`@Container\` 선언 분포를 기준으로 나뉘고, \`:module:test\`가 아니라 \`:module:build\`를 돌린다 — \`test\`만 돌리면 \`bootJar\`·\`testFixturesJar\` 검증이 소실된다.
+\`build\` 하나가 **lint / test 6-shard / guards / gate**로 분해됐다. shard는 모듈이 아니라 \`@Container\` 선언 분포를 기준으로 나뉘고, \`:module:test\`가 아니라 \`:module:build\`를 돌린다. \`test\`만 돌리면 \`bootJar\`·\`testFixturesJar\` 검증이 소실된다.
 
 | | 분해 전 | 분해 후 | 변화 |
 | --- | --- | --- | --- |
@@ -471,7 +471,7 @@ Phase 4에서 가장 자주 나온 결함은 운영 코드가 아니라 **검증
 
 shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform 1m21s/0개 \\~ order 11m22s/55개). shard 분할 기준을 컨테이너 분포로 잡은 근거가 실측으로 확인된 셈이다.
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 레포 분리는 검토 후 기각됐다**
 
@@ -479,7 +479,7 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 
 **2) 임계값을 초과했지만 재분할하지 않는다**
 
-서비스 shard의 최대/최소 비가 3.39로 계획이 정한 2.0을 넘었다. 그래도 재분할하지 않고, **그 판단이 근거와 함께 기록**돼 있다 — 임계 경로를 쥔 것은 order-service(11m22s)가 아니라 **e2e(15m28s)**라, order를 반으로 쪼개도 **전체 run은 1초도 줄지 않는다.** 비가 큰 이유도 order가 느려서가 아니라 user/notification이 빨라서다. 재검토 조건(e2e가 빨라져 테스트 단계가 다시 임계 경로가 되면)도 함께 적혀 있다.
+서비스 shard의 최대/최소 비가 3.39로 계획이 정한 2.0을 넘었다. 그래도 재분할하지 않고, **그 판단이 근거와 함께 기록**돼 있다. 임계 경로를 쥔 것은 order-service(11m22s)가 아니라 **e2e(15m28s)**라, order를 반으로 쪼개도 **전체 run은 1초도 줄지 않는다.** 비가 큰 이유도 order가 느려서가 아니라 user/notification이 빨라서다. 재검토 조건(e2e가 빨라져 테스트 단계가 다시 임계 경로가 되면)도 함께 적혀 있다.
 
 **3) 사전 임계값은 완료 조건이 되지 않았다**
 
@@ -495,7 +495,7 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 
 **JWT 인증, DB와 Redis의 역할 분리.** Refresh Token은 DB에 영속(발급 이력·만료 관리), 로그아웃 블랙리스트는 Redis에 둔다. Token Rotation 시 동시 재발급으로 생기는 race condition은 Grace Period로 보완했고, Phase 4에서 **Reuse Detection**(재사용 감지 시 family 전체 폐기)을 추가했다. (학습 기록 2)
 
-**커서 페이지네이션 — 문제가 성능이 아니었다.** 로드맵은 이 작업을 "offset 성능 개선"으로 잡았는데, 착수 전 코드 검증에서 다른 것이 나왔다. 주문 목록의 \`@PageableDefault\`에 **\`sort\`가 없었다.** 응답 순서가 DB가 정하는 미정의 순서였고 클라이언트가 임의 컬럼 정렬을 넣을 수도 있었다 — **offset 페이징으로서의 결과 정합성조차 없던 상태**다. 그래서 1차 가치는 성능이 아니라 **결정적 순서 계약의 최초 확립**으로 재정의됐고, "동률 \`ordered_at\`이 페이지 경계에서 누락·중복되면 미완"이 완료 명제에 들어갔다. 검사 행 수는 커서 \`[20, 20, 20]\` vs offset \`[40, 420, 920]\`(깊이 20/400/900)로, 깊이 900에서 46배 차이가 났다. 인덱스에 \`id\`를 명시하지 않은 근거도 실행계획으로 확인된다 — InnoDB 세컨더리 인덱스가 PK를 암묵 부착해 \`used_key_parts\`가 3개로 나온다.
+**커서 페이지네이션: 문제가 성능이 아니었다.** 로드맵은 이 작업을 "offset 성능 개선"으로 잡았는데, 착수 전 코드 검증에서 다른 것이 나왔다. 주문 목록의 \`@PageableDefault\`에 **\`sort\`가 없었다.** 응답 순서가 DB가 정하는 미정의 순서였고 클라이언트가 임의 컬럼 정렬을 넣을 수도 있었다: **offset 페이징으로서의 결과 정합성조차 없던 상태**다. 그래서 1차 가치는 성능이 아니라 **결정적 순서 계약의 최초 확립**으로 재정의됐고, "동률 \`ordered_at\`이 페이지 경계에서 누락·중복되면 미완"이 완료 명제에 들어갔다. 검사 행 수는 커서 \`[20, 20, 20]\` vs offset \`[40, 420, 920]\`(깊이 20/400/900)로, 깊이 900에서 46배 차이가 났다. 인덱스에 \`id\`를 명시하지 않은 근거도 실행계획으로 확인된다: InnoDB 세컨더리 인덱스가 PK를 암묵 부착해 \`used_key_parts\`가 3개로 나온다.
 
 **문서 근거를 실측이 뒤집은 사례.** 같은 작업에서 커서 상한을 정하며 \`DATETIME(6)\` 의 경계값을 문서 근거로 \`.499999\`로 잡았는데, MySQL 8.0.46 컨테이너에 직접 INSERT/SELECT 해보니 \`.999999\`까지 원형 저장됐다. 문서의 \`.499999\`는 *컬럼보다 많은 자릿수를 넣어 반올림할 때*의 경계였다. 그대로 갔으면 **정상 데이터를 400으로 거부**했다. 이후로는 사실 주장을 채택하기 전에 실행해서 확인하는 절차가 붙었다.
 
@@ -505,7 +505,7 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 
 ---
 
-## 13. 개발 방법론: Claude × Codex 하네스 — 늘렸다가 실측으로 걷어냈다
+## 13. Claude × Codex 작업 흐름을 실측으로 조정하기
 
 코드만이 아니라 **AI와 함께 일하는 흐름 자체**를 설계했다. Claude로 계획하고 Codex로 리뷰를 따로 쓰니 도구를 오갈 때마다 문맥을 다시 설명해야 했고 "계획엔 있는데 구현엔 빠진" 괴리가 반복됐다. 모델 성능보다 **상태·프로세스 부재**가 문제였다. 그래서 작업을 \`/plan → /work → /ship\`으로 고정하고, **Claude는 계획·구현·오케스트레이션**, **Codex는 독립 리뷰어**(diff·계획서를 output-schema JSON으로 강제 응답)를 맡고, 사람의 개입은 **정해진 게이트**에서만 일어나게 했다.
 
@@ -550,20 +550,20 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 
 **Phase 2. 성능 / 정합성**
 - [8. 상품 조회를 캐시 뒤로 옮기기](https://blog.rlarbdlf222.workers.dev/blog/peekcart-product-cache-aside/)
-- [9. 오버셀링을 두 겹으로 막기 — 분산 락과 낙관적 락](https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-lock-defense/)
-- [10. DB는 커밋됐는데 이벤트가 사라진다면 — Kafka와 Transactional Outbox](https://blog.rlarbdlf222.workers.dev/blog/peekcart-transactional-outbox/)
-- [11. 같은 이벤트가 두 번 왔다 — Consumer 멱등성과 DLQ](https://blog.rlarbdlf222.workers.dev/blog/peekcart-consumer-idempotency-dlq/)
-- [12. Pod이 셋이면 스케줄러도 셋이 돈다 — ShedLock](https://blog.rlarbdlf222.workers.dev/blog/peekcart-shedlock-multi-pod-scheduler/)
+- [9. 오버셀링을 두 겹으로 막기: 분산 락과 낙관적 락](https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-lock-defense/)
+- [10. DB는 커밋됐는데 이벤트가 사라진다면: Kafka와 Transactional Outbox](https://blog.rlarbdlf222.workers.dev/blog/peekcart-transactional-outbox/)
+- [11. 같은 이벤트가 두 번 왔다: Consumer 멱등성과 DLQ](https://blog.rlarbdlf222.workers.dev/blog/peekcart-consumer-idempotency-dlq/)
+- [12. Pod이 셋이면 스케줄러도 셋이 돈다: ShedLock](https://blog.rlarbdlf222.workers.dev/blog/peekcart-shedlock-multi-pod-scheduler/)
 
 **Phase 3. 인프라 / 관측성 / 부하**
-- [13. "내 머신에선 되는데"를 닫는다 — CI와 Docker 이미지 빌드](https://blog.rlarbdlf222.workers.dev/blog/peekcart-ci-docker-image-build/)
-- [14. 같은 매니페스트로 두 환경을 배포한다 — Kustomize와 minikube → GKE](https://blog.rlarbdlf222.workers.dev/blog/peekcart-kustomize-base-overlays-gke/)
+- [13. "내 머신에선 되는데"를 닫는다: CI와 Docker 이미지 빌드](https://blog.rlarbdlf222.workers.dev/blog/peekcart-ci-docker-image-build/)
+- [14. 같은 매니페스트로 두 환경을 배포한다: Kustomize와 minikube → GKE](https://blog.rlarbdlf222.workers.dev/blog/peekcart-kustomize-base-overlays-gke/)
 - [15. 메트릭은 수집됐는데 그래프가 비어 있다](https://blog.rlarbdlf222.workers.dev/blog/peekcart-observability-contract/)
 - [16. 캐시 효과를 어떻게 증명할까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-cache-effect-measurement/)
 - [17. 1,000명이 소수 상품을 동시에 주문하면](https://blog.rlarbdlf222.workers.dev/blog/peekcart-order-concurrency-hpa/)
 
 **Phase 4. MSA 진입 전 정리**
-- [18. Phase 4로 넘어가기 전에 — 글을 쓰다 발견한 22개의 부채](https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-checklist/)
+- [18. Phase 4로 넘어가기 전에: 글을 쓰다 발견한 22개의 부채](https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-checklist/)
 - [19. "조건부 UPDATE 한 방"이면 분산 락이 필요 없을까](https://blog.rlarbdlf222.workers.dev/blog/peekcart-inventory-conditional-update-adr/)
 - [부채 해결 회고: MSA로 넘어가기 전에 무엇을 고치고 무엇을 일부러 남겼나](https://blog.rlarbdlf222.workers.dev/blog/peekcart-phase4-debt-retrospective/)
 - [쿠버네티스 학습 기록: YAML을 던지면 무슨 일이 일어나는가](https://blog.rlarbdlf222.workers.dev/blog/kubernetes-reconciliation-mental-model/)
@@ -579,7 +579,7 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 | 서비스 | 5개 (User · Product · Order · Payment · Notification) + Gateway |
 | Gradle 모듈 | 10개 (서비스 5 · gateway · 공유 계약 4) |
 | 메인 코드 (Java) | 25,645줄 (413파일) |
-| 테스트 | 25,534줄 (169파일) — 최근 빌드 **1,006 테스트 0 실패** |
+| 테스트 | 25,534줄 (169파일), 최근 빌드 **1,006 테스트 0 실패** |
 | Flyway 마이그레이션 | 34개 (서비스별 소유: order 10 · product 8 · payment 8 · notification 6 · user 2) |
 | ADR (결정 기록) | 21건 |
 | k8s 매니페스트 | 62개 (base/overlays, per-service) |
@@ -592,8 +592,7 @@ shard별 소요는 **\`@Container\` 선언 수와 단조 증가**했다(platform
 export const peekcart: Project = {
   slug: 'peekcart',
   title: 'PeekCart',
-  description:
-    '대용량 트래픽을 고려한 이커머스 백엔드. 모놀리식으로 만든 뒤 5개 서비스로 분해한 프로젝트',
+  description: '동시 주문과 서비스 분리를 직접 검증한 개인 이커머스 백엔드',
   projectType: 'Main',
   image: peekcartThumbnail,
   tags: ['Spring Boot', 'Kafka', 'Redis', 'MySQL', 'Kubernetes', 'MSA'],

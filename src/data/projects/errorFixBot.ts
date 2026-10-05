@@ -3,8 +3,7 @@ import type { Project } from '@/types';
 export const errorFixBot: Project = {
   slug: 'error-fix-bot',
   title: '500 Error Auto-Fix Bot',
-  description:
-    'Spring Boot 애플리케이션에서 500 에러 발생 시, AI가 자동으로 원인을 분석하고 수정 코드를 작성하여 GitHub PR을 생성하는 자동화 봇',
+  description: 'Spring Boot의 500 에러를 분석해 AI 수정안 PR을 만드는 봇',
   projectType: 'Learning',
   image: 'https://img.youtube.com/vi/4gHUAharic4/maxresdefault.jpg',
   media: [
@@ -19,7 +18,7 @@ export const errorFixBot: Project = {
   demo: '#',
   categories: ['Backend', 'AI'],
   detailedDescription:
-    'Spring Boot 애플리케이션에서 500 에러가 발생하면 자동으로 감지하여, AI가 스택 트레이스를 분석하고 관련 소스 코드를 N-depth import 추적으로 수집한 뒤 수정 코드를 생성하여 GitHub PR까지 자동으로 생성하는 파이프라인입니다. 실시간 SSE 대시보드로 파이프라인 진행 상황을 모니터링할 수 있으며, 디스코드 알림과 30분 중복 필터링, 테스트 러너 등 프로덕션 수준의 기능을 갖추고 있습니다. 구현 과정에 대한 자세한 내용은 블로그(https://imdeepskyblue.tistory.com/82)에서 확인할 수 있습니다.',
+    'Spring Boot 애플리케이션에서 500 에러가 발생하면 스택 트레이스와 관련 소스 코드를 모아 AI 수정안을 만들고 GitHub PR을 생성하는 봇이다. SSE 대시보드로 진행 상황을 보여주고, 디스코드 알림·30분 중복 필터링·테스트 실행 기능을 붙였다. 구현 과정은 블로그(https://imdeepskyblue.tistory.com/82)에 정리했다.',
   features: [
     'Spring Boot 500 에러 자동 감지 및 웹훅 수신',
     'AI 기반 스택 트레이스 분석 및 수정 코드 자동 생성',
@@ -47,8 +46,7 @@ export const errorFixBot: Project = {
     'SSE(Server-Sent Events)를 활용한 실시간 파이프라인 이벤트 스트리밍',
     'Tenacity를 활용한 외부 API 호출 재시도 및 에러 핸들링',
   ],
-  outcome:
-    '에러 감지부터 PR 생성까지 10단계 파이프라인 완전 자동화, 65개 이상의 단위 테스트로 안정성 확보',
+  outcome: '에러 감지부터 PR 생성까지 10단계를 자동화하고 단위 테스트 65개 이상을 작성했다.',
   duration: '2026.02',
   teamSize: '1명',
   role: '풀스택 개발자',

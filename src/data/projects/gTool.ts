@@ -15,15 +15,20 @@ const gToolImages: Record<string, string> = {
 
 const gToolMarkdown = `## 프로젝트 개요
 
-**G-Tool**은 Gmail, 네이버 메일, Google Calendar, 할일, 북마크를 하나의 화면에서 관리하는 AI 기반 생산성 플랫폼입니다.
+**G-Tool**은 Gmail·네이버 메일·Google Calendar·할일·북마크를 한 화면에서 관리하는 개인 프로젝트다. 반복해서 확인하던 메일을 한곳에 모으고 분류하려고 만들었다.
+
+### 주요 작업
+
+- Gmail API와 네이버 IMAP의 메일을 공통 모델로 수집하고, 소스별로 마지막 동기화 지점을 관리했다
+- 500 에러가 발생하면 관련 코드를 모아 수정안을 만들고 PR을 생성하는 Error Bot을 붙였다
+- URL의 사용자 ID를 믿던 인증 방식을 JWT 쿠키로 바꾸고 DB의 OAuth 토큰을 암호화했다
 
 ### 개발 동기
 
 메일 분류를 자동화하기 위해 GenSpark의 AI 이메일 워크플로우를 사용하고 있었다.
 하지만 프리티어 사용량이 금방 소진되었고 유료 결제를 하기보다는 직접 만들어보자는 생각으로 프로젝트를 시작했다.
 
-처음에는 Gmail AI 분류만 구현하려 했지만 만드는 과정에서 네이버 메일도 통합하고 캘린더·할일·북마크처럼 평소 자주 쓰는 기능들을 하나씩 추가하면서 **통합 생산성 플랫폼**으로 발전시켰다.
-배포 과정에서 500 에러를 수동으로 대응하는 것이 번거로워 Error Bot까지 만들게 되었다.
+처음에는 Gmail 분류만 구현하려 했다. 이후 네이버 메일과 캘린더·할일·북마크를 차례로 추가했다. 배포 후에는 500 에러를 수동으로 처리하던 과정을 줄이기 위해 Error Bot을 만들었다.
 
 | 항목 | 내용 |
 | --- | --- |
@@ -45,21 +50,21 @@ const gToolMarkdown = `## 프로젝트 개요
 
 ---
 
-## 1. 문제와 해결 — 메일이 분산되어 있다
+## 1. 흩어진 메일을 한곳에서 관리하기
 
-### 문제 (As-Is)
+### 당시 문제
 
 Gmail과 네이버 메일을 각각 확인해야 하고, 수십 통의 메일 속에서 중요한 메일이 프로모션에 묻힌다.
 분류는 수동이고, 서비스를 오가며 확인하는 것은 비효율적이다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 Gmail API와 네이버 IMAP으로 메일을 통합 수집하고, AI가 7개 카테고리(업무, 개인, 금융, 프로모션, 뉴스레터, 알림, 중요)로 자동 분류한다.
 사용자는 하나의 통합 인박스에서 모든 메일을 확인하고, 드래그앤드롭으로 분류를 수정할 수 있다.
 
-![메일 통합 — As-Is / To-Be 비교]({{diagram1}})
+![메일 통합: As-Is / To-Be 비교]({{diagram1}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 프로토콜이 다른 두 소스를 어떻게 통합할 것인가**
 
@@ -68,13 +73,13 @@ Gmail은 REST API (pageToken 페이지네이션), 네이버는 IMAP 프로토콜
 동기화 상태는 \`SyncState\` 테이블에서 사용자별·소스별로 관리하여 증분 동기화를 구현했다.
 
 \`\`\`python
-# Mail 모델 — source로 출처 구분, 나머지 스키마는 동일
+# Mail 모델: source로 출처 구분, 나머지 스키마는 동일
 class Mail(Base):
     source = Column(String, nullable=False)      # "gmail" | "naver"
     external_id = Column(String, nullable=False)  # Gmail message ID 또는 Naver UID
     # ... 공통 필드: subject, from_name, body_text, body_html, ...
 
-# SyncState — 소스별 증분 동기화 지점 추적
+# SyncState: 소스별 증분 동기화 지점 추적
 class SyncState(Base):
     source = Column(String)            # "gmail" | "naver"
     next_page_token = Column(String)   # Gmail용
@@ -113,23 +118,23 @@ AI가 틀리게 분류한 메일을 사용자가 드래그로 수정하면, 그 
 | --- | --- | --- |
 | 분류 정확도 | ~78% | ~91% (피드백 50건 이상 누적 기준) |
 | 발신자 규칙 자동 적용 비율 | 0% | ~25% (자주 받는 메일 기준) |
-| 발신자 규칙 대상 AI 호출 절감 | — | API 호출 ~25% 감소 |
+| 발신자 규칙 대상 AI 호출 절감 | - | API 호출 ~25% 감소 |
 
 ---
 
-## 2. 문제와 해결 — 프로덕션 500 에러를 수동으로 대응한다
+## 2. 500 에러 대응을 자동화하기
 
-### 문제 (As-Is)
+### 당시 문제
 
 배포 후 500 에러가 발생하면, 에러를 인지하는 것부터 로그 확인 → 원인 분석 → 코드 수정 → PR → 배포까지 모두 수동이다. 에러를 모르고 넘어가는 경우도 있다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 에러 발생 즉시 Error Bot이 자동으로: Discord 알림 → 소스 코드 분석 → AI 수정안 생성 → GitHub PR 생성.
 
 ![Error Bot 파이프라인]({{diagram3}})
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) AI가 파일 전체를 재작성하는 문제**
 
@@ -166,17 +171,17 @@ AI가 틀리게 분류한 메일을 사용자가 드래그로 수정하면, 그 
 
 ---
 
-## 3. 문제와 해결 — URL 파라미터로 user_id를 전달하는 보안 문제
+## 3. URL의 사용자 ID에 의존하던 인증 바꾸기
 
-### 문제 (As-Is)
+### 당시 문제
 
 초기 프로젝트는 개인적으로 쓰기 위한 단순 메일 분류용이었기에 별 다른 보안 장치 없이 \`?user_id=1\`로 인증을 처리했다. 하지만 프로젝트를 확장하면서 여러 개인 정보들이 많이 포함되게 되었고 URL만 바꾸면 다른 사용자의 데이터에 접근할 수 있는 심각한 보안 문제가 야기될 수 있다고 생각됐다.
 
-### 해결 (To-Be)
+### 선택한 방법
 
 JWT 쿠키 기반 인증 + DB 토큰 암호화로 전환했다.
 
-![인증 플로우 — As-Is / To-Be]({{diagram4}})
+![인증 플로우: As-Is / To-Be]({{diagram4}})
 
 ### 개선 수치
 
@@ -184,10 +189,10 @@ JWT 쿠키 기반 인증 + DB 토큰 암호화로 전환했다.
 | --- | --- | --- |
 | 인증 방식 | URL query parameter (검증 없음) | JWT 쿠키 (httpOnly, Secure, SameSite) |
 | 토큰 저장 | DB에 평문 저장 | Fernet AES128 암호화 저장 |
-| 수정 범위 | — | 프론트엔드 10개 훅, ~35곳 API 호출 일괄 수정 |
+| 수정 범위 | - | 프론트엔드 10개 훅, ~35곳 API 호출 일괄 수정 |
 | 보안 헤더 | 없음 | HSTS, X-Frame-Options, CSP 등 5종 |
 
-### 기술적 고민과 결정
+### 판단과 구현
 
 **1) 프론트엔드 전면 수정**
 
@@ -239,8 +244,8 @@ Redux/Zustand를 사용하지 않았다.
 
 매번 전체 메일을 가져오지 않고 새로운 메일만 동기화한다.
 
-- **Gmail**: \`pageToken\` 기반 — API가 반환하는 다음 페이지 토큰을 DB에 저장
-- **네이버**: \`UID\` 기반 — 마지막으로 동기화한 UID 이후의 메일만 가져오기
+- **Gmail**: API가 반환하는 \`pageToken\`을 DB에 저장
+- **네이버**: 마지막으로 동기화한 \`UID\` 이후의 메일만 가져오기
 - **배경 동기화**: APScheduler로 15분 주기 자동 실행
 
 | 지표 | 전체 동기화 | 증분 동기화 |
@@ -268,8 +273,7 @@ Redux/Zustand를 사용하지 않았다.
 export const gTool: Project = {
   slug: 'g-tool',
   title: 'G-Tool',
-  description:
-    'Gmail, 네이버 메일, Google Calendar, 할일, 북마크를 하나의 화면에서 관리하는 AI 기반 생산성 플랫폼',
+  description: 'Gmail·네이버 메일·캘린더·할일·북마크를 한 화면에서 관리하는 개인 웹 도구',
   projectType: 'Side',
   image: 'https://img.youtube.com/vi/AqSLR8EXAg8/sddefault.jpg',
   media: [
@@ -285,12 +289,7 @@ export const gTool: Project = {
   techStack: {
     frontend: ['Next.js 15', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', '@dnd-kit'],
     backend: ['Python 3.12', 'FastAPI', 'SQLAlchemy (async)', 'SQLite'],
-    deployment: [
-      'Oracle Cloud ARM',
-      'Docker Compose',
-      'Caddy',
-      'GitHub Actions CI/CD',
-    ],
+    deployment: ['Oracle Cloud ARM', 'Docker Compose', 'Caddy', 'GitHub Actions CI/CD'],
   },
   duration: '2026.02.26 ~ 2026.04.17',
   teamSize: '1명',

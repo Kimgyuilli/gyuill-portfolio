@@ -4,8 +4,7 @@ import piroRecruitImage from '@/assets/images/project/piro-recruit.png';
 export const piroRecruit: Project = {
   slug: 'piro-recruit',
   title: 'Piro-Recruit',
-  description:
-    'IT 연합 동아리 피로그래밍의 리쿠르팅 관리 프로세스를 디지털 전환한 종합 관리 플랫폼',
+  description: '피로그래밍의 지원서 접수부터 평가·면접·선발까지 관리하는 플랫폼',
   projectType: 'Side',
   image: piroRecruitImage,
   tags: ['Spring Boot', 'PostgreSQL', 'Docker', 'Spring Security', 'React'],
@@ -13,7 +12,7 @@ export const piroRecruit: Project = {
   demo: '#',
   categories: ['Frontend', 'Backend'],
   detailedDescription:
-    'IT 연합 동아리 피로그래밍의 리쿠르팅 프로세스 전반을 디지털화한 관리 플랫폼입니다. 기존 Excel/Notion 기반 수작업 방식의 한계를 극복하고, 데이터 유실 방지, 업무 자동화, 사용자 경험 개선을 통해 체계적인 리쿠르팅 관리 시스템을 구축했습니다. OpenAI API를 활용한 지원서 요약, Admin Code Rotation 기반 권한 관리 등의 기능을 포함합니다.',
+    '엑셀과 노션에 나뉘어 있던 피로그래밍의 지원서 접수·평가·면접 과정을 한곳에서 관리하도록 만든 플랫폼이다. OpenAI API를 이용한 지원서 요약과 기수별 관리자 권한 관리 기능을 구현했다.',
   features: [
     '리쿠르팅 생애주기 관리 (지원서 접수 → 평가 → 면접 → 최종 선발)',
     'AI 지원서 분석 (OpenAI API 연동으로 요약 및 평가 점수 자동 생성)',
@@ -36,7 +35,7 @@ export const piroRecruit: Project = {
     'Google Forms 데이터 연동 및 실시간 동기화',
   ],
   outcome:
-    '프로젝트 기획부터 디자인, 풀스택 개발, DevOps까지 전 과정 경험. 리쿠르팅 기록 체계화 및 데이터 유실 방지 시스템 구축, 기존 홈페이지와의 확장 가능한 연동 구현.',
+    '지원서 접수부터 최종 선발까지의 기록을 한곳에서 관리하도록 만들고 기존 홈페이지와 연동했다. 기획·디자인·개발·배포를 맡았다.',
   duration: '2025.03 - 2025.06',
   teamSize: '3명 (BE 2명, PM 1명)',
   role: 'PM 겸 풀스택 리드 개발자 (프로젝트 관리, UI/UX 설계, 백엔드/프론트엔드 개발, DevOps)',
