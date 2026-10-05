@@ -2,6 +2,14 @@ import { BlogPost } from '@/types';
 
 export const blogPosts: BlogPost[] = [
   {
+    title: "OSTEP에서 JVM으로: 실행 주체와 상태를 구분하기",
+    summary: "Java 실행에서 OS와 HotSpot의 역할을 구분하고, OS의 preemption만으로 GC를 수행할 수 없는 이유를 Safepoint와 OopMap으로 연결합니다.",
+    date: '2026.10.05',
+    image: "https://blog.rlarbdlf222.workers.dev/images/blog/ostep-jvm-execution-safepoint/thumbnail.jpg",
+    link: "https://blog.rlarbdlf222.workers.dev/blog/ostep-jvm-execution-safepoint/",
+    tags: ["OSTEP","JVM","HotSpot"],
+  },
+  {
     title: "CS 스터디: 트랜잭션, 격리 수준, 락",
     summary: "트랜잭션·격리 수준·락의 기본 개념을 정리하고, 트랜잭션 경계와 재시도, 중복 처리, 동시성 테스트까지 확장해 살펴봅니다.",
     date: '2026.10.04',
@@ -16,13 +24,5 @@ export const blogPosts: BlogPost[] = [
     image: "https://blog.rlarbdlf222.workers.dev/images/blog/ostep-limited-direct-execution/thumbnail.jpg",
     link: "https://blog.rlarbdlf222.workers.dev/blog/ostep-limited-direct-execution/",
     tags: ["OSTEP","운영체제","CPU"],
-  },
-  {
-    title: "PeekCart 학습 기록 22: 토큰 검증을 관문 하나로 옮기려면 무엇부터 바꿔야 할까",
-    summary: "다섯 서비스의 JWT 검증을 게이트웨이로 옮기려니, 배포 순서에 따라 정상 요청을 막거나 위조 헤더를 믿을 수 있었습니다. 키와 토큰 모델을 먼저 바꾸고, 되돌릴 수 있는 순서로 ...",
-    date: '2026.10.03',
-    image: "https://blog.rlarbdlf222.workers.dev/images/blog/peekcart-gateway-token-verification/thumbnail.jpg",
-    link: "https://blog.rlarbdlf222.workers.dev/blog/peekcart-gateway-token-verification/",
-    tags: ["spring-cloud-gateway","jwt","rs256"],
   }
 ];
