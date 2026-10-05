@@ -1,5 +1,4 @@
 import { useState, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { MediaItem } from '@/types';
 import { ImageWithFallback } from '../ImageWithFallback';
@@ -90,11 +89,7 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
             className={styles.slide}
           >
             {currentMedia.type === 'video' ? (
-              <VideoPlayer
-                src={currentMedia.src}
-                poster={currentMedia.poster}
-                isActive={true}
-              />
+              <VideoPlayer src={currentMedia.src} poster={currentMedia.poster} isActive={true} />
             ) : (
               <ImageWithFallback
                 src={currentMedia.src}
@@ -109,30 +104,34 @@ export function MediaCarousel({ media, title }: MediaCarouselProps) {
       {showNavigation && (
         <>
           <button
+            type="button"
             onClick={goToPrevious}
             className={`${styles.navButton} ${styles.prevButton}`}
-            aria-label="Previous slide"
+            aria-label="이전 미디어"
           >
-            <ChevronLeft size={24} />
+            이전
           </button>
           <button
+            type="button"
             onClick={goToNext}
             className={`${styles.navButton} ${styles.nextButton}`}
-            aria-label="Next slide"
+            aria-label="다음 미디어"
           >
-            <ChevronRight size={24} />
+            다음
           </button>
 
-          <div className={styles.indicators}>
+          <select
+            className={styles.slideSelect}
+            aria-label="미디어 선택"
+            value={currentIndex}
+            onChange={(event) => goToSlide(Number(event.target.value))}
+          >
             {media.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => goToSlide(index)}
-                className={`${styles.dot} ${index === currentIndex ? styles.activeDot : ''}`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
+              <option key={index} value={index}>
+                {index + 1} / {media.length}
+              </option>
             ))}
-          </div>
+          </select>
         </>
       )}
     </div>

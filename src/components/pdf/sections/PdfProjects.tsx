@@ -5,9 +5,8 @@ import type { ResumeLink, ResumeProject } from '@/data/resume';
 interface PdfProjectsProps {
   projects: ResumeProject[];
   /**
-   * true 로 두면 프로젝트 하나가 한 페이지를 통째로 차지한다. 프로젝트 페이지는 깔끔해지지만
-   * 앞 페이지 하단이 비므로 기본값은 false(이어서 흐름)다. 케이스를 늘려 프로젝트 하나가
-   * 한 페이지에 가까워지면 그때 켜는 편이 낫다.
+   * true면 프로젝트 섹션과 사례가 여러 개인 프로젝트를 새 페이지에서 시작한다.
+   * 사례가 하나인 짧은 프로젝트는 앞 프로젝트에 이어서 한 묶음으로 배치한다.
    */
   pageBreak?: boolean;
 }
@@ -65,7 +64,8 @@ export function PdfProjects({ projects, pageBreak = false }: PdfProjectsProps) {
                 ? [pdfStyles.projectItem, pdfStyles.projectItemLast]
                 : pdfStyles.projectItem
             }
-            break={pageBreak && i > 0}
+            break={pageBreak && i > 0 && proj.cases.length > 1}
+            wrap={proj.cases.length > 1}
           >
             <View style={pdfStyles.projectSummary} wrap={false}>
               <View style={pdfStyles.projectHeadingRow}>

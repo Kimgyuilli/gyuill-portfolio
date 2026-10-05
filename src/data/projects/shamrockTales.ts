@@ -35,5 +35,5 @@ export const shamrockTales: Project = {
   outcome: 'SOPT 37기 해커톤 웹 서비스 부문 대상 수상',
   duration: '2025.11 (해커톤)',
   teamSize: '2명 (Server)',
-  role: 'Server Lead Developer',
+  role: '서버 리드 개발자',
 };

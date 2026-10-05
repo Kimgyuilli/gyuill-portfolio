@@ -3,7 +3,7 @@
 .carousel {
   position: relative;
   width: 100%;
-  height: 28rem;
+  height: 20rem;
   overflow: hidden;
   border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
   background-color: var(--bg-secondary);
@@ -40,7 +40,9 @@
   background-color: var(--modal-close-bg);
   color: var(--modal-close-text);
   border: none;
-  border-radius: 50%;
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   cursor: pointer;
   transition:
     background-color 0.2s,
@@ -65,43 +67,29 @@
   right: var(--spacing-md);
 }
 
-/* Dot Indicators */
-.indicators {
+/* Slide selector */
+.slideSelect {
   position: absolute;
   bottom: var(--spacing-md);
   left: 50%;
   transform: translateX(-50%);
-  display: flex;
-  gap: var(--spacing-xs);
   z-index: 10;
-}
-
-.dot {
-  width: 0.625rem;
-  height: 0.625rem;
+  appearance: none;
   border: none;
-  border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.5);
+  padding: var(--spacing-xs) var(--spacing-sm);
+  border-radius: var(--radius-base);
+  background-color: var(--modal-close-bg);
+  color: var(--modal-close-text);
+  font-size: var(--font-size-sm);
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
   cursor: pointer;
-  transition:
-    background-color 0.2s,
-    transform 0.2s;
-  padding: 0;
-}
-
-.dot:hover {
-  background-color: rgba(255, 255, 255, 0.8);
-}
-
-.activeDot {
-  background-color: white;
-  transform: scale(1.2);
 }
 
 /* Mobile Responsive */
 @media (max-width: 640px) {
   .carousel {
-    height: 16rem;
+    height: 13rem;
     border-radius: 0;
   }
 
@@ -117,19 +105,14 @@
     right: var(--spacing-sm);
   }
 
-  .indicators {
+  .slideSelect {
     bottom: var(--spacing-sm);
-  }
-
-  .dot {
-    width: var(--spacing-sm);
-    height: var(--spacing-sm);
   }
 }
 
 /* Tablet */
 @media (min-width: 641px) and (max-width: 1023px) {
   .carousel {
-    height: 22rem;
+    height: 18rem;
   }
 }

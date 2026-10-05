@@ -58,6 +58,11 @@
   font-size: var(--font-size-sm);
 }
 
+.info-label {
+  color: var(--text-body);
+  font-weight: var(--font-weight-medium);
+}
+
 .tags {
   display: flex;
   flex-wrap: wrap;

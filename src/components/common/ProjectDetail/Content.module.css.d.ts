@@ -7,6 +7,7 @@ declare const styles: {
   readonly "header": string;
   readonly "info-grid": string;
   readonly "info-item": string;
+  readonly "info-label": string;
   readonly "tag": string;
   readonly "tags": string;
   readonly "title": string;

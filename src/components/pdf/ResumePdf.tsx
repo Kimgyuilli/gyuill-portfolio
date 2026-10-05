@@ -31,7 +31,7 @@ export function ResumePdf() {
         <PdfSkills categories={resumeSkills} />
         <PdfEducation education={resumeEducation} certificates={resumeCertificates} />
         <PdfExperience experiences={resumeExperiences} />
-        <PdfProjects projects={resumeProjects} />
+        <PdfProjects projects={resumeProjects} pageBreak />
       </Page>
     </Document>
   );

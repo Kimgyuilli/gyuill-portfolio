@@ -124,5 +124,5 @@ export const cherrish: Project = {
     '도메인별로 서버 코드를 분리하고, GitHub Actions OIDC와 AWS SSM을 이용한 배포 파이프라인을 구축했다. Spring AI를 연동해 챌린지 루틴을 생성했다.',
   duration: '2025.12 - 2026.02',
   teamSize: '2명 (Server)',
-  role: 'Server Lead Developer',
+  role: '서버 리드 개발자',
 };

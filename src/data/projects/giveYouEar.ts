@@ -35,5 +35,5 @@ export const giveYouEar: Project = {
   outcome: 'Groomthon univ 경인지부 9ITHON 최우수상(1등) 수상',
   duration: '2025.07 (해커톤)',
   teamSize: '6명',
-  role: 'Backend Developer',
+  role: '백엔드 개발자',
 };

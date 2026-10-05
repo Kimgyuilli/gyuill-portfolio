@@ -1,6 +1,4 @@
 import { useEffect } from 'react';
-import { ArrowLeft, ExternalLink, Calendar, Users, Briefcase } from 'lucide-react';
-import { SiGithub } from 'react-icons/si';
 import type { Project, MediaItem } from '@/types';
 import { ImageWithFallback } from '../ImageWithFallback';
 import { MediaCarousel } from '../MediaCarousel';
@@ -37,7 +35,6 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
     <main className={pageStyles.page}>
       <div className={pageStyles.container}>
         <button onClick={onBack} className={pageStyles['back-button']}>
-          <ArrowLeft size={16} />
           <span>프로젝트 목록</span>
         </button>
 
@@ -73,19 +70,19 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
               <div className={contentStyles['info-grid']}>
                 {project.duration && (
                   <div className={contentStyles['info-item']}>
-                    <Calendar size={16} />
+                    <span className={contentStyles['info-label']}>개발 기간</span>
                     <span>{project.duration}</span>
                   </div>
                 )}
                 {project.teamSize && (
                   <div className={contentStyles['info-item']}>
-                    <Users size={16} />
+                    <span className={contentStyles['info-label']}>팀</span>
                     <span>{project.teamSize}</span>
                   </div>
                 )}
                 {project.role && (
                   <div className={contentStyles['info-item']}>
-                    <Briefcase size={16} />
+                    <span className={contentStyles['info-label']}>담당</span>
                     <span>{project.role}</span>
                   </div>
                 )}
@@ -115,8 +112,7 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
                 rel="noopener noreferrer"
                 className={contentStyles['action-button']}
               >
-                <SiGithub size={20} />
-                <span>GitHub</span>
+                <span>코드 보기</span>
               </a>
               {project.demo && project.demo !== '#' && (
                 <a
@@ -125,8 +121,7 @@ export function ProjectDetailPage({ project, onBack }: ProjectDetailPageProps) {
                   rel="noopener noreferrer"
                   className={contentStyles['action-button']}
                 >
-                  <ExternalLink size={20} />
-                  <span>Live Demo</span>
+                  <span>데모 보기</span>
                 </a>
               )}
             </div>

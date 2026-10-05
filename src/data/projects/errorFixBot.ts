@@ -46,7 +46,7 @@ export const errorFixBot: Project = {
     'SSE(Server-Sent Events)를 활용한 실시간 파이프라인 이벤트 스트리밍',
     'Tenacity를 활용한 외부 API 호출 재시도 및 에러 핸들링',
   ],
-  outcome: '에러 감지부터 PR 생성까지 10단계를 자동화하고 단위 테스트 65개 이상을 작성했다.',
+  outcome: '에러 감지부터 PR 생성까지의 절차를 자동화하고 단위 테스트로 주요 경로를 확인했다.',
   duration: '2026.02',
   teamSize: '1명',
   role: '풀스택 개발자',

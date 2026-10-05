@@ -36,7 +36,7 @@ export const piroRecruit: Project = {
   ],
   outcome:
     '지원서 접수부터 최종 선발까지의 기록을 한곳에서 관리하도록 만들고 기존 홈페이지와 연동했다. 기획·디자인·개발·배포를 맡았다.',
-  duration: '2025.03 - 2025.06',
+  duration: '2025.06 - 2025.08',
   teamSize: '3명 (BE 2명, PM 1명)',
   role: 'PM 겸 풀스택 리드 개발자 (프로젝트 관리, UI/UX 설계, 백엔드/프론트엔드 개발, DevOps)',
 };
