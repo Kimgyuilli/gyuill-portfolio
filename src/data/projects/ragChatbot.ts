@@ -20,11 +20,8 @@ export const ragChatbot: Project = {
   detailedDescription:
     '업로드한 문서를 분할해 벡터로 저장하고, 질문이 들어오면 관련 내용을 찾아 답변하는 챗봇이다. Spring AI Advisor로 질문을 다시 쓰고, 벡터 검색과 키워드 검색 결과를 RRF로 합친 뒤 LLM으로 재정렬하는 흐름을 구현했다.',
   features: [
-    '문서 업로드 시 청크 분할 및 벡터 임베딩 자동 처리',
-    'pgvector 유사도 검색 + tsvector 키워드 검색 하이브리드 검색',
-    'RRF(Reciprocal Rank Fusion) 기반 검색 결과 병합',
-    'Spring AI Advisor 체인을 활용한 쿼리 리라이팅',
-    'LLM을 이용한 검색 결과 재정렬',
+    '문서 업로드와 검색용 데이터 저장',
+    '질문과 관련된 문서 검색 및 답변 생성',
     'SSE(Server-Sent Events) 기반 실시간 스트리밍 응답',
   ],
   techStack: {

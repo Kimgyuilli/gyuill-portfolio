@@ -17,7 +17,7 @@ export const shamrockTales: Project = {
     '클로버 UI 대시보드로 세 가지 주제 카테고리 시각화',
     '간단한 한 줄 일기 작성 시스템',
     'OpenAI 기반 아일랜드 설화 스타일 변환',
-    'FAITH(용기), HOPE(소망), LOVE(사랑) 주제 분류',
+    'FAITH·HOPE·LOVE 주제 분류',
     '원본 일기와 AI 생성 이야기 아카이브',
     '커서 기반 페이지네이션 및 필터링',
   ],

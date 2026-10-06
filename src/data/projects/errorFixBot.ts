@@ -40,8 +40,8 @@ export const errorFixBot: Project = {
     deployment: ['Docker', 'Docker Compose'],
   },
   challenges: [
-    'Protocol 기반 AI Provider 추상화로 확장 가능한 AI 모델 교체 구조 설계',
-    'N-depth import 추적 알고리즘으로 정확한 에러 컨텍스트 수집',
+    'AI 모델을 교체할 수 있도록 Protocol로 호출 인터페이스 분리',
+    'import를 따라 관련 소스 파일을 수집해 에러 분석에 제공',
     'AI 응답 JSON 파싱 실패 시 자동 재시도 및 검증 로직 구현',
     'SSE(Server-Sent Events)를 활용한 실시간 파이프라인 이벤트 스트리밍',
     'Tenacity를 활용한 외부 API 호출 재시도 및 에러 핸들링',

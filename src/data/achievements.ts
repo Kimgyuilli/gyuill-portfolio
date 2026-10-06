@@ -22,13 +22,6 @@ export const achievements: AchievementData[] = [
     link: 'https://github.com/SOPT-all/37-SOPKATHON-SERVER-WEB3',
   },
   {
-    title: 'Groomthon univ 경인지부 해커톤 9ITHON 최우수상',
-    issuer: 'Groomthon univ 경인지부',
-    date: '2025.07.13',
-    description: 'AI 기반 자기주도형 발음 훈련 서비스 개발로 최우수상(1등) 수상',
-    link: 'https://github.com/Kimgyuilli/GiveYouEar-BE',
-  },
-  {
     title: 'AYU 컴퓨터공학과 캡스톤 경진대회 최우수상',
     issuer: 'Anyang Univ',
     date: '2024.12',

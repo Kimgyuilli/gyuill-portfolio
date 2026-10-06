@@ -88,7 +88,7 @@ export const cherrish: Project = {
     '시술 일정과 시술 후 회복 기간을 함께 관리하는 뷰티 캘린더 앱이다. 피부 고민에 따른 시술 검색, 회복 단계별 일정 표시, AI 기반 7일 챌린지 루틴 추천 기능을 제공한다. 서버에서는 도메인별 책임을 나누는 구조를 설계했다.',
   features: [
     '피부 고민 키워드 기반 시술 검색 및 추천',
-    '사용자 맞춤 다운타임 설정 (민감기/주의기/회복기 자동 분할)',
+    '사용자가 설정한 회복 기간을 세 구간으로 나누어 캘린더에 표시',
     'D-day 카운트다운 및 다운타임 진행 상태 시각화',
     'Spring AI 기반 7일 챌린지 루틴 자동 생성',
     '체리 레벨(1~4) 게이미피케이션 시스템',
@@ -113,11 +113,11 @@ export const cherrish: Project = {
     ],
   },
   challenges: [
-    '초기 컨벤션 수립 및 checkStyle, codeRabbit, jacoco, docker를 활용한 협업 규격 설계',
+    '코드 작성 규칙 수립 및 Checkstyle·CodeRabbit·JaCoCo·Docker 개발 환경 적용',
     'Spring AI OpenAI 연동으로 사용자 맞춤형 챌린지 루틴 및 챌린지명 자동 생성',
     'QueryDSL을 활용한 복잡한 캘린더/다운타임 조회 쿼리 최적화',
-    'GitHub Actions OIDC + AWS SSM 기반 무중단 배포 파이프라인 구축',
-    '다운타임 3단계 분할 로직 설계 (일수를 3으로 나눠 민감기/주의기/회복기 자동 계산)',
+    'GitHub Actions OIDC·AWS SSM을 이용한 배포 파이프라인 구축',
+    '설정한 회복 기간의 일수를 3으로 나누어 민감기·주의기·회복기 표시 구간 계산',
     'Server 500 오류 발생 시 디스코드 알림 전송 기능 구현',
   ],
   outcome:

@@ -302,7 +302,7 @@ export const resumeExperiences: ResumeExperience[] = [
     company: 'Groomthon Univ',
     position: 'AYU 서버파트 미르미',
     period: '2025.02 - 2025.09',
-    description: ['Spring Boot 스터디 진행 및 기술 공유 / 해커톤 2회 참여 (9ITHON 최우수상)'],
+    description: ['Spring Boot 스터디 진행 및 기술 공유 / 해커톤 2회 참여'],
     type: 'activity',
   },
   {

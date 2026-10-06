@@ -14,7 +14,7 @@ export const piroRecruit: Project = {
   detailedDescription:
     '엑셀과 노션에 나뉘어 있던 피로그래밍의 지원서 접수·평가·면접 과정을 한곳에서 관리하도록 만든 플랫폼이다. OpenAI API를 이용한 지원서 요약과 기수별 관리자 권한 관리 기능을 구현했다.',
   features: [
-    '리쿠르팅 생애주기 관리 (지원서 접수 → 평가 → 면접 → 최종 선발)',
+    '지원서 접수·평가·면접·최종 선발 과정 관리',
     'AI 지원서 분석 (OpenAI API 연동으로 요약 및 평가 점수 자동 생성)',
     '권한 기반 관리 (Admin Code Rotation을 통한 기수별 권한 분리)',
     '이메일 자동화 (합격자 대상 일괄 메일 전송 시스템)',
@@ -37,6 +37,6 @@ export const piroRecruit: Project = {
   outcome:
     '지원서 접수부터 최종 선발까지의 기록을 한곳에서 관리하도록 만들고 기존 홈페이지와 연동했다.',
   duration: '2025.06 - 2025.08',
-  teamSize: '3명 (BE 2명, PM 1명)',
+  teamSize: '3명',
   role: 'PM 겸 풀스택 리드 개발자 (프로젝트 관리, UI/UX 설계, 백엔드/프론트엔드 개발, DevOps)',
 };

@@ -1,6 +1,6 @@
 import type { Project } from '@/types';
 import diagramArchitecture from '@/assets/images/project/agent-board/diagram_architecture.png';
-import diagramAsIsToBe from '@/assets/images/project/agent-board/diagram_asIs_toBe.png';
+import diagramAsIsToBe from '@/assets/images/project/agent-board/diagram-task-management.svg';
 import diagramOrchestrator from '@/assets/images/project/agent-board/diagram_orchestrator.png';
 import diagramProcess from '@/assets/images/project/agent-board/diagram_process.png';
 import diagramRealtime from '@/assets/images/project/agent-board/diagram_realtime.png';
@@ -35,11 +35,11 @@ const agentBoardMarkdown = `## 프로젝트 개요
 
 AI 에이전트와 함께 개발할 때 PLAN.md와 PROGRESS.md로 태스크를 추적했다. 세 가지 문제가 있었다.
 
-1. **토큰 소비**: 에이전트가 상태를 확인하거나 변경할 때마다 파일 전체를 읽어야 한다. 프로젝트가 진행될수록 파일이 커지고, 매번 소비되는 토큰도 선형 증가한다.
+1. **반복 읽기**: 당시 작업 절차에서는 상태를 확인하거나 변경할 때 PLAN.md와 PROGRESS.md를 반복해서 읽었다. 이력이 쌓일수록 현재 작업과 무관한 내용까지 읽게 됐다.
 2. **태스크 충돌**: 여러 에이전트가 동시에 같은 마크다운 파일을 편집하면 충돌이 발생한다.
 3. **진행 상황 확인**: 에이전트가 어떤 작업을 하고 있는지 터미널 로그를 직접 확인해야 알 수 있다.
 
-실제로 Phase 6(40개 태스크) 시점에서 PLAN.md는 ~5,200자(~1,800 토큰), PROGRESS.md는 ~24,600자(~8,200 토큰)까지 커져 있었다.
+Phase 6에서 40개 태스크를 관리할 때는 계획과 진행 이력이 같은 파일에 누적되어, 필요한 태스크만 조회하는 방식을 검토했다.
 
 MCP 프로토콜을 통해 AI 에이전트가 SQLite DB에서 태스크를 직접 관리하고, VS Code 칸반 보드로 실시간 시각화한다.
 
@@ -47,37 +47,17 @@ MCP 프로토콜을 통해 AI 에이전트가 SQLite DB에서 태스크를 직�
 
 **MCP 도구 응답 크기 조정**
 
-AI 에이전트가 MCP 도구를 호출할 때마다 응답이 컨텍스트 윈도우를 소비한다. 에이전트가 한 세션에서 수십 회 도구를 호출하므로, 응답 크기가 곧 비용과 직결된다. 모든 MCP 도구 응답을 최소 정보만 포함하도록 설계했다.
+전체 이력 대신 요약과 현재 필요한 태스크만 반환하도록 MCP 응답을 줄였다.
 
-| 도구 | 일반적 구현 | Agent Board | 절감 |
-| --- | --- | --- | --- |
-| sync | 전체 Phase + Task 목록 (~2,500 토큰) | 요약 통계 + 활성 태스크만 (~400 토큰) | ~84% |
-| complete | 완료 태스크 + 전체 목록 갱신 (~1,800 토큰) | 완료 결과 + unblock된 태스크만 (~250 토큰) | ~86% |
-| batch | 각 작업별 상세 결과 (~3,000 토큰) | \`{ index, type, id }\` 배열만 (~150 토큰) | ~95% |
+| 도구 | 반환하거나 변경하는 내용 |
+| --- | --- |
+| sync | 프로젝트 요약 통계와 활성 태스크 |
+| next | 실행 가능한 태스크 |
+| claim | 선택한 태스크의 할당 상태 |
+| complete | 완료 결과와 의존 조건이 해소된 태스크 |
+| batch | 각 작업의 index·type·id |
 
-\`batch\` 도구는 여러 작업을 단일 트랜잭션으로 묶어 호출 횟수 자체를 줄인다. Phase 1개 + Task 5개 등록 시 개별 6회 호출(~3,600 토큰) 대신 batch 1회(~350 토큰)로 처리한다.
-
-**태스크 관리 방식별 토큰 비교**
-
-에이전트가 "현황 파악 → 태스크 선택 → 할당 → 작업 → 완료 기록"을 수행하는 한 사이클:
-
-| 단계 | 마크다운 방식 | MCP 도구 방식 |
-| --- | --- | --- |
-| 현황 파악 | Read PLAN.md + PROGRESS.md (~10,000 토큰) | \`sync\` (~400 토큰) |
-| 태스크 선택 | PLAN.md 재로드 + 수동 탐색 (~1,800 토큰) | \`next\` (~200 토큰) |
-| 태스크 할당 | Edit PLAN.md (~1,800 토큰) | \`claim\` (~100 토큰) |
-| 작업 완료 | Edit PLAN.md + PROGRESS.md (~10,000 토큰) | \`complete\` (~150 토큰) |
-| **합계** | **~23,600 토큰** | **~850 토큰** |
-
-**1회 사이클당 약 96% 절감.** 그리고 이 차이는 프로젝트가 커질수록 벌어진다.
-
-| 태스크 수 | 마크다운 1사이클 | MCP 1사이클 | 절감률 |
-| --- | --- | --- | --- |
-| Phase 6 (40개 태스크) | ~23,600 토큰 | ~850 토큰 | 96% |
-| Phase 12 (60개 태스크) | ~38,000 토큰 | ~850 토큰 | 98% |
-| Phase 17 (78개 태스크) | ~48,000 토큰 | ~850 토큰 | 98% |
-
-MCP 방식은 프로젝트가 아무리 커져도 응답 크기가 일정하다. \`sync\`는 요약 통계만, \`next\`는 실행 가능한 태스크만, \`complete\`는 결과만 반환하기 때문이다. 반면 마크다운은 전체 이력이 누적되어 파일을 읽을 때마다 토큰이 선형 증가한다.
+배치 도구는 여러 변경을 한 트랜잭션으로 묶는다. Phase 1개와 Task 5개를 등록할 때 개별 요청 6회 대신 배치 요청 1회로 처리하도록 했다. 태스크 상태를 확인하고 바꿀 때마다 전체 마크다운 파일을 읽고 편집하던 절차를 도구 호출로 옮겼다.
 
 **SQLite 변경 감지와 폴링**
 
@@ -85,11 +65,10 @@ MCP Server가 DB를 변경했을 때 Extension이 이를 감지하여 칸반 보
 
 WAL 파일(\`board.db-wal\`)을 \`chokidar\`로 감시하되, 500ms 디바운스로 과도한 이벤트를 억제한다. 30초 이상 이벤트가 없으면 5초 간격 폴링으로 폴백하는 Hybrid 패턴을 적용했다.
 
-| 지표 | 단순 폴링 방식 | WAL 감시 (Hybrid) |
-| --- | --- | --- |
-| DB 변경 → UI 갱신 | 평균 2.5초 | ~500ms |
-| 유휴 시 불필요 쿼리 | 720회/시간 | 0회 (이벤트 기반) |
-| 폴백 안전성 | 항상 동작 | 30초 idle 시 폴링 자동 전환 |
+| 조건 | 확인 방식 |
+| --- | --- |
+| WAL 변경 이벤트 수신 | 500ms 디바운스 후 변경 내용 조회 |
+| 30초 이상 이벤트가 없음 | 5초 간격 폴링으로 확인 |
 
 ![실시간 모니터링 파이프라인]({{diagram_realtime}})
 
@@ -118,7 +97,7 @@ ProcessManager가 Board Server의 spawn/kill/restart를 관리한다. 비정상 
 | 테스트↔Extension 전환 | 매번 rebuild (~30초) | 전환 없음 | 개발 루프 30초 단축 |
 | Extension 번들 크기 | ~2.1MB (네이티브 모듈) | 30KB (순수 JS) | ~99% 감소 |
 | RPC 라운드트립 | - | ~3ms | UI 무영향 |
-| 프로세스 복구 | 수동 재시작 | 자동 backoff | 무중단 운영 |
+| 프로세스 복구 | 수동 재시작 | 간격을 늘리며 자동 재시도 | 비정상 종료 시 자동 재시작 |
 
 **드래그앤드롭 상태 변경**
 
@@ -179,8 +158,8 @@ ProcessManager가 Board Server의 spawn/kill/restart를 관리한다. 비정상 
 | --- | --- | --- |
 | 태스크 등록 | ~5분 (마크다운 테이블 편집) | ~30초 (\`/plan\` → batch 자동 등록) |
 | 상태 확인 | 파일 열어서 확인 | \`/sync\` 한 줄 (~2초) |
-| 충돌 발생률 | ~15% (동시 편집 시) | 0% (DB 트랜잭션 기반) |
-| 병렬 위임 | 불가 (파일 충돌) | backend-dev + frontend-dev 동시 작업 |
+| 태스크 변경 | 공유 마크다운 파일 편집 | DB 트랜잭션으로 태스크 변경 |
+| 병렬 위임 | 같은 파일의 편집 충돌 조율 필요 | backend-dev와 frontend-dev가 MCP로 태스크 관리 |
 `;
 
 export const agentBoard: Project = {

@@ -30,9 +30,8 @@ export const giveYouEar: Project = {
   challenges: [
     'Spring Boot Websocket, STT API 통합 및 발음 분석 알고리즘 구현',
     '사용자 레벨별 맞춤 스크립트 생성 로직 설계',
-    '시각적 피드백 데이터 처리 및 최적화',
+    '화면에 표시할 발음 피드백 데이터 처리',
   ],
-  outcome: 'Groomthon univ 경인지부 9ITHON 최우수상(1등) 수상',
   duration: '2025.07 (해커톤)',
   teamSize: '6명',
   role: '백엔드 개발자',

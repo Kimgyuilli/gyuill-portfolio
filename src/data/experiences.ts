@@ -60,7 +60,7 @@ export const experiences: Experience[] = [
     company: 'Groomthon Univ',
     position: 'AYU 서버파트 미르미',
     period: '2025.02 - 2025.09',
-    description: ['해커톤 2회 참여 (9ITHON 최우수상 수상)', 'SpringBoot 스터디 진행 및 기술 공유'],
+    description: ['해커톤 2회 참여', 'SpringBoot 스터디 진행 및 기술 공유'],
     type: 'activity',
   },
   {
